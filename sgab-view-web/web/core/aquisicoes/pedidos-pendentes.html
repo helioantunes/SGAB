@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>SGAB | Sistema de Gestão de Acervo Bibliográfico </title>
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <link rel="stylesheet" href="../../css/styles.css">
+        <script type="text/javascript" language="JavaScript" src="/sgab/js/helper.js"></script>
+    </head>
+    <body>
+        <header>
+            <div id="pagina-inicial">
+                <a href="" title="Página Inicial">
+                    SGAB
+                </a>
+            </div>
+            <div id="logo-topo">
+                <a href="http://www.cefetmg.br/" target="_blank" title="Centro Federal de Educação Tecnológica de Minas Gerais">
+                    <img src="/sgab/images/logo_topo.png" alt="Centro Federal de Educação Tecnológica de Minas Gerais" />                </a>
+            </div>
+            <style>
+                #escolha{
+                    display: flex;
+                    position: relative;
+                    justify-content: space-around;
+
+                }
+
+                #escolha::after{
+                    content: "";
+                    background: black;
+                    position: absolute;
+                    bottom: 0;
+                    left: 50%;
+                    height: 100%;
+                    width: 1px;
+                }
+            </style>
+        </header>
+        <main>
+            <section id="nome-form">
+                <h1>Menu</h1>
+            </section>
+            <div class="menu">
+                <a href='/sgab/main?acao=ObraListar' id="obras">Obras</a>
+                <a href='/sgab/main?acao=PessoaListar' id="pessoas">Pessoas</a>
+                <a href='/sgab/main?acao=UsuarioListar' id="usuario">Usuários</a>                
+            </div>
+            <center>
+                <h3>Pedidos Pendentes</h3>
+                <a href="pedir-passo1.html">Fazer nova Aquisição</a>
+                <form name="frmObra" method="post">
+                      <input type="hidden" name="table" value="Obra">
+                      <input type="hidden" name="obraId" value="">
+                      <table id="usuario" style="width: 50%;">
+                          <tr>
+                            <th class="hpesquisa"></th>
+                            <th>OBRA</th>
+                            <th style="width: 50%;"></th>
+                          </tr>
+                          <tr>
+                            <td>1</td>
+                            <td></td>
+                            <td id="escolha" style="background-color: #aaaaaa; ">
+                                <input type="button" class="button" style="
+                                    display: inline;  
+                                    height: 26px; 
+                                    border-color: #aaaaaa; 
+                                    background-color: #aaaaaa;
+                                    color: black;
+                                    border-radius: 0;
+                                    
+                                " value="Recusar" onclick="recusar(<%=obra.getId()%>,document.frmObra)">
+                                <input type="button" class="button" style="
+                                    display: inline; 
+                                    height: 26px; 
+                                    border-color: #aaaaaa; 
+                                    background-color: #aaaaaa;
+                                    color: black;
+                                    border-radius: 0;
+                                " value="Pedir" onclick="pedir(<%=obra.getId()%>,document.frmObra)"></td>
+                          </tr>
+              </table>
+              </form>
+              
+          </center>
+  </div>
+</section>
+</main>
+<footer>
+    <p>SGAB - Sistema de Gestão de Acervo Bibliográfico</p>
+</footer>
+</body>
+</html>

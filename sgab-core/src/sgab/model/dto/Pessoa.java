@@ -1,5 +1,6 @@
 package sgab.model.dto;
 
+import sgab.model.dto.util.PessoaTipo;
 public class Pessoa {
     
     private Long id;
@@ -9,11 +10,13 @@ public class Pessoa {
     private String email;
     private String senha;
     private boolean habilitado;
+    private PessoaTipo tipo;
 
     public Pessoa(String login, Long cpf){
         this.Login = login;
         this.cpf = cpf;
         this.habilitado = true;
+        this.tipo = null;
     }
 
     public Pessoa(Long cpf, String login, String nome, String email, String senha){
@@ -23,8 +26,17 @@ public class Pessoa {
         this.email = email;
         this.senha = senha;
         this.habilitado = true;
+        this.tipo = null;
     }
     
+    public PessoaTipo getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(PessoaTipo tipo) {
+        this.tipo = tipo;
+    }
+
     public Long getId() {
         return id;
     }

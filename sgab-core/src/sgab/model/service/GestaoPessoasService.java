@@ -5,7 +5,6 @@ import sgab.model.dao.PessoasDAO;
 import sgab.model.dto.Pessoa;
 import sgab.model.dto.util.PessoaHelper;
 import sgab.model.exception.NegocioException;
-
 public class GestaoPessoasService {
     private PessoasDAO pessoasDAO;
 
