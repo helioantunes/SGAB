@@ -5,76 +5,60 @@
 package sgab.model.service;
 
 import java.util.ArrayList;
+import java.util.List;
 import sgab.model.dto.Fornecedor;
 import sgab.model.dao.FornecedoresDAO;
 import sgab.model.dto.util.FornecedorHelper;
+import sgab.model.dto.util.FornecedoresStatus;
+import sgab.model.exception.NegocioException;
 
 /**
  *
  * @author T-Gamer
  */
-public class GestaoFornecedoresService implements FornecedoresDAO {
-    ArrayList<Fornecedor> fornecedores = new ArrayList<>();
+public class GestaoFornecedoresService {
+    private FornecedoresDAO fornecedoresDAO;
     
-    @Override
-    public void CadastrarFornecedor(Long cnpj, String nomeFornecedor, String email, Long telefone, Long cep, String endereco) {
-        Fornecedor novoFornecedor = new Fornecedor(cnpj, nomeFornecedor, email, telefone, cep, endereco);
-        
-        switch(FornecedorHelper.validarFornecedor(novoFornecedor)){
-            case 0:
-                break;
-            case 1:
-                throw new RuntimeException("O cnpj do fornecedor está vazio.");
-            case 2:
-                throw new RuntimeException("O nome do fornecedor está vazio.");
-            case 3:
-                throw new RuntimeException("O email do fornecedor está vazio.");
-            case 4:
-                throw new RuntimeException("O telefone do fornecedor está vazio.");
-            case 5:
-                throw new RuntimeException("O cep do fornecedor está vazio.");
-            case 6:
-                throw new RuntimeException("O endereço do fornecedor está vazio.");
-        }
-        
-        fornecedores.add(novoFornecedor);
+    public GestaoFornecedoresService() {
+        fornecedoresDAO = FornecedoresDAO.getInstance();
     }
-    
-    public Fornecedor pesquisar(Long cnpj){
-        for(Fornecedor fornecedor: fornecedores) {
-            if(cnpj == fornecedor.getCnpj()) {
-                return fornecedor;
-            }
-        }
 
-        return null;
+    public Long Cadastrar(Fornecedor fornecedor) {
+        
+        List<String> exMsgs = FornecedorHelper.validar(fornecedor);
+        
+        if(!exMsgs.isEmpty())
+            throw new NegocioException(exMsgs);
+        
+        fornecedoresDAO.inserir(fornecedor);
+        return fornecedor.getCnpj();
     }
     
-    @Override
-    public void AlterarDados(Long cnpj, String nomeFornecedor, String email, Long telefone, Long cep, String endereco) {
-        Fornecedor fornecedor = pesquisar(cnpj);
+    public void atualizarCadastro(Fornecedor fornecedor) {
         
-        if(fornecedor == null){
-            throw new RuntimeException("Esse cnpj não está cadastrado.");
-        }
+        List<String> exMsgs = FornecedorHelper.validar(fornecedor);
         
-        fornecedor.setCep(cep);
-        fornecedor.setEndereco(endereco);
-        fornecedor.setNomeFornecedor(nomeFornecedor);
-        fornecedor.setTelefone(telefone);
-        fornecedor.setEmail(email);
+        if(!exMsgs.isEmpty())
+            throw new NegocioException(exMsgs);
         
+        fornecedoresDAO.alterar(fornecedor);
     }
     
-    @Override
-    public void CancelarFornecedor(Long cnpj){
-        Fornecedor fornecedor = pesquisar(cnpj);
+    public void excluir(Fornecedor fornecedor) {
         
-        if(fornecedor == null){
-            throw new RuntimeException("Esse cpf não está cadastrado.");
-        }
+        Fornecedor frncdr = fornecedoresDAO.pesquisar(fornecedor.getCnpj());
+        if (frncdr == null)
+            throw new NegocioException("Fornecedor 'CNPJ=" + fornecedor.getCnpj() + "' não encontrado!");
         
-        fornecedores.remove(fornecedor);
+        fornecedor.setStatus(FornecedoresStatus.SUSPENSO);
+    }
+    
+    public Fornecedor pesquisarPorCNPJ(Long cpnj) {
+        return fornecedoresDAO.pesquisar(cpnj);
+    }
+    
+    public Fornecedor pesquisarPorNome(String nome) {
+        return fornecedoresDAO.pesquisar(nome);
     }
 
 }
