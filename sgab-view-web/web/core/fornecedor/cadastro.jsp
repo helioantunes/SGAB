@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,7 @@
 <body>
     <header>
         <div id="pagina-inicial">
-            <a href=""title="Página Inicial">
+            <a href="" title="Página Inicial">
             SGAB
             </a>
         </div>
@@ -36,11 +37,10 @@
                     </div>
                     <div id="caixa-form-footer">  
                         <button type="submit" id="botaoProximo"  onclick="cnpj()" >Acessar</button>
-                        <button type="submit" id="dados" onclick="document.getElementById('caixa-dados').style.visibility = 'visible'"  onclick="email()">Cadastrar</button>
-                        <button type="submit" id="dados" onclick="document.getElementById('caixa-dados').style.visibility = 'visible'"  onclick="email()">Mudar Dados</button>
+                        <button type="submit" id="dados" onclick="document.getElementById('caixa-dados').style.visibility = 'visible'; email()">Cadastrar</button>
+                        <button type="submit" id="dados" onclick="document.getElementById('caixa-dados').style.visibility = 'visible'; email()">Mudar Dados</button>
                         <button type="submit" id="deletar" onclick="cnpj()">Deletar Fornecedor</button>
                     </div>
-                    <span id="erro"></span>
                 </form>
                 <form>
                 <div id="caixa-dados">
