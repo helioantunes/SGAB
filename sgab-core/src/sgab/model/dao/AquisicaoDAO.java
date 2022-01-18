@@ -90,9 +90,19 @@ public class AquisicaoDAO implements GenericDAO<Aquisicao, Long>{
         }
         
         return aquisicoesAtivas;
+    } 
+
+    public List<Aquisicao> aquisicoesPendentes() {
+        List<Aquisicao> aquisicoesPendentes = new LinkedList<>();
+        
+        for(Aquisicao aquisicao : aquisicoes.values()) {
+            if(aquisicao.getStatus() == AquisicaoStatus.PENDENTE) {
+                aquisicoesPendentes.add(aquisicao);
+            }
+        }
+        
+        return aquisicoesPendentes;
     }
-    
-    //listar pendentes (adicionar status PENDENTE em AquisicaoStatus?)
     
     public void excluir(Aquisicao entidade) {
         Aquisicao aquisicaoAlvo = pesquisar(entidade.getId());
