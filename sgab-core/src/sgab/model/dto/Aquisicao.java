@@ -12,6 +12,7 @@ public class Aquisicao {
     private Fornecedor fornecedor;
     private AquisicaoStatus status;
     private Obra obra;
+    private Long id;
 
     //construtor 
     public Aquisicao(Pessoa pessoa, Long quantidade, Fornecedor fornecedor, AquisicaoStatus status, Obra obra){
@@ -20,6 +21,15 @@ public class Aquisicao {
         this.fornecedor = fornecedor;
         this.status = status;
         this.obra = obra;
+    }
+
+    //get e set id
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     //get e set pessoa
