@@ -56,7 +56,7 @@ public class AquisicaoDAO implements GenericDAO<Aquisicao, Long>{
         return aquisicoes.get(key);
     }
     
-    //adicionar método de pesquisar por Pessoa e Obra?
+    //é necessário adicionar método de pesquisar por Pessoa e Obra?
     
     public List<Aquisicao> listarAquisicoes() {
         List<Aquisicao> aquisicoesExistentes = new LinkedList<>();
