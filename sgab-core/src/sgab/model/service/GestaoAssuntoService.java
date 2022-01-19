@@ -7,11 +7,11 @@ import sgab.model.dao.AssuntoDAO;
 import sgab.model.dto.util.AssuntoHelper;
 import sgab.model.exception.NegocioException;
 
-public class GestaoAssuntosService {
+public class GestaoAssuntoService {
     
     private AssuntoDAO assuntoDAO;
     
-    public GestaoAssuntosService() {
+    public GestaoAssuntoService() {
         assuntoDAO = AssuntoDAO.getInstance();
     }
     

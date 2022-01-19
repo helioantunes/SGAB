@@ -7,11 +7,11 @@ import sgab.model.dto.util.UsuarioHelper;
 import sgab.model.dto.util.UsuarioStatus;
 import sgab.model.exception.NegocioException;
 
-public class GestaoUsuario {
+public class GestaoUsuarioService {
 
     private UsuarioDAO usuarioDAO;
     
-    public GestaoUsuario() {
+    public GestaoUsuarioService() {
         usuarioDAO = UsuarioDAO.getInstance();
     }
     
@@ -26,7 +26,7 @@ public class GestaoUsuario {
         return usuario.getId();
     }
 
-    public void atualizarCadastro(Usuario usuario) {
+    public void atualizar(Usuario usuario) {
         
         List<String> exMsgs = UsuarioHelper.validar(usuario);
         
