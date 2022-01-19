@@ -10,7 +10,7 @@ public class Autor{
     private long id;
 
     public Autor(String nome) {
-        super.nome = nome;
+        this.nome = nome;
     }
 
     public long getId() {
@@ -18,11 +18,11 @@ public class Autor{
     }
 
     public void setId(long id) {
-        super.id = id;
+        this.id = id;
     }
 
     public void setNome(String nome) {
-        super.nome = nome;
+        this.nome = nome;
     }
 
     public String getNome() {

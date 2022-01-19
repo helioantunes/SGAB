@@ -93,6 +93,18 @@ public class Main extends HttpServlet {
             case "UnidadeOrganizacionalExcluir":
                 jsp = UnidadeOrganizacionalController.excluir(request);
                 break;
+            case "AutorCadastrar":
+                jsp = AutorController.insercao(request);
+                break;
+            case "AutorAlterar":
+                jsp = AutorController.alterar(request);
+                break;
+             case "AutorPesquisar":
+                jsp = AutorController.pesquisar(request);
+                break;
+            case "AutorExcluir":
+                jsp = AutorController.excluir(request);
+                break;    
         }
 
         //Redirecionando pagina
