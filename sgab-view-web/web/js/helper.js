@@ -12,14 +12,13 @@ function cnpj() {
 
 
 /*---------------------------------------------------------------------
- * Funcao de validacao dos campos formLogin
- * Utilizacao:  funcao ValidaLogin() 
+ * Funções de validação
  *---------------------------------------------------------------------*/
 function validarCamposLogin(frm) {
     var login = frm.login.value;
     var senha = frm.senha.value;
     var result = false;
-    
+
     if (login === "") {
         alert("Preencha o campo usuário!");
         frm.login.focus();
@@ -34,11 +33,20 @@ function validarCamposLogin(frm) {
     return result;
 }
 
-
+function validarAutor(frm) {
+    let result = false;
+    if (frm.nomeAutor.value.trim() === "") {
+        alert("Informar o nome!");
+        frm.nomeAutor.focus();
+    } else {
+        result = true;
+    }
+    return result;
+}
 
 function validarUsuario(frm) {
     var result = false;
-    
+
     if (frm.login.value === "") {
         alert("Informar o login!");
         frm.login.focus();
@@ -51,21 +59,20 @@ function validarUsuario(frm) {
     } else if (frm.email.value === "") {
         alert("Informar o email!");
         frm.email.focus();
-    } 
+    }
     else
         result = true;
         
     return result;
-
 }
 
 function validarPessoa(frm) {
     var result = false;
-    
+
     if (frm.cpf.value == "") {
         alert("Informar o cpf!");
         frm.cpf.focus();
-    } else if(frm.login.value === ""){
+    } else if (frm.login.value === "") {
         alert("Informar o Login!");
         frm.login.focus();
     } else if (frm.nome.value === "") {
@@ -77,34 +84,46 @@ function validarPessoa(frm) {
     } else if (frm.email.value === "") {
         alert("Informar o email!");
         frm.email.focus();
-    } 
+    }
     else
         result = true;
-        
+
     return result;
 
 }
 
 function pesquisar(frm){
     var table = frm.table.value;
-    
+
     if (table === "Pessoa") {
-        if(frm.acao.valeu === "pesquisarPorLogin"){
+        if (frm.acao.value === "pesquisarPorLogin") {
             if (frm.login.value == "") {
                 alert("Informar o login!");
                 frm.login.focus();
             } else {
-                frm.action = "/sgab/main?acao=PessoaPesquisar&PessoaLogin=" + frm.login.value;            
+                frm.action = "/sgab/main?acao=PessoaPesquisar&PessoaLogin=" + frm.login.value;
                 frm.submit();
             }
         }
+    }
+    if (table === "Autor") {
+        frm.action = "/sgab/main?acao=AutorPesquisar";
+        frm.submit();
     }
 }
 
 function gravarAlteracao(frm) {
     var table = frm.table.value;
 
-    if (table === "Usuario") {
+    if (table === "Assunto") {
+        if (validarAssunto(frm)) {
+            if (frm.acao.value === "alterar")
+                caminhourl = "/sgab/main?acao=AssuntoGravarAlteracao";
+            else if (frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=AssuntoGravarInsercao";
+        }
+    }
+    else if (table === "Usuario") {
         if (validarUsuario(frm)) {
             if (frm.acao.value === "alterar")
                 caminhourl = "/sgab/main?acao=UsuarioGravarAlteracao";
@@ -120,7 +139,7 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=PessoaGravarInsercao";
         }
     }
-    else if(table === "Obra") {
+    else if (table === "Obra") {
         if (validarObra(frm)) {
             if (frm.acao.value === "alterar")
                 caminhourl = "/sgab/main?acao=ObraGravarAlteracao";
@@ -128,8 +147,8 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=ObraGravarInsercao";
         }
     }
-    else if(table === "Biblioteca"){
-        if(validarBiblioteca(frm)){
+    else if (table === "Biblioteca") {
+        if (validarBiblioteca(frm)) {
             if (frm.acao.value === "alterar")
                 caminhourl = "/sgab/gerenciaBiblioteca?acao=BibliotecaGravarAlteracao";
             else if (frm.acao.value === "gravar")
@@ -144,42 +163,67 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=UnidadeOrganizacionalGravarInsercao";
         }
     }
+    else if (table === "Autor") {
+        if (validarAutor(frm)) {
+            if (frm.acao.value === "alterar")
+                caminhourl = "/sgab/main?acao=AutorAlterar";
+            else if (frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=AutorCadastrar";
+        }
+    }
 
     frm.action = caminhourl;
     frm.submit();
 }
 
+/*---------------------------------------------------------------------
+ * Funções de exclusão
+ *---------------------------------------------------------------------*/
+
 function excluir(id, frm) {
     var table = frm.table.value;
 
-    if (table === "Usuario") {
-        if (confirm('Deseja excluir o Usuário com Id = ' + id + '?')) {
-            frm.usuarioId.value = id;
-            frm.action = "/sgab/main?acao=UsuarioExcluir";            
+    if (table === "Assunto") {
+        if (confirm('Deseja excluir o Assunto com Id = ' + id + '?')) {
+            frm.assuntoId.value = id;
+            frm.action = "/sgab/main?acao=AssuntoExcluir";            
             frm.submit();
         }
     } 
+    else if (table === "Usuario") {
+        if (confirm('Deseja excluir o Usuário com Id = ' + id + '?')) {
+            frm.usuarioId.value = id;
+            frm.action = "/sgab/main?acao=UsuarioExcluir";
+            frm.submit();
+        }
+    }
     else if (table === "Pessoa") {
         if (confirm('Deseja excluir o Usuário com Id = ' + id + '?')) {
             frm.pessoaId.value = id;
-            frm.action = "/sgab/main?acao=PessoaExcluir";            
+            frm.action = "/sgab/main?acao=PessoaExcluir";
             frm.submit();
         }
     }
-    if(table === "Obra") {
+    if (table === "Obra") {
         if (confirm('Deseja excluir a Obra com Id = ' + id + '?')) {
             frm.obraId.value = id;
-            frm.action = "/sgab/main?acao=ObraExcluir";            
+            frm.action = "/sgab/main?acao=ObraExcluir";
             frm.submit();
         }
     }
-    if(table === "UnidadeOrganizacional") {
+    if (table === "UnidadeOrganizacional") {
         if (confirm('Deseja excluir a Unidade Organizacional com Id = ' + id + '?')) {
             frm.uOrgId.value = id;
-            frm.action = "/sgab/main?acao=UnidadeOrganizacionalExcluir";            
+            frm.action = "/sgab/main?acao=UnidadeOrganizacionalExcluir";
             frm.submit();
         }
-    }    
+    }
+    if (table === "Autor") {
+        if (confirm('Deseja excluir o Autor com Id = ' + frm.idAutor.value + '?')) {
+            frm.action = "/sgab/main?acao=AutorExcluir";
+            frm.submit();
+        }
+    }
 }
 
 function validarCamposPesquisaObra(frm){
