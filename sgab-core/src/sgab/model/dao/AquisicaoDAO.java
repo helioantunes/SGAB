@@ -106,11 +106,11 @@ public class AquisicaoDAO implements GenericDAO<Aquisicao, Long>{
     
     public void excluir(Aquisicao entidade) {
         Aquisicao aquisicaoAlvo = pesquisar(entidade.getId());
-        aquisicaoAlvo.setSatus(AquisicaoStatus.CANCELADO);
+        aquisicaoAlvo.setStatus(AquisicaoStatus.CANCELADO);
     }
     
     @Override
     public List pesquisar(List parameterList) {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
