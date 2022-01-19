@@ -5,8 +5,9 @@ public class Assunto {
     private Long id;
     private boolean ativo;
 
-    public Assunto(String tagAssunto) {
-        this.nome = tagAssunto;
+    public Assunto(String nome) {
+        this.nome = nome;
+        this.ativo = true;
     }
     
     public Long getId(){
