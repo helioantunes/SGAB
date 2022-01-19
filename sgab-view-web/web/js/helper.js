@@ -136,6 +136,14 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/cadastroBiblioteca?acao=BibliotecaGravarInsercao";
         }
     }
+    else if (table === "UnidadeOrganizacional") {
+        if (validarUnidadeOrganizacional(frm)) {
+            if (frm.acao.value === "alterar")
+                caminhourl = "/sgab/main?acao=UnidadeOrganizacionalGravarAlteracao";
+            else if (frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=UnidadeOrganizacionalGravarInsercao";
+        }
+    }
 
     frm.action = caminhourl;
     frm.submit();
@@ -165,6 +173,13 @@ function excluir(id, frm) {
             frm.submit();
         }
     }
+    if(table === "UnidadeOrganizacional") {
+        if (confirm('Deseja excluir a Unidade Organizacional com Id = ' + id + '?')) {
+            frm.uOrgId.value = id;
+            frm.action = "/sgab/main?acao=UnidadeOrganizacionalExcluir";            
+            frm.submit();
+        }
+    }    
 }
 
 function validarCamposPesquisaObra(frm){
@@ -230,4 +245,20 @@ function validarBiblioteca(validar) {
         result = true;
     
     return result;
+}
+
+function validarUnidadeOrganizacional(frm){
+    let result = false;
+    if (frm.nome.value === "") {
+        alert("Informar o nome!");
+        frm.nome.focus();
+    } 
+    else if (frm.endereco.value == ""){
+        alert ("Insira o endereço!");
+        frm.endereco.focus();
+    }
+    else
+        result = true;
+
+    return result
 }
