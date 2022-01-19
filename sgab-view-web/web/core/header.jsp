@@ -34,5 +34,6 @@
             <div class="menu">
                 <a href='/sgab/main?acao=ObraListar' id="obras">Obras</a>
                 <a href='/sgab/main?acao=PessoaListar' id="pessoas">Pessoas</a>
-                <a href='/sgab/main?acao=UsuarioListar' id="usuario">Usuários</a>                
+                <a href='/sgab/main?acao=UnidadeOrganizacionalListar' id="unidadeOrganizacional">Unid. Org.</a>                
+                
             </div>

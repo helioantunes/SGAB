@@ -10,7 +10,14 @@ import sgab.model.dto.Assunto;
 
 public class AssuntoHelper {
 
-    public static int validarAssunto(Assunto assunto, ArrayList<Assunto> assuntoLista) {
+    public static boolean validar(Assunto assunto) {
+        if(assunto == null || assunto.getNome() == null || assunto.getNome().length() == 0)
+            return false;
+
+        return true;
+    }
+
+    public static int validar(Assunto assunto, ArrayList<Assunto> assuntoLista) {
         if (assuntoLista.contains(assunto)) {
             return 1;
         }

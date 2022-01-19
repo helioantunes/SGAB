@@ -78,6 +78,21 @@ public class Main extends HttpServlet {
             case "BibliotecaGravarInsercao":
                 jsp = "cadstroServlet";
                 break;
+            case "UnidadeOrganizacionalListar":
+                jsp = UnidadeOrganizacionalController.listar(request);
+                break;
+            case "UnidadeOrganizacionalAlterar":
+                jsp = UnidadeOrganizacionalController.alterar(request);
+                break;
+            case "UnidadeOrganizacionalGravarAlteracao":
+                jsp = UnidadeOrganizacionalController.gravarAlteracao(request);
+                break;
+            case "UnidadeOrganizacionalGravarInsercao":
+                jsp = UnidadeOrganizacionalController.gravarInsercao(request);
+                break;           
+            case "UnidadeOrganizacionalExcluir":
+                jsp = UnidadeOrganizacionalController.excluir(request);
+                break;
         }
 
         //Redirecionando pagina
