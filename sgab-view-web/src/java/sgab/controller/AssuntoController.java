@@ -3,14 +3,9 @@ package sgab.controller;
 import sgab.model.dto.Assunto;
 import sgab.model.service.GestaoAssuntosService;
 import sgab.model.exception.PersistenciaException; 
-import java.io.IOException;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
-public class AssuntosController {
+public class AssuntoController {
 
     public static String cadastrar(HttpServletRequest request) { 
         String jsp = "";
@@ -24,8 +19,8 @@ public class AssuntosController {
             GestaoAssuntosService gestaoAssunto = new GestaoAssuntosService();
             
             try {
-                gestaoAssunto.adicionarAssunto(assunto.getNome());
-                jsp = "/sgab/core/assuntos/resultadoCadastrar.jsp";
+                gestaoAssunto.cadastrar(assunto);
+                jsp = "/sgab/core/assuntos/resultadocadastrar.jsp";
             }
             
             catch (IllegalArgumentException ilegal){
@@ -51,10 +46,11 @@ public class AssuntosController {
             String assuntoNovo = request.getParameter("assuntoNovo");
 
             GestaoAssuntosService gestaoAssunto = new GestaoAssuntosService();
-            Assunto assunto = gestaoAssunto.getAssunto(assuntoAntigo);
+            Assunto assunto = gestaoAssunto.pesquisarAssunto(assuntoAntigo);
+            
             if (assunto != null){
                 request.setAttribute("assunto", assunto);
-                jsp = "/sgab/core/assuntos/resultadoEditar.jsp"; // "/core/assunto/alterar.jsp"; 
+                jsp = "/sgab/core/assuntos/resultadoeditar.jsp"; // "/core/assunto/alterar.jsp"; 
             } else {
                 String erro = "Ocorreu erro ao Editar Assunto!";
                 request.setAttribute("erro", erro);
@@ -73,10 +69,10 @@ public class AssuntosController {
             // Lendo o nome do assunto que usuário deseja excluir
             String tagAssuntoExcluido = request.getParameter("assuntoExcluir");
             GestaoAssuntosService gestaoAssunto = new GestaoAssuntosService();
-            Assunto assunto = gestaoAssunto.getAssunto(tagAssuntoExcluido);
+            Assunto assunto = gestaoAssunto.pesquisarAssunto(tagAssuntoExcluido);
             try {
-                gestaoAssunto.removerAssunto(assunto.getNome());
-                jsp = "/sgab/core/assuntos/resultadoExcluir.jsp"; //AssuntosController.listar(request);
+                gestaoAssunto.excluir(assunto);
+                jsp = "/sgab/core/assuntos/resultadoexcluir.jsp"; //AssuntosController.listar(request);
             }
             catch(PersistenciaException ex) {
                 String erro = "Ocorreu erro ao Excluir Assunto!";

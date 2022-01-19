@@ -2,58 +2,55 @@ package sgab.model.service;
 
 import sgab.model.dto.Assunto;
 import java.util.ArrayList;
+import java.util.List;
+import sgab.model.dao.AssuntoDAO;
+import sgab.model.dto.util.AssuntoHelper;
+import sgab.model.exception.NegocioException;
 
 public class GestaoAssuntosService {
-    ArrayList<Assunto> assuntoLista = new ArrayList<>();
-
-    public void adicionarAssunto(String nome){
-        Assunto assunto = new Assunto(nome);
-        if (assuntoLista.contains(getAssunto(nome))){
-            throw new IllegalArgumentException("Erro: assunto já existente");
-        }
-        assuntoLista.add(assunto);
+    
+    private AssuntoDAO assuntoDAO;
+    
+    public GestaoAssuntosService() {
+        assuntoDAO = AssuntoDAO.getInstance();
+    }
+    
+    public Long cadastrar(Assunto assunto) {
+               
+        if (!AssuntoHelper.validar(assunto))
+            throw new NegocioException("Assunto inválido!");
+       
+        assuntoDAO.inserir(assunto);
+        return assunto.getId();
     }
 
-    public Assunto getAssunto(String nome) {
-        if (nome != null) {
-            for (Assunto assunto : assuntoLista) {
-                if (assunto.getNome().equals(nome)) {
-                    return assunto;
-                }
-            }
-            return null;
-        }
-        return null;
+    public void atualizar(Assunto assunto) {
+               
+        if (!AssuntoHelper.validar(assunto))
+            throw new NegocioException("Assunto inválido!");
+        
+        assuntoDAO.alterar(assunto);
     }
 
-    public Assunto getAssunto(long id) {
-        if (id >= 0) {
-            for (Assunto assunto : assuntoLista) {
-                if (assunto.getId() == id) {
-                    return assunto;
-                }
-            }
-            return null;
-        }
-        return null;
+    public void excluir(Assunto assunto) {
+        
+        Assunto ass = assuntoDAO.pesquisar(assunto.getId());
+        if (ass == null)
+            throw new NegocioException("Assunto 'id=" + assunto.getId() + "'não encontrado!");
+        
+        ass.setAtivo(false);
     }
 
-    public void removerAssunto (String nome) {
-          if(assuntoLista == null) {
-              throw new IllegalArgumentException("Não há nada registrado no banco de dados.");
-          }
-          else if(getAssunto(nome).equals(nome)){
-              assuntoLista.remove(getAssunto(nome));
-          }
-            else {
-              throw new IllegalArgumentException("Esse assunto já foi removido");
-            }
-         }
-
-    public void editarAssunto(String oldNome, String newNome){
-        Assunto assunto = this.getAssunto(oldNome);
-        if(assunto != null){
-            assunto.setNome(newNome);
-        }
+    public List<Assunto> pesquisarAtivos() {
+        return assuntoDAO.listarAtivos();
     }
+
+    public Assunto pesquisarPorId(Long id){
+        return assuntoDAO.pesquisar(id);
+    }    
+
+    public Assunto pesquisarAssunto(String nome){
+        
+        return assuntoDAO.pesquisarNome(nome);               
+    }    
 }
