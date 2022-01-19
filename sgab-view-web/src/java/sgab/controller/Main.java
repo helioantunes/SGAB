@@ -22,6 +22,21 @@ public class Main extends HttpServlet {
             case "Logar":
                 jsp = LoginController.logar(request);
                 break;
+            case "AssuntoListar":
+                jsp = AssuntoController.listar(request);
+                break;
+            case "AssuntoAlterar":
+                jsp = AssuntoController.alterar(request);
+                break;
+            case "AssuntoGravarAlteracao":
+                jsp = AssuntoController.gravarAlteracao(request);
+                break;
+            case "AssuntoGravarInsercao":
+                jsp = AssuntoController.gravarInsercao(request);
+                break;           
+            case "AssuntoExcluir":
+                jsp = AssuntoController.excluir(request);
+                break;
             case "UsuarioListar":
                 jsp = UsuarioController.listar(request);
                 break;

@@ -12,8 +12,7 @@ function cnpj() {
 
 
 /*---------------------------------------------------------------------
- * Funcao de validacao dos campos formLogin
- * Utilizacao:  funcao ValidaLogin() 
+ * Funções de validação
  *---------------------------------------------------------------------*/
 function validarCamposLogin(frm) {
     var login = frm.login.value;
@@ -63,9 +62,8 @@ function validarUsuario(frm) {
     }
     else
         result = true;
-
+        
     return result;
-
 }
 
 function validarPessoa(frm) {
@@ -94,8 +92,7 @@ function validarPessoa(frm) {
 
 }
 
-function pesquisar(frm) {
-    console.log(frm)
+function pesquisar(frm){
     var table = frm.table.value;
 
     if (table === "Pessoa") {
@@ -115,11 +112,18 @@ function pesquisar(frm) {
     }
 }
 
-
 function gravarAlteracao(frm) {
     var table = frm.table.value;
 
-    if (table === "Usuario") {
+    if (table === "Assunto") {
+        if (validarAssunto(frm)) {
+            if (frm.acao.value === "alterar")
+                caminhourl = "/sgab/main?acao=AssuntoGravarAlteracao";
+            else if (frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=AssuntoGravarInsercao";
+        }
+    }
+    else if (table === "Usuario") {
         if (validarUsuario(frm)) {
             if (frm.acao.value === "alterar")
                 caminhourl = "/sgab/main?acao=UsuarioGravarAlteracao";
@@ -172,10 +176,21 @@ function gravarAlteracao(frm) {
     frm.submit();
 }
 
+/*---------------------------------------------------------------------
+ * Funções de exclusão
+ *---------------------------------------------------------------------*/
+
 function excluir(id, frm) {
     var table = frm.table.value;
 
-    if (table === "Usuario") {
+    if (table === "Assunto") {
+        if (confirm('Deseja excluir o Assunto com Id = ' + id + '?')) {
+            frm.assuntoId.value = id;
+            frm.action = "/sgab/main?acao=AssuntoExcluir";            
+            frm.submit();
+        }
+    } 
+    else if (table === "Usuario") {
         if (confirm('Deseja excluir o Usuário com Id = ' + id + '?')) {
             frm.usuarioId.value = id;
             frm.action = "/sgab/main?acao=UsuarioExcluir";
@@ -211,31 +226,31 @@ function excluir(id, frm) {
     }
 }
 
-function validarCamposPesquisaObra(frm) {
+function validarCamposPesquisaObra(frm){
     let tipo = frm.tipo.value;
     let nome = frm.nome.value;
 
-    if (tipo == "null") {
+    if(tipo == "null"){
         alert("Escolha um tipo de pesquisa!");
         frm.tipo.focus();
     }
-    else if (nome == "") {
+    else if (nome == ""){
         alert("Preencha o campo de nome!");
         frm.nome.focus();
     }
-    else {
+    else{
         frm.action = "/sgab/main?acao=ObraPesquisar";
         frm.submit();
     }
 }
 
-function validarObra(frm) {
+function validarObra(frm){
     let result = false;
     if (frm.titulo.value === "") {
         alert("Informar o título!");
         frm.titulo.focus();
-    } else if (frm.autores.value == "") {
-        alert("Insira ao menos algum autor!");
+    } else if (frm.autores.value == ""){
+        alert ("Insira ao menos algum autor!");
     } else if (frm.ano.value === "") {
         alert("Informar o ano de publicação!");
         frm.ano.focus();
@@ -260,30 +275,30 @@ function validarObra(frm) {
 
 function validarBiblioteca(validar) {
     let result = false;
-
-    if (validar.adicionarUnidadeOrgInput.value == "" && validar.adicionarNomeInput.value != undefined) {
+    
+    if(validar.adicionarUnidadeOrgInput.value == "" && validar.adicionarNomeInput.value != undefined) {
         window.confirm("Adicionar Unidade glub glub Org!");
-    }
-
-    else if (validar.adicionarNomeInput.value == "" && validar.adicionarNomeInput.value != undefined) {
+    } 
+     
+    else if(validar.adicionarNomeInput.value == "" && validar.adicionarNomeInput.value != undefined) {
         window.confirm("Adicionar Nome!");
     }
 
 
     else
         result = true;
-
+    
     return result;
 }
 
-function validarUnidadeOrganizacional(frm) {
+function validarUnidadeOrganizacional(frm){
     let result = false;
     if (frm.nome.value === "") {
         alert("Informar o nome!");
         frm.nome.focus();
-    }
-    else if (frm.endereco.value == "") {
-        alert("Insira o endereço!");
+    } 
+    else if (frm.endereco.value == ""){
+        alert ("Insira o endereço!");
         frm.endereco.focus();
     }
     else
