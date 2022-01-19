@@ -61,7 +61,7 @@ public class Aquisicao {
         return status;
     }
 
-    public void setSatus(AquisicaoStatus status) {
+    public void setStatus(AquisicaoStatus status) {
         this.status = status;
     }
     //get e set obra
