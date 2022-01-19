@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>SGAB | Página do Atendente</title>
+  <title>SGAB | Página do Leitor</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -37,7 +37,7 @@
 
   <main>
     <section id="nome-form">
-      <h1>Página do Atendente</h1>
+      <h1>Página do Leitor</h1>
     </section>
 
     <section>
