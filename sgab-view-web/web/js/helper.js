@@ -171,6 +171,31 @@ function validarAssunto(frm){
         return true;
 }
 
+function validarAdministrador(frm) {
+    var result = false;
+    
+    if (frm.cpf.value === "") {
+        alert("Informar o cpf!");
+        frm.cpf.focus();
+    } else if(frm.login.value === ""){
+        alert("Informar o Login!");
+        frm.login.focus();
+    } else if (frm.nome.value === "") {
+        alert("Informar o nome!");
+        frm.nome.focus();
+    } else if (frm.senha.value === "") {
+        alert("Informar a senha!");
+        frm.senha.focus();
+    } else if (frm.email.value === "") {
+        alert("Informar o email!");
+        frm.email.focus();
+    } 
+    else
+        result = true;
+        
+    return result;
+
+}
 /*---------------------------------------------------------------------
  * Funções de pesquisa
  *---------------------------------------------------------------------*/
@@ -246,7 +271,14 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=UnidadeOrganizacionalGravarInsercao";
         }
     }
-
+    else if (table === "Administrador") {
+        if (validarPessoa(frm)) {
+            if (frm.acao.value === "alterar")
+                caminhourl = "/sgab/main?acao=AdministradorGravarAlteracao";
+            else if (frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=AdministradorGravarInsercao";
+        }
+    }
     frm.action = caminhourl;
     frm.submit();
 }
@@ -293,4 +325,11 @@ function excluir(id, frm) {
             frm.submit();
         }
     }    
+    else if (table === "Administrador") {
+        if (confirm('Deseja excluir o Administrador com Id = ' + id + '?')) {
+            frm.pessoaId.value = id;
+            frm.action = "/sgab/main?acao=AdministradorExcluir";            
+            frm.submit();
+        }
+    }
 }
