@@ -1,9 +1,9 @@
 package sgab.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
-import sgab.model.dto.Usuario;
-import sgab.model.service.GestaoUsuario;
 import java.util.List;
+import sgab.model.dto.Usuario;
+import sgab.model.service.GestaoUsuarioService;
 import sgab.model.exception.PersistenciaException;
 
 public class UsuarioController {
@@ -11,7 +11,7 @@ public class UsuarioController {
     public static String listar(HttpServletRequest request) {
         String jsp = "";
         try {
-            GestaoUsuario gestaoUsuario = new GestaoUsuario();
+            GestaoUsuarioService gestaoUsuario = new GestaoUsuarioService();
             List<Usuario> listUsuario = gestaoUsuario.pesquisarAtivos();
             if (listUsuario != null) {
                 request.setAttribute("listUsuario", listUsuario);
@@ -31,9 +31,8 @@ public class UsuarioController {
     public static String alterar(HttpServletRequest request) {
         String jsp = "";
         try {
-            // lendo a Sigla do Usuario que deseja alterar
             Long usuarioId = Long.parseLong(request.getParameter("usuarioId"));
-            GestaoUsuario manterUsuario = new GestaoUsuario();
+            GestaoUsuarioService manterUsuario = new GestaoUsuarioService();
             Usuario usuario = manterUsuario.pesquisarPorId(usuarioId);
             if (usuario != null) {
                 request.setAttribute("usuario", usuario);
@@ -53,9 +52,8 @@ public class UsuarioController {
     public static String excluir(HttpServletRequest request) {
         String jsp = "";
         try {
-            // lendo o CodUsuario que se deseja alterar
             Long usuarioId = Long.parseLong(request.getParameter("usuarioId"));
-            GestaoUsuario gestaoUsuario = new GestaoUsuario();
+            GestaoUsuarioService gestaoUsuario = new GestaoUsuarioService();
             Usuario usuario = gestaoUsuario.pesquisarPorId(usuarioId);
             try {
                 gestaoUsuario.excluir(usuario);
@@ -76,7 +74,6 @@ public class UsuarioController {
     public static String gravarAlteracao(HttpServletRequest request) {
         String jsp = "";
         try {
-
             Long idUsuario = Long.parseLong(request.getParameter("usuarioId"));
             String nome = request.getParameter("login");
             String nomeCompleto = request.getParameter("nome");
@@ -89,9 +86,9 @@ public class UsuarioController {
             usuario.setEmail(email);
             usuario.setSenha(senha);
 
-            GestaoUsuario gestaoUsuario = new GestaoUsuario();
+            GestaoUsuarioService gestaoUsuario = new GestaoUsuarioService();
             try {
-                gestaoUsuario.atualizarCadastro(usuario);
+                gestaoUsuario.atualizar(usuario);
                 jsp = UsuarioController.listar(request);
             } 
             catch(PersistenciaException ex) {
@@ -119,7 +116,7 @@ public class UsuarioController {
             usuario.setEmail(email);
             usuario.setSenha(senha);
 
-            GestaoUsuario gestaoUsuario = new GestaoUsuario();
+            GestaoUsuarioService gestaoUsuario = new GestaoUsuarioService();
             Long usuarioId = gestaoUsuario.cadastrar(usuario);
 
             if (usuarioId != null) {
