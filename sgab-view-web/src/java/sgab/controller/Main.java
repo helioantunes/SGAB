@@ -87,12 +87,6 @@ public class Main extends HttpServlet {
                 break;
             case "PessoaExcluir":
                 jsp = PessoaController.excluir(request);
-            case "BibliotecaGravarAlteracao":
-                jsp = "gerenciaServlet";
-                break;
-            case "BibliotecaGravarInsercao":
-                jsp = "cadstroServlet";
-                break;
             case "UnidadeOrganizacionalListar":
                 jsp = UnidadeOrganizacionalController.listar(request);
                 break;
@@ -135,6 +129,21 @@ public class Main extends HttpServlet {
             case "FornecedorExcluir":
                 jsp = FornecedorController.excluir(request);
                 break;
+            case "BibliotecaListar":
+                jsp = BibliotecaController.listar(request);
+                break;
+            case "BibliotecaAlterar":
+                jsp = BibliotecaController.alterar(request);
+                break;
+            case "BibliotecaGravarAlteracao":
+                jsp = BibliotecaController.gravarAlteracao(request);
+                break;
+            case "BibliotecaGravarInsercao":
+                jsp = BibliotecaController.gravarInsercao(request);
+                break;
+            case "BibliotecaExcluir":
+                jsp = BibliotecaController.excluir(request);
+                break;                
         }
 
         //Redirecionando pagina

@@ -59,6 +59,16 @@ public class UnidadeOrganizacionalDAO implements GenericDAO<UnidadeOrganizaciona
         return table.get(id);
     }
 
+    public UnidadeOrganizacional pesquisarPorNome(String nome) {
+        List<UnidadeOrganizacional> listUOrg = new ArrayList<>();
+        
+        for (UnidadeOrganizacional uOrg: table.values())
+            if (uOrg.getNome().equals(nome))
+                return uOrg;
+        
+        return null;
+    }    
+    
     public List<UnidadeOrganizacional> listarAtivos() {
         List<UnidadeOrganizacional> listUOrg = new ArrayList<>();
         

@@ -5,25 +5,28 @@ import sgab.model.dto.UnidadeOrganizacional;
 import sgab.model.dto.util.UnidadeOrganizacionalHelper;
 import sgab.model.exception.NegocioException;
 
-public class GestaoUnidadeOrganizacional {
+public class GestaoUnidadeOrganizacionalService {
     
     private UnidadeOrganizacionalDAO uOrgDAO = 
             UnidadeOrganizacionalDAO.getInstance();
     
     public Long cadastrar (UnidadeOrganizacional uOrg) {
-        if (!UnidadeOrganizacionalHelper.validar(uOrg))
-            throw new NegocioException("Unidade Organizacional não é válida");
+        List<String> msgs = UnidadeOrganizacionalHelper.validar(uOrg);
+        
+        if (!msgs.isEmpty())
+            throw new NegocioException(msgs);
         
         uOrgDAO.inserir(uOrg);
         return uOrg.getId();
     }
     
     public void atualizar(UnidadeOrganizacional uOrg) {
-        if (!UnidadeOrganizacionalHelper.validar(uOrg))
-            throw new NegocioException("Unidade Organizacional não é válida");
+        List<String> msgs = UnidadeOrganizacionalHelper.validar(uOrg);
         
-        uOrgDAO.alterar(uOrg);
+        if (!msgs.isEmpty())
+            throw new NegocioException(msgs);
         
+        uOrgDAO.alterar(uOrg);        
     }
 
     public void excluir(UnidadeOrganizacional uOrg) {

@@ -1,21 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package sgab.model.dao;
 
-
-import java.util.Collections;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import sgab.model.dto.Biblioteca;
-import sgab.model.dto.util.BibliotecaStatus;
+import sgab.model.exception.PersistenciaException;
 
 
 public class BibliotecaDAO implements GenericDAO<Biblioteca, Long> {
-    private static Map<Long, Biblioteca> bibliotecas = new HashMap<>();
+    
+    private static Map<Long, Biblioteca> table;
+    static {
+        BibliotecaDAO.table = new HashMap<>();
+    }
     
     private static Long idSequence; //  gera identificador sequencial
     static {
@@ -28,84 +26,63 @@ public class BibliotecaDAO implements GenericDAO<Biblioteca, Long> {
     
     @Override
     public void inserir(Biblioteca biblioteca){
-        Long id = BibliotecaDAO.getNextId();
-        biblioteca.setId(id);
-        this.bibliotecas.put(biblioteca.getId(), biblioteca);
+        if (pesquisarPorNome(biblioteca.getNome()) != null)
+            throw new PersistenciaException("'" + biblioteca.getNome() 
+                                                            + "' é único.");
+        Long bibliotecaId = BibliotecaDAO.getNextId();
+        biblioteca.setId(bibliotecaId);
+               
+        table.put(bibliotecaId, biblioteca);
     }
-    
     
     @Override
     public void alterar(Biblioteca biblioteca){
-        biblioteca.setId(this.getNextId());
-        this.bibliotecas.put(biblioteca.getId(), biblioteca);
+        
+        Biblioteca bbl = table.remove(biblioteca.getId());
+       
+        if (bbl == null)
+            throw new PersistenciaException("Nenhuma biblioteca com "
+                                        + "o id '" + biblioteca.getId() + "'.");
+        
+        table.put(biblioteca.getId(), biblioteca);
     }
-    
-    public void alterarId(String nome,Long id){
-        for(Long key : this.bibliotecas.keySet()){
-            
-            Biblioteca valor = this.bibliotecas.get(key);
-            if(valor.getNome().equals(nome)){
-                valor.setId(id);
-                break;
-            }
-        }
-    }
-    
-    public void alterarUnidadeOrg(String nome, String org){
-        for(Long key : this.bibliotecas.keySet()){
-            
-            Biblioteca valor = this.bibliotecas.get(key);
-            if(valor.getNome().equals(nome)){
-                valor.setUnidadeOrg(org);
-                break;
-            }
-        }
-    }
-    
-    public void alterarNome(String nomeAntigo, String nomeNovo){
-        for(Long key : this.bibliotecas.keySet()){
-            
-            Biblioteca valor = this.bibliotecas.get(key);
-            if(valor.getNome().equals(nomeAntigo)){
-                valor.setNome(nomeNovo);
-                break;
-            }
-        }
-    }
-   
-    
-    public void alterarStatus(String nome, BibliotecaStatus status){
-        for(Long key : this.bibliotecas.keySet()){
-            
-            Biblioteca valor = this.bibliotecas.get(key);
-            if(valor.getNome().equals(nome)){
-                valor.setStatus(status);
-                break;
-            }
-        }
-    }
-    
+
     @Override
-    public Biblioteca pesquisar(Long key){
-        return (this.bibliotecas.get(key));
+    public Biblioteca pesquisar(Long id){
+        return table.get(id);
     }
     
+       
+    public Biblioteca pesquisarPorNome(String nome){
+        List<Biblioteca> listBiblioteca = listarAtivos();
+        
+        for (Biblioteca bbl: listBiblioteca)
+            if (bbl.getNome().equals(nome))
+                return bbl;
+        
+        return null;
+    }    
+    
+    public List<Biblioteca> listarAtivos() {
+        List<Biblioteca> listBiblioteca = new ArrayList<>();
+        
+        for (Biblioteca bbl: table.values())
+            if (bbl.isAtiva()) // lista apenas os usuários ativos
+                listBiblioteca.add(bbl);
+        
+        return listBiblioteca;
+    }
+    
+    public List<Biblioteca> listarTodos() {
+        List<Biblioteca> listBiblioteca = new ArrayList<>();
+        
+        listBiblioteca.addAll(table.values());
+        
+        return listBiblioteca;
+    }    
+
     @Override
-    public List pesquisar(List listaparametro){
+    public List<Biblioteca> pesquisar(List<BasicPair<Long, Biblioteca>> parameterList){
         throw new UnsupportedOperationException("Not supported yet."); 
-    }
-    
-    public Biblioteca pesquisar(String nome){
-        Biblioteca resultado = new Biblioteca("temp","temp");
-        for(Long key : this.bibliotecas.keySet()){
-            
-            Biblioteca valor = this.bibliotecas.get(key);
-            if(valor.getNome().equals(nome)){
-                resultado = valor;
-                break;
-            }
-        }
-        return resultado;
-    }
-    
+    }    
 }

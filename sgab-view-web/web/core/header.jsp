@@ -34,7 +34,7 @@
             <div class="menu">
                 <a href='/sgab/core/autores/menu.jsp' id="autores-menu">Autores</a>
                 <a href='/sgab/main?acao=AssuntoListar'>Assuntos</a>                
-                <a href='/sgab/core/biblioteca/opcoes.jsp'>Bibliotecas</a>
+                <a href='/sgab/main?acao=BibliotecaListar'>Bibliotecas</a>
                 <a href='/sgab/main?acao=FornecedorListar'>Fornecedor</a>                
                 <a href='/sgab/main?acao=ObraListar'>Obras</a>         
                 <a href='/sgab/main?acao=PessoaListar'>Pessoas</a>
