@@ -11,15 +11,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import sgab.model.dto.Autor;
-import sgab.model.service.GestaoAutor;
+import sgab.model.dto.Assunto;
+import sgab.model.service.GestaoAssuntoService;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "PesquisaAutorAjax", urlPatterns = {"/PesquisaAutorAjax"})
-public class PesquisaAutorAjax extends HttpServlet {
+@WebServlet(name = "PesquisaAssuntoAjax", urlPatterns = {"/PesquisaAssuntoAjax"})
+public class PesquisaAssuntoAjax extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,19 +34,19 @@ public class PesquisaAutorAjax extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            GestaoAutor gestaoAutor = new GestaoAutor();
+            GestaoAssuntoService gestaoAssunto = new GestaoAssuntoService();
             
-            String nomeAutor = request.getParameter("nomeAutor");
-            Autor alvo = gestaoAutor.pesquisarNome(nomeAutor);
+            String nomeAssunto = request.getParameter("nomeAssunto");
+            Assunto alvo = gestaoAssunto.pesquisarAssunto(nomeAssunto);
             
             if(alvo != null)
-                out.print("<div class=\"acoes\"><span>"+alvo.getNome()+"</span><input type=\"button\""
-                        + " value=\"Adicionar\" onclick=\"adicionaAutor('"+ alvo.getNome()+"')\"></div>");
+                out.print("<div class=\"acoes\"><span>"+ alvo.getNome() +"</span><input type=\"button\""
+                        + " value=\"Adicionar\" onclick=\"adicionaAssunto('"+ alvo.getNome() +"')\"></div>");
             else
-                out.print("<center>Nenhum Autor com este nome encontrado.</center>"
+                out.print("<center>Nenhum Assunto com este nome encontrado.</center>"
                         + "<center><button type=\"button\" style=\"margin-top: 1em;\">"
-                        + "<a href=\"/sgab/core/autores/menu.jsp\" >" +
-                            "Autores" +
+                        + "<a href=\"/sgab/main?acao=AssuntoListar\" >" +
+                            "Assuntos" +
                         "</a></button></center>");
         }
     }

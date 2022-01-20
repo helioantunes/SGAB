@@ -104,6 +104,8 @@ function validarObra(frm){
         frm.titulo.focus();
     } else if (frm.autores.value == ""){
         alert ("Insira ao menos algum autor!");
+    } else if (frm.assuntos.value == ""){
+        alert ("Insira ao menos algum assunto!");
     } else if (frm.ano.value === "") {
         alert("Informar o ano de publicação!");
         frm.ano.focus();
