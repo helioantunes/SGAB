@@ -7,6 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="sgab.model.dto.Obra" %>
 <%@page import="sgab.model.dto.Autor" %>
+<%@page import="sgab.model.dto.Assunto" %>
 
 <%@include file="/core/header.jsp" %>
 
@@ -34,6 +35,7 @@
               name="titulo"
               value="<%= obraAlvo.getTitulo()%>"
             />
+           
             <label>Autores</label>
             <input id="autores-input" type="hidden" name="autores" value="<% for(Autor autorAtual:obraAlvo.getAutor()){ %><%= autorAtual.getNome()%>::<% } %>">
             <div id="autores" style="padding-top: 10px;">
@@ -42,12 +44,14 @@
               <% } %>
             </div>
             
-            <label for="assunto">Assunto</label>
-            <div id="tags" class="visivel">
-
+            <label>Assuntos</label>
+            <input id="assuntos-input" type="hidden" name="assuntos" value="<% for(Assunto assuntoAtual:obraAlvo.getAssunto()){ %><%= assuntoAtual.getNome()%>::<% } %>">
+            <div id="assuntos" style="padding-top: 10px;">
+                <% for(Assunto assuntoAtual:obraAlvo.getAssunto()){ %>
+                <div class="acoes" id="<%= assuntoAtual.getNome()%>"><span><%= assuntoAtual.getNome()%></span></div>
+              <% } %>
             </div>
 
-            
             <label for="nota">Nota</label>
             <input
               type="text"
@@ -140,9 +144,11 @@
         <div class="close-btn" onclick="fechaModal('pesquisaAssunto')">&times;</div>
         <form class="form-container">
           <h2>Adicionar Assunto</h2>
-          <div>
-            <button type="submit" class="button-form">Adicionar</button>
+          <div class="pesquisa-container">
+             <input type="text" id="nomeAssunto" placeholder="Insira o assunto." />
+             <input class="button" type="button" onclick="ajaxAssunto()" value="Pesquisar" />
           </div>
+          <div id="resultados-pesquisa-assuntos"></div>
         </form>
       </div>
   
@@ -189,10 +195,33 @@
               abreModal('pesquisaAutor');
             })
             formEl.insertBefore(botaoAdicionarEl, autoresEl);
+            
+            let assuntos = document.querySelectorAll("#assuntos div");
+            assuntos.forEach(element => {
+              let botaoExcluirEl = document.createElement("input");
+              botaoExcluirEl.type = "button";
+              botaoExcluirEl.value = "Excluir";
+              botaoExcluirEl.addEventListener("click", e =>{
+                excluirAssunto(e.target.parentNode.id);
+              });
+              element.appendChild(botaoExcluirEl);
+            });
+
+            let assuntosEl = document.querySelector("#assuntos");
+
+            let botaoAdicionar2El = document.createElement("span");
+            botaoAdicionar2El.style = "float: right; font-weight: bolder; font-size: 1.5em; cursor: pointer; user-select: none;";
+            botaoAdicionar2El.id = "expandir";
+            botaoAdicionar2El.innerText = "+";
+            botaoAdicionar2El.addEventListener("click", e => {
+              abreModal('pesquisaAssunto');
+            })
+            formEl.insertBefore(botaoAdicionar2El, assuntosEl);
 
         });
         
         let autoresResultEL = document.querySelector("#resultados-pesquisa-autores");
+        let assuntosResultEL = document.querySelector("#resultados-pesquisa-assuntos");
 
         function ajaxAutor() {
           let xh;
@@ -214,6 +243,26 @@
           xh.send(parameters);
         }
         
+        function ajaxAssunto() {
+            let xh;
+            if (window.XMLHttpRequest) // código dos browsers modernos
+              xh = new XMLHttpRequest();
+            else
+              xh = new ActiveXObject("Microsoft.XMLHTTP");
+
+            xh.onreadystatechange = function (){
+              if (this.readyState == 4 && this.status == 200) {
+                assuntosResultEL.innerHTML = this.responseText;
+              };
+            }
+
+            let assunto = encodeURIComponent(document.querySelector("#nomeAssunto").value);
+            let parameters = "nomeAssunto=" + assunto;
+            xh.open("POST", "/sgab/PesquisaAssuntoAjax", true);
+            xh.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xh.send(parameters);
+        }
+        
         function adicionaAutor(nome){
 
           let autoresEL = document.querySelector("#autores");
@@ -229,6 +278,21 @@
 
         }
         
+        function adicionaAssunto(nome){
+
+            let assuntosEL = document.querySelector("#assuntos");
+            let assuntosInputEl = document.querySelector("#assuntos-input");
+
+            let novoAssuntoEl = document.createElement("div");
+            novoAssuntoEl.innerHTML = "<span>" + nome + "</span><input type=\"button\" value=\"Excluir\" onclick=\"excluirAssunto('" + nome + "')\">";
+            novoAssuntoEl.classList.add("acoes");
+            novoAssuntoEl.id = nome;
+
+            assuntosEL.appendChild(novoAssuntoEl);
+            assuntosInputEl.value = assuntosInputEl.value + nome + "::";
+
+        }
+        
         function excluirAutor(nome){
           let descricao = nome + "::";
           let regex = new RegExp(descricao, "gm");
@@ -237,6 +301,16 @@
           let autorAlvoEl = document.querySelector("#" + nome);
           autorAlvoEl.parentNode.removeChild(autorAlvoEl);
           autoresInputEl.value = autoresInputEl.value.replace(regex, "");
+        }
+        
+        function excluirAssunto(nome){
+            let descricao = nome + "::";
+            let regex = new RegExp(descricao, "gm");
+            let assuntosInputEl = document.querySelector("#assuntos-input");
+
+            let assuntoAlvoEl = document.querySelector("#" + nome);
+            assuntoAlvoEl.parentNode.removeChild(assuntoAlvoEl);
+            assuntosInputEl.value = assuntosInputEl.value.replace(regex, "");
         }
     </script>
     <%@include file="/core/footer.jsp" %>
