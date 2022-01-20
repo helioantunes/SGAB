@@ -28,19 +28,21 @@
     </section>
     <section id="form">
       <div id="caixa-form">
-        <form action="/sgab/AlterarAutor" method="POST">
+        <form  name="alterar" method="POST">
+          <input type="hidden" name="table" value="Autor">  
+          <input type="hidden" name="acao" value="alterar"><!-- Nome da tabela que será alterada -->
           <label for="idAutor">ID do autor</label>
           <input type="text" id="idAutor" name="idAutor" placeholder="Coloque o id do autor">
           <label for="nomeAutor">Novo nome do autor</label>
           <input type="text" id="nomeAutor" name="nomeAutor" placeholder="Digite o novo Nome">
-          <button type="submit">Alterar</button>
+          <button type="submit" onclick="gravarAlteracao(document.alterar)">Alterar</button>
         </form>
       </div>
     </section>
   </main>
   <footer>
-
   </footer>
+  <script src="../../js/helper.js"></script>
 </body>
 
 </html>
