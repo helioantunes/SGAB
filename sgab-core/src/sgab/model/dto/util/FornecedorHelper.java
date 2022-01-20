@@ -20,10 +20,12 @@ public class FornecedorHelper{
                 exMsgs.add("Obrigatório informar o email do usuário.");
             else if (!(fornecedor.getEmail().contains("@") && fornecedor.getEmail().contains(".")))
                 exMsgs.add("Email não é válido.");  
+
             if ((fornecedor.getEmail() == null) || fornecedor.getEmail().isEmpty())
                 exMsgs.add("Obrigatório informar o email do usuário.");
             else if (!(fornecedor.getEmail().contains("@") && fornecedor.getEmail().contains(".")))
                 exMsgs.add("Email não é válido.");   
+
             if ((fornecedor.getEmail() == null) || fornecedor.getEmail().isEmpty())
                 exMsgs.add("Obrigatório informar o email do usuário.");
             else if (!(fornecedor.getEmail().contains("@") && fornecedor.getEmail().contains(".")))

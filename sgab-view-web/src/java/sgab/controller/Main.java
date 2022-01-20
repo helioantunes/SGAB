@@ -17,7 +17,7 @@ public class Main extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         String acao = request.getParameter("acao");
-        
+
         switch (acao) {
             case "Logar":
                 jsp = LoginController.logar(request);
@@ -119,7 +119,22 @@ public class Main extends HttpServlet {
                 break;
             case "AutorExcluir":
                 jsp = AutorController.excluir(request);
-                break;    
+                break;  
+            case "FornecedorListar":
+                jsp = FornecedorController.listar(request);
+                break;
+            case "FornecedorAlterar":
+                jsp = FornecedorController.alterar(request);
+                break;
+            case "FornecedorGravarAlteracao":
+                jsp = FornecedorController.gravarAlteracao(request);
+                break;
+            case "FornecedorGravarInsercao":
+                jsp = FornecedorController.gravarInsercao(request);
+                break;
+            case "FornecedorExcluir":
+                jsp = FornecedorController.excluir(request);
+                break;
         }
 
         //Redirecionando pagina
