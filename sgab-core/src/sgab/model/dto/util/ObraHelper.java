@@ -49,9 +49,13 @@ public class ObraHelper {
                 erros.add("O volume da obra deve ser maior que 0.");
             }
 
-            /*if (obra.getAutores().lenght() <= 1){//implementar o metodo length em autores
-                return false;
-            }*/
+            if (obra.getAutor().isEmpty()){//implementar o metodo length em autores
+                erros.add("A Obra deve ter algum Autor");
+            }
+            
+            if (obra.getAssunto().isEmpty()){
+                erros.add("A Obra deve ter algum Assunto");
+            }
         }
         
         return erros;

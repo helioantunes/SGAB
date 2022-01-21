@@ -43,7 +43,11 @@ public class PesquisaAutorAjax extends HttpServlet {
                 out.print("<div class=\"acoes\"><span>"+alvo.getNome()+"</span><input type=\"button\""
                         + " value=\"Adicionar\" onclick=\"adicionaAutor('"+ alvo.getNome()+"')\"></div>");
             else
-                out.print("<center>Nenhum Autor com este nome encontrado.</center>");
+                out.print("<center>Nenhum Autor com este nome encontrado.</center>"
+                        + "<center><button type=\"button\" style=\"margin-top: 1em;\">"
+                        + "<a href=\"/sgab/core/autores/menu.jsp\" >" +
+                            "Autores" +
+                        "</a></button></center>");
         }
     }
 

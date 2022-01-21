@@ -24,6 +24,7 @@ public class Fornecedor {
         this.telefone = telefone;
         this.cep = cep;
         this.endereco = endereco;
+        this.status = FornecedoresStatus.ATIVO;
         this.habilitado = true;
     }
 
