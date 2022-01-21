@@ -1,6 +1,9 @@
-package sgab.controller.biblioteca;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package sgab.ajax;
 
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -8,12 +11,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import sgab.model.dto.Biblioteca;
-import sgab.model.service.GestaoBiblioteca;
+import sgab.model.dto.Assunto;
+import sgab.model.service.GestaoAssuntoService;
 
-
-@WebServlet(urlPatterns = {"/cadastroBiblioteca"})
-public class Cadastro extends HttpServlet {
+/**
+ *
+ * @author HP
+ */
+@WebServlet(name = "PesquisaAssuntoAjax", urlPatterns = {"/PesquisaAssuntoAjax"})
+public class PesquisaAssuntoAjax extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,29 +34,20 @@ public class Cadastro extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            GestaoAssuntoService gestaoAssunto = new GestaoAssuntoService();
             
-            String UnidadeOrgInput = request.getParameter("adicionarUnidadeOrgInput");
-            String NomeInput = request.getParameter("adicionarNomeInput");
+            String nomeAssunto = request.getParameter("nomeAssunto");
+            Assunto alvo = gestaoAssunto.pesquisarAssunto(nomeAssunto);
             
-            GestaoBiblioteca cadastro = new GestaoBiblioteca();
-
-            Biblioteca novaBiblioteca = new Biblioteca(UnidadeOrgInput,NomeInput);
-            
-            cadastro.cadastrarBiblioteca(novaBiblioteca);
-            
-            request.setAttribute("adicionarUnidadeOrgInput",UnidadeOrgInput);
-            request.setAttribute("adicionarNomeInput",NomeInput);
-
-            String path = "sgab/core/biblioteca/resposta.jsp";
-            RequestDispatcher rd = request.getRequestDispatcher(path);
-            rd.forward(request, response);
-            
-            
-            
-            //out.println( "Variavel = " + adicionarAtendenteInput2);
-            
-            /*request.getRequestDispatcher(".jsp").forward(request, response);*/
+            if(alvo != null)
+                out.print("<div class=\"acoes\"><span>"+ alvo.getNome() +"</span><input type=\"button\""
+                        + " value=\"Adicionar\" onclick=\"adicionaAssunto('"+ alvo.getNome() +"')\"></div>");
+            else
+                out.print("<center>Nenhum Assunto com este nome encontrado.</center>"
+                        + "<center><button type=\"button\" style=\"margin-top: 1em;\">"
+                        + "<a href=\"/sgab/main?acao=AssuntoListar\" >" +
+                            "Assuntos" +
+                        "</a></button></center>");
         }
     }
 

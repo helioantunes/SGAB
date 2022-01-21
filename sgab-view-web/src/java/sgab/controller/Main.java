@@ -17,7 +17,7 @@ public class Main extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         String acao = request.getParameter("acao");
-        
+
         switch (acao) {
             case "Logar":
                 jsp = LoginController.logar(request);
@@ -87,12 +87,6 @@ public class Main extends HttpServlet {
                 break;
             case "PessoaExcluir":
                 jsp = PessoaController.excluir(request);
-            case "BibliotecaGravarAlteracao":
-                jsp = "gerenciaServlet";
-                break;
-            case "BibliotecaGravarInsercao":
-                jsp = "cadstroServlet";
-                break;
             case "UnidadeOrganizacionalListar":
                 jsp = UnidadeOrganizacionalController.listar(request);
                 break;
@@ -119,7 +113,37 @@ public class Main extends HttpServlet {
                 break;
             case "AutorExcluir":
                 jsp = AutorController.excluir(request);
-                break;    
+                break;  
+            case "FornecedorListar":
+                jsp = FornecedorController.listar(request);
+                break;
+            case "FornecedorAlterar":
+                jsp = FornecedorController.alterar(request);
+                break;
+            case "FornecedorGravarAlteracao":
+                jsp = FornecedorController.gravarAlteracao(request);
+                break;
+            case "FornecedorGravarInsercao":
+                jsp = FornecedorController.gravarInsercao(request);
+                break;
+            case "FornecedorExcluir":
+                jsp = FornecedorController.excluir(request);
+                break;
+            case "BibliotecaListar":
+                jsp = BibliotecaController.listar(request);
+                break;
+            case "BibliotecaAlterar":
+                jsp = BibliotecaController.alterar(request);
+                break;
+            case "BibliotecaGravarAlteracao":
+                jsp = BibliotecaController.gravarAlteracao(request);
+                break;
+            case "BibliotecaGravarInsercao":
+                jsp = BibliotecaController.gravarInsercao(request);
+                break;
+            case "BibliotecaExcluir":
+                jsp = BibliotecaController.excluir(request);
+                break;                
         }
 
         //Redirecionando pagina

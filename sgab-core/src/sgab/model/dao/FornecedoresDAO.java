@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import sgab.model.dto.Fornecedor;
 import sgab.model.dto.util.FornecedorHelper;
+import sgab.model.dto.util.FornecedoresStatus;
 import sgab.model.exception.PersistenciaException;
 
 /**
@@ -68,6 +69,16 @@ public class FornecedoresDAO implements GenericDAO<Fornecedor, Long> {
     @Override
     public List<Fornecedor> pesquisar(List<BasicPair<Long, Fornecedor>> parameterList) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public List<Fornecedor> listarAtivos() {
+        List<Fornecedor> listFornecedores = new ArrayList<>();
+        
+        for (Fornecedor usr: table.values())
+            if (usr.getStatus() == FornecedoresStatus.ATIVO) // lista apenas os usuários ativos
+                listFornecedores.add(usr);
+        
+        return listFornecedores;
     }
     
 }
