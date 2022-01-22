@@ -127,7 +127,7 @@ public class GestaoAdministradoresService {
     }
 
     public void alterarGestor(Pessoa pessoa){
-        List<String> exMsgs = AdministradorHelper.validarGestorAlteracao(pessoa, pessoasDAO);
+        List<String> exMsgs = AdministradoresHelper.validarGestorAlteracao(pessoa, pessoasDAO);
         
         if (!exMsgs.isEmpty())
             throw new NegocioException(exMsgs);
