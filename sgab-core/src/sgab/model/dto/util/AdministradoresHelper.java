@@ -22,4 +22,18 @@ public class AdministradoresHelper {
         }
         return mensagens;
     }
+    public static List<String> validarGestor(Pessoa pessoa, PessoasDAO pessoas) {
+        List<String> mensagens = validarPessoa(pessoa,pessoas);
+        if(pessoa.getTipo()!=PessoaTipo.GESTOR){
+            mensagens.add("Pessoa não é um gestor!");
+        }
+        return mensagens;
+    }
+    public static List<String> validarGestorAlteracao(Pessoa pessoa, PessoasDAO pessoas) {
+        List<String> mensagens = validarAlteracao(pessoa,pessoas);
+        if(pessoa.getTipo()!=PessoaTipo.GESTOR){
+            mensagens.add("Pessoa não é um gestor!");
+        }
+        return mensagens;
+    }
 }
