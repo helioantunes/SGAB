@@ -23,19 +23,30 @@ public class GestaoAdministradoresService {
         pessoasDAO.inserir(pessoa);
         return pessoa.getId();
     }
-
-    public void excluir(Pessoa pessoa){
-        pessoasDAO.delete(pessoa.getId());
-    }
-
+    
     public List<Pessoa> pesquisarAtivos() {
         return pessoasDAO.listarAtivos();
     }
 
     public Pessoa pesquisarPorId(Long id){
         return pessoasDAO.pesquisar(id);
-    }   
+    } 
+    
+    public Pessoa pesquisarConta(String login, String senha){
+        
+        Pessoa result = pessoasDAO.pesquisarLoginSenha(login, senha);
+        return result;               
+    }
 
+    public Pessoa pesquisarPorLogin(String login){
+        Pessoa result = pessoasDAO.pesquisarLogin(login);
+        return result;
+    }
+
+    public void excluir(Pessoa pessoa){
+        pessoasDAO.delete(pessoa.getId());    
+    }   
+    
     public void alterar(Pessoa pessoa){
         List<String> exMsgs = PessoaHelper.validarAlteracao(pessoa, pessoasDAO);
         
