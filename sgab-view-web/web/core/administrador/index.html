@@ -67,15 +67,15 @@
           <input type="hidden" name="table" value="Gestor">
           <input type="hidden" name="acao" value="gravar">
             
-          <label>Nome do gestor(a): <input type="text" placeholder="Nome de usuário do(a) gestor(a):" name="inputLoginGestorCadastrar" required></label>
+          <label>Nome do gestor(a): <input type="text" placeholder="Nome de usuário do(a) gestor(a):" name="login" required></label>
 
-          <label>Nome Completo: <input type="text" placeholder="Nome Completo do(a) gestor(a):" name="inputNomeGestorCadastrar" required></label>          
+          <label>Nome Completo: <input type="text" placeholder="Nome Completo do(a) gestor(a):" name="nome" required></label>          
           
-          <label>CPF do gestor(a): <input type="text" placeholder="CPF do(a) gestor(a):" name="inputCPFGestorCadastrar" required></label>
+          <label>CPF do gestor(a): <input type="text" placeholder="CPF do(a) gestor(a):" name="cpf" required></label>
 
-          <label>Email do gestor(a): <input type="email" placeholder="Email do(a) gestor:" name="inputEmailGestorCadastrar" required></label>
+          <label>Email do gestor(a): <input type="email" placeholder="Email do(a) gestor:" name="email" required></label>
 
-          <label>Senha do gestor(a): <input type="password" placeholder="Senha do(a) gestor:" name="inputSenhaGestorCadastrar" required></label>
+          <label>Senha do gestor(a): <input type="password" placeholder="Senha do(a) gestor:" name="senha" required></label>
 
           <label>Confirmação: <input type="password" placeholder="Senha do(a) Gestor(a)" name="adminpsw" required></label>
           
@@ -95,7 +95,7 @@
         <div>
           <input type="hidden" name="table" value="Gestor">
           <input type="hidden" name="acao" value="alterar">
-          <label>Nome de usuario: <input type="email" placeholder="Nome ou Email do(a) gestor(a)" name="inputLoginGestorEditar" required></label>
+          <label>Nome de usuario: <input type="email" placeholder="Nome ou Email do(a) gestor(a)" name="login" required></label>
           <button type="button" class="button-form" onclick="gravarAlteracao(document.EdicaoGestor)">Enviar</button>
         </div>
       </form>
@@ -114,13 +114,15 @@
           <input type="hidden" name="table" value="Administrador">
           <input type="hidden" name="acao" value="gravar">
             
-          <label>Nome do administrador(a): <input type="text" placeholder="Nome de usuário do(a) administrador:" name="inputLoginAdministradorCadastrar" required></label>
+          <label>Nome do administrador(a): <input type="text" placeholder="Nome de usuário do(a) administrador:" name="login" required></label>
+
+          <label>Nome Completo: <input type="text" placeholder="Nome Completo do(a) administrador(a):" name="nome" required></label>          
           
-          <label>CPF do administrador(a): <input type="text" placeholder="CPF do(a) administrador:" name="inputCPFAdministradorCadastrar" required></label>
+          <label>CPF do administrador(a): <input type="text" placeholder="CPF do(a) administrador:" name="cpf" required></label>
 
-          <label>Email do administrador(a): <input type="email" placeholder="Email do(a) administrador:" name="inputEmailAdministradorCadastrar" required></label>
+          <label>Email do administrador(a): <input type="email" placeholder="Email do(a) administrador:" name="email" required></label>
 
-          <label>Senha do administrador(a): <input type="password" placeholder="Senha do(a) administrador:" name="inputSenhaAdministradorCadastrar" required></label>
+          <label>Senha do administrador(a): <input type="password" placeholder="Senha do(a) administrador:" name="senha" required></label>
 
           <label>Confirmação: <input type="password" placeholder="Senha do(a) administrador" name="adminpsw" required></label>
 
@@ -137,7 +139,7 @@
         <div>
           <input type="hidden" name="table" value="Administrador">
           <input type="hidden" name="acao" value="alterar">
-          <label>Nome de usuario: <input type="email" placeholder="Nome ou Email do(a) administrador(a)" name="inputLoginAdministradorEditar" required></label>
+          <label>Nome de usuario: <input type="email" placeholder="Nome ou Email do(a) administrador(a)" name="login" required></label>
           <button type="button" class="button-form" onclick="gravarAlteracao(document.EdicaoAdministrador)">Enviar</button>
         </div>
       </form>
@@ -150,7 +152,7 @@
         <input type="hidden" name="table" value="Gestor">
         <input type="hidden" name="acao" value="pesquisarPorLogin">
         
-        <label>Nome do gestor(a): <input type="text" placeholder="Nome de usuário do(a) Gestor:" name="inputLoginGestorListar" required></label>  
+        <label>Nome do gestor(a): <input type="text" placeholder="Nome de usuário do(a) Gestor:" name="login" required></label>  
         <button type="button" class="button-form" onclick="gravarAlteracao(document.login)">Enviar</button>
         </div>
       </form>
@@ -163,7 +165,7 @@
         <input type="hidden" name="table" value="Administrador">
         <input type="hidden" name="acao" value="pesquisarPorLogin">
         
-        <label>Nome do administrador(a): <input type="text" placeholder="Nome de usuário do(a) Administrador:" name="inputLoginAdministradorListar" required></label>  
+        <label>Nome do administrador(a): <input type="text" placeholder="Nome de usuário do(a) Administrador:" name="" required></label>  
         <button type="button" class="button-form" onclick="gravarAlteracao(document.login)">Enviar</button>
         </div>
       </form>

@@ -105,7 +105,7 @@ public class AdministradorController {
     public static String alterarAdministrador(HttpServletRequest request) { // Precisa de revisão. Como vai funcionar questão do habilitar e desabilitar?
         String jsp = "";
         try {
-            String login = request.getParameter("inputLoginAdministradorEditar");
+            String login = request.getParameter("login");
             GestaoAdministradoresService gestaoAdministradoresService = new GestaoAdministradoresService();
             Pessoa pessoa = gestaoAdministradoresService.pesquisarAdministradoresPorLogin(login); 
             if (pessoa != null) {
@@ -126,7 +126,7 @@ public class AdministradorController {
     public static String alterarGestor(HttpServletRequest request) { // Precisa de revisão. Como vai funcionar questão do habilitar e desabilitar?
         String jsp = "";
         try {
-            String login = request.getParameter("inputLoginGestorEditar"); 
+            String login = request.getParameter("login"); 
             GestaoAdministradoresService gestaoAdministradoresService = new GestaoAdministradoresService();
             Pessoa pessoa = gestaoAdministradoresService.pesquisarGestorPorLogin(login);
             if (pessoa != null) {
@@ -217,11 +217,11 @@ public class AdministradorController {
     public static String gravarInsercaoAdministrador(HttpServletRequest request) {
         String jsp = "";
         try {
-            String login = request.getParameter("inputLoginAdministradorCadastrar");
-            Long cpf = Long.parseLong(request.getParameter("inputCPFAdministradorCadastrar"));
-            String nomeCompleto = request.getParameter("inputNomeAdministradorCadastrar");
-            String email = request.getParameter("inputEmailAdministradorCadastrar");
-            String senha = request.getParameter("inputSenhaAdministradorCadastrar");
+            String login = request.getParameter("login");
+            Long cpf = Long.parseLong(request.getParameter("cpf"));
+            String nomeCompleto = request.getParameter("nome");
+            String email = request.getParameter("email");
+            String senha = request.getParameter("senha");
 
             Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
             pessoa.setTipo(PessoaTipo.ADMINISTRADOR);
@@ -246,11 +246,11 @@ public class AdministradorController {
     public static String gravarInsercaoGestor(HttpServletRequest request) {
         String jsp = "";
         try {
-            String login = request.getParameter("inputLoginGestorCadastrar");
-            Long cpf = Long.parseLong(request.getParameter("inputCPFGestorCadastrar")); 
-            String nomeCompleto = request.getParameter("inputNomeGestorCadastrar");
-            String email = request.getParameter("inputEmailGestorCadastrar");
-            String senha = request.getParameter("inputSenhaGestorCadastrar");
+            String login = request.getParameter("login");
+            Long cpf = Long.parseLong(request.getParameter("cpf")); 
+            String nomeCompleto = request.getParameter("nome");
+            String email = request.getParameter("email");
+            String senha = request.getParameter("senha");
 
             Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
             pessoa.setTipo(PessoaTipo.GESTOR);
