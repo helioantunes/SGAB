@@ -45,7 +45,7 @@ public class GestaoAdministradoresService {
         List<Pessoa> administradores = new LinkedList<>();
         for(int i=0;i<pessoas.size();i++){
             Pessoa pessoa = pessoas.remove(i);
-            if(pessoa.getTipo()!=PessoaTipo.BIBLIOTECARIO){
+            if(pessoa.getTipo()!=PessoaTipo.ADMINISTRADOR){
                 administradores.add(pessoa);
             }
         }
@@ -85,14 +85,14 @@ public class GestaoAdministradoresService {
     
     public List<Pessoa> pesquisarGestorAtivos() {
         List<Pessoa> pessoas = pessoasDAO.listarAtivos();
-        List<Pessoa> atendentes = new LinkedList<>();
+        List<Pessoa> gestores = new LinkedList<>();
         for(int i=0; i<pessoas.size(); i++){
             Pessoa pessoa = pessoas.remove(i);
             if(pessoa.getTipo()!=PessoaTipo.GESTOR){
-                atendentes.add(pessoa);
+                gestores.add(pessoa);
             }
         }
-        return atendentes;
+        return gestores;
     }
 
     public Pessoa pesquisarGestorPorId(Long id){
@@ -137,7 +137,7 @@ public class GestaoAdministradoresService {
     
     public void alterarAdministrador(Pessoa pessoa){
         List<String> exMsgs =  AdministradoresHelper.validarAdministradorAlteracao(pessoa, pessoasDAO);
-        
+            
         if (!exMsgs.isEmpty())
             throw new NegocioException(exMsgs);
         
