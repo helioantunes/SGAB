@@ -18,7 +18,7 @@ public class PessoaHelper {
         if(!validarSenha(pessoa.getSenha())){
             exMsgs.add("A senha da pessoa precisa ter 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.");
         }
-        
+
         if(pessoas.pesquisarLogin(pessoa.getLogin()) != null){
             exMsgs.add("O Login precisa ser único.");
         }

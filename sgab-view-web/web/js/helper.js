@@ -293,6 +293,11 @@ function gravarAlteracao(frm) {
             else if (frm.acao.value === "gravar")
                 caminhourl = "/sgab/main?acao=UsuarioGravarInsercao";
         }
+    }
+    else if (table === "Leitor") {
+        if (validarPessoa(frm)) {
+            caminhourl = "/sgab/main?acao=LeitorCadastrar";
+        }
     }    
     
 

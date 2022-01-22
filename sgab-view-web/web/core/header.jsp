@@ -38,5 +38,6 @@
                 <a href='/sgab/main?acao=FornecedorListar'>Fornecedor</a>                
                 <a href='/sgab/main?acao=ObraListar'>Obras</a>         
                 <a href='/sgab/main?acao=PessoaListar'>Pessoas</a>
-                <a href='/sgab/main?acao=UnidadeOrganizacionalListar'>Unid. Org.</a>      
+                <a href='/sgab/main?acao=UnidadeOrganizacionalListar'>Unid. Org.</a> 
+                <a href='/sgab/core/leitores/cadastroleitor.jsp'>Leitores</a>
             </div>

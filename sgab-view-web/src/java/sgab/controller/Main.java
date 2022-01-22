@@ -143,8 +143,12 @@ public class Main extends HttpServlet {
                 break;
             case "BibliotecaExcluir":
                 jsp = BibliotecaController.excluir(request);
+                break;  
+            case "LeitorCadastrar":
+                jsp = LeitorController.cadastrar(request);
                 break;                
         }
+                 
 
         //Redirecionando pagina
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
