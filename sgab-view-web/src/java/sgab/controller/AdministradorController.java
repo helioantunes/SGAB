@@ -165,7 +165,7 @@ public class AdministradorController {
             GestaoAdministradoresService gestaoAdministradoresService = new GestaoAdministradoresService();
             try {
                 gestaoAdministradoresService.alterarAdministrador(pessoa); 
-                jsp = listar(request);
+                jsp = listarAdministradores(request);
             } 
             catch(PersistenciaException ex) {
                 String erro = "Nao foi possivel alterar esse registro!";
@@ -200,7 +200,7 @@ public class AdministradorController {
             GestaoAdministradoresService gestaoAdministradoresService = new GestaoAdministradoresService();
             try {
                 gestaoAdministradoresService.alterarGestor(pessoa);
-                jsp = listar(request);
+                jsp = listarGestores(request);
             } 
             catch(PersistenciaException ex) {
                 String erro = "Nao foi possivel alterar esse registro!";
@@ -230,7 +230,7 @@ public class AdministradorController {
             Long pessoaId = gestaoAdministradoresService.cadastrarAdministrador(pessoa);
 
             if (pessoaId != null) {
-                jsp = listar(request); 
+                jsp = listarAdministradores(request); 
             } else {
                 String erro = "Nao foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);
@@ -259,7 +259,7 @@ public class AdministradorController {
             Long pessoaId = gestaoAdministradoresService.cadastrarGestor(pessoa); 
 
             if (pessoaId != null) {
-                jsp = listar(request); 
+                jsp = listarGestores(request); 
             } else {
                 String erro = "Nao foi possível gravar esse registro!";
                 request.setAttribute("erro", erro);
@@ -280,7 +280,7 @@ public class AdministradorController {
             Pessoa pessoa = gestaoAdministradoresService.pesquisarAdministradoresPorLogin(login);
             try {
                 gestaoAdministradoresService.excluir(pessoa);
-                jsp = listar(request); 
+                jsp = listarAdministradores(request); 
             }
             catch(PersistenciaException ex) {
                 String erro = "Ocorreu erro ao Excluir Pessoa!";
@@ -302,7 +302,7 @@ public class AdministradorController {
             Pessoa pessoa = gestaoAdministradoresService.pesquisarGestorPorLogin(login);
             try {
                 gestaoAdministradoresService.excluir(pessoa);
-                jsp = listar(request); 
+                jsp = listarGestores(request); 
             }
             catch(PersistenciaException ex) {
                 String erro = "Ocorreu erro ao Excluir Pessoa!";

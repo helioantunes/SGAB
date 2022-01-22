@@ -359,7 +359,7 @@ function excluir(id, frm) {
             frm.submit();
         }
     }    
-    else if (table === "Administrador") {
+    if (table === "Administrador") {
         if (confirm('Deseja excluir o Administrador com Id = ' + id + '?')) {
             frm.pessoaId.value = id;
             frm.action = "/sgab/main?acao=AdministradorExcluir";            
