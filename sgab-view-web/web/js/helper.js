@@ -128,6 +128,19 @@ function validarObra(frm){
     return result
 }
 
+function validarAquisicaoLeitor(frm){
+    let result = false;
+    if (frm.titulo.value === "") {
+        alert("O título é obrigatório.");
+        frm.titulo.focus();
+    } else if(frm.biblioteca.value == ""){
+        alert("Insira a Biblioteca alvo!");
+    }
+    else
+        return true;
+    return result;
+}
+
 function validarBiblioteca(frm) {
     let result = false;
     
@@ -286,6 +299,11 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=UnidadeOrganizacionalGravarInsercao";
         }
     }
+    else if(table === "AquisicaoLeitor") {
+        if (validarAquisicaoLeitor(frm)) {
+                caminhourl = "";
+        }
+    }
     else if (table === "Usuario") {
         if (validarUsuario(frm)) {
             if (frm.acao.value === "alterar")
@@ -363,4 +381,3 @@ function excluir(id, frm) {
         }
     } 
 }
-    
