@@ -4,6 +4,8 @@
  */
 package sgab.model.dto;
 
+import sgab.model.dto.util.FornecedoresStatus;
+
 public class Fornecedor {
     private Long cnpj;
     private String nomeFornecedor;
@@ -11,6 +13,8 @@ public class Fornecedor {
     private Long telefone;
     private Long cep;
     private String endereco;
+    private FornecedoresStatus status;
+    private boolean habilitado;
     
     public Fornecedor(long cnpj, String nomeFornecedor, String email,
                               Long telefone, Long cep, String endereco){
@@ -20,6 +24,8 @@ public class Fornecedor {
         this.telefone = telefone;
         this.cep = cep;
         this.endereco = endereco;
+        this.status = FornecedoresStatus.ATIVO;
+        this.habilitado = true;
     }
 
     public Long getCnpj() {
@@ -68,6 +74,22 @@ public class Fornecedor {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isHabilitado() {
+        return habilitado;
+    }
+
+    public void setHabilitado(boolean habilitado) {
+        this.habilitado = habilitado;
+    }
+
+    public FornecedoresStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(FornecedoresStatus status) {
+        this.status = status;
     }
     
     

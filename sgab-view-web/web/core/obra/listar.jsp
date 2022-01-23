@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="sgab.model.dto.Obra" %>
+<%@page import="sgab.model.dto.Autor" %>
 <%@page import="java.util.List" %>
 
 <%@include file="/core/header.jsp" %>
@@ -14,16 +15,15 @@
           <h3>Lista de Obras</h3>
           <div class="acoes">
               <a href="/sgab/core/obra/inserir.jsp">Nova Obra</a>
-              <form id="pesquisa-container" name="frmPesquisa" method="post">
+              <form class="pesquisa-container" name="frmPesquisa" method="post">
                   <input type="hidden" value="ObraPesquisar" name="acao">
                   <select name="tipo">
                       <option value="null" selected>[Pesquisar por]</option>
                       <option value="titulo">Título</option>
                       <option value="autor">Autor</option>
                   </select>
-                  <label for="pesquisa"></label>
                   <input type="text" name="nome" placeholder="Escolha o tipo.">
-                  <input type="button" onclick="validarCamposPesquisaObra(document.frmPesquisa)" value="Pesquisar">
+                  <input type="button" class="button" onclick="validarCamposPesquisaObra(document.frmPesquisa)" value="Pesquisar">
               </form>
           </div>
           <form name="frmObra" method="post">
@@ -49,7 +49,11 @@
                         <td class="pesquisa"><a href="/sgab/main?acao=ObraAlterar&obraId=<%=obra.getId()%>">&#128270</a></td>
                       <td><%= obra.getId()%></td>
                       <td><%= obra.getTitulo()%></td>
-                      <td></td>
+                      <td>
+                      <% for(Autor autor: obra.getAutor()){ %>
+                        <%= autor.getNome()%>;
+                      <% } %>
+                      </td>
                       <td><%= obra.getEditora()%></td>
                       <td><%= obra.getEdicao()%></td>
                       <td><%= obra.getVolume()%></td>

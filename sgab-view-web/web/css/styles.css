@@ -275,10 +275,18 @@ footer p{
     top: 121px;
 }
 
-.menu a:hover {background-color: #3c8dbc;
+button a{
+    text-decoration: none;
+    color: white;
+}
+
+.menu a:hover{background-color: #3c8dbc;
     border-radius: 3px;
     color: white; 
 } 
+
+
+
 #usuario th{
     border: #000;
     background-color: #aaaaaa;

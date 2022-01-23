@@ -1,10 +1,14 @@
 package sgab.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.LinkedList;
 import java.util.List;
+import sgab.model.dto.Assunto;
+import sgab.model.dto.Autor;
 import sgab.model.dto.Obra;
-import sgab.model.exception.NegocioException;
 import sgab.model.exception.PersistenciaException;
+import sgab.model.service.GestaoAssuntoService;
+import sgab.model.service.GestaoAutor;
 import sgab.model.service.GestaoObras;
 
 
@@ -43,7 +47,9 @@ public class ObraController {
                     break;
                     
                 case "autor":
-                    //TODO
+                    List<Obra> obrasComAutor = gestaoObra.pesquisarObrasAutor(nome);
+                    request.setAttribute("listObras", obrasComAutor);
+                    jsp = "/core/obra/listar.jsp";
                     break;
                     
                 default:
@@ -63,18 +69,36 @@ public class ObraController {
     public static String gravarInsercao(HttpServletRequest request) {
         String jsp = "";
         try {
+            GestaoAutor gestaoAutor = new GestaoAutor();
+            GestaoObras gestaoObras = new GestaoObras();
+            GestaoAssuntoService gestaoAssuntos = new GestaoAssuntoService();
+            
             String tituloObra = request.getParameter("titulo");
             String categoriaObra = request.getParameter("categoria");
             String notaObra = request.getParameter("nota");
+            
+            List<Autor> autores = new LinkedList<>();
+            String[] nomeAutores = request.getParameter("autores").split("::");
+            for(String autor: nomeAutores){
+                Autor alvo = gestaoAutor.pesquisarNome(autor);
+                autores.add(alvo);
+            }
+            
+            List<Assunto> assuntos = new LinkedList<>();
+            String[] nomeAssuntos = request.getParameter("assuntos").split("::");
+            for(String assunto : nomeAssuntos){
+                Assunto alvo = gestaoAssuntos.pesquisarAssunto(assunto);
+                assuntos.add(alvo);
+            }
+            
             Integer anoObra = Integer.parseInt(request.getParameter("ano"));
             String editoraObra = request.getParameter("editora");
             String cidadeEditoraObra = request.getParameter("cidEditora");
             Integer edicaoObra = Integer.parseInt(request.getParameter("edicao"));
             Integer volumeObra = Integer.parseInt(request.getParameter("volume"));
 
-            Obra obra = new Obra(categoriaObra, tituloObra, notaObra, anoObra, editoraObra, cidadeEditoraObra, edicaoObra, volumeObra);
-
-            GestaoObras gestaoObras = new GestaoObras();
+            Obra obra = new Obra(categoriaObra, tituloObra, autores, assuntos, notaObra, anoObra, editoraObra, cidadeEditoraObra, edicaoObra, volumeObra);
+            
             Long obraId = gestaoObras.cadastrarObra(obra);
 
             if (obraId != null) {
@@ -84,10 +108,7 @@ public class ObraController {
                 request.setAttribute("erro", erro);
                 jsp = "/core/erro.jsp";
             }
-        } catch (NegocioException e) {
-            for(String mensagem : e.getMessages()){
-                System.out.println(mensagem);
-            }
+        } catch (Exception e) {
             e.printStackTrace();
             jsp = "";
         }
@@ -119,21 +140,38 @@ public class ObraController {
     public static String gravarAlteracao(HttpServletRequest request) {
         String jsp = "";
         try {
-
+            GestaoAutor gestaoAutor = new GestaoAutor();
+            GestaoObras gestaoObra = new GestaoObras();
+            GestaoAssuntoService gestaoAssuntos = new GestaoAssuntoService();
+            
             Long idObra = Long.parseLong(request.getParameter("obraId"));
             String tituloObra = request.getParameter("titulo");
             String categoriaObra = request.getParameter("categoria");
             String notaObra = request.getParameter("nota");
+            
+            List<Autor> autores = new LinkedList<>();
+            String[] nomeAutores = request.getParameter("autores").split("::");
+            for(String autor: nomeAutores){
+                Autor alvo = gestaoAutor.pesquisarNome(autor);
+                autores.add(alvo);
+            }
+            
+            List<Assunto> assuntos = new LinkedList<>();
+            String[] nomeAssuntos = request.getParameter("assuntos").split("::");
+            for(String assunto : nomeAssuntos){
+                Assunto alvo = gestaoAssuntos.pesquisarAssunto(assunto);
+                assuntos.add(alvo);
+            }
+            
             Integer anoObra = Integer.parseInt(request.getParameter("ano"));
             String editoraObra = request.getParameter("editora");
             String cidadeEditoraObra = request.getParameter("cidEditora");
             Integer edicaoObra = Integer.parseInt(request.getParameter("edicao"));
             Integer volumeObra = Integer.parseInt(request.getParameter("volume"));
 
-            Obra obra = new Obra(categoriaObra, tituloObra, notaObra, anoObra, editoraObra, cidadeEditoraObra, edicaoObra, volumeObra);
+            Obra obra = new Obra(categoriaObra, tituloObra, autores, assuntos, notaObra, anoObra, editoraObra, cidadeEditoraObra, edicaoObra, volumeObra);
             obra.setId(idObra);
             
-            GestaoObras gestaoObra = new GestaoObras();
             try {
                 gestaoObra.atualizaCadastroObra(obra);
                 jsp = ObraController.listar(request);

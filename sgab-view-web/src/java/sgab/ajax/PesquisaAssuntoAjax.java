@@ -1,4 +1,8 @@
-package sgab.controller;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package sgab.ajax;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,12 +11,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import sgab.model.dto.Autor;
-import sgab.model.service.GestaoAutor;
+import sgab.model.dto.Assunto;
+import sgab.model.service.GestaoAssuntoService;
 
-
-@WebServlet(urlPatterns = {"/PesquisarAutor"})
-public class PesquisarAutorServlet extends HttpServlet {
+/**
+ *
+ * @author HP
+ */
+@WebServlet(name = "PesquisaAssuntoAjax", urlPatterns = {"/PesquisaAssuntoAjax"})
+public class PesquisaAssuntoAjax extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -27,29 +34,20 @@ public class PesquisarAutorServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
+            GestaoAssuntoService gestaoAssunto = new GestaoAssuntoService();
             
+            String nomeAssunto = request.getParameter("nomeAssunto");
+            Assunto alvo = gestaoAssunto.pesquisarAssunto(nomeAssunto);
             
-            String nome = request.getParameter("nomeAutor");
-            Long id = Long.parseLong(request.getParameter("idAutor"));
-
-            GestaoAutor gestaoAutor = new GestaoAutor();
-            Autor autor;
-
-            if(id!=null){
-                autor = gestaoAutor.pesquisarId(id);
-                request.setAttribute("nome", autor.getNome());
-                request.setAttribute("id", autor.getId());
-                response.sendRedirect("/sgab/core/autores/pesquisapronta.jsp");
-            } 
-            else if(nome!=null){
-                autor = gestaoAutor.pesquisarNome(nome);
-                request.setAttribute("nome", autor.getNome());
-                request.setAttribute("id", autor.getId());
-                response.sendRedirect("/sgab/core/autores/pesquisapronta.jsp");
-            }
-
-
+            if(alvo != null)
+                out.print("<div class=\"acoes\"><span>"+ alvo.getNome() +"</span><input type=\"button\""
+                        + " value=\"Adicionar\" onclick=\"adicionaAssunto('"+ alvo.getNome() +"')\"></div>");
+            else
+                out.print("<center>Nenhum Assunto com este nome encontrado.</center>"
+                        + "<center><button type=\"button\" style=\"margin-top: 1em;\">"
+                        + "<a href=\"/sgab/main?acao=AssuntoListar\" >" +
+                            "Assuntos" +
+                        "</a></button></center>");
         }
     }
 
@@ -89,7 +87,7 @@ public class PesquisarAutorServlet extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Pesquisa um autor no banco";
+        return "Short description";
     }// </editor-fold>
 
 }

@@ -1,9 +1,9 @@
 package sgab.model.dao;
 
 import sgab.model.dto.Pessoa;
+import sgab.model.dto.util.PessoaTipo;
 import sgab.model.exception.PersistenciaException;
 import sgab.util.PasswordDigest;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +40,7 @@ public class PessoasDAO implements GenericDeleteDAO<Pessoa, Long>{
             admin.setNome("Administrador do Sistema");
             admin.setEmail("admin@sgab.cefetmg.br");
             admin.setSenha("admin");
+            admin.setTipo(PessoaTipo.ADMINISTRADOR);
             admin.setHabilitado(true);
         
             pessoasDAO.inserir(admin);
@@ -165,6 +166,10 @@ public class PessoasDAO implements GenericDeleteDAO<Pessoa, Long>{
         if(p == null)
             throw new PersistenciaException("Nenhum usuário com "
                                         + "o id '" + id + "'.");
+
+        if(p.getTipo() == PessoaTipo.ADMINISTRADOR){
+            throw new PersistenciaException("Pessoa é um " + p.getTipo() + "!");
+        }
 
         p.setHabilitado(false);
     }

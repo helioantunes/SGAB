@@ -57,6 +57,10 @@ public class GestaoObras {
         return obraDAO.listarObras();
     }
     
+    public List<Obra> pesquisarObrasAutor(String autor){
+        return obraDAO.pesquisarAutor(autor);
+    }
+    
     
     /*public List pesquisarObra(List parameterList){
         ObraHelper.validarParameter(parameterList);

@@ -17,10 +17,25 @@ public class Main extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         String acao = request.getParameter("acao");
-        
+
         switch (acao) {
             case "Logar":
                 jsp = LoginController.logar(request);
+                break;
+            case "AssuntoListar":
+                jsp = AssuntoController.listar(request);
+                break;
+            case "AssuntoAlterar":
+                jsp = AssuntoController.alterar(request);
+                break;
+            case "AssuntoGravarAlteracao":
+                jsp = AssuntoController.gravarAlteracao(request);
+                break;
+            case "AssuntoGravarInsercao":
+                jsp = AssuntoController.gravarInsercao(request);
+                break;           
+            case "AssuntoExcluir":
+                jsp = AssuntoController.excluir(request);
                 break;
             case "UsuarioListar":
                 jsp = UsuarioController.listar(request);
@@ -72,7 +87,63 @@ public class Main extends HttpServlet {
                 break;
             case "PessoaExcluir":
                 jsp = PessoaController.excluir(request);
+            case "UnidadeOrganizacionalListar":
+                jsp = UnidadeOrganizacionalController.listar(request);
                 break;
+            case "UnidadeOrganizacionalAlterar":
+                jsp = UnidadeOrganizacionalController.alterar(request);
+                break;
+            case "UnidadeOrganizacionalGravarAlteracao":
+                jsp = UnidadeOrganizacionalController.gravarAlteracao(request);
+                break;
+            case "UnidadeOrganizacionalGravarInsercao":
+                jsp = UnidadeOrganizacionalController.gravarInsercao(request);
+                break;           
+            case "UnidadeOrganizacionalExcluir":
+                jsp = UnidadeOrganizacionalController.excluir(request);
+                break;
+            case "AutorCadastrar":
+                jsp = AutorController.insercao(request);
+                break;
+            case "AutorAlterar":
+                jsp = AutorController.alterar(request);
+                break;
+             case "AutorPesquisar":
+                jsp = AutorController.pesquisar(request);
+                break;
+            case "AutorExcluir":
+                jsp = AutorController.excluir(request);
+                break;  
+            case "FornecedorListar":
+                jsp = FornecedorController.listar(request);
+                break;
+            case "FornecedorAlterar":
+                jsp = FornecedorController.alterar(request);
+                break;
+            case "FornecedorGravarAlteracao":
+                jsp = FornecedorController.gravarAlteracao(request);
+                break;
+            case "FornecedorGravarInsercao":
+                jsp = FornecedorController.gravarInsercao(request);
+                break;
+            case "FornecedorExcluir":
+                jsp = FornecedorController.excluir(request);
+                break;
+            case "BibliotecaListar":
+                jsp = BibliotecaController.listar(request);
+                break;
+            case "BibliotecaAlterar":
+                jsp = BibliotecaController.alterar(request);
+                break;
+            case "BibliotecaGravarAlteracao":
+                jsp = BibliotecaController.gravarAlteracao(request);
+                break;
+            case "BibliotecaGravarInsercao":
+                jsp = BibliotecaController.gravarInsercao(request);
+                break;
+            case "BibliotecaExcluir":
+                jsp = BibliotecaController.excluir(request);
+                break;                
         }
 
         //Redirecionando pagina
