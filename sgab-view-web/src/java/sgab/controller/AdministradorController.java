@@ -15,6 +15,7 @@ import sgab.model.service.GestaoAdministradoresService;
 import sgab.model.dto.util.PessoaHelper;
 import sgab.model.exception.NegocioException;
 import sgab.model.exception.PersistenciaException;  
+import static sgab.controller.PessoaController.listar;
 
 public class AdministradorController { 
 
