@@ -25,6 +25,7 @@
       />
       <label>Biblioteca</label>
       <span
+        id="adiciona-biblioteca"
         onclick="abreModal('pesquisaBiblioteca')"
         style="
           float: right;
@@ -117,7 +118,7 @@
       </div>
       <div class="buttons">
         <button type="button" onclick="gravarAlteracao(document.frmCriaAquisicao)">
-          Cadastrar
+          Enviar
         </button>
       </div>
     </form>
