@@ -117,12 +117,6 @@ public class Main extends HttpServlet {
             case "AdministradorPesquisar":
                 jsp = AdministradorController.pesquisarAdministradorLogin(request);
                 break;
-            case "AdministradorListar":
-                jsp = AdministradorController.listarAdministradores(request);
-                break;
-            case "AdministradorAlterar":
-                jsp = AdministradorController.alterarAdministrador(request);
-                break;
             case "GestorGravarInsercao":
                 jsp = AdministradorController.gravarInsercaoGestor(request);
                 break;
@@ -131,12 +125,6 @@ public class Main extends HttpServlet {
                 break;
             case "GestorPesquisar":
                 jsp = AdministradorController.pesquisarGestorLogin(request);
-                break;
-            case "GestorListar":
-                jsp = AdministradorController.listarGestores(request);
-                break;
-            case "GestorAlterar":
-                jsp = AdministradorController.alterarGestor(request);
                 break;
         }
 
