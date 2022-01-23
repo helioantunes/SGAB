@@ -240,28 +240,6 @@ function pesquisar(frm){
             }
         }
     }
-    else if (table === "Administrador"){
-        if (frm.acao.value === "pesquisarPorLogin") {
-            if (frm.login.value == "") {
-                alert("Informar o login!");
-                frm.login.focus();
-            } else {
-                frm.action = "/sgab/main?acao=AdministradorPesquisar&AdministradorLogin=" + frm.login.value;            
-                frm.submit();
-            }
-        }
-        else if (table === "Gestor"){
-        if (frm.acao.value === "pesquisarPorLogin") {
-            if (frm.login.value == "") {
-                alert("Informar o login!");
-                frm.login.focus();
-            } else {
-                frm.action = "/sgab/main?acao=GestorPesquisar&GestorLogin=" + frm.login.value;            
-                frm.submit();
-            }
-        }
-    }
-    }
 }
 
 /*---------------------------------------------------------------------
@@ -320,20 +298,16 @@ function gravarAlteracao(frm) {
         }
     }
     else if (table === "Administrador") {
-        if (validarPessoa(frm)) {
+        if (validarAdministrador(frm)) {
             if (frm.acao.value === "alterar")
-                caminhourl = "/sgab/main?acao=AdministradorAlteracao";
-            else if(frm.acao.value === "gravarAlteracao")
                 caminhourl = "/sgab/main?acao=AdministradorGravarAlteracao";
             else if (frm.acao.value === "gravar")
                 caminhourl = "/sgab/main?acao=AdministradorGravarInsercao";
         }
     }
     else if (table === "Gestor") {
-        if (validarPessoa(frm)) {
+        if (validarGestor(frm)) {
             if (frm.acao.value === "alterar")
-                caminhourl = "/sgab/main?acao=GestorAlteracao";
-            else if(frm.acao.value === "gravarAlteracao")
                 caminhourl = "/sgab/main?acao=GestorGravarAlteracao";
             else if (frm.acao.value === "gravar")
                 caminhourl = "/sgab/main?acao=GestorGravarInsercao";
