@@ -2,7 +2,7 @@ package sgab.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import sgab.model.dto.Aquisicao;
-import sgab.model.service.GestaoAquisicaoService;
+import sgab.model.service.GestaoAquisicao;
 import java.util.List;
 import sgab.model.exception.PersistenciaException;
 

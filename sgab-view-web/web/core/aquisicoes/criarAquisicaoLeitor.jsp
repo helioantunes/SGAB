@@ -1,11 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@include file="/core/header.jsp" %>
 
-<center><h3>Inserir Obra</h3></center>
+<center>
+    <h3>Criar aquisição de Obra</h3>
+    <p>Preencha o Título, a Biblioteca que deseja, e os campos que achar necessário para identificar a Obra que deseja requisitar.</p>    
+</center>
 <section id="form">
   <div id="caixa-form">
-    <form name="frmInsereObra" method="post">
-      <input type="hidden" name="table" value="Obra" />
+    <form name="frmCriaAquisicao" method="post">
+      <input type="hidden" name="table" value="AquisicaoLeitor" />
       <input type="hidden" name="acao" value="gravar" />
       <label for="categoria">Categoria</label>
       <select name="categoria" id="categoria">
@@ -20,6 +23,21 @@
         name="titulo"
         placeholder="Insira o título da obra"
       />
+      <label>Biblioteca</label>
+      <span
+        onclick="abreModal('pesquisaBiblioteca')"
+        style="
+          float: right;
+          font-weight: bolder;
+          font-size: 1.5em;
+          cursor: pointer;
+          user-select: none;
+        "
+        >+</span
+      >
+      <input id="biblioteca-input" type="hidden" name="biblioteca" value="">
+      <div id="biblioteca" style="padding-top: 10px;"></div>
+      
       <!-- TODO AUTORES -->
       <label>Autores</label>
       <span
@@ -98,7 +116,7 @@
         </div>
       </div>
       <div class="buttons">
-        <button type="button" onclick="gravarAlteracao(document.frmInsereObra)">
+        <button type="button" onclick="gravarAlteracao(document.frmCriaAquisicao)">
           Cadastrar
         </button>
       </div>
@@ -134,6 +152,18 @@
        <input class="button" type="button" onclick="ajaxAssunto()" value="Pesquisar" />
     </div>
     <div id="resultados-pesquisa-assuntos"></div>
+  </form>
+</div>
+
+<div class="form-popup" id="pesquisaBiblioteca">
+  <div class="close-btn" onclick="fechaModal('pesquisaBiblioteca')">&times;</div>
+  <form class="form-container">
+    <h2>Adicionar Biblioteca</h2>
+    <div class="pesquisa-container">
+       <input type="text" id="nomeBiblioteca" placeholder="Insira o nome da Biblioteca." />
+       <input class="button" type="button" onclick="ajaxBiblioteca()" value="Pesquisar" />
+    </div>
+    <div id="resultados-pesquisa-biblioteca"></div>
   </form>
 </div>
 
