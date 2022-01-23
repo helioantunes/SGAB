@@ -32,4 +32,21 @@ public class AquisicaoHelper {
         }
         return erros;
     }
+
+    public static List<String> validarPendente(Aquisicao aquisicao){
+        List<String> erros = new LinkedList<>();
+
+        if(aquisicao == null){
+            erros.add("Aquisição vazia!");
+        }
+        else{
+            if ((aquisicao.getPessoa() == null))
+                erros.add("Pessoa da aquisição vazia!");               
+            if ((aquisicao.getStatus() == null))
+                erros.add("Status da aquisição vazio!");
+            if ((aquisicao.getObra() == null))
+                erros.add("Obra da aquisição vazia!");
+        }
+        return erros;
+    }
 }

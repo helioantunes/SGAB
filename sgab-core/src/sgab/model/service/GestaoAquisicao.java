@@ -20,7 +20,7 @@ public class GestaoAquisicao {
     }
     
     public Long cadastrarAquisicao(Aquisicao aquisicao){
-        List<String> erros = AquisicaoHelper.validarAquisicao(aquisicao);
+        List<String> erros = AquisicaoHelper.validarPendente(aquisicao);
         if(!erros.isEmpty()){
             throw new NegocioException(erros);
         }
@@ -47,7 +47,7 @@ public class GestaoAquisicao {
     }
     
     public List<Aquisicao> aquisicoesFinalizada(){
-        return aquisicaoDAO.aquisicoesAtivas(); 
+        return aquisicaoDAO.aquisicoesFinalizadas(); 
     }
     
     public List<Aquisicao> aquisicoesAtivas(){
@@ -60,16 +60,13 @@ public class GestaoAquisicao {
     
     public void excluirAquisicao(Aquisicao aquisicao){
         Aquisicao aqui = aquisicaoDAO.pesquisar(aquisicao.getId());
-        if(aqui.getStatus() != AquisicaoStatus.PENDENTE){
-            throw new NegocioException("Aquisição não pendente");
-        }
         
-        else{
-            if(aqui == null){
-                throw new NegocioException("Aquisicao 'id=" + aqui.getId() + "'não encontrado!");
-            }
-            
+        if(aqui != null && aqui.getStatus() == AquisicaoStatus.PENDENTE){
             aqui.setStatus(AquisicaoStatus.CANCELADO);
+        } else if(aqui == null){
+            throw new NegocioException("Aquisicao 'id=" + aqui.getId() + "'não encontrado!");
+        } else {
+            throw new NegocioException("Aquisição não pendente");
         }
     }
     
