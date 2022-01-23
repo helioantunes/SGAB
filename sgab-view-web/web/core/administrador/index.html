@@ -67,41 +67,17 @@
           <input type="hidden" name="table" value="Gestor">
           <input type="hidden" name="acao" value="gravar">
             
-          <div>
-                <label for="login">Informe o seu Login <span class="input-obrigatorio">*</span></label>
-                <input type="text" id="login" name="login" placeholder="Login" required>
-                <small>Digite um Login válido.</small>
-           </div>
+          <label>Nome do gestor(a): <input type="text" placeholder="Nome de usuário do(a) gestor(a):" name="login" required></label>
 
-           <div>
-                <label for="nome">Informe o seu nome <span class="input-obrigatorio">*</span></label>
-                <input type="text" id="nome" name="nome" placeholder="Nome" required>
-                <small>Digite seu nome e sobrenome.</small>
-           </div>          
+          <label>Nome Completo: <input type="text" placeholder="Nome Completo do(a) gestor(a):" name="nome" required></label>          
           
-          <div>
-                <label for="cpf">Informe o seu CPF <span class="input-obrigatorio">*</span></label>
-                <input type="number" id="cpf" name="cpf" placeholder="CPF" required maxlength="11">
-                <small>Digite um CPF válido. Informe apenas números.</small>
-          </div>
+          <label>CPF do gestor(a): <input type="text" placeholder="CPF do(a) gestor(a):" name="cpf" required></label>
 
-          <div>
-                <label for="email">Informe o seu endereço de email <span class="input-obrigatorio">*</span></label>
-                <input type="text" id="email" name="email" placeholder="Email" required>
-                <small>Digite um endereço de email válido.</small>
-          </div>
+          <label>Email do gestor(a): <input type="email" placeholder="Email do(a) gestor:" name="email" required></label>
 
-          <div>
-                <label for="senha">Crie uma senha <span class="input-obrigatorio">*</span></label>
-                <input type="password" id="senha" name="senha" placeholder="Senha" required>
-                <small>A senha precisa ter 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</small>
-          </div>
-          
-          <div>
-                <label for="senha2">Confirme a sua senha <span class="input-obrigatorio">*</span></label>
-                <input type="password" id="senha2" name="senha2" placeholder="Senha" required>
-                <small>As senhas não correspondem.</small>
-          </div>
+          <label>Senha do gestor(a): <input type="password" placeholder="Senha do(a) gestor:" name="senha" required></label>
+
+          <label>Confirmação: <input type="password" placeholder="Senha do(a) Gestor(a)" name="adminpsw" required></label>
           
           <button type="button" class="button-form" onclick="gravarAlteracao(document.GravarGestor)">Enviar</button>
         </div>
