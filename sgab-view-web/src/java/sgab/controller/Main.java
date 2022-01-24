@@ -162,6 +162,18 @@ public class Main extends HttpServlet {
             case "RecusarAquisicao":
                 jsp = AquisicaoController.recusar(request);
                 break;
+            case "ListarAquisicoesAtivos":
+                jsp = AquisicaoController.listarAtivos(request);
+                break;
+            case "FinalizarAquisicao":
+                jsp = AquisicaoController.gravarFinalizado(request);
+                break;
+            case "ListarAquisicoesFinalizadas":
+                jsp = AquisicaoController.listarFinalizados(request);
+                break;
+            case "AquisicaoPedidoCriarObra":
+                jsp = AquisicaoController.gravarPendente(request);
+                break;
         }
 
         //Redirecionando pagina

@@ -8,6 +8,7 @@ public class Aquisicao {
     private Fornecedor fornecedor;
     private AquisicaoStatus status;
     private Obra obra;
+    private boolean obraExiste;
     private Long id;
     private Biblioteca bibliotecaAlvo;
 
@@ -19,6 +20,7 @@ public class Aquisicao {
         this.status = status;
         this.obra = obra;
         this.bibliotecaAlvo = biblioteca;
+        this.obraExiste = true;
     }
 
     //get e set id
@@ -69,6 +71,18 @@ public class Aquisicao {
 
     public void setObra(Obra obra) {
         this.obra = obra;
+    }
+
+    public void setObraExiste(boolean obraExiste) {
+        this.obraExiste = obraExiste;
+    }
+
+    public boolean getObraExiste() {
+        return obraExiste;
+    }
+
+    public void setBiblioteca(Biblioteca bibliotecaAlvo) {
+        this.bibliotecaAlvo = bibliotecaAlvo;
     }
     
     public Biblioteca getBiblioteca(){

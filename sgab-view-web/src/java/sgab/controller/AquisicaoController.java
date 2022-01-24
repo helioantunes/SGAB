@@ -5,12 +5,17 @@ import sgab.model.dto.Aquisicao;
 import sgab.model.dto.Fornecedor;
 import sgab.model.dto.Obra;
 import sgab.model.dto.Pessoa;
+import sgab.model.dto.Autor;
+import sgab.model.dto.Assunto;
 import sgab.model.dto.util.AquisicaoStatus;
 import sgab.model.service.GestaoAquisicao;
 import sgab.model.service.GestaoFornecedoresService;
 import sgab.model.service.GestaoObras;
 import sgab.model.service.GestaoPessoasService;
+import sgab.model.service.GestaoAutor;
+import sgab.model.service.GestaoAssuntoService;
 import java.util.List;
+import java.util.LinkedList;
 import sgab.model.dto.Biblioteca;
 import sgab.model.exception.NegocioException;
 import sgab.model.exception.PersistenciaException;
@@ -126,6 +131,8 @@ public class AquisicaoController {
             GestaoBibliotecaService gestaoBiblioteca = new GestaoBibliotecaService();
             GestaoPessoasService gestaoPessoas = new GestaoPessoasService();
             GestaoAquisicao gestaoAquisicao = new GestaoAquisicao();
+            GestaoAutor gestaoAutor = new GestaoAutor();
+            GestaoAssuntoService gestaoAssuntos = new GestaoAssuntoService();
             
             String etapa = request.getParameter("etapa");
             
@@ -161,6 +168,42 @@ public class AquisicaoController {
                     Obra obra = (Obra) request.getSession().getAttribute("obraAlvo");
                     Aquisicao aquisicao = new Aquisicao(biblioteca, pessoa, null, null, AquisicaoStatus.PENDENTE, obra);
                     gestaoAquisicao.cadastrarAquisicao(aquisicao);
+                    jsp = "";
+                    break;
+                case "segundo-criarObra":
+                    Pessoa pessoa1 = (Pessoa) request.getSession().getAttribute("pessoaDona");
+                    Biblioteca biblioteca1 = (Biblioteca) request.getSession().getAttribute("bibliotecaAlvo");
+                    
+                    String tituloObra = request.getParameter("titulo");
+                    String categoriaObra = request.getParameter("categoria");
+                    String notaObra = request.getParameter("nota");
+                    
+                    List<Autor> autores = new LinkedList<>();
+                    String[] nomeAutores = request.getParameter("autores").split("::");
+                    for(String autor: nomeAutores){
+                        Autor alvo = gestaoAutor.pesquisarNome(autor);
+                        autores.add(alvo);
+                    }
+                    
+                    List<Assunto> assuntos = new LinkedList<>();
+                    String[] nomeAssuntos = request.getParameter("assuntos").split("::");
+                    for(String assunto : nomeAssuntos){
+                        Assunto alvo = gestaoAssuntos.pesquisarAssunto(assunto);
+                        assuntos.add(alvo);
+                    }
+                    
+                    Integer anoObra = Integer.parseInt(request.getParameter("ano"));
+                    String editoraObra = request.getParameter("editora");
+                    String cidadeEditoraObra = request.getParameter("cidEditora");
+                    Integer edicaoObra = Integer.parseInt(request.getParameter("edicao"));
+                    Integer volumeObra = Integer.parseInt(request.getParameter("volume"));
+
+                    Obra obra1 = new Obra(categoriaObra, tituloObra, autores, assuntos, notaObra, anoObra, editoraObra, cidadeEditoraObra, edicaoObra, volumeObra);
+                    
+
+                    Aquisicao aquisicao1 = new Aquisicao(biblioteca1, pessoa1, null, null, AquisicaoStatus.PENDENTE, obra1);
+                    aquisicao1.setObraExiste(false);
+                    gestaoAquisicao.cadastrarAquisicao(aquisicao1);
                     jsp = "";
                     break;
             }

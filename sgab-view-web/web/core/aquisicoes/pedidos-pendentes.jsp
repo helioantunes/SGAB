@@ -29,7 +29,10 @@
 </style>
 <center>
                 <h3>Pedidos Pendentes</h3>
-                <a href="/sgab/core/aquisicoes/pedir-passo1.jsp">Fazer nova Aquisição</a>
+                <a href="/sgab/core/aquisicoes/pedir-passo1.jsp">Fazer nova Aquisição</a>	&nbsp;	&nbsp;
+                <a onclick="listarPedidosAtivos(document.frmAquisicao)" style="
+                    cursor: pointer; text-decoration: underline; color: -webkit-link;
+                ">Ir a lista de pedidos ativos</a>
                 <form name="frmAquisicao" method="post">
                       <input type="hidden" name="aquisicaoId" value="">
                       <table id="usuario" style="width: 50%;">
@@ -46,7 +49,8 @@
                             <td><a href="/sgab/main?acao=ConfereAquisicao&aquisicaoId=<%=aquisicao.getId()%>">&#128270</a></td>
                             <td><%= aquisicao.getId() %></td>
                             <td><%= aquisicao.getObra().getTitulo() %></td>
-                            <td id="escolha" style="background-color: #aaaaaa; ">
+                            <% if(aquisicao.getObraExiste()){ %>
+                            <td id="escolha" style="background-color: #aaaaaa; ">   
                                 <input type="button" class="button" style="
                                     display: inline;  
                                     height: 26px; 
@@ -63,7 +67,20 @@
                                     background-color: #aaaaaa;
                                     color: black;
                                     border-radius: 0;
-                                " value="Pedir" onclick="pedir(<%=aquisicao.getId()%>,document.frmAquisicao)"></td>
+                                " value="Pedir" onclick="pedir(<%=aquisicao.getId()%>,document.frmAquisicao)"> <% } else { %>
+                            <td style="background-color: #aaaaaa; "> 
+                                 <input type="button" class="button" style="
+                                    display: block;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                    height: 26px; 
+                                    border-color: #aaaaaa; 
+                                    background-color: #aaaaaa;
+                                    color: black;
+                                    border-radius: 0;
+                                    
+                                " value="Cadastrar Obra" onclick=""> <%}%>
+                            </td> 
                           </tr>
                           <% } %>
               </table>
@@ -79,6 +96,10 @@
     function pedir(id, frm){
         frm.aquisicaoId.value = id;
         frm.action = "/sgab/main?acao=AceitarAquisicao";
+        frm.submit();
+    }
+    function listarPedidosAtivos(frm){
+        frm.action = "/sgab/main?acao=ListarAquisicoesAtivos";
         frm.submit();
     }
 </script>

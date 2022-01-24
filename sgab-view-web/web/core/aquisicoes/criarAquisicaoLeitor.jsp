@@ -9,7 +9,7 @@
   <div id="caixa-form">
     <form name="frmCriaAquisicao" method="post">
       <input type="hidden" name="table" value="AquisicaoLeitor" />
-      <input type="hidden" name="acao" value="gravar" />
+      <input type="hidden" value="segundo-criarObra" name="etapa" />
       <label for="categoria">Categoria</label>
       <select name="categoria" id="categoria">
         <option value="livro">Livro</option>
