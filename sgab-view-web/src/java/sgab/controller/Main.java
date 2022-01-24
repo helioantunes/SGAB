@@ -144,6 +144,36 @@ public class Main extends HttpServlet {
             case "BibliotecaExcluir":
                 jsp = BibliotecaController.excluir(request);
                 break;                
+            case "AtendentePesquisar":
+                jsp = GestorController.pesquisarAtendenteLogin(request);
+                break;
+            case "AtendenteListar":
+                jsp = GestorController.listarAtendentes(request);
+                break;
+            case "AtendenteAlterar":
+                jsp = GestorController.alterarAtendente(request);
+                break;
+            case "AtendenteGravarAlteracao":
+                jsp = GestorController.gravarAlteracaoAtendente(request);
+                break;
+            case "AtendenteGravarInsercao":
+                jsp = GestorController.gravarInsercaoAtendente(request);
+                break;
+            case "BibliotecarioPesquisar":
+                jsp = GestorController.pesquisarAtendenteLogin(request);
+                break;
+            case "BibliotecarioListar":
+                jsp = GestorController.listarBibliotecarios(request);
+                break;
+            case "BibliotecarioAlterar":
+                jsp = GestorController.alterarBibliotecario(request);
+                break;
+            case "BibliotecarioGravarAlteracao":
+                jsp = GestorController.gravarAlteracaoBibliotecario(request);
+                break;
+            case "BibliotecarioGravarInsercao":
+                jsp = GestorController.gravarInsercaoBiblioteca(request);
+                break;
         }
 
         //Redirecionando pagina
@@ -151,3 +181,4 @@ public class Main extends HttpServlet {
         rd.forward(request, response);
     }    
 }
+
