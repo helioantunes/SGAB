@@ -33,6 +33,7 @@ public class FornecedorController {
         String jsp = "";
         try {
             Long fornecedorCNPJ = Long.parseLong(request.getParameter("cnpj"));
+            
             GestaoFornecedoresService manterFornecedor = new GestaoFornecedoresService();
             Fornecedor fornecedor = manterFornecedor.pesquisarPorCNPJ(fornecedorCNPJ);
             if (fornecedor != null) {
@@ -53,7 +54,8 @@ public class FornecedorController {
     public static String excluir(HttpServletRequest request) {
         String jsp = "";
         try {
-            Long fornecedorCNPJ = Long.parseLong(request.getParameter("cnpj"));
+            Long fornecedorCNPJ = Long.parseLong(request.getParameter("fornecedorCNPJ"));
+            
             GestaoFornecedoresService gestaoFornecedores = new GestaoFornecedoresService();
             Fornecedor fornecedor = gestaoFornecedores.pesquisarPorCNPJ(fornecedorCNPJ);
             try {
@@ -83,7 +85,6 @@ public class FornecedorController {
             Long telefone = Long.parseLong(request.getParameter("telefone"));
 
             Fornecedor fornecedor = new Fornecedor(fornecedorCnpj, nome, email, telefone, cep, endereco);
-
             GestaoFornecedoresService gestaoFornecedores = new GestaoFornecedoresService();
             try {
                 gestaoFornecedores.atualizarCadastro(fornecedor);
