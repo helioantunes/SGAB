@@ -16,7 +16,7 @@ public class Pessoa {
         this.Login = login;
         this.cpf = cpf;
         this.habilitado = true;
-        this.tipo = null;
+        this.tipo = null; 
     }
 
     public Pessoa(Long cpf, String login, String nome, String email, String senha){
