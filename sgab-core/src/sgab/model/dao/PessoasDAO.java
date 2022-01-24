@@ -167,7 +167,7 @@ public class PessoasDAO implements GenericDeleteDAO<Pessoa, Long>{
             throw new PersistenciaException("Nenhum usuário com "
                                         + "o id '" + id + "'.");
 
-        if(p.getTipo() == PessoaTipo.ADMINISTRADOR){
+        if(p.getTipo().contains(PessoaTipo.ADMINISTRADOR)){
             throw new PersistenciaException("Pessoa é um " + p.getTipo() + "!");
         }
 
