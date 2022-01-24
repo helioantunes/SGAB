@@ -1,10 +1,6 @@
 package sgab.model.dto;
 
 import sgab.model.dto.util.AquisicaoStatus;
-import sgab.model.dto.Pessoa;
-import sgab.model.dto.Fornecedor;
-import sgab.model.dto.Obra;
-
 
 public class Aquisicao {
     private Pessoa pessoa;
@@ -13,14 +9,16 @@ public class Aquisicao {
     private AquisicaoStatus status;
     private Obra obra;
     private Long id;
+    private Biblioteca bibliotecaAlvo;
 
     //construtor 
-    public Aquisicao(Pessoa pessoa, Long quantidade, Fornecedor fornecedor, AquisicaoStatus status, Obra obra){
+    public Aquisicao(Biblioteca biblioteca, Pessoa pessoa, Long quantidade, Fornecedor fornecedor, AquisicaoStatus status, Obra obra){
         this.pessoa = pessoa;
         this.quantidade = quantidade;
         this.fornecedor = fornecedor;
         this.status = status;
         this.obra = obra;
+        this.bibliotecaAlvo = biblioteca;
     }
 
     //get e set id
@@ -71,5 +69,9 @@ public class Aquisicao {
 
     public void setObra(Obra obra) {
         this.obra = obra;
+    }
+    
+    public Biblioteca getBiblioteca(){
+        return bibliotecaAlvo;
     }
 }

@@ -104,9 +104,8 @@ public class AquisicaoDAO implements GenericDAO<Aquisicao, Long>{
         return aquisicoesPendentes;
     }
     
-    public void excluir(Aquisicao entidade) {
-        Aquisicao aquisicaoAlvo = pesquisar(entidade.getId());
-        aquisicaoAlvo.setStatus(AquisicaoStatus.CANCELADO);
+    public void excluir(Long key) {
+        aquisicoes.remove(key);
     }
     
     @Override

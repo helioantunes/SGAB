@@ -211,6 +211,22 @@ function validarFornecedor(frm) {
     return result;
 }
 
+function validarAquisicao(frm){
+    let result = false;
+    if(frm.fornecedor.value == ""){
+        alert("Insira um fornecedor.");
+        frm.fornecedor.focus();
+    }
+    else if(frm.quantidade.value == ""){
+        alert("Insira uma quantidade.");
+        frm.quantidade.focus();
+    }
+    else{
+        result = true;
+    }
+    return result;
+}
+
 /*---------------------------------------------------------------------
  * Funções de pesquisa
  *---------------------------------------------------------------------*/
@@ -301,7 +317,12 @@ function gravarAlteracao(frm) {
     }
     else if(table === "AquisicaoLeitor") {
         if (validarAquisicaoLeitor(frm)) {
-                caminhourl = "";
+            caminhourl = "";
+        }
+    }
+    else if(table === "Aquisicao"){
+        if(validarAquisicao(frm)){
+            caminhourl = "/sgab/main?acao=AquisicaoCriar";
         }
     }
     else if (table === "Usuario") {
@@ -311,7 +332,7 @@ function gravarAlteracao(frm) {
             else if (frm.acao.value === "gravar")
                 caminhourl = "/sgab/main?acao=UsuarioGravarInsercao";
         }
-    }    
+    }
     
 
     frm.action = caminhourl;

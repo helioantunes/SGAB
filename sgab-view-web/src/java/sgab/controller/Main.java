@@ -143,7 +143,25 @@ public class Main extends HttpServlet {
                 break;
             case "BibliotecaExcluir":
                 jsp = BibliotecaController.excluir(request);
-                break;                
+                break;
+            case "IniciaCadastroAquisicao":
+                jsp = "/core/aquisicoes/pedir-passo1-leitor.jsp";
+                break;
+            case "AquisicaoCriar":
+                jsp = AquisicaoController.gravarAquisicaoBibliotecario(request);
+                break;
+            case "AquisicaoPendente":
+                jsp= AquisicaoController.gravarPendente(request);
+                break;
+            case "ListarAquisicoes":
+                jsp = AquisicaoController.listarPendentes(request);
+                break;
+            case "AceitarAquisicao":
+                jsp = AquisicaoController.pedir(request);
+                break;
+            case "RecusarAquisicao":
+                jsp = AquisicaoController.recusar(request);
+                break;
         }
 
         //Redirecionando pagina

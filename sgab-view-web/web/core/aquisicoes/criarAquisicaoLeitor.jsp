@@ -23,22 +23,6 @@
         name="titulo"
         placeholder="Insira o título da obra"
       />
-      <label>Biblioteca</label>
-      <span
-        id="adiciona-biblioteca"
-        onclick="abreModal('pesquisaBiblioteca')"
-        style="
-          float: right;
-          font-weight: bolder;
-          font-size: 1.5em;
-          cursor: pointer;
-          user-select: none;
-        "
-        >+</span
-      >
-      <input id="biblioteca-input" type="hidden" name="biblioteca" value="">
-      <div id="biblioteca" style="padding-top: 10px;"></div>
-      
       <!-- TODO AUTORES -->
       <label>Autores</label>
       <span
@@ -153,18 +137,6 @@
        <input class="button" type="button" onclick="ajaxAssunto()" value="Pesquisar" />
     </div>
     <div id="resultados-pesquisa-assuntos"></div>
-  </form>
-</div>
-
-<div class="form-popup" id="pesquisaBiblioteca">
-  <div class="close-btn" onclick="fechaModal('pesquisaBiblioteca')">&times;</div>
-  <form class="form-container">
-    <h2>Adicionar Biblioteca</h2>
-    <div class="pesquisa-container">
-       <input type="text" id="nomeBiblioteca" placeholder="Insira o nome da Biblioteca." />
-       <input class="button" type="button" onclick="ajaxBiblioteca()" value="Pesquisar" />
-    </div>
-    <div id="resultados-pesquisa-biblioteca"></div>
   </form>
 </div>
 

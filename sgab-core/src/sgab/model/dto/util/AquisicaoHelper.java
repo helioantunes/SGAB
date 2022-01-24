@@ -27,8 +27,8 @@ public class AquisicaoHelper {
                 erros.add("Obrigatório informar a obra.");
             if ((aquisicao.getId() == null))
                 erros.add("Obrigatório informar o id.");
-            else if(aquisicao.getId().intValue()<=0)
-                erros.add("O id deve ser maior que 0.");
+            else if(aquisicao.getId().intValue()<0)
+                erros.add("O id deve ser 0 ou mais.");
         }
         return erros;
     }

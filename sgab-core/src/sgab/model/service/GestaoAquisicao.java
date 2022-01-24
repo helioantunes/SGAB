@@ -59,12 +59,11 @@ public class GestaoAquisicao {
     }
     
     public void excluirAquisicao(Aquisicao aquisicao){
-        Aquisicao aqui = aquisicaoDAO.pesquisar(aquisicao.getId());
         
-        if(aqui != null && aqui.getStatus() == AquisicaoStatus.PENDENTE){
-            aqui.setStatus(AquisicaoStatus.CANCELADO);
-        } else if(aqui == null){
-            throw new NegocioException("Aquisicao 'id=" + aqui.getId() + "'não encontrado!");
+        if(aquisicao != null && aquisicao.getStatus() == AquisicaoStatus.PENDENTE){
+            aquisicaoDAO.excluir(aquisicao.getId());
+        } else if(aquisicao == null){
+            throw new NegocioException("Aquisicao 'id=" + aquisicao.getId() + "'não encontrado!");
         } else {
             throw new NegocioException("Aquisição não pendente");
         }
