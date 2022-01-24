@@ -9,7 +9,8 @@
             <a href="/sgab/core/fornecedor/inserir.jsp">Novo Fornecedor</a>
             <form name="frmFornecedor" method="post">
                 <input type="hidden" name="table" value="Fornecedor">
-                <input type="hidden" name="uOrgCnpj" value="">
+                <!-- used in controller.excluir -->
+                <input type="hidden" name="fornecedorCNPJ" value="">
                 
                 <table id="Fornecedor">
                     <tr>
@@ -28,20 +29,20 @@
                     </tr>
                     <%
                         List<Fornecedor> listFornecedor = (List<Fornecedor>) request.getAttribute("listFornecedor");
-                        for (Fornecedor uOrg: listFornecedor) {
+                        for (Fornecedor fornecedor: listFornecedor) {
                     %>
                         <tr>
                             <td>
-                                <a href="/sgab/main?acao=FornecedorAlterar&uOrgId=<%=uOrg.getCnpj()%>"><%=uOrg.getCnpj()%></a>
+                                <a href="/sgab/main?acao=FornecedorAlterar&cnpj=<%=fornecedor.getCnpj()%>"><%=fornecedor.getCnpj()%></a>
                             </td>
                             <td>
-                                <a href="/sgab/main?acao=FornecedorAlterar&uOrgId=<%=uOrg.getCnpj()%>"><%=uOrg.getNomeFornecedor()%></a>
+                                <a href="/sgab/main?acao=FornecedorAlterar&cnpj=<%=fornecedor.getCnpj()%>"><%=fornecedor.getNomeFornecedor()%></a>
                             </td>
                             <td>
-                                <a href="/sgab/main?acao=FornecedorAlterar&uOrgId=<%=uOrg.getCnpj()%>"><%=uOrg.getEndereco()%></a>
+                                <a href="/sgab/main?acao=FornecedorAlterar&cnpj=<%=fornecedor.getCnpj()%>"><%=fornecedor.getEndereco()%></a>
                             </td>
                             <td>
-                                <input type="button" value="Excluir" onclick="excluir(<%=uOrg.getCnpj()%>,document.frmFornecedor)">
+                                <input type="button" value="Excluir" onclick="excluir(<%=fornecedor.getCnpj()%>, document.frmFornecedor)">
                             </td>
                         </tr>
                     <%  } %>
