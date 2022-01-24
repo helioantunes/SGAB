@@ -32,6 +32,7 @@
                 <h1>Menu</h1>
             </section>
             <div class="menu">
+                <a href='/sgab/core/administrador/index.jsp'>Administradores</a>
                 <a href='/sgab/core/autores/menu.jsp' id="autores-menu">Autores</a>
                 <a href='/sgab/main?acao=AssuntoListar'>Assuntos</a>                
                 <a href='/sgab/main?acao=BibliotecaListar'>Bibliotecas</a>

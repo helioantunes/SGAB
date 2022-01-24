@@ -4,22 +4,12 @@
 <%@page import="sgab.model.service.GestaoAdministradoresService" %>
 <%@page import="java.util.List" %>
 
-<!doctype html>
-<html class="no-js" lang="">
 
-<head>
-    <meta charset="utf-8">
-    <title>SGAB | Página do Administrador</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <link rel="stylesheet" href="../../css/styles.css">
-</head>
+<%@include file="/core/header.jsp" %>
 
 <%  Pessoa pessoa = (Pessoa) request.getAttribute("pessoa"); %>
 
 <body> 
-
         <h3>Alteração</h3>
         <section id="form">
             <div id="caixa-form">
@@ -76,9 +66,8 @@
 
 </body>
 
-<footer>
-    <p>SGAB - Sistema de Gestão de Acervo Bibliográfico</p>
-</footer>
+<%@include file="/core/footer.jsp" %>
+
         <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
         
 

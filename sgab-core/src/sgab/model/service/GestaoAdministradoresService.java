@@ -9,7 +9,7 @@ import sgab.model.dto.util.AdministradoresHelper;
 import java.util.LinkedList;
 import sgab.model.exception.NegocioException;
 
-public class GestaoAdministradoresService {
+public class GestaoAdministradoresService{
     private final PessoasDAO pessoasDAO;
 
     public GestaoAdministradoresService() {

@@ -1,44 +1,9 @@
-<!doctype html>
-<html class="no-js" lang="">
-<html></html>
-<head>
-  <meta charset="utf-8">
-  <title>SGAB | Página do Administrador</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="icon.png">
+<%@include file="/core/header.jsp" %>
 
 
-  <link rel="stylesheet" href="../../css/normalize.css">
-  <link rel="stylesheet" href="../../css/modal.css">
-  <link rel="stylesheet" href="../../css/styles.css">
-
-  <meta name="theme-color" content="#fafafa">
-</head>
-
-<body>
-  <header>
-    <div id="pagina-inicial">
-      <a href="" title="Página Inicial">SGAB</a>
-    </div>
-    <div id="logo-topo">
-      <a href="https://www.cefetmg.br/" target="_blank" title="Centro Federal de Educação Tecnológica de Minas Gerais">
-        <img src="../../images/logo_topo.png" alt="Centro Federal de Educação Tecnológica de Minas Gerais">
-      </a>
-    </div>
-  </header>
-
-  <main>
-    <section id="nome-form">
-      <h1>Página do Administrador</h1>
-    </section>
-    <section>
+  </div>
       <div class="caixa-gestao">
         <h2>Operações de Gestor</h2>
         <button class="button-gestao" onclick="abreModal('formCadastroGestor')">Cadastrar</button>
@@ -72,36 +37,6 @@
                 <input type="text" id="login" name="login" placeholder="Login" required>
                 <small>Digite um Login válido.</small>
            </div>
-
-           <div>
-                <label for="nome">Informe o seu nome <span class="input-obrigatorio">*</span></label>
-                <input type="text" id="nome" name="nome" placeholder="Nome" required>
-                <small>Digite seu nome e sobrenome.</small>
-           </div>          
-          
-          <div>
-                <label for="cpf">Informe o seu CPF <span class="input-obrigatorio">*</span></label>
-                <input type="number" id="cpf" name="cpf" placeholder="CPF" required maxlength="11">
-                <small>Digite um CPF válido. Informe apenas números.</small>
-          </div>
-
-          <div>
-                <label for="email">Informe o seu endereço de email <span class="input-obrigatorio">*</span></label>
-                <input type="text" id="email" name="email" placeholder="Email" required>
-                <small>Digite um endereço de email válido.</small>
-          </div>
-
-          <div>
-                <label for="senha">Crie uma senha <span class="input-obrigatorio">*</span></label>
-                <input type="password" id="senha" name="senha" placeholder="Senha" required>
-                <small>A senha precisa ter 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</small>
-          </div>
-          
-          <div>
-                <label for="senha2">Confirme a sua senha <span class="input-obrigatorio">*</span></label>
-                <input type="password" id="senha2" name="senha2" placeholder="Senha" required>
-                <small>As senhas não correspondem.</small>
-          </div>
           
           <button type="button" class="button-form" onclick="gravarAlteracao(document.GravarGestor)">Enviar</button>
         </div>
@@ -144,36 +79,6 @@
                 <small>Digite um Login válido.</small>
            </div>
 
-           <div>
-                <label for="nome2">Informe o seu nome <span class="input-obrigatorio">*</span></label>
-                <input type="text" id="nome2" name="nome" placeholder="Nome" required>
-                <small>Digite seu nome e sobrenome.</small>
-           </div>          
-          
-          <div>
-                <label for="cpf2">Informe o seu CPF <span class="input-obrigatorio">*</span></label>
-                <input type="number" id="cpf2" name="cpf" placeholder="CPF" required maxlength="11">
-                <small>Digite um CPF válido. Informe apenas números.</small>
-          </div>
-
-          <div>
-                <label for="email2">Informe o seu endereço de email <span class="input-obrigatorio">*</span></label>
-                <input type="text" id="email2" name="email" placeholder="Email" required>
-                <small>Digite um endereço de email válido.</small>
-          </div>
-
-          <div>
-                <label for="senha2">Crie uma senha <span class="input-obrigatorio">*</span></label>
-                <input type="password" id="senha2" name="senha" placeholder="Senha" required>
-                <small>A senha precisa ter 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.</small>
-          </div>
-          
-          <div>
-                <label for="senha3">Confirme a sua senha <span class="input-obrigatorio">*</span></label>
-                <input type="password" id="senha3" name="senha2" placeholder="Senha" required>
-                <small>As senhas não correspondem.</small>
-          </div>
-
           <button type="button" class="button-form" onclick="gravarAlteracao(document.GravarAdministrador)">Enviar</button>
         </div>
       </form>
@@ -195,26 +100,26 @@
 
     <div class="form-popup" id="formListarGestor">
       <div class="close-btn" onclick="fechaModal('formListarGestor')">&times;</div>
-      <form class="form-container" method="POST" name="login">
-
+      <form class="form-container" method="POST" name="loginGestor">
+        <div>
         <input type="hidden" name="table" value="Gestor">
         <input type="hidden" name="acao" value="pesquisarPorLogin">
         
         <label>Nome do gestor(a): <input type="text" placeholder="Nome de usuário do(a) Gestor:" name="login" required></label>  
-        <button type="button" class="button-form" onclick="gravarAlteracao(document.login)">Enviar</button>
+        <button type="button" class="button-form" onclick="pesquisar(document.login)">Enviar</button>
         </div>
       </form>
     </div>
 
     <div class="form-popup" id="formListarAdministrador">
       <div class="close-btn" onclick="fechaModal('formListarAdministrador')">&times;</div>
-      <form class="form-container" method="POST" name="login">
-
+      <form class="form-container" method="POST" name="loginAdministrador">
+        <div>
         <input type="hidden" name="table" value="Administrador">
         <input type="hidden" name="acao" value="pesquisarPorLogin">
         
         <label>Nome do administrador(a): <input type="text" placeholder="Nome de usuário do(a) Administrador:" name="" required></label>  
-        <button type="button" class="button-form" onclick="gravarAlteracao(document.login)">Enviar</button>
+        <button type="button" class="button-form" onclick="pesquisar(document.login)">Enviar</button>
         </div>
       </form>
     </div>
@@ -227,8 +132,12 @@
   <script src="../../js/helper.js"></script>
   <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
   <script type="text/javascript" language="JavaScript" src="/sgab/js/validacaoAdministrador.js"></script>
+  <link rel="stylesheet" href="../../css/normalize.css">
+  <link rel="stylesheet" href="../../css/modal.css">
+  <link rel="stylesheet" href="../../css/styles.css">
 </body>
-<footer>
-  <p>SGAB - Sistema de Gestão de Acervo Bibliográfico</p>
-</footer>
+
+<%@include file="/core/footer.jsp" %>
+
+
 </html>

@@ -197,56 +197,18 @@ function validarFornecedor(frm) {
 
     return result;
 }
-function validarAdministrador(frm) {
+
+function validarLogin(frm){
     var result = false;
-    
-    if (frm.cpf.value === "") {
-        alert("Informar o cpf!");
-        frm.cpf.focus();
-    } else if(frm.login.value === ""){
-        alert("Informar o Login!");
+
+    if(frm.login == ""){
+        alert("Informar o login!");
         frm.login.focus();
-    } else if (frm.nome.value === "") {
-        alert("Informar o nome!");
-        frm.nome.focus();
-    } else if (frm.senha.value === "") {
-        alert("Informar a senha!");
-        frm.senha.focus();
-    } else if (frm.email.value === "") {
-        alert("Informar o email!");
-        frm.email.focus();
-    } 
+    }
     else
         result = true;
-        
+
     return result;
-
-}
-
-function validarGestor(frm) {
-    var result = false;
-    
-    if (frm.cpf.value === "") {
-        alert("Informar o cpf!");
-        frm.cpf.focus();
-    } else if(frm.login.value === ""){
-        alert("Informar o Login!");
-        frm.login.focus();
-    } else if (frm.nome.value === "") {
-        alert("Informar o nome!");
-        frm.nome.focus();
-    } else if (frm.senha.value === "") {
-        alert("Informar a senha!");
-        frm.senha.focus();
-    } else if (frm.email.value === "") {
-        alert("Informar o email!");
-        frm.email.focus();
-    } 
-    else
-        result = true;
-        
-    return result;
-
 }
 
 /*---------------------------------------------------------------------
@@ -391,7 +353,7 @@ function gravarAlteracao(frm) {
         }
     }    
     else if (table === "Administrador") {
-        if (validarAdministrador(frm)) {
+        if (validarLogin(frm)) {
             if (frm.acao.value === "alterar")
                 caminhourl = "/sgab/main?acao=AdministradorGravarAlteracao";
             else if (frm.acao.value === "gravar")
@@ -399,7 +361,7 @@ function gravarAlteracao(frm) {
         }
     }
     else if (table === "Gestor") {
-        if (validarGestor(frm)) {
+        if (validarLogin(frm)) {
             if (frm.acao.value === "alterar")
                 caminhourl = "/sgab/main?acao=GestorGravarAlteracao";
             else if (frm.acao.value === "gravar")

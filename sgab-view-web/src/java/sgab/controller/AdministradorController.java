@@ -218,16 +218,12 @@ public class AdministradorController {
         String jsp = "";
         try {
             String login = request.getParameter("login");
-            Long cpf = Long.parseLong(request.getParameter("cpf"));
-            String nomeCompleto = request.getParameter("nome");
-            String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
 
-            Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
+            GestaoPessoasService gestaoAdministradoresService = new GestaoPessoasService();
+            Pessoa pessoa = gestaoAdministradoresService.pesquisarPorLogin(login);
             pessoa.setTipo(PessoaTipo.ADMINISTRADOR);
 
-            GestaoAdministradoresService gestaoAdministradoresService = new GestaoAdministradoresService();
-            Long pessoaId = gestaoAdministradoresService.cadastrarAdministrador(pessoa);
+            Long pessoaId = pessoa.getId();            
 
             if (pessoaId != null) {
                 jsp = listarAdministradores(request); 
@@ -247,16 +243,12 @@ public class AdministradorController {
         String jsp = "";
         try {
             String login = request.getParameter("login");
-            Long cpf = Long.parseLong(request.getParameter("cpf")); 
-            String nomeCompleto = request.getParameter("nome");
-            String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
 
-            Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
+            GestaoPessoasService gestaoAdministradoresService = new GestaoPessoasService();
+            Pessoa pessoa = gestaoAdministradoresService.pesquisarPorLogin(login);
             pessoa.setTipo(PessoaTipo.GESTOR);
 
-            GestaoAdministradoresService gestaoAdministradoresService = new GestaoAdministradoresService();
-            Long pessoaId = gestaoAdministradoresService.cadastrarGestor(pessoa); 
+            Long pessoaId = pessoa.getId();            
 
             if (pessoaId != null) {
                 jsp = listarGestores(request); 
