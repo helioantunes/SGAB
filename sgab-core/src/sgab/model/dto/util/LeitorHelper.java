@@ -12,7 +12,7 @@ public class LeitorHelper extends PessoaHelper {
 
   public static List<String> validarLeitor(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarPessoa(pessoa,pessoas);
-        if(pessoa.getTipo()!=PessoaTipo.LEITOR){
+        if(!pessoa.getTipo().contains(PessoaTipo.LEITOR)){
             mensagens.add("Pessoa não é um leitor!");
         }
         return mensagens;
