@@ -2,19 +2,9 @@
 <%@page import="sgab.model.dto.Pessoa" %>
 <%@page import="java.util.List" %>
 
-<!doctype html>
-<html class="no-js" lang="">
-
-<head>
-    <meta charset="utf-8">
-    <title>SGAB | Página do Administrador</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="../../css/styles.css">
-</head>
-
-<body> 
-
+<%@include file="/core/header.jsp" %>
+       
+        <center>
             <h3>Lista de Pessoas</h3>
             <a href="/sgab/core/pessoa/inserir.jsp">Nova Pessoa</a>
             <form name="listarPessoa" method="post">
@@ -24,7 +14,7 @@
                 <table id="pessoa">
                     <tr>
                         <th>
-                            Código
+                            CÃ³digo
                         </th>
                         <th>
                             Login
@@ -37,6 +27,9 @@
                         </th>
                         <th>
                             Email
+                        </th>
+                        <th>
+                            Tipo
                         </th>
                         <th>
                             &nbsp; &nbsp;
@@ -63,19 +56,15 @@
                                 <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getEmail()%></a>
                             </td>
                             <td>
+                                <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getTipo()%></a>
+                            </td>
+                            <td>
                                 <input type="button" value="Excluir" onclick="excluir(<%=pessoa.getId()%>,document.listarPessoa)">
                             </td>
                         </tr>
                     <%  } %>
                 </table>
             </form>
-
-</body>
-
-<footer>
-    <p>SGAB - Sistema de Gestão de Acervo Bibliográfico</p>
-</footer>
+        </center>
         <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
-        
-
-</html>
+        <%@include file="/core/footer.jsp" %>    
