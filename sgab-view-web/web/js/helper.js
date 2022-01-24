@@ -263,10 +263,35 @@ function pesquisar(frm){
             }
         }
     }
-    if (table === "Autor") {
+    else if (table === "Autor") {
         frm.action = "/sgab/main?acao=AutorPesquisar";
         frm.submit();
     }
+
+    else if (table === "Atendente"){
+        if (frm.acao.value === "pesquisarPorLogin") {
+            if (frm.login.value == "") {
+                alert("Informar o login!");
+                frm.login.focus();
+            } else {
+                frm.action = "/sgab/main?acao=AtendentePesquisar&AtendenteLogin=" + frm.login.value;            
+                frm.submit();
+            }
+        }
+    }
+
+    else if(table === "Bibliotecario"){
+        if (frm.acao.value === "pesquisarPorLogin") {
+            if (frm.login.value == "") {
+                alert("Informar o login!");
+                frm.login.focus();
+            } else {
+                frm.action = "/sgab/main?acao=BibliotecarioPesquisar&BibliotecarioLogin=" + frm.login.value;            
+                frm.submit();
+            }
+        }
+    }
+
 }
 
 /*---------------------------------------------------------------------
@@ -284,6 +309,16 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=AssuntoGravarInsercao";
         }
     }
+    else if(table === "Atendente"){
+        if(validarPessoa(frm)){
+            if(frm.acao.value === "alterar")
+                caminhourl = "/sgab/main?acao=AtendenteAlteracao";
+            else if(frm.acao.value === "gravarAlteracao")
+                caminhourl = "/sgab/main?acao=AtendenteGravarAlteracao";
+            else if(frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=AtendenteGravarInsercao";
+        }
+    }   
     else if (table === "Autor") {
         if (validarAutor(frm)) {
             if (frm.acao.value === "alterar")
@@ -298,6 +333,16 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=BibliotecaGravarAlteracao";
             else if (frm.acao.value === "gravar")
                 caminhourl = "/sgab/main?acao=BibliotecaGravarInsercao";
+        }
+    }
+    else if(table === "Bibliotecario"){
+        if(validarPessoa(frm)){
+            if(frm.acao.value === "alterar")
+                caminhourl = "/sgab/main?acao=BibliotecarioAlteracao";
+            else if(frm.acao.value === "gravarAlteracao")
+                caminhourl = "/sgab/main?acao=BibliotecarioGravarAlteracao";
+            else if(frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=BibliotecarioGravarInsercao";
         }
     }    
     else if (table === "Fornecedor") {
@@ -350,7 +395,6 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=UsuarioGravarInsercao";
         }
     }
-    
 
     frm.action = caminhourl;
     frm.submit();
@@ -417,5 +461,5 @@ function excluir(id, frm) {
             frm.action = "/sgab/main?acao=UsuarioExcluir";            
             frm.submit();
         }
-    } 
+    }
 }
