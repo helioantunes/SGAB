@@ -17,7 +17,7 @@ public class Obra  {
     private String categoria;
     private String titulo;
     private List<Autor> autores;
-    //private Assuntos[] assuntos;
+    private List<Assunto> assuntos;
     private String nota;
     private Integer anoPublicacao;
     private String editora;
@@ -26,10 +26,11 @@ public class Obra  {
     private Integer volume;
     private ObraStatus status;
 
-    public Obra(String categoria, String titulo, List<Autor> autores, String nota, Integer anoPublicacao, String editora, String cidadeEditora, Integer edicao, Integer volume) {
+    public Obra(String categoria, String titulo, List<Autor> autores, List<Assunto> assuntos, String nota, Integer anoPublicacao, String editora, String cidadeEditora, Integer edicao, Integer volume) {
         this.categoria = categoria;
         this.titulo = titulo;
         this.autores = autores;
+        this.assuntos = assuntos;
         this.nota = nota;
         this.anoPublicacao = anoPublicacao;
         this.editora = editora;
@@ -71,13 +72,13 @@ public class Obra  {
         this.autores = autores;
     }
 
-    /*public Assuntos[] getAssuntos() {
+    public List<Assunto> getAssunto() {
         return assuntos;
     }
 
-    public void setAssuntos(Assuntos[] assuntos) {
+    public void setAssunto(List<Assunto> assuntos) {
         this.assuntos = assuntos;
-    }*/
+    }
 
     public String getNota() {
         return nota;
