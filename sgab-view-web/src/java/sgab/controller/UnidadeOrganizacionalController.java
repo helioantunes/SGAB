@@ -4,14 +4,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import sgab.model.dto.UnidadeOrganizacional;
 import sgab.model.exception.PersistenciaException;
-import sgab.model.service.GestaoUnidadeOrganizacional;
+import sgab.model.service.GestaoUnidadeOrganizacionalService;
 
 public class UnidadeOrganizacionalController {
 
     public static String listar(HttpServletRequest request) {
         String jsp = "";
         try {
-            GestaoUnidadeOrganizacional gestaoUOrg = new GestaoUnidadeOrganizacional();
+            GestaoUnidadeOrganizacionalService gestaoUOrg = new GestaoUnidadeOrganizacionalService();
             List<UnidadeOrganizacional> listUOrg = gestaoUOrg.pesquisarAtivos();
             if (listUOrg != null) {
                 request.setAttribute("listUnidadeOrganizacional", listUOrg);
@@ -33,7 +33,7 @@ public class UnidadeOrganizacionalController {
         try {
             // lendo a Sigla do Usuario que deseja alterar
             Long uOrgId = Long.parseLong(request.getParameter("uOrgId"));
-            GestaoUnidadeOrganizacional gestaoUOrg = new GestaoUnidadeOrganizacional();
+            GestaoUnidadeOrganizacionalService gestaoUOrg = new GestaoUnidadeOrganizacionalService();
             UnidadeOrganizacional uOrg = gestaoUOrg.pesquisarPorId(uOrgId);
             if (uOrg != null) {
                 request.setAttribute("unidadeOrganizacional", uOrg);
@@ -55,7 +55,7 @@ public class UnidadeOrganizacionalController {
         try {
             // lendo o CodUsuario que se deseja alterar
             Long uOrgId = Long.parseLong(request.getParameter("uOrgId"));
-            GestaoUnidadeOrganizacional gestaoUOrg = new GestaoUnidadeOrganizacional();
+            GestaoUnidadeOrganizacionalService gestaoUOrg = new GestaoUnidadeOrganizacionalService();
             UnidadeOrganizacional uOrg = gestaoUOrg.pesquisarPorId(uOrgId);
             try {
                 gestaoUOrg.excluir(uOrg);
@@ -86,7 +86,7 @@ public class UnidadeOrganizacionalController {
             uOrg.setNome(endereco);
             uOrg.setEndereco(endereco);
 
-            GestaoUnidadeOrganizacional gestaoUOrg = new GestaoUnidadeOrganizacional();
+            GestaoUnidadeOrganizacionalService gestaoUOrg = new GestaoUnidadeOrganizacionalService();
             try {
                 gestaoUOrg.atualizar(uOrg);
                 jsp = UnidadeOrganizacionalController.listar(request);
@@ -113,7 +113,7 @@ public class UnidadeOrganizacionalController {
             uOrg.setNome(nome);
             uOrg.setEndereco(endereco);
 
-            GestaoUnidadeOrganizacional gestaUOrg = new GestaoUnidadeOrganizacional();
+            GestaoUnidadeOrganizacionalService gestaUOrg = new GestaoUnidadeOrganizacionalService();
             Long uOrgId = gestaUOrg.cadastrar(uOrg);
 
             if (uOrgId != null) {

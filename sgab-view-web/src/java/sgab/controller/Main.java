@@ -17,7 +17,7 @@ public class Main extends HttpServlet {
         
         request.setCharacterEncoding("UTF-8");
         String acao = request.getParameter("acao");
-        
+
         switch (acao) {
             case "Logar":
                 jsp = LoginController.logar(request);
@@ -87,12 +87,6 @@ public class Main extends HttpServlet {
                 break;
             case "PessoaExcluir":
                 jsp = PessoaController.excluir(request);
-            case "BibliotecaGravarAlteracao":
-                jsp = "gerenciaServlet";
-                break;
-            case "BibliotecaGravarInsercao":
-                jsp = "cadstroServlet";
-                break;
             case "UnidadeOrganizacionalListar":
                 jsp = UnidadeOrganizacionalController.listar(request);
                 break;
@@ -138,6 +132,78 @@ public class Main extends HttpServlet {
             case "GestorAlterar":
                 jsp = AdministradorController.alterarGestor(request);
                 break;
+            case "AutorCadastrar":
+                jsp = AutorController.insercao(request);
+                break;
+            case "AutorAlterar":
+                jsp = AutorController.alterar(request);
+                break;
+             case "AutorPesquisar":
+                jsp = AutorController.pesquisar(request);
+                break;
+            case "AutorExcluir":
+                jsp = AutorController.excluir(request);
+                break;  
+            case "FornecedorListar":
+                jsp = FornecedorController.listar(request);
+                break;
+            case "FornecedorAlterar":
+                jsp = FornecedorController.alterar(request);
+                break;
+            case "FornecedorGravarAlteracao":
+                jsp = FornecedorController.gravarAlteracao(request);
+                break;
+            case "FornecedorGravarInsercao":
+                jsp = FornecedorController.gravarInsercao(request);
+                break;
+            case "FornecedorExcluir":
+                jsp = FornecedorController.excluir(request);
+                break;
+            case "BibliotecaListar":
+                jsp = BibliotecaController.listar(request);
+                break;
+            case "BibliotecaAlterar":
+                jsp = BibliotecaController.alterar(request);
+                break;
+            case "BibliotecaGravarAlteracao":
+                jsp = BibliotecaController.gravarAlteracao(request);
+                break;
+            case "BibliotecaGravarInsercao":
+                jsp = BibliotecaController.gravarInsercao(request);
+                break;
+            case "BibliotecaExcluir":
+                jsp = BibliotecaController.excluir(request);
+                break;                
+            case "AtendentePesquisar":
+                jsp = GestorController.pesquisarAtendenteLogin(request);
+                break;
+            case "AtendenteListar":
+                jsp = GestorController.listarAtendentes(request);
+                break;
+            case "AtendenteAlterar":
+                jsp = GestorController.alterarAtendente(request);
+                break;
+            case "AtendenteGravarAlteracao":
+                jsp = GestorController.gravarAlteracaoAtendente(request);
+                break;
+            case "AtendenteGravarInsercao":
+                jsp = GestorController.gravarInsercaoAtendente(request);
+                break;
+            case "BibliotecarioPesquisar":
+                jsp = GestorController.pesquisarAtendenteLogin(request);
+                break;
+            case "BibliotecarioListar":
+                jsp = GestorController.listarBibliotecarios(request);
+                break;
+            case "BibliotecarioAlterar":
+                jsp = GestorController.alterarBibliotecario(request);
+                break;
+            case "BibliotecarioGravarAlteracao":
+                jsp = GestorController.gravarAlteracaoBibliotecario(request);
+                break;
+            case "BibliotecarioGravarInsercao":
+                jsp = GestorController.gravarInsercaoBiblioteca(request);
+                break;
         }
 
         //Redirecionando pagina
@@ -145,3 +211,4 @@ public class Main extends HttpServlet {
         rd.forward(request, response);
     }    
 }
+

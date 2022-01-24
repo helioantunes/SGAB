@@ -12,10 +12,6 @@ import sgab.model.dto.util.FornecedorHelper;
 import sgab.model.dto.util.FornecedoresStatus;
 import sgab.model.exception.NegocioException;
 
-/**
- *
- * @author T-Gamer
- */
 public class GestaoFornecedoresService {
     private FornecedoresDAO fornecedoresDAO;
     
@@ -59,6 +55,10 @@ public class GestaoFornecedoresService {
     
     public Fornecedor pesquisarPorNome(String nome) {
         return fornecedoresDAO.pesquisar(nome);
+    }
+    
+    public List<Fornecedor> pesquisarAtivos() {
+        return fornecedoresDAO.listarAtivos();
     }
 
 }

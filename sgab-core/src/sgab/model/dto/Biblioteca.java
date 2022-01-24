@@ -1,56 +1,46 @@
 package sgab.model.dto;
 
-/**
- * @author Victor Schneider
- */
-
-import sgab.model.dto.util.BibliotecaStatus;
-
 public class Biblioteca{
 
-    private String unidadeorg;
-    private String nome;
     private Long id;
-    private BibliotecaStatus status;
+    private UnidadeOrganizacional uOrg;
+    private String nome;
+    private boolean ativa;
 
-    //construtor
-    public Biblioteca(String unidadeorg, String nome){
-        this.unidadeorg = unidadeorg;
+    public Biblioteca(String nome){
         this.nome = nome;
-        this.status = BibliotecaStatus.ATIVA;
+        this.ativa = true;
     }
-    
-    //setters
-    public void setUnidadeOrg(String unidadeorg){
-        this.unidadeorg = unidadeorg;
-    }
-    
-    public void setNome(String Nome){
-    
-        this.nome = nome;
-    }
-    public void setId(Long id){
-    
+
+    public void setId(Long id) {
         this.id = id;
     }
-
-    public void setStatus(BibliotecaStatus status) {
-        if(this.status != BibliotecaStatus.SUSPENSA){
-           this.status = status; 
-        }
-    }
     
-    //getters
-    public String getUnidadeOrg(){
-        return unidadeorg;
-    }
-    public String getNome(){
-        return nome;
-    }
-    public long getId(){
+    public Long getId() {
         return id;
     }
-    public BibliotecaStatus getStatus() {
-        return status;
+
+    public UnidadeOrganizacional getUnidadeOrganizacional() {
+        return uOrg;
+    }
+
+    public void setUnidadeOrganizacional(UnidadeOrganizacional uOrg) {
+        this.uOrg = uOrg;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public boolean isAtiva() {
+        return ativa;
+    }
+
+    public void setAtiva(boolean ativa) {
+        this.ativa = ativa;
     }
 }
