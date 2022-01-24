@@ -13,6 +13,7 @@ import sgab.model.dto.Pessoa;
 import sgab.model.dto.util.PessoaTipo;
 import sgab.model.exception.PersistenciaException;
 import sgab.model.service.GestaoGestor;
+import sgab.model.service.GestaoPessoasService;
 
 
 public class GestorController{
@@ -218,16 +219,12 @@ public class GestorController{
         String jsp = "";
         try {
             String login = request.getParameter("login");
-            Long cpf = Long.parseLong(request.getParameter("cpf"));
-            String nomeCompleto = request.getParameter("nome");
-            String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
 
-            Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
+            GestaoPessoasService gestaoGestor = new GestaoPessoasService();
+            Pessoa pessoa = gestaoGestor.pesquisarPorLogin(login);
             pessoa.setTipo(PessoaTipo.BIBLIOTECARIO);
 
-            GestaoGestor gestaoGestor = new GestaoGestor();
-            Long pessoaId = gestaoGestor.cadastrar(pessoa);
+            Long pessoaId = pessoa.getId();
 
             if (pessoaId != null) {
                 jsp = listar(request);
@@ -247,16 +244,12 @@ public class GestorController{
         String jsp = "";
         try {
             String login = request.getParameter("login");
-            Long cpf = Long.parseLong(request.getParameter("cpf"));
-            String nomeCompleto = request.getParameter("nome");
-            String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
 
-            Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
+            GestaoPessoasService gestaoGestor = new GestaoPessoasService();
+            Pessoa pessoa = gestaoGestor.pesquisarPorLogin(login);
             pessoa.setTipo(PessoaTipo.ATENDENTE);
 
-            GestaoGestor gestaoGestor = new GestaoGestor();
-            Long pessoaId = gestaoGestor.cadastrar(pessoa);
+            Long pessoaId = pessoa.getId();
 
             if (pessoaId != null) {
                 jsp = listar(request);

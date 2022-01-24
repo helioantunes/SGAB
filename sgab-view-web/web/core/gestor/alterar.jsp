@@ -4,17 +4,7 @@
 <%@page import="sgab.model.service.GestaoGestor" %>
 <%@page import="java.util.List" %>
 
-<!doctype html>
-<html class="no-js" lang="">
-
-<head>
-    <meta charset="utf-8">
-    <title>SGAB | Página do Atendente</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
-    <link rel="stylesheet" href="../../css/styles.css">
-</head>
+<%@include file="/core/header.jsp" %>
 
 <%  Pessoa pessoa = (Pessoa) request.getAttribute("pessoa"); %>
 
@@ -25,10 +15,10 @@
             <div id="caixa-form">
                 <form name="modificarPessoa" method="post">
                     <%if(pessoa.getTipo()==PessoaTipo.BIBLIOTECARIO){%>
-                        <%=<input type="hidden" name="table" value="Bibliotecario"> %>
+                        <%="<input type="hidden" name="table" value="Bibliotecario">" %>
                     <%}%>
                     <%else if(pessoa.getTipo()==PessoaTipo.ATENDENTE){%>
-                        <%=<input type="hidden" name="table" value="Atendente"> %>
+                        <%="<input type="hidden" name="table" value="Atendente">" %>
                     <%}%>
                     <input type="hidden" name="acao" value="gravarAlteracao">
                     <div>
@@ -74,12 +64,4 @@
         </section>
 
 
-</body>
-
-<footer>
-    <p>SGAB - Sistema de Gestão de Acervo Bibliográfico</p>
-</footer>
-        <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
-        
-
-</html>
+<%@include file="/core/footer.jsp" %>
