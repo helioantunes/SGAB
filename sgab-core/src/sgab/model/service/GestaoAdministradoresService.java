@@ -6,6 +6,7 @@ import sgab.model.dto.Pessoa;
 import sgab.model.dto.util.PessoaTipo;
 import sgab.model.dto.util.PessoaHelper;
 import sgab.model.dto.util.AdministradoresHelper;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import sgab.model.exception.NegocioException;
 
@@ -40,90 +41,62 @@ public class GestaoAdministradoresService{
         return pessoa.getId();
     }
     
-    public List<Pessoa> pesquisarAdministradoresAtivos() {
-        List<Pessoa> pessoas = pessoasDAO.listarAtivos();
-        List<Pessoa> administradores = new LinkedList<>();
-        for(int i=0;i<pessoas.size();i++){
-            Pessoa pessoa = pessoas.remove(i);
-            if(pessoa.getTipo()!=PessoaTipo.ADMINISTRADOR){
-                administradores.add(pessoa);
-            }
-        }
-        return administradores;
-    }
-    
-    public Pessoa pesquisarAdministradoresPorId(Long id){
-        Pessoa pessoa = pessoasDAO.pesquisar(id);
-        if(pessoa.getTipo()!=PessoaTipo.ADMINISTRADOR){
-            return pessoa;
-        }
-        else{
-            return null;
-        }
-    }
-    
-    public Pessoa pesquisarAdministradoresPorConta(String login, String senha){
-        
-        Pessoa result = pessoasDAO.pesquisarLoginSenha(login, senha);
-        if(result.getTipo()!=PessoaTipo.ADMINISTRADOR){
-            return result;
-        }
-        else{
-            return null;
-        }             
-    }
-
-    public Pessoa pesquisarAdministradoresPorLogin(String login){
-        Pessoa result = pessoasDAO.pesquisarLogin(login);
-        if(result.getTipo()!=PessoaTipo.ADMINISTRADOR){
-            return result;
-        }
-        else{
-            return null;
-        } 
-    }
-    
     public List<Pessoa> pesquisarGestorAtivos() {
         List<Pessoa> pessoas = pessoasDAO.listarAtivos();
         List<Pessoa> gestores = new LinkedList<>();
-        for(int i=0; i<pessoas.size(); i++){
-            Pessoa pessoa = pessoas.remove(i);
-            if(pessoa.getTipo()!=PessoaTipo.GESTOR){
+        for(long i = 1; i <= pessoas.size(); i++){
+            Pessoa pessoa = pessoasDAO.pesquisar(i);
+            ArrayList<PessoaTipo> tipos = pessoa.getTipo();
+            for(PessoaTipo tipo : tipos){
+              if(tipo == PessoaTipo.GESTOR){
                 gestores.add(pessoa);
-            }
+             }  
+          }
         }
         return gestores;
     }
-
-    public Pessoa pesquisarGestorPorId(Long id){
-        Pessoa pessoa = pessoasDAO.pesquisar(id);
-        if(pessoa.getTipo()!=PessoaTipo.GESTOR){
-            return pessoa;
+    
+     public List<Pessoa> pesquisarAdministradoresAtivos() {
+        List<Pessoa> pessoas = pessoasDAO.listarAtivos();
+        List<Pessoa> administradores = new LinkedList<>();
+        for(long i = 1; i <= pessoas.size(); i++){
+            Pessoa pessoa = pessoasDAO.pesquisar(i);
+            ArrayList<PessoaTipo> tipos = pessoa.getTipo();
+            for(PessoaTipo tipo : tipos){
+              if(tipo == PessoaTipo.ADMINISTRADOR){
+                administradores.add(pessoa);
+             }  
+          }
         }
-        else{
-            return null;
-        }
-    }   
-
-    public Pessoa pesquisarGestorConta(String login, String senha){
-        
-        Pessoa result = pessoasDAO.pesquisarLoginSenha(login, senha);
-        if(result.getTipo()!=PessoaTipo.GESTOR){
-            return result;
-        }
-        else{
-            return null;
-        }                   
+        return administradores;
     }
-
+     
+    public Pessoa pesquisarAdministradoresPorLogin(String login){
+        Pessoa result = pessoasDAO.pesquisarLogin(login);
+        ArrayList<PessoaTipo> tipos = result.getTipo();
+        for(PessoaTipo tipo : tipos ){
+          if(tipo == PessoaTipo.ADMINISTRADOR){
+            return result;            
+          }
+          else{
+            return null;
+          } 
+        }
+        return null;
+    }
+    
     public Pessoa pesquisarGestorPorLogin(String login){
         Pessoa result = pessoasDAO.pesquisarLogin(login);
-        if(result.getTipo()!=PessoaTipo.GESTOR){
-            return result;
-        }
-        else{
+        ArrayList<PessoaTipo> tipos = result.getTipo();
+        for(PessoaTipo tipo : tipos ){
+          if(tipo == PessoaTipo.GESTOR){
+            return result;            
+          }
+          else{
             return null;
-        } 
+          } 
+        }
+        return null;
     }
 
     public void alterarGestor(Pessoa pessoa){

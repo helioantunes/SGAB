@@ -1,5 +1,6 @@
 package sgab.model.dto.util;
 
+import java.util.ArrayList;
 import sgab.model.dao.PessoasDAO;
 import sgab.model.dto.Pessoa;
 import java.util.LinkedList;
@@ -109,29 +110,42 @@ public class AdministradoresHelper {
     }
     public static List<String> validarAdministrador(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarPessoa(pessoa,pessoas);
-        if(pessoa.getTipo()!=PessoaTipo.ADMINISTRADOR){
+        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
+        for(PessoaTipo tipo : tipos ){
+          if(tipo != PessoaTipo.ADMINISTRADOR){
             mensagens.add("Pessoa não é um administrador!");
+            }
         }
+      
         return mensagens;
     }
     public static List<String> validarAdministradorAlteracao(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarAlteracao(pessoa,pessoas);
-        if(pessoa.getTipo()!=PessoaTipo.ADMINISTRADOR){
+        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
+        for(PessoaTipo tipo : tipos ){
+          if(tipo != PessoaTipo.ADMINISTRADOR){
             mensagens.add("Pessoa não é um administrador!");
+            }
         }
         return mensagens;
     }
     public static List<String> validarGestor(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarPessoa(pessoa,pessoas);
-        if(pessoa.getTipo()!=PessoaTipo.GESTOR){
-            mensagens.add("Pessoa não é um gestor!");
+        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
+        for(PessoaTipo tipo : tipos ){
+          if(tipo != PessoaTipo.GESTOR){
+            mensagens.add("Pessoa não é um GESTOR!");
+            }
         }
         return mensagens;
     }
     public static List<String> validarGestorAlteracao(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarAlteracao(pessoa,pessoas);
-        if(pessoa.getTipo()!=PessoaTipo.GESTOR){
-            mensagens.add("Pessoa não é um gestor!");
+        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
+        for(PessoaTipo tipo : tipos ){
+          if(tipo != PessoaTipo.GESTOR){
+            mensagens.add("Pessoa não é um GESTOR!");
+            }
         }
         return mensagens;
     }
