@@ -1,14 +1,12 @@
 package sgab.controller;
 
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import sgab.model.dto.Pessoa;
 import sgab.model.service.GestaoPessoasService;
-import sgab.util.InitDB;
 
 public class LoginController {
 
@@ -27,15 +25,7 @@ public class LoginController {
                 String erro = "Pessoa nao encontrado!";
                 request.setAttribute("erro", erro);
                 jsp = "/core/erro.jsp";
-            } else {
-                // carga inicial de dados para teste
-
-                ServletContext applicationContext = request.getServletContext();
-                if (applicationContext.getAttribute("initDB") == null) {
-                    InitDB.init();
-                    applicationContext.setAttribute("initDB", Boolean.TRUE);
-                }
-                
+            } else {               
                 // usuário logado no sistema
                 request.getSession().setAttribute("pessoaId", pessoa.getId());
                 jsp = "/core/menu.jsp";

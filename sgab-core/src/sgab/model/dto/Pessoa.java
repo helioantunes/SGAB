@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Pessoa {
     
     private Long id;
-    private final String Login;
+    private final String login;
     private final Long cpf;
     private String nome;
     private String email;
@@ -14,14 +14,14 @@ public class Pessoa {
     private ArrayList<PessoaTipo> tipo = new ArrayList<PessoaTipo>();
 
     public Pessoa(String login, Long cpf){
-        this.Login = login;
+        this.login = login;
         this.cpf = cpf;
         this.habilitado = true;
     }
 
     public Pessoa(Long cpf, String login, String nome, String email, String senha){
         this.cpf = cpf;
-        this.Login = login;
+        this.login = login;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
@@ -45,7 +45,7 @@ public class Pessoa {
     }
 
     public String getLogin() {
-        return Login;
+        return login;
     }
 
     public Long getCpf() {

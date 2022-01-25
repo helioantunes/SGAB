@@ -146,16 +146,16 @@ public class InitDB {
     private static void cadastrarUnidadeOrganizacional() {
         GestaoUnidadeOrganizacionalService uOrgService = new GestaoUnidadeOrganizacionalService();
 
-        uOrgService.cadastrar(new UnidadeOrganizacional(UnidadeOrganizacionalDAO.getNextId(), 
-                "Campus Nova Suíça", "Av. Amazonas, 5253 - Nova Suíça, Belo Horizonte/MG"));
-        uOrgService.cadastrar(new UnidadeOrganizacional(UnidadeOrganizacionalDAO.getNextId(), 
-                "Campus Nova Gameleira", "Av. Amazonas, 7675 - Nova Gameleira, Belo Horizonte/MG"));
-        uOrgService.cadastrar(new UnidadeOrganizacional(UnidadeOrganizacionalDAO.getNextId(), 
-                "Unidade Contagem", "Alameda das Perdizes, 61 - Bairro Cabral, Contagem/MG"));
-        uOrgService.cadastrar(new UnidadeOrganizacional(UnidadeOrganizacionalDAO.getNextId(), 
-                "Unidade Leopoldina", "Rua José Peres, 558 - Centro, Leopoldina/MG"));
-        uOrgService.cadastrar(new UnidadeOrganizacional(UnidadeOrganizacionalDAO.getNextId(), 
-                "Unidade Varginha", "Av. dos Imigrantes, 1000 - Varginha/MG"));
+        uOrgService.cadastrar(new UnidadeOrganizacional("Campus Nova Suíça", 
+                "Av. Amazonas, 5253 - Nova Suíça, Belo Horizonte/MG"));
+        uOrgService.cadastrar(new UnidadeOrganizacional("Campus Nova Gameleira", 
+                "Av. Amazonas, 7675 - Nova Gameleira, Belo Horizonte/MG"));
+        uOrgService.cadastrar(new UnidadeOrganizacional("Unidade Contagem", 
+                "Alameda das Perdizes, 61 - Bairro Cabral, Contagem/MG"));
+        uOrgService.cadastrar(new UnidadeOrganizacional("Unidade Leopoldina", 
+                "Rua José Peres, 558 - Centro, Leopoldina/MG"));
+        uOrgService.cadastrar(new UnidadeOrganizacional("Unidade Varginha", 
+                "Av. dos Imigrantes, 1000 - Varginha/MG"));
     }
     
     public static void init() {
