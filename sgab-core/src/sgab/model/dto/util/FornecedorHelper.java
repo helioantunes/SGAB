@@ -11,23 +11,16 @@ public class FornecedorHelper{
         if (fornecedor.getCnpj() == null)
             exMsgs.add("Cnpj não pode ser null");
         else {
-            if ((fornecedor.getNomeFornecedor() == null) || fornecedor.getNomeFornecedor().isEmpty())
-                exMsgs.add("Obrigatório informar o nome completo do usuário.");
-            else if (fornecedor.getNomeFornecedor().split(" ").length < 2)
-                exMsgs.add("Nome completo do usuario deve ter pelo menos duas palavras.");
-
             if ((fornecedor.getEmail() == null) || fornecedor.getEmail().isEmpty())
-                exMsgs.add("Obrigatório informar o email do usuário.");
+                exMsgs.add("Obrigatório informar o email do fornececor.");
             else if (!(fornecedor.getEmail().contains("@") && fornecedor.getEmail().contains(".")))
                 exMsgs.add("Email não é válido.");  
-
             if ((fornecedor.getEmail() == null) || fornecedor.getEmail().isEmpty())
-                exMsgs.add("Obrigatório informar o email do usuário.");
+                exMsgs.add("Obrigatório informar o email do fornecedor.");
             else if (!(fornecedor.getEmail().contains("@") && fornecedor.getEmail().contains(".")))
                 exMsgs.add("Email não é válido.");   
-
             if ((fornecedor.getEmail() == null) || fornecedor.getEmail().isEmpty())
-                exMsgs.add("Obrigatório informar o email do usuário.");
+                exMsgs.add("Obrigatório informar o email do fornecedor.");
             else if (!(fornecedor.getEmail().contains("@") && fornecedor.getEmail().contains(".")))
                 exMsgs.add("Email não é válido.");   
         }
