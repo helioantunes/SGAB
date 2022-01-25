@@ -1,33 +1,28 @@
 package sgab.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
-import java.util.LinkedList;
-import java.util.List;
-import static sgab.controller.PessoaController.listar;
-
 import sgab.model.dto.Pessoa;
-import sgab.model.exception.NegocioException;
-import sgab.model.service.GestaoLeitor;
+import sgab.model.dto.util.PessoaTipo;
+import sgab.model.service.GestaoPessoasService;
 
 public class LeitorController {
     public static String cadastrar(HttpServletRequest request) {
         String jsp = "";
         try {
             String login = request.getParameter("login");
-            Long cpf = Long.parseLong(request.getParameter("cpf"));
-            String nomeCompleto = request.getParameter("nome");
-            String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
-
-            Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
-
-            GestaoLeitor gestaoPessoasService = new GestaoLeitor();
-            Long pessoaId = gestaoPessoasService.cadastrar(pessoa);
-
-            if (pessoaId != null) {
-                jsp = listar(request);
-            } else {
-                String erro = "Nao foi possível gravar esse registro!";
+            GestaoPessoasService gestaoPessoasService = new GestaoPessoasService();
+            if(login != null || "".equals(login)){
+                Pessoa pessoa = gestaoPessoasService.pesquisarPorLogin(login);
+                if(pessoa != null){
+                    pessoa.setTipo(PessoaTipo.LEITOR);
+                    jsp = "/core/autores/certo.jsp";
+                }else{
+                    String erro = "Nenhuma pessoa encontrada com o login informado";
+                    request.setAttribute("erro", erro);
+                    jsp = "/core/erro.jsp";
+                }
+            }else{
+                String erro = "Login invalido!";
                 request.setAttribute("erro", erro);
                 jsp = "/core/erro.jsp";
             }

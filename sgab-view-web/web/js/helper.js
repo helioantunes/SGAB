@@ -340,12 +340,14 @@ function gravarAlteracao(frm) {
         }
     }
     else if (table === "Leitor") {
-        if (validarPessoa(frm)) {
-            caminhourl = "/sgab/main?acao=LeitorCadastrar";
+        if (frm.login.value == "") {
+            alert("Informar um login valido!");
+            frm.login.focus();
+        }else{
+            caminhourl = "/sgab/main?acao=LeitorCadastrar";  
         }
-    }    
+    }
     
-
     frm.action = caminhourl;
     frm.submit();
 }
