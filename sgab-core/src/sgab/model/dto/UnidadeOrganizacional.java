@@ -11,6 +11,12 @@ public class UnidadeOrganizacional {
         this.habilitado = true;
     }
     
+    public UnidadeOrganizacional(String nome, String endereco) {
+        this.nome = nome;
+        this.endereco = endereco;
+        this.habilitado = true;
+    }    
+    
     public UnidadeOrganizacional(Long id, String nome, String endereco) {
         this.id = id;
         this.nome = nome;

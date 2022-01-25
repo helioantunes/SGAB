@@ -6,7 +6,7 @@
         <% Biblioteca biblioteca = (Biblioteca) request.getAttribute("biblioteca"); %>
 
         <center>
-            <h3>Alterar Usuário</h3>
+            <h3>Alterar Biblioteca</h3>
             <form name="frmAltBiblioteca" method="post">                
                 <input type="hidden" name="table" value="Biblioteca">
                 <input type="hidden" name="acao" value="alterar">

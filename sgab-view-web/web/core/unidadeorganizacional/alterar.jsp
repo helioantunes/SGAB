@@ -6,7 +6,7 @@
         <% UnidadeOrganizacional uOrg = (UnidadeOrganizacional) request.getAttribute("unidadeOrganizacional"); %>
 
         <center>
-            <h3>Alterar Usuário</h3>
+            <h3>Alterar Unidade Organizacional</h3>
             <form name="frmAltUnidadeOrganizacional" method="post">                
                 <input type="hidden" name="table" value="UnidadeOrganizacional">
                 <input type="hidden" name="acao" value="alterar">
