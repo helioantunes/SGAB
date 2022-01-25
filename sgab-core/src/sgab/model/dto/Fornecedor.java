@@ -16,6 +16,12 @@ public class Fornecedor {
     private FornecedoresStatus status;
     private boolean habilitado;
     
+    public Fornecedor(long cnpj){         
+        this.cnpj = cnpj;
+        this.status = FornecedoresStatus.ATIVO;
+        this.habilitado = true;        
+    }
+    
     public Fornecedor(long cnpj, String nomeFornecedor, String email,
                               Long telefone, Long cep, String endereco){
         this.cnpj = cnpj;
