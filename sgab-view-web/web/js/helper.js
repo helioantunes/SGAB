@@ -369,6 +369,12 @@ function gravarAlteracao(frm) {
             caminhourl = "/sgab/main?acao=AquisicaoCriar";
         }
     }
+    else if(table == "AquisicaoObra"){
+        if(validarObra(frm)){
+            caminhourl = "/sgab/main?acao=GravarObraAquisicao"
+        }
+    }
+    
     else if (table === "Usuario") {
         if (validarUsuario(frm)) {
             if (frm.acao.value === "alterar")

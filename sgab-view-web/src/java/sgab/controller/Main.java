@@ -174,8 +174,14 @@ public class Main extends HttpServlet {
             case "AquisicaoPedidoCriarObra":
                 jsp = AquisicaoController.gravarPendente(request);
                 break;
+            case "ConfereAquisicao":
+                jsp = AquisicaoController.mostraAquisicao(request);
+                break;
             case "CadastrarObraAquisicao":
                 jsp = AquisicaoController.cadastrarObra(request);
+                break;
+            case "GravarObraAquisicao":
+                jsp = AquisicaoController.removerPendente(request);
                 break;
             case "AtendentePesquisar":
                 jsp = GestorController.pesquisarAtendenteLogin(request);

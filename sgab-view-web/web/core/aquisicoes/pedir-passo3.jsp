@@ -9,6 +9,8 @@
 <%@page import="sgab.model.dto.Obra" %>
 <% 
    Obra obraAlvo = (Obra) request.getSession().getAttribute("obraAlvo");
+   String justificativa = request.getParameter("justificativa");
+   Long quantidade = Long.parseLong(request.getParameter("quantidadeDesejada"));
 %>
 
 <section id="form">
@@ -26,8 +28,11 @@
         </div>
         <div style="width: 95%;">
             <label for="quantidade">Insira a quantidade que deseja pedir: </label>
-            <input type="number" name="quantidade" style="max-width: 31%; display: inline;"> 
+            <input type="number" name="quantidade" style="max-width: 31%; display: inline;" value="<%= quantidade %>"> 
         </div>
+        <label for="justificativa" style="display:block;">Justificativa da Quantidade</label>
+        <textarea disabled name="justificativa" style="display:block; width: 95%; max-width: 95%; height: 4em; margin-bottom: 15px;"><%= justificativa %></textarea>
+            
         <input class="button" type="button" onclick="gravarAlteracao(document.frmFinalizaAquisicao)" value="Pedir" />
     </form>
   </div>

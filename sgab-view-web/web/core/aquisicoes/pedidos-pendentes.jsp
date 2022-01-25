@@ -35,11 +35,13 @@
                 ">Ir a lista de pedidos ativos</a>
                 <form name="frmAquisicao" method="post">
                       <input type="hidden" name="aquisicaoId" value="">
+                      <input type="hidden" name="motivoRecusa" value="">
                       <table id="usuario" style="width: 50%;">
                           <tr>
                             <th class="hpesquisa"></th>
                             <th>ID</th>
                             <th>OBRA</th>
+                            <th>QUANT</th>
                             <th style="width: 50%;"></th>
                           </tr>
                           <% 
@@ -49,6 +51,11 @@
                             <td><a href="/sgab/main?acao=ConfereAquisicao&aquisicaoId=<%=aquisicao.getId()%>">&#128270</a></td>
                             <td><%= aquisicao.getId() %></td>
                             <td><%= aquisicao.getObra().getTitulo() %></td>
+                            <% if(aquisicao.getQuantidade() != null ){ %>
+                                <td><%= aquisicao.getQuantidade() %></td>
+                            <%} else { %>
+                                <td></td>
+                            <% } %>
                             <% if(aquisicao.getObraExiste()){ %>
                             <td id="escolha" style="background-color: #aaaaaa; ">   
                                 <input type="button" class="button" style="
@@ -67,7 +74,7 @@
                                     background-color: #aaaaaa;
                                     color: black;
                                     border-radius: 0;
-                                " value="Pedir" onclick="pedir(<%=aquisicao.getId()%>,document.frmAquisicao)"> <% } else { %>
+                                " value="Pedir" onclick="pedir(<%=aquisicao.getId()%>, <%= aquisicao.getQuantidade() %>, '<%=aquisicao.getJustificativaQuantidade()%>', document.frmAquisicao)"> <% } else { %>
                             <td style="background-color: #aaaaaa; "> 
                                  <input type="button" class="button" style="
                                     display: block;
@@ -89,13 +96,21 @@
           </center>
 <script>
     function recusar(id, frm){
+        let motivo = prompt("Qual é o motivo da recusa?");
+        
+        frm.motivoRecusa.value = motivo;
+        
         frm.aquisicaoId.value = id;
         frm.action = "/sgab/main?acao=RecusarAquisicao";
         frm.submit();
     }
-    function pedir(id, frm){
+    function pedir(id, quantidade, justificativa, frm){
         frm.aquisicaoId.value = id;
         frm.action = "/sgab/main?acao=AceitarAquisicao";
+        if(quantidade != null){
+            frm.action = "/sgab/main?acao=AceitarAquisicao&quantidadeDesejada=" + quantidade + "&justificativa=" + justificativa;
+        }
+        
         frm.submit();
     }
     function listarPedidosAtivos(frm){

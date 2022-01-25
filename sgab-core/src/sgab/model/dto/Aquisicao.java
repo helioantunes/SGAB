@@ -11,6 +11,7 @@ public class Aquisicao {
     private boolean obraExiste;
     private Long id;
     private Biblioteca bibliotecaAlvo;
+    private String justificativaQuantidade;
 
     //construtor 
     public Aquisicao(Biblioteca biblioteca, Pessoa pessoa, Long quantidade, Fornecedor fornecedor, AquisicaoStatus status, Obra obra){
@@ -21,6 +22,7 @@ public class Aquisicao {
         this.obra = obra;
         this.bibliotecaAlvo = biblioteca;
         this.obraExiste = true;
+        this.justificativaQuantidade = "";
     }
 
     //get e set id
@@ -88,4 +90,14 @@ public class Aquisicao {
     public Biblioteca getBiblioteca(){
         return bibliotecaAlvo;
     }
+
+    public String getJustificativaQuantidade() {
+        return justificativaQuantidade;
+    }
+
+    public void setJustificativaQuantidade(String justificativaQuantidade) {
+        this.justificativaQuantidade = justificativaQuantidade;
+    }
+    
+    
 }
