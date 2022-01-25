@@ -358,6 +358,7 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=AdministradorGravarAlteracao";
             else if (frm.acao.value === "gravar")
                 caminhourl = "/sgab/main?acao=AdministradorGravarInsercao";
+            
         }
     }
     else if (table === "Gestor") {

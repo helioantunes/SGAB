@@ -1,26 +1,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="sgab.model.dto.Pessoa" %>
-<%@page import="sgab.model.dto.util.PessoaTipo" %>
-<%@page import="sgab.model.service.GestaoAdministradoresService" %>
-<%@page import="java.util.List" %>
-
 
 <%@include file="/core/header.jsp" %>
 
 <%  Pessoa pessoa = (Pessoa) request.getAttribute("pessoa"); %>
 
-<body> 
-        <h3>Alteração</h3>
+    <center>
+        <h3>Alteração de Pessoa</h3>
+    </center>
         <section id="form">
             <div id="caixa-form">
                 <form name="modificarPessoa" method="post">
-                    <%if(pessoa.getTipo()==PessoaTipo.ADMINISTRADOR){%>
-                        <%=<input type="hidden" name="table" value="Administrador"> %>
-                    <%}%>
-                    <%else if(pessoa.getTipo()==PessoaTipo.GESTOR){%>
-                        <%=<input type="hidden" name="table" value="Gestor"> %>
-                    <%}%>
-                    <input type="hidden" name="acao" value="gravarAlteracao">
+                    <input type="hidden" name="table" value="Pessoa">
+                    <input type="hidden" name="acao" value="alterar">
                     <div>
                         <label for="pessoaId">Código</label>
                         <input type="number" id="pessoaId" name="pessoaId" placeholder="ID" value="<%=pessoa.getId()%>" readonly>
@@ -53,22 +45,35 @@
                         <input type="password" id="senha2" name="senha2" placeholder="Senha">
                         <small>As senhas não correspondem.</small>
                     </div>
-                    <div>
-
-                    </div>
                     <div id="caixa-form-footer">
                         <input type="button" class="button" name="ordem" value="Alterar" onclick="gravarAlteracao(document.modificarPessoa)">
+                        <input type="button" class="button" name="ordem" value="Excluir" onclick="excluir(<%=pessoa.getCpf()%>, document.modificarPessoa)">
                     </div>
                 </form>
             </div>
         </section>
+    </center>
 
-
-</body>
-
-<%@include file="/core/footer.jsp" %>
-
-        <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
-        
-
-</html>
+    <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
+    <script>
+        let senha2DivEl = document.querySelector("#senha2-div");
+        senhaEl.addEventListener("change", () => {
+            let regexEl = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/;
+            if(regexEl.test(senhaEl.value)) {
+                senha2DivEl.style.display = "block";
+                senha2DivEl.style.visibility = "visible";
+                senha2DivEl.attributes.required = true;
+            }
+        });
+    </script>
+        <style>
+        #nome, #email, #senha {
+            background: #fff url(imgs/editar.png) no-repeat 95% center;
+            background-size: 18px;
+        }
+        #senha2-div {
+            visibility: hidden;
+            display: none;
+        }
+    </style>
+    <%@include file="/core/footer.jsp" %>
