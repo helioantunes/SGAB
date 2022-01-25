@@ -104,11 +104,31 @@
   <!-- JS -->
   <script src="../../js/abreModal.js"></script>
   <script src="../../js/helper.js"></script>
+  <script>
+    let loginEle = document.querySelector("#login2");
+    loginEle.addEventListener("change", () => {
+
+    let smallEle = document.querySelector("#login2 ~ small");
+    let labelEle = document.querySelector("label[for=login2]");
+    let inputObrigatorioEle = document.querySelector("label[for=login2] .input-obrigatorio");
+    
+    if(loginEle == null){
+        smallEle.classList.add("invalido");
+        labelEle.style.color = "#dd4b39";
+        loginEle.style.borderColor = "#dd4b39";
+        inputObrigatorioEle.style.visibility = "visible";
+    } else {
+        smallEle.classList.remove("invalido");
+        labelEle.style.color = "#00a65a";
+        loginEle.style.borderColor = "#00a65a";
+        inputObrigatorioEle.style.visibility = "hidden";
+    }});
+  </script>
   <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
-  <script type="text/javascript" language="JavaScript" src="/sgab/js/validacaoAdministrador.js"></script>
   <link rel="stylesheet" href="../../css/normalize.css">
   <link rel="stylesheet" href="../../css/modal.css">
   <link rel="stylesheet" href="../../css/styles.css">
+  
 </body>
 
 <%@include file="/core/footer.jsp" %>
