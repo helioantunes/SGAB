@@ -1,40 +1,39 @@
 package sgab.model.dto;
 
 import sgab.model.dto.util.PessoaTipo;
+import java.util.ArrayList;
 public class Pessoa {
     
     private Long id;
-    private final String Login;
+    private final String login;
     private final Long cpf;
     private String nome;
     private String email;
     private String senha;
     private boolean habilitado;
-    private PessoaTipo tipo;
+    private ArrayList<PessoaTipo> tipo = new ArrayList<PessoaTipo>();
 
     public Pessoa(String login, Long cpf){
-        this.Login = login;
+        this.login = login;
         this.cpf = cpf;
         this.habilitado = true;
-        this.tipo = null;
     }
 
     public Pessoa(Long cpf, String login, String nome, String email, String senha){
         this.cpf = cpf;
-        this.Login = login;
+        this.login = login;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
         this.habilitado = true;
-        this.tipo = null;
     }
     
-    public PessoaTipo getTipo() {
-        return tipo;
+    public ArrayList getTipo(){
+        return this.tipo;
     }
 
     public void setTipo(PessoaTipo tipo) {
-        this.tipo = tipo;
+        this.tipo.add(tipo);
     }
 
     public Long getId() {
@@ -46,7 +45,7 @@ public class Pessoa {
     }
 
     public String getLogin() {
-        return Login;
+        return login;
     }
 
     public Long getCpf() {

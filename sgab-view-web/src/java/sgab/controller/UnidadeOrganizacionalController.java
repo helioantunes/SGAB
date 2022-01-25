@@ -83,7 +83,7 @@ public class UnidadeOrganizacionalController {
 
             UnidadeOrganizacional uOrg = new UnidadeOrganizacional();
             uOrg.setId(uOrgId);
-            uOrg.setNome(endereco);
+            uOrg.setNome(nome);
             uOrg.setEndereco(endereco);
 
             GestaoUnidadeOrganizacionalService gestaoUOrg = new GestaoUnidadeOrganizacionalService();

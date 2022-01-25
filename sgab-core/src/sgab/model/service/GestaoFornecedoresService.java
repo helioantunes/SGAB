@@ -19,7 +19,7 @@ public class GestaoFornecedoresService {
         fornecedoresDAO = FornecedoresDAO.getInstance();
     }
 
-    public Long Cadastrar(Fornecedor fornecedor) {
+    public Long cadastrar(Fornecedor fornecedor) {
         
         List<String> exMsgs = FornecedorHelper.validar(fornecedor);
         
@@ -30,7 +30,7 @@ public class GestaoFornecedoresService {
         return fornecedor.getCnpj();
     }
     
-    public void atualizarCadastro(Fornecedor fornecedor) {
+    public void atualizar(Fornecedor fornecedor) {
         
         List<String> exMsgs = FornecedorHelper.validar(fornecedor);
         

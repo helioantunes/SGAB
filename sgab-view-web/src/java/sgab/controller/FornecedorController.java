@@ -3,7 +3,6 @@ package sgab.controller;
 import sgab.model.exception.PersistenciaException;
 import jakarta.servlet.http.HttpServletRequest;
 import sgab.model.dto.Fornecedor;
-import sgab.model.dto.util.FornecedoresStatus;
 import java.util.List;
 import sgab.model.service.GestaoFornecedoresService;
 
@@ -87,7 +86,7 @@ public class FornecedorController {
             Fornecedor fornecedor = new Fornecedor(fornecedorCnpj, nome, email, telefone, cep, endereco);
             GestaoFornecedoresService gestaoFornecedores = new GestaoFornecedoresService();
             try {
-                gestaoFornecedores.atualizarCadastro(fornecedor);
+                gestaoFornecedores.atualizar(fornecedor);
                 jsp = FornecedorController.listar(request);
             } 
             catch(PersistenciaException ex) {
@@ -115,7 +114,7 @@ public class FornecedorController {
             Fornecedor fornecedor = new Fornecedor(fornecedorCNPJ, nome, email, telefone, cep, endereco);
 
             GestaoFornecedoresService gestaoFornecedores = new GestaoFornecedoresService();
-            fornecedorCNPJ = gestaoFornecedores.Cadastrar(fornecedor);
+            fornecedorCNPJ = gestaoFornecedores.cadastrar(fornecedor);
 
             if (fornecedorCNPJ != null) {
                 jsp = FornecedorController.listar(request);
