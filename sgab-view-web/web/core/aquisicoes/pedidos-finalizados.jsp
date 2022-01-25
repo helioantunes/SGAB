@@ -21,17 +21,20 @@
                       <input type="hidden" name="aquisicaoId" value="">
                       <table id="usuario" style="width: 50%;">
                           <tr>
-                            <th class="hpesquisa"></th>
                             <th>ID</th>
+                            <th>FORNECEDOR</th>
+                            
                             <th>OBRA</th>
+                            <th>QUANTIDADE</th>
                           </tr>
                           <% 
                             List<Aquisicao> aquisicoes = (List<Aquisicao>) request.getAttribute("listAquisicoesFinalizadas");
                             for(Aquisicao aquisicao : aquisicoes){ %>
                           <tr>
-                            <td><a href="/sgab/main?acao=ConfereAquisicao&aquisicaoId=<%=aquisicao.getId()%>">&#128270</a></td>
                             <td><%= aquisicao.getId() %></td>
+                            <td><%= aquisicao.getFornecedor().getNomeFornecedor() %></td>
                             <td><%= aquisicao.getObra().getTitulo() %></td>
+                            <td><%= aquisicao.getQuantidade() %></td>
                           </tr>
                           <% } %>
               </table>

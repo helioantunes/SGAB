@@ -79,7 +79,7 @@
                                     color: black;
                                     border-radius: 0;
                                     
-                                " value="Cadastrar Obra" onclick=""> <%}%>
+                                " value="Cadastrar Obra" onclick="cadastrarObra(<%= aquisicao.getId()%>, document.frmAquisicao)"> <%}%>
                             </td> 
                           </tr>
                           <% } %>
@@ -100,6 +100,11 @@
     }
     function listarPedidosAtivos(frm){
         frm.action = "/sgab/main?acao=ListarAquisicoesAtivos";
+        frm.submit();
+    }
+    function cadastrarObra(id, frm){
+        frm.aquisicaoId.value = id;
+        frm.action = "/sgab/main?acao=CadastrarObraAquisicao";
         frm.submit();
     }
 </script>

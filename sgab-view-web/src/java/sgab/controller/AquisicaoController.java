@@ -168,7 +168,7 @@ public class AquisicaoController {
                     Obra obra = (Obra) request.getSession().getAttribute("obraAlvo");
                     Aquisicao aquisicao = new Aquisicao(biblioteca, pessoa, null, null, AquisicaoStatus.PENDENTE, obra);
                     gestaoAquisicao.cadastrarAquisicao(aquisicao);
-                    jsp = "";
+                    jsp= "/core/aquisicoes/operacao-sucesso.jsp";
                     break;
                 case "segundo-criarObra":
                     Pessoa pessoa1 = (Pessoa) request.getSession().getAttribute("pessoaDona");
@@ -204,7 +204,7 @@ public class AquisicaoController {
                     Aquisicao aquisicao1 = new Aquisicao(biblioteca1, pessoa1, null, null, AquisicaoStatus.PENDENTE, obra1);
                     aquisicao1.setObraExiste(false);
                     gestaoAquisicao.cadastrarAquisicao(aquisicao1);
-                    jsp = "";
+                    jsp= "/core/aquisicoes/operacao-sucesso.jsp";
                     break;
             }
         } catch (Exception e) {
@@ -271,6 +271,7 @@ public class AquisicaoController {
                         
                         Aquisicao novaAquisicao = new Aquisicao(biblioteca, pessoaAlvo1, quantidade, fornecedorAlvo, AquisicaoStatus.ATIVO, obraAlvo1);
                         gestaoAquisicao.cadastrarAquisicao(novaAquisicao);
+                        jsp = listarAtivos(request);
                     }
                     else{
                         Aquisicao aquisicao = gestaoAquisicao.pesquisarAquisicao(id);
@@ -289,6 +290,7 @@ public class AquisicaoController {
                             aquisicao.setFornecedor(fornecedor);
                             aquisicao.setQuantidade(quantidade);
                             aquisicao.setStatus(AquisicaoStatus.ATIVO);
+                            jsp = listarPendentes(request);
                             try{
                                 gestaoAquisicao.alterarAquisicao(aquisicao);
                                 jsp = listarPendentes(request);
@@ -354,5 +356,22 @@ public class AquisicaoController {
             jsp = "";
         }
         return jsp;
-    }    
+    }
+    
+    public static String cadastrarObra(HttpServletRequest request) {
+        String jsp = "";
+        try{
+            Long aquisicaoId = Long.parseLong(request.getParameter("aquisicaoId"));
+            GestaoAquisicao gestaoAquisicao = new GestaoAquisicao();
+            Aquisicao aquisicao = gestaoAquisicao.pesquisarAquisicao(aquisicaoId);
+            
+            Obra obraAlvo = aquisicao.getObra();
+            request.setAttribute("obra", obraAlvo);
+            jsp = "/core/aquisicoes/cadastrar-obra-pedido.jsp";
+        } catch(Exception e) {
+            e.printStackTrace();
+            jsp = "";
+        }
+        return jsp;
+    }
 }

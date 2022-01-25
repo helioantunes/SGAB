@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@include file="/core/header.jsp" %>
+<% String nomeObra = (String) request.getAttribute("nomeObra"); %>
 
 <center>
     <h3>Criar aquisição de Obra</h3>
@@ -22,6 +23,7 @@
         id="titulo"
         name="titulo"
         placeholder="Insira o título da obra"
+        value="<%= nomeObra %>"
       />
       <!-- TODO AUTORES -->
       <label>Autores</label>

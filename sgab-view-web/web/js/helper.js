@@ -133,28 +133,10 @@ function validarAquisicaoLeitor(frm){
     if (frm.titulo.value === "") {
         alert("Informar o título!");
         frm.titulo.focus();
-    } else if (frm.autores.value == ""){
-        alert ("Insira ao menos algum autor!");
-    } else if (frm.assuntos.value == ""){
-        alert ("Insira ao menos algum assunto!");
-    } else if (frm.ano.value === "") {
-        alert("Informar o ano de publicação!");
-        frm.ano.focus();
-    } else if (frm.editora.value === "") {
-        alert("Informar a editora!");
-        frm.editora.focus();
-    } else if (frm.cidEditora.value === "") {
-        alert("Informar a cidade da editora!");
-        frm.cidEditora.focus();
-    } else if (frm.edicao.value === "") {
-        alert("Informar a edição!");
-        frm.edicao.focus();
-    } else if (frm.volume.value === "") {
-        alert("Informar o volume!");
-        frm.volume.focus();
     }
-    else
-        return true;
+    else{
+        result = true;
+    }
     return result;
 }
 

@@ -23,6 +23,7 @@
                           <tr>
                             <th class="hpesquisa"></th>
                             <th>ID</th>
+                            <th>FORNECEDOR</th>
                             <th>OBRA</th>
                             <th></th>
                           </tr>
@@ -32,6 +33,7 @@
                           <tr>
                             <td><a href="/sgab/main?acao=ConfereAquisicao&aquisicaoId=<%=aquisicao.getId()%>">&#128270</a></td>
                             <td><%= aquisicao.getId() %></td>
+                            <td><%= aquisicao.getFornecedor().getNomeFornecedor() %></td>
                             <td><%= aquisicao.getObra().getTitulo() %></td>
                             <td style=" background-color: #aaaaaa; 
                                         display: flex;
