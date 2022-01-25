@@ -279,7 +279,7 @@ function gravarAlteracao(frm) {
     else if(table === "Atendente"){
         if(validarLogin(frm)){
             if(frm.acao.value === "alterar")
-                caminhourl = "/sgab/main?acao=AtendenteAlteracao";
+                caminhourl = "/sgab/main?acao=AtendenteAlterar";
             else if(frm.acao.value === "gravarAlteracao")
                 caminhourl = "/sgab/main?acao=AtendenteGravarAlteracao";
             else if(frm.acao.value === "gravar")
@@ -305,7 +305,7 @@ function gravarAlteracao(frm) {
     else if(table === "Bibliotecario"){
         if(validarLogin(frm)){
             if(frm.acao.value === "alterar")
-                caminhourl = "/sgab/main?acao=BibliotecarioAlteracao";
+                caminhourl = "/sgab/main?acao=BibliotecarioAlterar";
             else if(frm.acao.value === "gravarAlteracao")
                 caminhourl = "/sgab/main?acao=BibliotecarioGravarAlteracao";
             else if(frm.acao.value === "gravar")
