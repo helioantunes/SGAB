@@ -3,9 +3,8 @@
 <%@page import="java.util.List" %>
 
 <%@include file="/core/header.jsp" %>
-
-<body> 
-
+       
+        <center>
             <h3>Lista de Pessoas</h3>
             <a href="/sgab/core/pessoa/inserir.jsp">Nova Pessoa</a>
             <form name="listarPessoa" method="post">
@@ -15,7 +14,7 @@
                 <table id="pessoa">
                     <tr>
                         <th>
-                            Código
+                            CÃ³digo
                         </th>
                         <th>
                             Login
@@ -28,6 +27,9 @@
                         </th>
                         <th>
                             Email
+                        </th>
+                        <th>
+                            Tipo
                         </th>
                         <th>
                             &nbsp; &nbsp;
@@ -54,18 +56,15 @@
                                 <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getEmail()%></a>
                             </td>
                             <td>
+                                <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getTipo()%></a>
+                            </td>
+                            <td>
                                 <input type="button" value="Excluir" onclick="excluir(<%=pessoa.getId()%>,document.listarPessoa)">
                             </td>
                         </tr>
                     <%  } %>
                 </table>
             </form>
-
-</body>
-
-<%@include file="/core/footer.jsp" %>
-
-<script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
-        
-
-</html>
+        </center>
+        <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
+        <%@include file="/core/footer.jsp" %>    

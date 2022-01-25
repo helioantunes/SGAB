@@ -8,14 +8,14 @@
         <h2>Operações de Gestor</h2>
         <button class="button-gestao" onclick="abreModal('formCadastroGestor')">Cadastrar</button>
         <button class="button-gestao" onclick="abreModal('formEdicaoGestor')">Editar</button>
-        <button class="button-gestao" onclick="abreModal('formListarGestor')">Listar</button>
+        <a href="/sgab/main?acao=GestorListar"><button class="button-gestao">Listar</button></a></a>      
       </div>
       <br>
       <div class="caixa-gestao">
         <h2>Operações de Administrador</h2>
         <button class="button-gestao" onclick="abreModal('formCadastroAdministrador')">Cadastrar</button>
         <button class="button-gestao" onclick="abreModal('formEdicaoAdministrador')">Editar</button>
-        <button class="button-gestao" onclick="abreModal('formListarAdministrador')">Listar</button>
+        <a href="/sgab/main?acao=AdministradorListar"><button class="button-gestao">Listar</button></a></a>
       </div>
       <br>
     </section>
@@ -94,32 +94,6 @@
           <input type="hidden" name="acao" value="alterar">
           <label>Nome de usuario: <input type="email" placeholder="Nome ou Email do(a) administrador(a)" name="login" required></label>
           <button type="button" class="button-form" onclick="gravarAlteracao(document.EdicaoAdministrador)">Enviar</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="form-popup" id="formListarGestor">
-      <div class="close-btn" onclick="fechaModal('formListarGestor')">&times;</div>
-      <form class="form-container" method="POST" name="loginGestor">
-        <div>
-        <input type="hidden" name="table" value="Gestor">
-        <input type="hidden" name="acao" value="pesquisarPorLogin">
-        
-        <label>Nome do gestor(a): <input type="text" placeholder="Nome de usuário do(a) Gestor:" name="login" required></label>  
-        <button type="button" class="button-form" onclick="pesquisar(document.login)">Enviar</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="form-popup" id="formListarAdministrador">
-      <div class="close-btn" onclick="fechaModal('formListarAdministrador')">&times;</div>
-      <form class="form-container" method="POST" name="loginAdministrador">
-        <div>
-        <input type="hidden" name="table" value="Administrador">
-        <input type="hidden" name="acao" value="pesquisarPorLogin">
-        
-        <label>Nome do administrador(a): <input type="text" placeholder="Nome de usuário do(a) Administrador:" name="" required></label>  
-        <button type="button" class="button-form" onclick="pesquisar(document.login)">Enviar</button>
         </div>
       </form>
     </div>
