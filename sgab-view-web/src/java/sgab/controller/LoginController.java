@@ -25,7 +25,8 @@ public class LoginController {
                 String erro = "Pessoa nao encontrado!";
                 request.setAttribute("erro", erro);
                 jsp = "/core/erro.jsp";
-            } else {
+            } else {               
+                // usuário logado no sistema
                 request.getSession().setAttribute("pessoaId", pessoa.getId());
                 jsp = "/core/menu.jsp";
             }
