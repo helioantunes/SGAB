@@ -293,7 +293,17 @@ function pesquisar(frm){
 function gravarAlteracao(frm) {
     var table = frm.table.value;
 
-    if (table === "Assunto") {
+
+    if (table === "Administrador") {
+        if (validarLogin(frm)) {
+            if (frm.acao.value === "alterar")
+                caminhourl = "/sgab/main?acao=AdministradorGravarAlteracao";
+            else if (frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=AdministradorGravarInsercao";
+            
+        }
+    }
+    else if (table === "Assunto") {
         if (validarAssunto(frm)) {
             if (frm.acao.value === "alterar")
                 caminhourl = "/sgab/main?acao=AssuntoGravarAlteracao";
@@ -345,6 +355,22 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=FornecedorGravarInsercao";
         }
     }
+    else if (table === "Gestor") {
+        if (validarLogin(frm)) {
+            if (frm.acao.value === "alterar")
+                caminhourl = "/sgab/main?acao=GestorGravarAlteracao";
+            else if (frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=GestorGravarInsercao";
+        }
+    }   
+    else if (table === "Leitor") {
+        if (frm.login.value == "") {
+            alert("Informar um login valido!");
+            frm.login.focus();
+        }else{
+            caminhourl = "/sgab/main?acao=LeitorCadastrar";  
+        }
+    }    
     else if(table === "Obra") {
         if (validarObra(frm)) {
             if (frm.acao.value === "alterar")
@@ -393,24 +419,8 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=UsuarioGravarInsercao";
         }
     }    
-    else if (table === "Administrador") {
-        if (validarLogin(frm)) {
-            if (frm.acao.value === "alterar")
-                caminhourl = "/sgab/main?acao=AdministradorGravarAlteracao";
-            else if (frm.acao.value === "gravar")
-                caminhourl = "/sgab/main?acao=AdministradorGravarInsercao";
-            
-        }
-    }
-    else if (table === "Gestor") {
-        if (validarLogin(frm)) {
-            if (frm.acao.value === "alterar")
-                caminhourl = "/sgab/main?acao=GestorGravarAlteracao";
-            else if (frm.acao.value === "gravar")
-                caminhourl = "/sgab/main?acao=GestorGravarInsercao";
-        }
-    }   
 
+    
     frm.action = caminhourl;
     frm.submit();
 }
