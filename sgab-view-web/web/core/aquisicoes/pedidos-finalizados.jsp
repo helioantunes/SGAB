@@ -25,7 +25,7 @@
                             <th>FORNECEDOR</th>
                             
                             <th>OBRA</th>
-                            <th>QUANTIDADE</th>
+                            <th>QUANT</th>
                           </tr>
                           <% 
                             List<Aquisicao> aquisicoes = (List<Aquisicao>) request.getAttribute("listAquisicoesFinalizadas");

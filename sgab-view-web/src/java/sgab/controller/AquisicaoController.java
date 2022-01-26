@@ -211,8 +211,8 @@ public class AquisicaoController {
                     Obra obra = (Obra) request.getSession().getAttribute("obraAlvo");
                     Aquisicao aquisicao = new Aquisicao(biblioteca, pessoa, null, null, AquisicaoStatus.PENDENTE, obra);
                     
-                    Long quantidade1 = (Long) request.getSession().getAttribute("quantidade");
-                    String justificativa1 = (String) request.getSession().getAttribute("justificativa");
+                    Long quantidade1 = (Long) request.getSession().getAttribute("quantidadeAlvo");
+                    String justificativa1 = (String) request.getSession().getAttribute("justificativaAlvo");
                     
                     if(quantidade1 != null && justificativa1 != ""){
                         aquisicao.setQuantidade(quantidade1);

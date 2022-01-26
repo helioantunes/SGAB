@@ -37,7 +37,7 @@
             <input type="number" name="quantidade" style="max-width: 31%; display: inline;"> 
       </div>
       <label for="justificativa" style="display:block;">Justifique a Quantidade</label>
-      <textarea name="justificativa" style="display:block; width: 95%; height: 4em; margin-bottom: 15px;"></textarea>
+      <textarea name="justificativa" style="display:block; max-width: 95%; width: 95%; height: 4em; margin-bottom: 15px;"></textarea>
     </form>
   </div>
 </section>

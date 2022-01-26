@@ -10,7 +10,7 @@
    String justificativa = (String) request.getAttribute("justificativa");
    Obra obraAlvo = (Obra) request.getAttribute("obra");
 %>
-  <center><h3>Consulta de Obra</h3></center>
+  <center><h3>Consulta de Aquisição</h3></center>
       <section id="form">
         <div id="caixa-form">
           <form id="AlteraObra" name="AlteraObra" method="post">
@@ -24,7 +24,7 @@
             </div>
             <label for="justificativa" style="display:block;">Justificativa da Quantidade</label>
             <textarea disabled name="justificativa" style="display:block; width: 95%; max-width: 95%; height: 4em; margin-bottom: 15px;"><%= justificativa %></textarea>
-            
+            <center><h3>Obra</h3></center>
             <label for="categoria">Categoria</label>
             <select disabled name="categoria" id="categoria">
               <option value="livro">Livro</option>

@@ -25,6 +25,7 @@
                             <th>ID</th>
                             <th>FORNECEDOR</th>
                             <th>OBRA</th>
+                            <th>QUANT</th>
                             <th></th>
                           </tr>
                           <% 
@@ -35,6 +36,7 @@
                             <td><%= aquisicao.getId() %></td>
                             <td><%= aquisicao.getFornecedor().getNomeFornecedor() %></td>
                             <td><%= aquisicao.getObra().getTitulo() %></td>
+                            <td><%= aquisicao.getQuantidade() %></td>
                             <td style=" background-color: #aaaaaa; 
                                         display: flex;
                                         position: relative;
