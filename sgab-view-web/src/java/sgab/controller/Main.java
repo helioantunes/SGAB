@@ -102,6 +102,36 @@ public class Main extends HttpServlet {
             case "UnidadeOrganizacionalExcluir":
                 jsp = UnidadeOrganizacionalController.excluir(request);
                 break;
+            case "AdministradorGravarInsercao":
+                jsp = AdministradorController.gravarInsercaoAdministrador(request);
+                break;
+            case "AdministradorGravarAlteracao":
+                jsp = AdministradorController.alterarAdministrador(request);
+                break;
+            case "AdministradorPesquisar":
+                jsp = AdministradorController.pesquisarAdministradorLogin(request);
+                break;
+            case "AdministradorListar":
+                jsp = AdministradorController.listarAdministradores(request);
+                break;
+            case "AdministradorAlterar":
+                jsp = AdministradorController.alterarAdministrador(request);
+                break;
+            case "GestorGravarInsercao":
+                jsp = AdministradorController.gravarInsercaoGestor(request);
+                break;
+            case "GestorGravarAlteracao":
+                jsp = AdministradorController.alterarGestor(request);
+                break;
+            case "GestorPesquisar":
+                jsp = AdministradorController.pesquisarGestorLogin(request);
+                break;
+            case "GestorListar":
+                jsp = AdministradorController.listarGestores(request);
+                break;
+            case "GestorAlterar":
+                jsp = AdministradorController.alterarGestor(request);
+                break;
             case "AutorCadastrar":
                 jsp = AutorController.insercao(request);
                 break;

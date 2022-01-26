@@ -14,7 +14,7 @@
                 <table id="pessoa">
                     <tr>
                         <th>
-                            Código
+                            CÃ³digo
                         </th>
                         <th>
                             Login
@@ -67,4 +67,4 @@
             </form>
         </center>
         <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
-        <%@include file="/core/footer.jsp" %>        
+        <%@include file="/core/footer.jsp" %>    
