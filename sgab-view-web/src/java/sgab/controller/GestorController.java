@@ -13,7 +13,6 @@ import sgab.model.dto.Pessoa;
 import sgab.model.dto.util.PessoaTipo;
 import sgab.model.exception.PersistenciaException;
 import sgab.model.service.GestaoGestor;
-import sgab.model.service.GestaoPessoasService;
 
 
 public class GestorController{
@@ -27,7 +26,7 @@ public class GestorController{
             listPessoa.add(gestaoGestor.pesquisarAtendentesPorLogin(login)); 
             if (listPessoa != null) {
                 request.setAttribute("listPessoas", listPessoa);
-                jsp = "/core/pessoa/listar.jsp";
+                jsp = "/core/gestor/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -49,7 +48,7 @@ public class GestorController{
             listPessoa.add(gestaoGestor.pesquisarBibliotecariosPorLogin(login)); 
             if (listPessoa != null) {
                 request.setAttribute("listPessoas", listPessoa);
-                jsp = "/core/pessoa/listar.jsp";
+                jsp = "/core/gestor/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -69,7 +68,7 @@ public class GestorController{
             List<Pessoa> listPessoas = gestaoGestor.pesquisarAtendentesAtivos();
             if (listPessoas != null) {
                 request.setAttribute("listPessoas", listPessoas);
-                jsp = "/core/pessoa/listar.jsp";
+                jsp = "/core/gestor/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -89,7 +88,7 @@ public class GestorController{
             List<Pessoa> listPessoas = gestaoGestor.pesquisarBibliotecariosAtivos();
             if (listPessoas != null) {
                 request.setAttribute("listPessoas", listPessoas);
-                jsp = "/core/pessoa/listar.jsp";
+                jsp = "/core/gestor/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -110,7 +109,7 @@ public class GestorController{
             Pessoa pessoa = gestaoGestor.pesquisarBibliotecariosPorLogin(login);
             if (pessoa != null) {
                 request.setAttribute("pessoa", pessoa);
-                jsp = "/core/pessoa/alterar.jsp";
+                jsp = "/core/gestor/alterar.jsp";
             } else {
                 String erro = "Ocorreu erro ao Alterar Pessoa!";
                 request.setAttribute("erro", erro);
@@ -131,7 +130,7 @@ public class GestorController{
             Pessoa pessoa = gestaoGestor.pesquisarAtendentesPorLogin(login);
             if (pessoa != null) {
                 request.setAttribute("pessoa", pessoa);
-                jsp = "/core/pessoa/alterar.jsp";
+                jsp = "/core/gestor/alterar.jsp";
             } else {
                 String erro = "Ocorreu erro ao Alterar Pessoa!";
                 request.setAttribute("erro", erro);
@@ -219,12 +218,16 @@ public class GestorController{
         String jsp = "";
         try {
             String login = request.getParameter("login");
+            Long cpf = Long.parseLong(request.getParameter("cpf"));
+            String nomeCompleto = request.getParameter("nome");
+            String email = request.getParameter("email");
+            String senha = request.getParameter("senha");
 
-            GestaoPessoasService gestaoGestor = new GestaoPessoasService();
-            Pessoa pessoa = gestaoGestor.pesquisarPorLogin(login);
+            Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
             pessoa.setTipo(PessoaTipo.BIBLIOTECARIO);
 
-            Long pessoaId = pessoa.getId();
+            GestaoGestor gestaoGestor = new GestaoGestor();
+            Long pessoaId = gestaoGestor.cadastrar(pessoa);
 
             if (pessoaId != null) {
                 jsp = listar(request);
@@ -244,12 +247,16 @@ public class GestorController{
         String jsp = "";
         try {
             String login = request.getParameter("login");
+            Long cpf = Long.parseLong(request.getParameter("cpf"));
+            String nomeCompleto = request.getParameter("nome");
+            String email = request.getParameter("email");
+            String senha = request.getParameter("senha");
 
-            GestaoPessoasService gestaoGestor = new GestaoPessoasService();
-            Pessoa pessoa = gestaoGestor.pesquisarPorLogin(login);
+            Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
             pessoa.setTipo(PessoaTipo.ATENDENTE);
 
-            Long pessoaId = pessoa.getId();
+            GestaoGestor gestaoGestor = new GestaoGestor();
+            Long pessoaId = gestaoGestor.cadastrar(pessoa);
 
             if (pessoaId != null) {
                 jsp = listar(request);
