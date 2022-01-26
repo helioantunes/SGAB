@@ -54,6 +54,19 @@ function validarUsuario(frm) {
     return result;
 }
 
+function validarLogin(frm){
+    var result = false;
+
+    if(frm.login == ""){
+        alert("Informar o login!");
+        frm.login.focus();
+    }
+    else
+        result = true;
+
+    return result;
+}
+
 function validarPessoa(frm) {
     var result = false;
     
@@ -236,27 +249,13 @@ function pesquisar(frm){
     }
 
     else if (table === "Atendente"){
-        if (frm.acao.value === "pesquisarPorLogin") {
-            if (frm.login.value == "") {
-                alert("Informar o login!");
-                frm.login.focus();
-            } else {
-                frm.action = "/sgab/main?acao=AtendentePesquisar&AtendenteLogin=" + frm.login.value;            
-                frm.submit();
-            }
-        }
+        frm.action = "/sgab/main?acao=AtendenteListar";            
+        frm.submit();
     }
 
     else if(table === "Bibliotecario"){
-        if (frm.acao.value === "pesquisarPorLogin") {
-            if (frm.login.value == "") {
-                alert("Informar o login!");
-                frm.login.focus();
-            } else {
-                frm.action = "/sgab/main?acao=BibliotecarioPesquisar&BibliotecarioLogin=" + frm.login.value;            
-                frm.submit();
-            }
-        }
+        frm.action = "/sgab/main?acao=BibliotecarioListar";            
+        frm.submit();
     }
 
 }
@@ -277,9 +276,9 @@ function gravarAlteracao(frm) {
         }
     }
     else if(table === "Atendente"){
-        if(validarPessoa(frm)){
+        if(validarLogin(frm)){
             if(frm.acao.value === "alterar")
-                caminhourl = "/sgab/main?acao=AtendenteAlteracao";
+                caminhourl = "/sgab/main?acao=AtendenteAlterar";
             else if(frm.acao.value === "gravarAlteracao")
                 caminhourl = "/sgab/main?acao=AtendenteGravarAlteracao";
             else if(frm.acao.value === "gravar")
@@ -303,9 +302,9 @@ function gravarAlteracao(frm) {
         }
     }
     else if(table === "Bibliotecario"){
-        if(validarPessoa(frm)){
+        if(validarLogin(frm)){
             if(frm.acao.value === "alterar")
-                caminhourl = "/sgab/main?acao=BibliotecarioAlteracao";
+                caminhourl = "/sgab/main?acao=BibliotecarioAlterar";
             else if(frm.acao.value === "gravarAlteracao")
                 caminhourl = "/sgab/main?acao=BibliotecarioGravarAlteracao";
             else if(frm.acao.value === "gravar")
