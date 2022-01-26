@@ -141,6 +141,18 @@ function validarObra(frm){
     return result
 }
 
+function validarAquisicaoLeitor(frm){
+    let result = false;
+    if (frm.titulo.value === "") {
+        alert("Informar o título!");
+        frm.titulo.focus();
+    }
+    else{
+        result = true;
+    }
+    return result;
+}
+
 function validarBiblioteca(frm) {
     let result = false;
     
@@ -220,7 +232,21 @@ function validarLogin(frm){
     }
     else
         result = true;
+}
 
+function validarAquisicao(frm){
+    let result = false;
+    if(frm.fornecedor.value == ""){
+        alert("Insira um fornecedor.");
+        frm.fornecedor.focus();
+    }
+    else if(frm.quantidade.value == ""){
+        alert("Insira uma quantidade.");
+        frm.quantidade.focus();
+    }
+    else{
+        result = true;
+    }
     return result;
 }
 
@@ -343,6 +369,22 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=UnidadeOrganizacionalGravarInsercao";
         }
     }
+    else if(table === "AquisicaoLeitor") {
+        if (validarAquisicaoLeitor(frm)) {
+            caminhourl = "/sgab/main?acao=AquisicaoPedidoCriarObra";
+        }
+    }
+    else if(table === "Aquisicao"){
+        if(validarAquisicao(frm)){
+            caminhourl = "/sgab/main?acao=AquisicaoCriar";
+        }
+    }
+    else if(table == "AquisicaoObra"){
+        if(validarObra(frm)){
+            caminhourl = "/sgab/main?acao=GravarObraAquisicao"
+        }
+    }
+    
     else if (table === "Usuario") {
         if (validarUsuario(frm)) {
             if (frm.acao.value === "alterar")
@@ -380,7 +422,14 @@ function gravarAlteracao(frm) {
 function excluir(id, frm) {
     var table = frm.table.value;
 
-    if (table === "Assunto") {
+    if (table === "Administrador") {
+        if (confirm('Deseja excluir o Administrador com Id = ' + id + '?')) {
+            frm.pessoaId.value = id;
+            frm.action = "/sgab/main?acao=AdministradorExcluir";            
+            frm.submit();
+        }
+    } 
+    else if (table === "Assunto") {
         if (confirm('Deseja excluir o Assunto com Id = ' + id + '?')) {
             frm.assuntoId.value = id;
             frm.action = "/sgab/main?acao=AssuntoExcluir";            
@@ -435,11 +484,4 @@ function excluir(id, frm) {
             frm.submit();
         }
     }
-    if (table === "Administrador") {
-        if (confirm('Deseja excluir o Administrador com Id = ' + id + '?')) {
-            frm.pessoaId.value = id;
-            frm.action = "/sgab/main?acao=AdministradorExcluir";            
-            frm.submit();
-        }
-    } 
 }
