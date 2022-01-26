@@ -1,6 +1,13 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <%
+    // carga inicial de dados para teste
+    ServletContext applicationContext = request.getServletContext();
+    if (applicationContext.getAttribute("initDB") == null) {
+        sgab.util.InitDB.init();
+        applicationContext.setAttribute("initDB", Boolean.TRUE);
+    }
+
     Long pessoaId = (Long) request.getSession().getAttribute("pessoaId");
     if (pessoaId != null) {
         //Redirecionando pagina
