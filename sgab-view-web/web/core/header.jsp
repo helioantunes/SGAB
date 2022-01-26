@@ -33,12 +33,13 @@
             </section>
             <div class="menu">
                 <a href='/sgab/core/administrador/index.jsp'>Administradores</a>
+                <a href='/sgab/main?acao=IniciaCadastroAquisicao'>Aquisições</a>
+                <a href='/sgab/main?acao=AssuntoListar'>Assuntos</a>
                 <a href='/sgab/core/autores/menu.jsp' id="autores-menu">Autores</a>
-                <a href='/sgab/main?acao=AssuntoListar'>Assuntos</a>                
                 <a href='/sgab/main?acao=BibliotecaListar'>Bibliotecas</a>
-                <a href='/sgab/main?acao=FornecedorListar'>Fornecedor</a>                
+                <a href='/sgab/main?acao=FornecedorListar'>Fornecedores</a>                
+                <a href='/sgab/core/gestor/menu.jsp'>Gestores</a>
                 <a href='/sgab/main?acao=ObraListar'>Obras</a>         
                 <a href='/sgab/main?acao=PessoaListar'>Pessoas</a>
                 <a href='/sgab/main?acao=UnidadeOrganizacionalListar'>Unid. Org.</a>
-                <a href='/sgab/core/gestor/menu.jsp'>Gestor</a>      
             </div>

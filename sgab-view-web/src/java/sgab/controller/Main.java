@@ -173,7 +173,46 @@ public class Main extends HttpServlet {
                 break;
             case "BibliotecaExcluir":
                 jsp = BibliotecaController.excluir(request);
-                break;                
+                break;
+            case "IniciaCadastroAquisicao":
+                jsp = "/core/aquisicoes/pedir-passo1-leitor.jsp";
+                break;
+            case "AquisicaoCriar":
+                jsp = AquisicaoController.gravarAquisicaoBibliotecario(request);
+                break;
+            case "AquisicaoPendente":
+                jsp= AquisicaoController.gravarPendente(request);
+                break;
+            case "ListarAquisicoes":
+                jsp = AquisicaoController.listarPendentes(request);
+                break;
+            case "AceitarAquisicao":
+                jsp = AquisicaoController.pedir(request);
+                break;
+            case "RecusarAquisicao":
+                jsp = AquisicaoController.recusar(request);
+                break;
+            case "ListarAquisicoesAtivos":
+                jsp = AquisicaoController.listarAtivos(request);
+                break;
+            case "FinalizarAquisicao":
+                jsp = AquisicaoController.gravarFinalizado(request);
+                break;
+            case "ListarAquisicoesFinalizadas":
+                jsp = AquisicaoController.listarFinalizados(request);
+                break;
+            case "AquisicaoPedidoCriarObra":
+                jsp = AquisicaoController.gravarPendente(request);
+                break;
+            case "ConfereAquisicao":
+                jsp = AquisicaoController.mostraAquisicao(request);
+                break;
+            case "CadastrarObraAquisicao":
+                jsp = AquisicaoController.cadastrarObra(request);
+                break;
+            case "GravarObraAquisicao":
+                jsp = AquisicaoController.removerPendente(request);
+                break;
             case "AtendentePesquisar":
                 jsp = GestorController.pesquisarAtendenteLogin(request);
                 break;
