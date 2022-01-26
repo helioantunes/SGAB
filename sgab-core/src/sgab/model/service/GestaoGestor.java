@@ -44,7 +44,7 @@ public class GestaoGestor extends GestaoPessoasService {
         List<Pessoa> bibliotecarios = new LinkedList<>();
         for(int i=0;i<pessoas.size();i++){
             Pessoa pessoa = pessoas.remove(i);
-            if(pessoa.getTipo()!=PessoaTipo.BIBLIOTECARIO){
+            if(pessoa.getTipo().contains(PessoaTipo.BIBLIOTECARIO)){
                 bibliotecarios.add(pessoa);
             }
         }
@@ -53,7 +53,7 @@ public class GestaoGestor extends GestaoPessoasService {
 
     public Pessoa pesquisarBibliotecariosPorId(Long id){
         Pessoa pessoa = pessoasDAO.pesquisar(id);
-        if(pessoa.getTipo()!=PessoaTipo.BIBLIOTECARIO){
+        if(pessoa.getTipo().contains(PessoaTipo.BIBLIOTECARIO)){
             return pessoa;
         }
         else{
@@ -64,7 +64,7 @@ public class GestaoGestor extends GestaoPessoasService {
     public Pessoa pesquisarBibliotecariosConta(String login, String senha){
         
         Pessoa result = pessoasDAO.pesquisarLoginSenha(login, senha);
-        if(result.getTipo()!=PessoaTipo.BIBLIOTECARIO){
+        if(result.getTipo().contains(PessoaTipo.BIBLIOTECARIO)){
             return result;
         }
         else{
@@ -74,7 +74,7 @@ public class GestaoGestor extends GestaoPessoasService {
 
     public Pessoa pesquisarBibliotecariosPorLogin(String login){
         Pessoa result = pessoasDAO.pesquisarLogin(login);
-        if(result.getTipo()!=PessoaTipo.BIBLIOTECARIO){
+        if(result.getTipo().contains(PessoaTipo.BIBLIOTECARIO)){
             return result;
         }
         else{
@@ -88,7 +88,7 @@ public class GestaoGestor extends GestaoPessoasService {
         List<Pessoa> atendentes = new LinkedList<>();
         for(int i=0; i<pessoas.size(); i++){
             Pessoa pessoa = pessoas.remove(i);
-            if(pessoa.getTipo()!=PessoaTipo.ATENDENTE){
+            if(pessoa.getTipo().contains(PessoaTipo.ATENDENTE)){
                 atendentes.add(pessoa);
             }
         }
@@ -97,7 +97,7 @@ public class GestaoGestor extends GestaoPessoasService {
 
     public Pessoa pesquisarAtendentesPorId(Long id){
         Pessoa pessoa = pessoasDAO.pesquisar(id);
-        if(pessoa.getTipo()!=PessoaTipo.ATENDENTE){
+        if(pessoa.getTipo().contains(PessoaTipo.ATENDENTE)){
             return pessoa;
         }
         else{
@@ -108,7 +108,7 @@ public class GestaoGestor extends GestaoPessoasService {
     public Pessoa pesquisarAtendentesConta(String login, String senha){
         
         Pessoa result = pessoasDAO.pesquisarLoginSenha(login, senha);
-        if(result.getTipo()!=PessoaTipo.ATENDENTE){
+        if(result.getTipo().contains(PessoaTipo.ATENDENTE)){
             return result;
         }
         else{
@@ -118,7 +118,7 @@ public class GestaoGestor extends GestaoPessoasService {
 
     public Pessoa pesquisarAtendentesPorLogin(String login){
         Pessoa result = pessoasDAO.pesquisarLogin(login);
-        if(result.getTipo()!=PessoaTipo.ATENDENTE){
+        if(result.getTipo().contains(PessoaTipo.ATENDENTE)){
             return result;
         }
         else{

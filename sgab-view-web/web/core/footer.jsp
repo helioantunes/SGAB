@@ -1,6 +1,6 @@
         </main>
         <footer>
-            <p>SGAB - Sistema de Gestão de Acervo Bibliográfico</p>
+            <p>SGAB - Sistema de Gestï¿½o de Acervo Bibliogrï¿½fico</p>
         </footer>
     </body>
 </html>

@@ -10,12 +10,12 @@
         <option value="mapa">Mapa</option>
         <option value="docComputacional">Documento computacional</option>
       </select>
-      <label for="titulo">Título</label>
+      <label for="titulo">Tï¿½tulo</label>
       <input
         type="text"
         id="titulo"
         name="titulo"
-        placeholder="Insira o título da obra"
+        placeholder="Insira o tï¿½tulo da obra"
       />
       <!-- TODO AUTORES -->
       <label>Autores</label>
@@ -55,11 +55,11 @@
         style="height: 5em"
         id="nota"
         name="nota"
-        placeholder="Insira uma breve descrição"
+        placeholder="Insira uma breve descriï¿½ï¿½o"
       />
       <div class="divisao">
         <div>
-          <label for="ano">Ano de publicação</label>
+          <label for="ano">Ano de publicaï¿½ï¿½o</label>
           <input type="number" id="ano" name="ano" placeholder="Ex.: 1987" />
         </div>
         <div>
@@ -77,16 +77,16 @@
         type="text"
         id="cidEditora"
         name="cidEditora"
-        placeholder="Ex.: São Paulo"
+        placeholder="Ex.: Sï¿½o Paulo"
       />
       <div class="divisao">
         <div>
-          <label for="edicao">Edição</label>
+          <label for="edicao">Ediï¿½ï¿½o</label>
           <input
             type="number"
             id="edicao"
             name="edicao"
-            placeholder="Insira a edição"
+            placeholder="Insira a ediï¿½ï¿½o"
           />
         </div>
         <div>
@@ -141,7 +141,7 @@
 
   function ajaxAutor() {
     let xh;
-    if (window.XMLHttpRequest) // código dos browsers modernos
+    if (window.XMLHttpRequest) // cï¿½digo dos browsers modernos
       xh = new XMLHttpRequest();
     else
       xh = new ActiveXObject("Microsoft.XMLHTTP");
@@ -161,7 +161,7 @@
   
   function ajaxAssunto() {
     let xh;
-    if (window.XMLHttpRequest) // código dos browsers modernos
+    if (window.XMLHttpRequest) // cï¿½digo dos browsers modernos
       xh = new XMLHttpRequest();
     else
       xh = new ActiveXObject("Microsoft.XMLHTTP");

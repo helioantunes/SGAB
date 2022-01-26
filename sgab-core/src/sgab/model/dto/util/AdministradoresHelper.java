@@ -1,14 +1,15 @@
 package sgab.model.dto.util;
 
+import java.util.ArrayList;
 import sgab.model.dao.PessoasDAO;
 import sgab.model.dto.Pessoa;
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-public class PessoaHelper {
-    public static List<String> validarPessoa(Pessoa pessoa, PessoasDAO pessoas) {
+
+public class AdministradoresHelper {
+        public static List<String> validarPessoa(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> exMsgs = new LinkedList<>();
 
         if(!validarEmail(pessoa.getEmail())){
@@ -18,7 +19,7 @@ public class PessoaHelper {
         if(!validarSenha(pessoa.getSenha())){
             exMsgs.add("A senha da pessoa precisa ter 8 caracteres, pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial.");
         }
-
+        
         if(pessoas.pesquisarLogin(pessoa.getLogin()) != null){
             exMsgs.add("O Login precisa ser único.");
         }
@@ -106,5 +107,46 @@ public class PessoaHelper {
         Matcher matcher = validaEmail.matcher(email);
         
         return matcher.matches();
+    }
+    public static List<String> validarAdministrador(Pessoa pessoa, PessoasDAO pessoas) {
+        List<String> mensagens = validarPessoa(pessoa,pessoas);
+        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
+        for(PessoaTipo tipo : tipos ){
+          if(tipo != PessoaTipo.ADMINISTRADOR){
+            mensagens.add("Pessoa não é um administrador!");
+            }
+        }
+      
+        return mensagens;
+    }
+    public static List<String> validarAdministradorAlteracao(Pessoa pessoa, PessoasDAO pessoas) {
+        List<String> mensagens = validarAlteracao(pessoa,pessoas);
+        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
+        for(PessoaTipo tipo : tipos ){
+          if(tipo != PessoaTipo.ADMINISTRADOR){
+            mensagens.add("Pessoa não é um administrador!");
+            }
+        }
+        return mensagens;
+    }
+    public static List<String> validarGestor(Pessoa pessoa, PessoasDAO pessoas) {
+        List<String> mensagens = validarPessoa(pessoa,pessoas);
+        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
+        for(PessoaTipo tipo : tipos ){
+          if(tipo != PessoaTipo.GESTOR){
+            mensagens.add("Pessoa não é um GESTOR!");
+            }
+        }
+        return mensagens;
+    }
+    public static List<String> validarGestorAlteracao(Pessoa pessoa, PessoasDAO pessoas) {
+        List<String> mensagens = validarAlteracao(pessoa,pessoas);
+        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
+        for(PessoaTipo tipo : tipos ){
+          if(tipo != PessoaTipo.GESTOR){
+            mensagens.add("Pessoa não é um GESTOR!");
+            }
+        }
+        return mensagens;
     }
 }

@@ -26,6 +26,11 @@ public class Obra  {
     private Integer volume;
     private ObraStatus status;
 
+    public Obra(String titulo) {
+        this.titulo = titulo;
+        this.status = ObraStatus.ATIVA;        
+    }
+    
     public Obra(String categoria, String titulo, List<Autor> autores, List<Assunto> assuntos, String nota, Integer anoPublicacao, String editora, String cidadeEditora, Integer edicao, Integer volume) {
         this.categoria = categoria;
         this.titulo = titulo;

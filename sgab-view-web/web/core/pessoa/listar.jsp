@@ -14,7 +14,7 @@
                 <table id="pessoa">
                     <tr>
                         <th>
-                            Código
+                            CÃ³digo
                         </th>
                         <th>
                             Login
@@ -27,6 +27,9 @@
                         </th>
                         <th>
                             Email
+                        </th>
+                        <th>
+                            Tipo
                         </th>
                         <th>
                             &nbsp; &nbsp;
@@ -53,6 +56,9 @@
                                 <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getEmail()%></a>
                             </td>
                             <td>
+                                <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getTipo()%></a>
+                            </td>
+                            <td>
                                 <input type="button" value="Excluir" onclick="excluir(<%=pessoa.getId()%>,document.listarPessoa)">
                             </td>
                         </tr>
@@ -61,4 +67,4 @@
             </form>
         </center>
         <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
-        <%@include file="/core/footer.jsp" %>        
+        <%@include file="/core/footer.jsp" %>    

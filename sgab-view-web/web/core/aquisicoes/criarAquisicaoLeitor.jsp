@@ -1,12 +1,16 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@include file="/core/header.jsp" %>
+<% String nomeObra = (String) request.getAttribute("nomeObra"); %>
 
-<center><h3>Inserir Obra</h3></center>
+<center>
+    <h3>Criar aquisição de Obra</h3>
+    <p>Preencha o Título, a Biblioteca que deseja, e os campos que achar necessário para identificar a Obra que deseja requisitar.</p>    
+</center>
 <section id="form">
   <div id="caixa-form">
-    <form name="frmInsereObra" method="post">
-      <input type="hidden" name="table" value="Obra" />
-      <input type="hidden" name="acao" value="gravar" />
+    <form name="frmCriaAquisicao" method="post">
+      <input type="hidden" name="table" value="AquisicaoLeitor" />
+      <input type="hidden" value="segundo-criarObra" name="etapa" />
       <label for="categoria">Categoria</label>
       <select name="categoria" id="categoria">
         <option value="livro">Livro</option>
@@ -19,6 +23,7 @@
         id="titulo"
         name="titulo"
         placeholder="Insira o título da obra"
+        value="<%= nomeObra %>"
       />
       <!-- TODO AUTORES -->
       <label>Autores</label>
@@ -98,8 +103,8 @@
         </div>
       </div>
       <div class="buttons">
-        <button type="button" onclick="gravarAlteracao(document.frmInsereObra)">
-          Cadastrar
+        <button type="button" onclick="gravarAlteracao(document.frmCriaAquisicao)">
+          Enviar
         </button>
       </div>
     </form>
