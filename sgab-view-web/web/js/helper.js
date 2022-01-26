@@ -236,27 +236,13 @@ function pesquisar(frm){
     }
 
     else if (table === "Atendente"){
-        if (frm.acao.value === "pesquisarPorLogin") {
-            if (frm.login.value == "") {
-                alert("Informar o login!");
-                frm.login.focus();
-            } else {
-                frm.action = "/sgab/main?acao=AtendentePesquisar&AtendenteLogin=" + frm.login.value;            
-                frm.submit();
-            }
-        }
+        frm.action = "/sgab/main?acao=AtendenteListar";            
+        frm.submit();
     }
 
     else if(table === "Bibliotecario"){
-        if (frm.acao.value === "pesquisarPorLogin") {
-            if (frm.login.value == "") {
-                alert("Informar o login!");
-                frm.login.focus();
-            } else {
-                frm.action = "/sgab/main?acao=BibliotecarioPesquisar&BibliotecarioLogin=" + frm.login.value;            
-                frm.submit();
-            }
-        }
+        frm.action = "/sgab/main?acao=BibliotecarioListar";            
+        frm.submit();
     }
 
 }

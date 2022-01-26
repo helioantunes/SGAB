@@ -115,7 +115,6 @@
         <input type="hidden" name="table" value="Bibliotecario">
         <input type="hidden" name="acao" value="pesquisarPorLogin">
         
-        <label>Nome do bibliotecário(a): <input type="text" placeholder="Nome de usuário do(a) atendente:" name="login" required></label>  
         <button type="button" class="button-form" onclick="pesquisar(document.loginBibliotecario)">Enviar</button>
         </div>
       </form>
@@ -128,7 +127,6 @@
         <input type="hidden" name="table" value="Atendente">
         <input type="hidden" name="acao" value="pesquisarPorLogin">
         
-        <label>Nome do bibliotecário(a): <input type="text" placeholder="Nome de usuário do(a) atendente:" name="login" required></label>  
         <button type="button" class="button-form" onclick="pesquisar(document.loginAtendente)">Enviar</button>
         </div>
       </form>

@@ -27,7 +27,7 @@ public class GestorController{
             listPessoa.add(gestaoGestor.pesquisarAtendentesPorLogin(login)); 
             if (listPessoa != null) {
                 request.setAttribute("listPessoas", listPessoa);
-                jsp = "/core/gestor/listar.jsp";
+                jsp = "/core/pessoa/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -49,7 +49,7 @@ public class GestorController{
             listPessoa.add(gestaoGestor.pesquisarBibliotecariosPorLogin(login)); 
             if (listPessoa != null) {
                 request.setAttribute("listPessoas", listPessoa);
-                jsp = "/core/gestor/listar.jsp";
+                jsp = "/core/pessoa/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -69,7 +69,7 @@ public class GestorController{
             List<Pessoa> listPessoas = gestaoGestor.pesquisarAtendentesAtivos();
             if (listPessoas != null) {
                 request.setAttribute("listPessoas", listPessoas);
-                jsp = "/core/gestor/listar.jsp";
+                jsp = "/core/pessoa/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -89,7 +89,7 @@ public class GestorController{
             List<Pessoa> listPessoas = gestaoGestor.pesquisarBibliotecariosAtivos();
             if (listPessoas != null) {
                 request.setAttribute("listPessoas", listPessoas);
-                jsp = "/core/gestor/listar.jsp";
+                jsp = "/core/pessoa/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -110,7 +110,7 @@ public class GestorController{
             Pessoa pessoa = gestaoGestor.pesquisarBibliotecariosPorLogin(login);
             if (pessoa != null) {
                 request.setAttribute("pessoa", pessoa);
-                jsp = "/core/gestor/alterar.jsp";
+                jsp = "/core/pessoa/alterar.jsp";
             } else {
                 String erro = "Ocorreu erro ao Alterar Pessoa!";
                 request.setAttribute("erro", erro);
@@ -131,7 +131,7 @@ public class GestorController{
             Pessoa pessoa = gestaoGestor.pesquisarAtendentesPorLogin(login);
             if (pessoa != null) {
                 request.setAttribute("pessoa", pessoa);
-                jsp = "/core/gestor/alterar.jsp";
+                jsp = "/core/pessoa/alterar.jsp";
             } else {
                 String erro = "Ocorreu erro ao Alterar Pessoa!";
                 request.setAttribute("erro", erro);
