@@ -213,6 +213,10 @@ public class Main extends HttpServlet {
             case "GravarObraAquisicao":
                 jsp = AquisicaoController.removerPendente(request);
                 break;
+                break;  
+            case "LeitorCadastrar":
+                jsp = LeitorController.cadastrar(request);
+                break;                
             case "AtendentePesquisar":
                 jsp = GestorController.pesquisarAtendenteLogin(request);
                 break;
@@ -244,6 +248,7 @@ public class Main extends HttpServlet {
                 jsp = GestorController.gravarInsercaoBiblioteca(request);
                 break;
         }
+                 
 
         //Redirecionando pagina
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
