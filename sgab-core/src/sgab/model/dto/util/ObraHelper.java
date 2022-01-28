@@ -1,5 +1,7 @@
 package sgab.model.dto.util;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import sgab.model.dto.Obra;
@@ -57,6 +59,10 @@ public class ObraHelper {
             
             if (obra.getAssunto().isEmpty()){
                 erros.add("A Obra deve ter algum Assunto");
+            }
+            
+            if(obra.getAnoPublicacao() > Calendar.getInstance().get(Calendar.YEAR)){
+                erros.add("O ano de publicação não pode ser maior que o ano atual");
             }
             
             for (Autor autor : obra.getAutor()){
