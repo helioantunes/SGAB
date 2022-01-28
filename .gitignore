@@ -23,18 +23,6 @@
 hs_err_pid*
 
 # Arquivos locais de projeto
-/sgab-core/nbproject/private/
-/sgab-view-swing/nbproject/private/
-/sgab-view-web/nbproject/private/
-/sgab-core/build/
-/sgab-core/dist/
-/sgab-view-web/build/
-/sgab-view-web/dist/
-/sgab-view-swing/build/
-/sgab-view-swing/dist/
-
-*.properties
-*.mf
-build.xml
-build-impl.xml
-project.xml
+/nbproject
+/build
+/dist

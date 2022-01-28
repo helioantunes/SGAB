@@ -50,7 +50,7 @@
         <h2>Operações de Livros</h2>
         <button class="button-gestao"><a href="/core/obra/inserir.jsp"></a>Cadastrar obra</button> <!--hyperlink parar as paginas de obra-->
         <button class="button-gestao"><a href="SGAB/sgab-view-web/web/core/obra/listar.jsp"></a>Listar obras</button>
-        <button class="button-gestao" onclick="abreFormRestauracao()">Restauração</button>
+        <button class="button-gestao">Restauração</button>
       </div>
       <br>
       <div class="caixa-gestao">
@@ -66,22 +66,6 @@
       
 
     </section>
-
-    <!-- Formulários Pop-up -->
-
-
-    <!-- Form de envio para restauração -->
-    <div class="form-popup" id="formRestauracao">
-      <div class="close-btn" onclick="fechaFormRestauracao()">&times;</div>
-      <form class="form-container">
-        <h2> Restauração de Livros</h2>
-        <div>
-          <label>Identificação do Livro: <input type="number" placeholder="Identificação do Livro" name="ID" required></label>
-
-          <button type="submit" class="button-form">Enviar</button>
-        </div>
-      </form>
-    </div>
   </main>
 
   <footer>

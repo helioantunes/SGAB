@@ -39,6 +39,7 @@
                 <a href='/sgab/main?acao=BibliotecaListar'>Bibliotecas</a>
                 <a href='/sgab/main?acao=FornecedorListar'>Fornecedores</a>                
                 <a href='/sgab/core/gestor/menu.jsp'>Gestores</a>
+                <a href='/sgab/core/bibliotecario/bibliotecarioMenu.jsp'>Bibliotecarios</a>
                 <a href='/sgab/core/leitores/cadastroleitor.jsp'>Leitores</a>
                 <a href='/sgab/main?acao=ObraListar'>Obras</a>         
                 <a href='/sgab/main?acao=PessoaListar'>Pessoas</a>
