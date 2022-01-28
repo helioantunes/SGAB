@@ -1,6 +1,7 @@
 let autoresResultEL = document.querySelector("#resultados-pesquisa-autores");
 let assuntosResultEL = document.querySelector("#resultados-pesquisa-assuntos");
 let bibliotecaResultEL = document.querySelector("#resultados-pesquisa-biblioteca");
+let obrasResultEl = document.querySelector("#resultados-pesquisa-obras");
 
 function ajaxAutor() {
   let xh;
@@ -58,6 +59,26 @@ function ajaxBiblioteca(){
   let biblioteca = encodeURIComponent(document.querySelector("#nomeBiblioteca").value);
   let parameters = "nomeBiblioteca=" + biblioteca;
   xh.open("POST", "/sgab/PesquisaBibliotecaAjax", true);
+  xh.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xh.send(parameters);
+}
+
+function ajaxObra() {
+  let xh;
+  if (window.XMLHttpRequest) // código dos browsers modernos
+    xh = new XMLHttpRequest();
+  else
+    xh = new ActiveXObject("Microsoft.XMLHTTP");
+
+  xh.onreadystatechange = function (){
+    if (this.readyState == 4 && this.status == 200) {
+      obrasResultEL.innerHTML = this.responseText;
+    };
+  }
+
+  let nomeObra = encodeURIComponent(document.querySelector("#nomeObra").value);
+  let parameters = "nomeObra=" + nomeObra;
+  xh.open("POST", "/sgab/PesquisaObraAjax", true);
   xh.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
   xh.send(parameters);
 }
@@ -119,6 +140,24 @@ function adicionaBiblioteca(nome){
 
 }
 
+function adicionaObra(nome){
+
+  let obrasEL = document.querySelector("#obras");
+  let obrasInputEl = document.querySelector("#obras-input");
+  
+  let nomeFormatado = nome.split(" ");
+  nomeFormatado = nomeFormatado.join("--");
+
+  let novaObraEl = document.createElement("div");
+  novaObraEl.innerHTML = "<span>" + nome + "</span><input type=\"button\" value=\"Excluir\" onclick=\"excluirObra('" + nomeFormatado + "')\">";
+  novaObraEl.classList.add("acoes");
+  novaObraEl.id = nomeFormatado;
+
+  obrasEL.appendChild(novoAutorEl);
+  obrasInputEl.value = obrasInputEl.value + nome + "::";
+
+}
+
 function excluirAutor(nome){
     let descricao = nome + "::";
     let regex = new RegExp(descricao, "gm");
@@ -150,6 +189,16 @@ function excluirBiblioteca(nome){
     
     let botaoAdicionaBibliotecaEl = document.querySelector("#adiciona-biblioteca");
     botaoAdicionaBibliotecaEl.style.display = "inline";
+}
+
+function excluirObra(nome){
+  let descricao = nome + "::";
+  let regex = new RegExp(descricao, "gm");
+  let obrasInputEl = document.querySelector("#obras-input");
+
+  let obrasAlvoEl = document.querySelector("#" + nome);
+  obrasAlvoEl.parentNode.removeChild(obrasAlvoEl);
+  obrasInputEl.value = obrasInputEl.value.replace(regex, "");
 }
 
 
