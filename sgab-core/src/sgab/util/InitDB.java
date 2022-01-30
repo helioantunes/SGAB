@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import sgab.model.dao.*;
 import sgab.model.dto.*;
-import sgab.model.dto.util.PessoaTipo;
+import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.service.*;
 
 public class InitDB {
@@ -130,15 +130,15 @@ public class InitDB {
         pessoa.setNome("Jose da Silva Sauro");
         pessoa.setEmail("sauro@gmail.com");
         pessoa.setSenha("Sauro12!");
-        pessoa.setTipo(PessoaTipo.LEITOR);
-        pessoa.setTipo(PessoaTipo.GESTOR);
+        pessoa.setTipo(UsuarioTipo.LEITOR);
+        pessoa.setTipo(UsuarioTipo.GESTOR);
         manterPessoa.cadastrar(pessoa);
         
         pessoa = new Pessoa("quatro", 23456789012L);
         pessoa.setNome("Um Dois Tres de Oliveira Quatro");
         pessoa.setEmail("quatro@gmail.com");
         pessoa.setSenha("Oliveira1!");
-        pessoa.setTipo(PessoaTipo.ADMINISTRADOR);
+        pessoa.setTipo(UsuarioTipo.ADMINISTRADOR);
         manterPessoa.cadastrar(pessoa);
         
     }

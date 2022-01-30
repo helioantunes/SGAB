@@ -37,21 +37,6 @@ public class Main extends HttpServlet {
             case "AssuntoExcluir":
                 jsp = AssuntoController.excluir(request);
                 break;
-            case "UsuarioListar":
-                jsp = UsuarioController.listar(request);
-                break;
-            case "UsuarioAlterar":
-                jsp = UsuarioController.alterar(request);
-                break;
-            case "UsuarioGravarAlteracao":
-                jsp = UsuarioController.gravarAlteracao(request);
-                break;
-            case "UsuarioGravarInsercao":
-                jsp = UsuarioController.gravarInsercao(request);
-                break;           
-            case "UsuarioExcluir":
-                jsp = UsuarioController.excluir(request);
-                break;
             case "ObraListar":
                 jsp = ObraController.listar(request);
                 break;
@@ -245,6 +230,15 @@ public class Main extends HttpServlet {
                 break;
             case "BibliotecarioGravarInsercao":
                 jsp = GestorController.gravarInsercaoBiblioteca(request);
+                break;
+            case "UsuarioListar":
+                jsp = UsuarioController.listar(request);
+                break;
+            case "UsuarioExcluir":
+                jsp = UsuarioController.excluir(request);
+                break;
+            case "UsuarioInserir":
+                jsp = UsuarioController.gravarInsercao(request);
                 break;
         }
                  

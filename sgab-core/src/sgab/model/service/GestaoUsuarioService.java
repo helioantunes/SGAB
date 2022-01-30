@@ -1,61 +1,37 @@
 package sgab.model.service;
 
 import java.util.List;
-import sgab.model.dao.UsuarioDAO;
-import sgab.model.dto.Usuario;
-import sgab.model.dto.util.UsuarioHelper;
-import sgab.model.dto.util.UsuarioStatus;
+import sgab.model.dao.PessoasDAO;
+import sgab.model.dto.Pessoa;
+import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.exception.NegocioException;
 
 public class GestaoUsuarioService {
 
-    private UsuarioDAO usuarioDAO;
+    private PessoasDAO pessoaDAO;
     
     public GestaoUsuarioService() {
-        usuarioDAO = UsuarioDAO.getInstance();
-    }
-    
-    public Long cadastrar(Usuario usuario) {
-        
-        List<String> exMsgs = UsuarioHelper.validar(usuario);
-        
-        if (!exMsgs.isEmpty())
-            throw new NegocioException(exMsgs);
-       
-        usuarioDAO.inserir(usuario);
-        return usuario.getId();
+        pessoaDAO = PessoasDAO.getInstance();
     }
 
-    public void atualizar(Usuario usuario) {
-        
-        List<String> exMsgs = UsuarioHelper.validar(usuario);
-        
-        if (!exMsgs.isEmpty())
-            throw new NegocioException(exMsgs);
-        
-        usuarioDAO.alterar(usuario);
+    public void cadastrar(Long pessoaId, UsuarioTipo usrTipo) {
+        Pessoa pessoa = pessoaDAO.pesquisar(pessoaId);
+        pessoa.setTipo(usrTipo);
+        pessoaDAO.alterar(pessoa);
     }
 
-    public void excluir(Usuario usuario) {
+    public void excluirUsuario(Long pessoaId, UsuarioTipo usrTipo) {
         
-        Usuario usr = usuarioDAO.pesquisar(usuario.getId());
+        Pessoa usr = pessoaDAO.pesquisar(pessoaId);
+
         if (usr == null)
-            throw new NegocioException("Usuário 'id=" + usuario.getId() + "'não encontrado!");
+            throw new NegocioException("Pessoa 'id=" + pessoaId + "'não encontrada!");
         
-        usr.setStatus(UsuarioStatus.SUSPENSO);
+        usr.removerTipo(usrTipo);
     }
 
-    public List<Usuario> pesquisarAtivos() {
-        return usuarioDAO.listarAtivos();
-    }
-
-    public Usuario pesquisarPorId(Long id){
-        return usuarioDAO.pesquisar(id);
-    }    
-
-    public Usuario pesquisarUsuario(String login, String senha){
-        
-        Usuario result = usuarioDAO.pesquisarLoginSenha(login, senha);
-        return result;               
+    public List<Pessoa> pesquisarPorTipo(UsuarioTipo usrTipo) {
+        List<Pessoa> listPessoa = pessoaDAO.listarAtivosPorTipo(usrTipo);
+        return listPessoa;
     }
 }
