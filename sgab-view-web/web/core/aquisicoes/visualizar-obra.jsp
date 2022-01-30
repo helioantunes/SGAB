@@ -44,7 +44,7 @@
             <input id="autores-input" type="hidden" name="autores" value="<% for(Autor autorAtual:obraAlvo.getAutor()){ %><%= autorAtual.getNome()%>::<% } %>">
             <div id="autores" style="padding-top: 10px;">
               <% for(Autor autorAtual:obraAlvo.getAutor()){ %>
-                <div class="acoes" id="<%= autorAtual.getNome()%>"><span><%= autorAtual.getNome()%></span></div>
+                <div class="acoes" id="<%= autorAtual.getNome()%>"><span><%= autorAtual.getNome()%></span><input type="button" value="Excluir" onclick="excluirAutor('<%= autorAtual.getNome()%>')"></div>
               <% } %>
             </div>
             
@@ -52,7 +52,7 @@
             <input id="assuntos-input" type="hidden" name="assuntos" value="<% for(Assunto assuntoAtual:obraAlvo.getAssunto()){ %><%= assuntoAtual.getNome()%>::<% } %>">
             <div id="assuntos" style="padding-top: 10px;">
                 <% for(Assunto assuntoAtual:obraAlvo.getAssunto()){ %>
-                <div class="acoes" id="<%= assuntoAtual.getNome()%>"><span><%= assuntoAtual.getNome()%></span></div>
+                <div class="acoes" id="<%= assuntoAtual.getNome()%>"><span><%= assuntoAtual.getNome()%></span><input type="button" value="Excluir" onclick="excluirAssunto('<%= assuntoAtual.getNome()%>')"></div>
               <% } %>
             </div>
 

@@ -41,7 +41,7 @@ public class ObraController {
             String nome = request.getParameter("nome");
             switch(tipo){
                 case "titulo":
-                    List<Obra> obrasCompativeis = gestaoObra.pesquisarObraNome(nome);
+                    List<Obra> obrasCompativeis = gestaoObra.pesquisarTituloAprox(nome);
                     request.setAttribute("listObras", obrasCompativeis);
                     jsp = "/core/obra/listar.jsp";
                     break;
