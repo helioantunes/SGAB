@@ -37,7 +37,7 @@
                 <input type="hidden" name="pessoaId" value="">
                 <input type="hidden" name="usuarioTipo" value="">                
 
-                <table id="pessoa">
+                <table id="commontable">
                     <tr>
                         <th>
                             Código

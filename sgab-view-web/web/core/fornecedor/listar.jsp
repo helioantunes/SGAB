@@ -12,7 +12,7 @@
                 <!-- used in controller.excluir -->
                 <input type="hidden" name="fornecedorCNPJ" value="">
                 
-                <table id="Fornecedor">
+                <table id="commontable">
                     <tr>
                         <th>
                             Código

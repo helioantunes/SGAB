@@ -11,16 +11,16 @@
                 <input type="hidden" name="table" value="Biblioteca">
                 <input type="hidden" name="bibliotecaId" value="">
                 
-                <table>
+                <table id="commontable">
                     <tr>
                         <th>
-                            Código:
+                            Código
                         </th>                        
                         <th>
-                            Unidade Organizacional:
+                            Unidade
                         </th>
                         <th>
-                            Nome:
+                            Nome
                         </th>
                         <th>
                             &nbsp; &nbsp;

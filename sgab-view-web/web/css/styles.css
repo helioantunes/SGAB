@@ -285,12 +285,11 @@ button a{
     color: white; 
 } 
 
-
-
-#usuario th{
+#commontable th{
     border: #000;
     background-color: #aaaaaa;
 }
+
 
 #pessoa th{
     border: #000;
