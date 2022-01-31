@@ -17,7 +17,7 @@ public class Reserva {
     
     
     //construtor 
-    public Reserva(Pessoa pessoa, Obra obra, Biblioteca localReserva, ArrayList<Exemplar> exemplares, String horario){
+    public Reserva(Pessoa pessoa, Obra obra, Biblioteca localReserva, ArrayList<Exemplar> exemplares){
         this.pessoa = pessoa;
         this.obra = obra;
         this.localReserva = localReserva;
