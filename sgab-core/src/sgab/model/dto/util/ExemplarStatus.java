@@ -7,5 +7,7 @@ package sgab.model.dto.util;
 public enum ExemplarStatus {
     DISPONIVEL,
     REPARO,
+    EMPRESTADO,
+    RESERVADO,
     DESATIVADA;
 }
