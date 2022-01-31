@@ -64,19 +64,19 @@
                     %>
                         <tr>
                             <td>
-                                <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getId()%></a>
+                                <%=pessoa.getId()%>
                             </td>
                             <td>
-                                <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getLogin()%></a>
+                              <%=pessoa.getLogin()%>
                             </td>
                             <td>
-                                <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getCpf()%></a>
+                               <%=pessoa.getCpf()%>
                             </td>
                             <td>
-                                <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getNome()%></a>
+                                <%=pessoa.getNome()%>
                             </td>
                             <td>
-                                <a href="/sgab/main?acao=PessoaAlterar&pessoaId=<%=pessoa.getId()%>"><%=pessoa.getEmail()%></a>
+                               <%=pessoa.getEmail()%>
                             </td>
                             <td>
                                 <button onclick="excluirUsuario(<%=pessoa.getId()%>,'<%=usuarioTipo%>',document.listarUsuarios)">Excluir</button>
