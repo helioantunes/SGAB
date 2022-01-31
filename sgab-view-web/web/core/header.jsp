@@ -1,8 +1,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="sgab.controller.LoginController"%>
+<%@page import="sgab.model.dto.Pessoa"%>
+<%@page import="sgab.autorizacao.ControleAutorizacao"%>
 
 <%
     LoginController.validarSessao(request, response);
+
+    Pessoa usuario = (Pessoa) request.getSession().getAttribute("usuario");    
 %>
 
 <!DOCTYPE html>
@@ -32,9 +36,7 @@
                 <h1>Menu</h1>
             </section>
             <div class="menu">
-                <% 
-                    Pessoa usuario = (Pessoa) request.getSession().getAttribute("usuario");
-                    if (ControleAutorizacao.checkPermissao("aquisicao", usuario.getTipo())) {%>
+                <% if (ControleAutorizacao.checkPermissao("aquisicao", usuario.getTipo())) {%>
                 <a href='/sgab/main?acao=IniciaCadastroAquisicao'>Aquisições</a>
                 <%} if (ControleAutorizacao.checkPermissao("assunto", usuario.getTipo())) {%>
                 <a href='/sgab/main?acao=AssuntoListar'>Assuntos</a>
