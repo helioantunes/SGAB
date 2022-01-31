@@ -116,8 +116,4 @@ public class UsuarioDAO implements GenericDAO<Usuario, Long> {
         return listUsuarios;
     }
     
-    @Override
-    public List<Usuario> pesquisar(List<BasicPair<Long, Usuario>> parameterList) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

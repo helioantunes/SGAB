@@ -27,7 +27,7 @@ public class LoginController {
                 jsp = "/core/erro.jsp";
             } else {               
                 // usuário logado no sistema
-                request.getSession().setAttribute("pessoaId", pessoa.getId());
+                request.getSession().setAttribute("usuario", pessoa);
                 jsp = "/core/menu.jsp";
             }
 
@@ -39,8 +39,8 @@ public class LoginController {
     }
 
     public static void validarSessao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long pessoaId = (Long) request.getSession().getAttribute("pessoaId");
-        if (pessoaId == null) {
+        Pessoa usuario = (Pessoa) request.getSession().getAttribute("usuario");
+        if (usuario == null) {
             //Redirecionando pagina
             RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
             rd.forward(request, response);

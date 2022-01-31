@@ -72,8 +72,5 @@ public class AutorDAO implements GenericDAO<Autor, Long>{
             throw new RuntimeException("Autor não encontrado");
         }
     }
-    
-    public List<Autor> pesquisar(List<BasicPair<Long, Autor>> parameterList){
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
+
 }

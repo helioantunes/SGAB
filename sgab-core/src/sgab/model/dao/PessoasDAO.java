@@ -162,12 +162,6 @@ public class PessoasDAO implements GenericDeleteDAO<Pessoa, Long>{
     }
 
     @Override
-    public List<Pessoa> pesquisar(List<BasicPair<Long, Pessoa>> parameterList) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-
-
-    @Override
     public void delete(Long id){
         Pessoa p = pesquisar(id);
         

@@ -8,7 +8,7 @@ public class NegocioException extends RuntimeException {
     private List<String> msgs;
     
     public NegocioException() {
-        msgs = new ArrayList();
+        msgs = new ArrayList<>();
     }
     
     public NegocioException(String msg, Exception exception) {

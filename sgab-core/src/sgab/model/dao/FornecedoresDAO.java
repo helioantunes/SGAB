@@ -65,11 +65,6 @@ public class FornecedoresDAO implements GenericDAO<Fornecedor, Long> {
         }
         return null;
     }
-
-    @Override
-    public List<Fornecedor> pesquisar(List<BasicPair<Long, Fornecedor>> parameterList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public List<Fornecedor> listarAtivos() {
         List<Fornecedor> listFornecedores = new ArrayList<>();
