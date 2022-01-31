@@ -88,12 +88,4 @@ private Map<Long, Assunto> table = new HashMap<>();
         
         return listAssuntos;        
     }    
-    
-    @Override
-    public List<Assunto> pesquisar(List<BasicPair<Long, Assunto>> parameterList) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-        
-
-    
 }
