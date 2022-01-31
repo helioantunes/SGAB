@@ -2,7 +2,7 @@ package sgab.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import sgab.model.dto.Pessoa;
-import sgab.model.dto.util.PessoaTipo;
+import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.service.GestaoPessoasService;
 
 public class LeitorController {
@@ -14,7 +14,7 @@ public class LeitorController {
             if(login != null || "".equals(login)){
                 Pessoa pessoa = gestaoPessoasService.pesquisarPorLogin(login);
                 if(pessoa != null){
-                    pessoa.setTipo(PessoaTipo.LEITOR);
+                    pessoa.setTipo(UsuarioTipo.LEITOR);
                     jsp = "/core/autores/certo.jsp";
                 }else{
                     String erro = "Nenhuma pessoa encontrada com o login informado";

@@ -290,9 +290,20 @@ function pesquisar(frm){
  * Funções de gravação de alterações
  *---------------------------------------------------------------------*/
 
+function inserirUsuario(frm) {
+
+    if (frm.pessoaId.value === "") {
+        alert("Informar o id da pessoa!");
+        frm.pessoaId.focus();
+    }
+    else {
+        frm.action = "/sgab/main?acao=UsuarioInserir";
+        frm.submit();
+    }
+}
+
 function gravarAlteracao(frm) {
     var table = frm.table.value;
-
 
     if (table === "Administrador") {
         if (validarLogin(frm)) {
@@ -420,14 +431,21 @@ function gravarAlteracao(frm) {
         }
     }    
 
-    
-    frm.action = caminhourl;
-    frm.submit();
 }
 
 /*---------------------------------------------------------------------
  * Funções de exclusão
  *---------------------------------------------------------------------*/
+function excluirUsuario(id, tipo, frm) {
+
+    if (confirm('Deseja excluir o ' + tipo  + ' com Id = ' + id + '?')) {
+        frm.pessoaId.value = id;
+        frm.usuarioTipo.value = tipo;
+        frm.action = "/sgab/main?acao=UsuarioExcluir";            
+        frm.submit();
+    }
+} 
+
 
 function excluir(id, frm) {
     var table = frm.table.value;

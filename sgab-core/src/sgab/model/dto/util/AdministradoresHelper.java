@@ -110,9 +110,9 @@ public class AdministradoresHelper {
     }
     public static List<String> validarAdministrador(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarPessoa(pessoa,pessoas);
-        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
-        for(PessoaTipo tipo : tipos ){
-          if(tipo != PessoaTipo.ADMINISTRADOR){
+        ArrayList<UsuarioTipo> tipos = pessoa.getTipo();
+        for(UsuarioTipo tipo : tipos ){
+          if(tipo != UsuarioTipo.ADMINISTRADOR){
             mensagens.add("Pessoa não é um administrador!");
             }
         }
@@ -121,9 +121,9 @@ public class AdministradoresHelper {
     }
     public static List<String> validarAdministradorAlteracao(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarAlteracao(pessoa,pessoas);
-        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
-        for(PessoaTipo tipo : tipos ){
-          if(tipo != PessoaTipo.ADMINISTRADOR){
+        ArrayList<UsuarioTipo> tipos = pessoa.getTipo();
+        for(UsuarioTipo tipo : tipos ){
+          if(tipo != UsuarioTipo.ADMINISTRADOR){
             mensagens.add("Pessoa não é um administrador!");
             }
         }
@@ -131,9 +131,9 @@ public class AdministradoresHelper {
     }
     public static List<String> validarGestor(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarPessoa(pessoa,pessoas);
-        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
-        for(PessoaTipo tipo : tipos ){
-          if(tipo != PessoaTipo.GESTOR){
+        ArrayList<UsuarioTipo> tipos = pessoa.getTipo();
+        for(UsuarioTipo tipo : tipos ){
+          if(tipo != UsuarioTipo.GESTOR){
             mensagens.add("Pessoa não é um GESTOR!");
             }
         }
@@ -141,9 +141,9 @@ public class AdministradoresHelper {
     }
     public static List<String> validarGestorAlteracao(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarAlteracao(pessoa,pessoas);
-        ArrayList<PessoaTipo> tipos = pessoa.getTipo();
-        for(PessoaTipo tipo : tipos ){
-          if(tipo != PessoaTipo.GESTOR){
+        ArrayList<UsuarioTipo> tipos = pessoa.getTipo();
+        for(UsuarioTipo tipo : tipos ){
+          if(tipo != UsuarioTipo.GESTOR){
             mensagens.add("Pessoa não é um GESTOR!");
             }
         }

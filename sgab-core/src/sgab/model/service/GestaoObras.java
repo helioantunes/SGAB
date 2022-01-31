@@ -52,6 +52,10 @@ public class GestaoObras {
         return obraDAO.pesquisarNome(nome);
     }
     
+    public List<Obra> pesquisarTituloAprox(String titulo){
+        return obraDAO.pesquisaTituloAproximado(titulo);
+    }
+     
     public List<Obra> pesquisarObrasAtivas(){
         return obraDAO.listarObras();
     }

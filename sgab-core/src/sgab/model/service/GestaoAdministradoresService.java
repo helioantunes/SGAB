@@ -3,7 +3,7 @@ package sgab.model.service;
 import java.util.List;
 import sgab.model.dao.PessoasDAO;
 import sgab.model.dto.Pessoa;
-import sgab.model.dto.util.PessoaTipo;
+import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.dto.util.PessoaHelper;
 import sgab.model.dto.util.AdministradoresHelper;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ public class GestaoAdministradoresService{
     }
 
     public Long cadastrarAdministrador(Pessoa pessoa) {
-        pessoa.setTipo(PessoaTipo.ADMINISTRADOR);
+        pessoa.setTipo(UsuarioTipo.ADMINISTRADOR);
         List<String> exMsgs = PessoaHelper.validarPessoa(pessoa, pessoasDAO);
         
         if (!exMsgs.isEmpty()){
@@ -30,7 +30,7 @@ public class GestaoAdministradoresService{
     }
     
     public Long cadastrarGestor(Pessoa pessoa) {
-        pessoa.setTipo(PessoaTipo.GESTOR);
+        pessoa.setTipo(UsuarioTipo.GESTOR);
         List<String> exMsgs = PessoaHelper.validarPessoa(pessoa, pessoasDAO);
         
         if (!exMsgs.isEmpty()){
@@ -46,9 +46,9 @@ public class GestaoAdministradoresService{
         List<Pessoa> gestores = new LinkedList<>();
         for(long i = 1; i <= pessoas.size(); i++){
             Pessoa pessoa = pessoasDAO.pesquisar(i);
-            ArrayList<PessoaTipo> tipos = pessoa.getTipo();
-            for(PessoaTipo tipo : tipos){
-              if(tipo == PessoaTipo.GESTOR){
+            ArrayList<UsuarioTipo> tipos = pessoa.getTipo();
+            for(UsuarioTipo tipo : tipos){
+              if(tipo == UsuarioTipo.GESTOR){
                 gestores.add(pessoa);
              }  
           }
@@ -61,9 +61,9 @@ public class GestaoAdministradoresService{
         List<Pessoa> administradores = new LinkedList<>();
         for(long i = 1; i <= pessoas.size(); i++){
             Pessoa pessoa = pessoasDAO.pesquisar(i);
-            ArrayList<PessoaTipo> tipos = pessoa.getTipo();
-            for(PessoaTipo tipo : tipos){
-              if(tipo == PessoaTipo.ADMINISTRADOR){
+            ArrayList<UsuarioTipo> tipos = pessoa.getTipo();
+            for(UsuarioTipo tipo : tipos){
+              if(tipo == UsuarioTipo.ADMINISTRADOR){
                 administradores.add(pessoa);
              }  
           }
@@ -73,9 +73,9 @@ public class GestaoAdministradoresService{
      
     public Pessoa pesquisarAdministradoresPorLogin(String login){
         Pessoa result = pessoasDAO.pesquisarLogin(login);
-        ArrayList<PessoaTipo> tipos = result.getTipo();
-        for(PessoaTipo tipo : tipos ){
-          if(tipo == PessoaTipo.ADMINISTRADOR){
+        ArrayList<UsuarioTipo> tipos = result.getTipo();
+        for(UsuarioTipo tipo : tipos ){
+          if(tipo == UsuarioTipo.ADMINISTRADOR){
             return result;            
           }
           else{
@@ -87,9 +87,9 @@ public class GestaoAdministradoresService{
     
     public Pessoa pesquisarGestorPorLogin(String login){
         Pessoa result = pessoasDAO.pesquisarLogin(login);
-        ArrayList<PessoaTipo> tipos = result.getTipo();
-        for(PessoaTipo tipo : tipos ){
-          if(tipo == PessoaTipo.GESTOR){
+        ArrayList<UsuarioTipo> tipos = result.getTipo();
+        for(UsuarioTipo tipo : tipos ){
+          if(tipo == UsuarioTipo.GESTOR){
             return result;            
           }
           else{
