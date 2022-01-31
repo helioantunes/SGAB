@@ -24,7 +24,7 @@
             <input id="obras-input" type="hidden" name="obras" value="">
             <div id="obras" style="padding-top: 10px;"></div>
 
-            
+            <div id="mask" onclick="fechaModalAll()"></div>
             <!-- Modal Obras-->
             <div class="form-popup" id="pesquisaObra">
                 <div class="close-btn" onclick="fechaModal('pesquisaObra')">&times;</div>

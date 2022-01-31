@@ -72,7 +72,7 @@ function ajaxObra() {
 
   xh.onreadystatechange = function (){
     if (this.readyState == 4 && this.status == 200) {
-      obrasResultEL.innerHTML = this.responseText;
+      obrasResultEl.innerHTML = this.responseText;
     };
   }
 
@@ -153,7 +153,7 @@ function adicionaObra(nome){
   novaObraEl.classList.add("acoes");
   novaObraEl.id = nomeFormatado;
 
-  obrasEL.appendChild(novoAutorEl);
+  obrasEL.appendChild(novaObraEl);
   obrasInputEl.value = obrasInputEl.value + nome + "::";
 
 }

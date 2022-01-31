@@ -7,7 +7,7 @@
                 <a href="listar.jsp" style="width:100%;text-align:center;cursor:pointer;">
                 <button style="width:100%;padding:0.5rem 0; cursor:pointer">Listar </button></a>
                 <br>
-                <a href="solicitar.jsp"  style="width:100%;text-align:center;cursor:pointer;">
+                <a href="emprestimos.jsp"  style="width:100%;text-align:center;cursor:pointer;">
                 <button  style="width:100%;padding:0.5rem 0; cursor:pointer">Solicitar </button></a>
             </div>
         </section

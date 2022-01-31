@@ -35,7 +35,7 @@ public class PesquisaObraAjax extends HttpServlet {
             GestaoObras gestaoObra = new GestaoObras();
             
             String nomeObra = request.getParameter("nomeObra");
-            List<Obra> alvos = gestaoObra.pesquisarObraNome(nomeObra);
+            List<Obra> alvos = gestaoObra.pesquisarTituloAprox(nomeObra);
             
             if(alvos.size() > 0){
                 for(Obra alvo : alvos){
