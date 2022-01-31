@@ -10,7 +10,6 @@ import java.util.ArrayList;
 public class Reserva {
     private Long id;
     private Pessoa pessoa;
-    private Obra obra;
     private Biblioteca localReserva; 
     private ArrayList<Exemplar> exemplares;
     private final String horario;
@@ -43,14 +42,7 @@ public class Reserva {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-
-    public Obra getObra() {
-        return obra;
-    }
-    public void setObra(Obra obra) {
-        this.obra = obra;
-    }
-
+    
     public Biblioteca getLocalReserva() {
         return localReserva;
     }
