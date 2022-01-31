@@ -22,7 +22,7 @@
             <input type="hidden" name="acao" value="alterar">
             <input type="hidden" name="obraId" value="<%= request.getParameter("obraId") %>">
             <label for="categoria">Categoria</label>
-            <select name="categoria" id="categoria">
+            <select disabled name="categoria" id="categoria">
               <option value="livro">Livro</option>
               <option value="mapa">Mapa</option>
               <option value="docComputacional">Documento computacional</option>
@@ -30,54 +30,32 @@
             <label for="titulo">Título</label>
             <input
               type="text"
-              
+              disabled
               id="titulo"
               name="titulo"
               value="<%= obraAlvo.getTitulo()%>"
             />
            
             <label>Autores</label>
-            <span
-        onclick="abreModal('pesquisaAutor')"
-        style="
-          float: right;
-          font-weight: bolder;
-          font-size: 1.5em;
-          cursor: pointer;
-          user-select: none;
-        "
-        >+</span
-      >
             <input id="autores-input" type="hidden" name="autores" value="<% for(Autor autorAtual:obraAlvo.getAutor()){ %><%= autorAtual.getNome()%>::<% } %>">
             <div id="autores" style="padding-top: 10px;">
               <% for(Autor autorAtual:obraAlvo.getAutor()){ %>
-                <div class="acoes" id="<%= autorAtual.getNome()%>"><span><%= autorAtual.getNome()%></span><input type="button" value="Excluir" onclick="excluirAutor('<%= autorAtual.getNome()%>')"></div>
+                <div class="acoes" id="<%= autorAtual.getNome()%>"><span><%= autorAtual.getNome()%></span></div>
               <% } %>
             </div>
             
             <label>Assuntos</label>
-      <span
-        onclick="abreModal('pesquisaAssunto')"
-        style="
-          float: right;
-          font-weight: bolder;
-          font-size: 1.5em;
-          cursor: pointer;
-          user-select: none;
-        "
-        >+</span
-      >
             <input id="assuntos-input" type="hidden" name="assuntos" value="<% for(Assunto assuntoAtual:obraAlvo.getAssunto()){ %><%= assuntoAtual.getNome()%>::<% } %>">
             <div id="assuntos" style="padding-top: 10px;">
                 <% for(Assunto assuntoAtual:obraAlvo.getAssunto()){ %>
-                <div class="acoes" id="<%= assuntoAtual.getNome()%>"><span><%= assuntoAtual.getNome()%></span><input type="button" value="Excluir" onclick="excluirAssunto('<%= assuntoAtual.getNome()%>')"></div>
+                <div class="acoes" id="<%= assuntoAtual.getNome()%>"><span><%= assuntoAtual.getNome()%></span></div>
               <% } %>
             </div>
 
             <label for="nota">Nota</label>
             <input
               type="text"
-              
+              disabled
               style="height: 5em;"
               id="nota"
               name="nota"
@@ -88,7 +66,7 @@
                 <label for="ano">Ano de publicação</label>
                 <input
                   type="text"  
-                  
+                  disabled
                   id="ano"
                   name="ano"
                   value=<%= obraAlvo.getAnoPublicacao()%>
@@ -98,7 +76,7 @@
                 <label for="editora">Editora</label>
                 <input
                   type="text"
-                  
+                  disabled
                   id="editora"
                   name="editora"
                   value="<%= obraAlvo.getEditora()%>"
@@ -108,7 +86,7 @@
             <label for="cidEditora">Cidade da Editora</label>
             <input
               type="text"
-              
+              disabled
               id="cidEditora"
               name="cidEditora"
               value="<%= obraAlvo.getCidadeEditora()%>"
@@ -118,7 +96,7 @@
                 <label for="edicao">Edição</label>
                 <input
                   type="text"
-                  
+                  disabled
                   id="edicao"
                   name="edicao"
                   value="<%= obraAlvo.getEdicao()%>"
@@ -128,7 +106,7 @@
                 <label for="volume">Volume</label>
                 <input
                   type="text"
-                  
+                  disabled
                   id="volume"
                   name="volume"
                   value="<%= obraAlvo.getVolume()%>"
@@ -136,7 +114,7 @@
               </div>
             </div>
             <div class="buttons">
-                <button type="button" id="alterar" onclick="gravarAlteracao(document.AlteraObra)">Alterar</button>
+                <button type="button" id="alterar">Alterar</button>
             </div>
           </form>
         </div>
@@ -175,5 +153,164 @@
       </div>
   
     <script src="/sgab/js/cssControl.js"></script>
-    <script src="/sgab/js/ajaxControl.js"></script>
+    <script>
+        let alterarEl = document.querySelector("#alterar");
+
+        alterarEl.addEventListener("click", e => {
+            let disabled = document.querySelectorAll("*[disabled]");
+            disabled.forEach(element => {
+                element.removeAttribute("disabled");
+            });
+
+            let botaoConfirmarEl = document.createElement("button");
+            botaoConfirmarEl.innerHTML = "Confirmar";
+            botaoConfirmarEl.setAttribute("type", "button");
+
+            alterarEl.parentNode.appendChild(botaoConfirmarEl);
+            alterarEl.parentNode.removeChild(alterarEl);
+            
+            botaoConfirmarEl.addEventListener("click", e => {
+                gravarAlteracao(document.AlteraObra);
+            })
+
+            let autores = document.querySelectorAll("#autores div");
+            autores.forEach(element => {
+              let botaoExcluirEl = document.createElement("input");
+              botaoExcluirEl.type = "button";
+              botaoExcluirEl.value = "Excluir";
+              botaoExcluirEl.addEventListener("click", e =>{
+                excluirAutor(e.target.parentNode.id);
+              });
+              element.appendChild(botaoExcluirEl);
+            });
+
+            let formEl = document.querySelector("#AlteraObra");
+            let autoresEl = document.querySelector("#autores");
+
+            let botaoAdicionarEl = document.createElement("span");
+            botaoAdicionarEl.style = "float: right; font-weight: bolder; font-size: 1.5em; cursor: pointer; user-select: none;";
+            botaoAdicionarEl.id = "expandir";
+            botaoAdicionarEl.innerText = "+";
+            botaoAdicionarEl.addEventListener("click", e => {
+              abreModal('pesquisaAutor');
+            })
+            formEl.insertBefore(botaoAdicionarEl, autoresEl);
+            
+            let assuntos = document.querySelectorAll("#assuntos div");
+            assuntos.forEach(element => {
+              let botaoExcluirEl = document.createElement("input");
+              botaoExcluirEl.type = "button";
+              botaoExcluirEl.value = "Excluir";
+              botaoExcluirEl.addEventListener("click", e =>{
+                excluirAssunto(e.target.parentNode.id);
+              });
+              element.appendChild(botaoExcluirEl);
+            });
+
+            let assuntosEl = document.querySelector("#assuntos");
+
+            let botaoAdicionar2El = document.createElement("span");
+            botaoAdicionar2El.style = "float: right; font-weight: bolder; font-size: 1.5em; cursor: pointer; user-select: none;";
+            botaoAdicionar2El.id = "expandir";
+            botaoAdicionar2El.innerText = "+";
+            botaoAdicionar2El.addEventListener("click", e => {
+              abreModal('pesquisaAssunto');
+            })
+            formEl.insertBefore(botaoAdicionar2El, assuntosEl);
+
+        });
+        
+        let autoresResultEL = document.querySelector("#resultados-pesquisa-autores");
+        let assuntosResultEL = document.querySelector("#resultados-pesquisa-assuntos");
+
+        function ajaxAutor() {
+          let xh;
+          if (window.XMLHttpRequest) // código dos browsers modernos
+            xh = new XMLHttpRequest();
+          else
+            xh = new ActiveXObject("Microsoft.XMLHTTP");
+
+          xh.onreadystatechange = function (){
+            if (this.readyState == 4 && this.status == 200) {
+              autoresResultEL.innerHTML = this.responseText;
+            };
+          }
+
+          let nomeAutor = encodeURIComponent(document.querySelector("#nomeAutor").value);
+          let parameters = "nomeAutor=" + nomeAutor;
+          xh.open("POST", "/sgab/PesquisaAutorAjax", true);
+          xh.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+          xh.send(parameters);
+        }
+        
+        function ajaxAssunto() {
+            let xh;
+            if (window.XMLHttpRequest) // código dos browsers modernos
+              xh = new XMLHttpRequest();
+            else
+              xh = new ActiveXObject("Microsoft.XMLHTTP");
+
+            xh.onreadystatechange = function (){
+              if (this.readyState == 4 && this.status == 200) {
+                assuntosResultEL.innerHTML = this.responseText;
+              };
+            }
+
+            let assunto = encodeURIComponent(document.querySelector("#nomeAssunto").value);
+            let parameters = "nomeAssunto=" + assunto;
+            xh.open("POST", "/sgab/PesquisaAssuntoAjax", true);
+            xh.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xh.send(parameters);
+        }
+        
+        function adicionaAutor(nome){
+
+          let autoresEL = document.querySelector("#autores");
+          let autoresInputEl = document.querySelector("#autores-input");
+
+          let novoAutorEl = document.createElement("div");
+          novoAutorEl.innerHTML = "<span>" + nome + "</span><input type=\"button\" value=\"Excluir\" onclick=\"excluirAutor('" + nome + "')\">";
+          novoAutorEl.classList.add("acoes");
+          novoAutorEl.id = nome;
+
+          autoresEL.appendChild(novoAutorEl);
+          autoresInputEl.value = autoresInputEl.value + nome + "::";
+
+        }
+        
+        function adicionaAssunto(nome){
+
+            let assuntosEL = document.querySelector("#assuntos");
+            let assuntosInputEl = document.querySelector("#assuntos-input");
+
+            let novoAssuntoEl = document.createElement("div");
+            novoAssuntoEl.innerHTML = "<span>" + nome + "</span><input type=\"button\" value=\"Excluir\" onclick=\"excluirAssunto('" + nome + "')\">";
+            novoAssuntoEl.classList.add("acoes");
+            novoAssuntoEl.id = nome;
+
+            assuntosEL.appendChild(novoAssuntoEl);
+            assuntosInputEl.value = assuntosInputEl.value + nome + "::";
+
+        }
+        
+        function excluirAutor(nome){
+          let descricao = nome + "::";
+          let regex = new RegExp(descricao, "gm");
+          let autoresInputEl = document.querySelector("#autores-input");
+
+          let autorAlvoEl = document.querySelector("#" + nome);
+          autorAlvoEl.parentNode.removeChild(autorAlvoEl);
+          autoresInputEl.value = autoresInputEl.value.replace(regex, "");
+        }
+        
+        function excluirAssunto(nome){
+            let descricao = nome + "::";
+            let regex = new RegExp(descricao, "gm");
+            let assuntosInputEl = document.querySelector("#assuntos-input");
+
+            let assuntoAlvoEl = document.querySelector("#" + nome);
+            assuntoAlvoEl.parentNode.removeChild(assuntoAlvoEl);
+            assuntosInputEl.value = assuntosInputEl.value.replace(regex, "");
+        }
+    </script>
     <%@include file="/core/footer.jsp" %>

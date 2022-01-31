@@ -46,7 +46,7 @@
                     for(Obra obra : lista){
                     %>
                     <tr>
-                      <td class="pesquisa"><a href="/sgab/main?acao=ObraAlterar&obraId=<%=obra.getId()%>">&#128270</a></td>
+                        <td class="pesquisa"><a href="/sgab/main?acao=ObraAlterar&obraId=<%=obra.getId()%>">&#128270</a></td>
                       <td><%= obra.getId()%></td>
                       <td><%= obra.getTitulo()%></td>
                       <td>

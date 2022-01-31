@@ -1,5 +1,6 @@
 package sgab.model.service;
 
+import java.util.LinkedList;
 import java.util.List;
 import sgab.model.dto.util.ObraHelper;
 import sgab.model.dto.Obra;
