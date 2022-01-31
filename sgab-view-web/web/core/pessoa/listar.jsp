@@ -23,7 +23,7 @@
                             CPF
                         </th>
                         <th>
-                            Nome Completo
+                            Nome
                         </th>
                         <th>
                             Email
@@ -66,5 +66,5 @@
                 </table>
             </form>
         </center>
-        <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
-        <%@include file="/core/footer.jsp" %>        
+
+        <%@include file="/core/footer.jsp" %>    

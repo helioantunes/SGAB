@@ -11,7 +11,7 @@
                 <input type="hidden" name="table" value="UnidadeOrganizacional">
                 <input type="hidden" name="uOrgId" value="">
                 
-                <table id="unidadeOrganizacional">
+                <table id="commontable">
                     <tr>
                         <th>
                             Código

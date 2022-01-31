@@ -3,7 +3,7 @@ package sgab.model.service;
 import sgab.model.dto.Pessoa;
 import sgab.model.dto.util.GestorHelper;
 import sgab.model.dto.util.PessoaHelper;
-import sgab.model.dto.util.PessoaTipo;
+import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.exception.NegocioException;
 
 import java.util.LinkedList;
@@ -15,7 +15,7 @@ public class GestaoGestor extends GestaoPessoasService {
     private PessoasDAO pessoasDAO;
 
     public Long cadastrarBibliotecario(Pessoa pessoa) {
-        pessoa.setTipo(PessoaTipo.BIBLIOTECARIO);
+        pessoa.setTipo(UsuarioTipo.BIBLIOTECARIO);
         List<String> exMsgs = GestorHelper.validarBibliotecario(pessoa, pessoasDAO);
         
         if (!exMsgs.isEmpty()){
@@ -27,7 +27,7 @@ public class GestaoGestor extends GestaoPessoasService {
     }
     
     public Long cadastrarAtendente(Pessoa pessoa) {
-        pessoa.setTipo(PessoaTipo.ATENDENTE);
+        pessoa.setTipo(UsuarioTipo.ATENDENTE);
         List<String> exMsgs = GestorHelper.validarAtendente(pessoa, pessoasDAO);
         
         if (!exMsgs.isEmpty()){
@@ -44,7 +44,7 @@ public class GestaoGestor extends GestaoPessoasService {
         List<Pessoa> bibliotecarios = new LinkedList<>();
         for(int i=0;i<pessoas.size();i++){
             Pessoa pessoa = pessoas.remove(i);
-            if(pessoa.getTipo().contains(PessoaTipo.BIBLIOTECARIO)){
+            if(pessoa.getTipo().contains(UsuarioTipo.BIBLIOTECARIO)){
                 bibliotecarios.add(pessoa);
             }
         }
@@ -53,7 +53,7 @@ public class GestaoGestor extends GestaoPessoasService {
 
     public Pessoa pesquisarBibliotecariosPorId(Long id){
         Pessoa pessoa = pessoasDAO.pesquisar(id);
-        if(pessoa.getTipo().contains(PessoaTipo.BIBLIOTECARIO)){
+        if(pessoa.getTipo().contains(UsuarioTipo.BIBLIOTECARIO)){
             return pessoa;
         }
         else{
@@ -64,7 +64,7 @@ public class GestaoGestor extends GestaoPessoasService {
     public Pessoa pesquisarBibliotecariosConta(String login, String senha){
         
         Pessoa result = pessoasDAO.pesquisarLoginSenha(login, senha);
-        if(result.getTipo().contains(PessoaTipo.BIBLIOTECARIO)){
+        if(result.getTipo().contains(UsuarioTipo.BIBLIOTECARIO)){
             return result;
         }
         else{
@@ -74,7 +74,7 @@ public class GestaoGestor extends GestaoPessoasService {
 
     public Pessoa pesquisarBibliotecariosPorLogin(String login){
         Pessoa result = pessoasDAO.pesquisarLogin(login);
-        if(result.getTipo().contains(PessoaTipo.BIBLIOTECARIO)){
+        if(result.getTipo().contains(UsuarioTipo.BIBLIOTECARIO)){
             return result;
         }
         else{
@@ -88,7 +88,7 @@ public class GestaoGestor extends GestaoPessoasService {
         List<Pessoa> atendentes = new LinkedList<>();
         for(int i=0; i<pessoas.size(); i++){
             Pessoa pessoa = pessoas.remove(i);
-            if(pessoa.getTipo().contains(PessoaTipo.ATENDENTE)){
+            if(pessoa.getTipo().contains(UsuarioTipo.ATENDENTE)){
                 atendentes.add(pessoa);
             }
         }
@@ -97,7 +97,7 @@ public class GestaoGestor extends GestaoPessoasService {
 
     public Pessoa pesquisarAtendentesPorId(Long id){
         Pessoa pessoa = pessoasDAO.pesquisar(id);
-        if(pessoa.getTipo().contains(PessoaTipo.ATENDENTE)){
+        if(pessoa.getTipo().contains(UsuarioTipo.ATENDENTE)){
             return pessoa;
         }
         else{
@@ -108,7 +108,7 @@ public class GestaoGestor extends GestaoPessoasService {
     public Pessoa pesquisarAtendentesConta(String login, String senha){
         
         Pessoa result = pessoasDAO.pesquisarLoginSenha(login, senha);
-        if(result.getTipo().contains(PessoaTipo.ATENDENTE)){
+        if(result.getTipo().contains(UsuarioTipo.ATENDENTE)){
             return result;
         }
         else{
@@ -118,7 +118,7 @@ public class GestaoGestor extends GestaoPessoasService {
 
     public Pessoa pesquisarAtendentesPorLogin(String login){
         Pessoa result = pessoasDAO.pesquisarLogin(login);
-        if(result.getTipo().contains(PessoaTipo.ATENDENTE)){
+        if(result.getTipo().contains(UsuarioTipo.ATENDENTE)){
             return result;
         }
         else{

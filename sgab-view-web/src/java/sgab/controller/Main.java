@@ -37,21 +37,6 @@ public class Main extends HttpServlet {
             case "AssuntoExcluir":
                 jsp = AssuntoController.excluir(request);
                 break;
-            case "UsuarioListar":
-                jsp = UsuarioController.listar(request);
-                break;
-            case "UsuarioAlterar":
-                jsp = UsuarioController.alterar(request);
-                break;
-            case "UsuarioGravarAlteracao":
-                jsp = UsuarioController.gravarAlteracao(request);
-                break;
-            case "UsuarioGravarInsercao":
-                jsp = UsuarioController.gravarInsercao(request);
-                break;           
-            case "UsuarioExcluir":
-                jsp = UsuarioController.excluir(request);
-                break;
             case "ObraListar":
                 jsp = ObraController.listar(request);
                 break;
@@ -101,6 +86,36 @@ public class Main extends HttpServlet {
                 break;           
             case "UnidadeOrganizacionalExcluir":
                 jsp = UnidadeOrganizacionalController.excluir(request);
+                break;
+            case "AdministradorGravarInsercao":
+                jsp = AdministradorController.gravarInsercaoAdministrador(request);
+                break;
+            case "AdministradorGravarAlteracao":
+                jsp = AdministradorController.alterarAdministrador(request);
+                break;
+            case "AdministradorPesquisar":
+                jsp = AdministradorController.pesquisarAdministradorLogin(request);
+                break;
+            case "AdministradorListar":
+                jsp = AdministradorController.listarAdministradores(request);
+                break;
+            case "AdministradorAlterar":
+                jsp = AdministradorController.alterarAdministrador(request);
+                break;
+            case "GestorGravarInsercao":
+                jsp = AdministradorController.gravarInsercaoGestor(request);
+                break;
+            case "GestorGravarAlteracao":
+                jsp = AdministradorController.alterarGestor(request);
+                break;
+            case "GestorPesquisar":
+                jsp = AdministradorController.pesquisarGestorLogin(request);
+                break;
+            case "GestorListar":
+                jsp = AdministradorController.listarGestores(request);
+                break;
+            case "GestorAlterar":
+                jsp = AdministradorController.alterarGestor(request);
                 break;
             case "AutorCadastrar":
                 jsp = AutorController.insercao(request);
@@ -183,6 +198,9 @@ public class Main extends HttpServlet {
             case "GravarObraAquisicao":
                 jsp = AquisicaoController.removerPendente(request);
                 break;
+            case "LeitorCadastrar":
+                jsp = LeitorController.cadastrar(request);
+                break;                
             case "AtendentePesquisar":
                 jsp = GestorController.pesquisarAtendenteLogin(request);
                 break;
@@ -213,8 +231,17 @@ public class Main extends HttpServlet {
             case "BibliotecarioGravarInsercao":
                 jsp = GestorController.gravarInsercaoBiblioteca(request);
                 break;
+            case "UsuarioListar":
+                jsp = UsuarioController.listar(request);
+                break;
+            case "UsuarioExcluir":
+                jsp = UsuarioController.excluir(request);
+                break;
+            case "UsuarioInserir":
+                jsp = UsuarioController.gravarInsercao(request);
+                break;
         }
-
+                 
         //Redirecionando pagina
         RequestDispatcher rd = request.getRequestDispatcher(jsp);
         rd.forward(request, response);

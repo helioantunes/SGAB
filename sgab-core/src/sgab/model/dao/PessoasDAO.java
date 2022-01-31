@@ -1,7 +1,7 @@
 package sgab.model.dao;
 
 import sgab.model.dto.Pessoa;
-import sgab.model.dto.util.PessoaTipo;
+import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.exception.PersistenciaException;
 import sgab.util.PasswordDigest;
 import java.util.ArrayList;
@@ -40,7 +40,7 @@ public class PessoasDAO implements GenericDeleteDAO<Pessoa, Long>{
             admin.setNome("Administrador do Sistema");
             admin.setEmail("admin@sgab.cefetmg.br");
             admin.setSenha("admin");
-            admin.setTipo(PessoaTipo.ADMINISTRADOR);
+            admin.setTipo(UsuarioTipo.ADMINISTRADOR);
             admin.setHabilitado(true);
         
             pessoasDAO.inserir(admin);
@@ -83,6 +83,14 @@ public class PessoasDAO implements GenericDeleteDAO<Pessoa, Long>{
         return listPessoas;
     }
 
+    public List<Pessoa> listarAtivosPorTipo(UsuarioTipo tipo) {
+        List<Pessoa> listPessoas = new ArrayList<>();
+        for(Pessoa pessoa: listarAtivos())
+            if (pessoa.getTipo().contains(tipo))
+                listPessoas.add(pessoa);
+        return listPessoas;
+    }
+
     public List<Pessoa> listarTodos() {
         List<Pessoa> listPessoas = new ArrayList<>();
         
@@ -105,10 +113,10 @@ public class PessoasDAO implements GenericDeleteDAO<Pessoa, Long>{
                 throw new PersistenciaException("'" + pessoa.getLogin() 
                                                                 + "' precisa ser único.");
             
-            Long pessoaId = PessoasDAO.getNextId();
-            pessoa.setId(pessoaId);
+//            Long pessoaId = PessoasDAO.getNextId();
+//            pessoa.setId(pessoaId);
             
-            table.put(pessoaId, pessoa);
+            table.put(pessoa.getId(), pessoa);
         } else {
             inserir(pessoa);
         }
@@ -167,7 +175,7 @@ public class PessoasDAO implements GenericDeleteDAO<Pessoa, Long>{
             throw new PersistenciaException("Nenhum usuário com "
                                         + "o id '" + id + "'.");
 
-        if(p.getTipo().contains(PessoaTipo.ADMINISTRADOR)){
+        if(p.getTipo().contains(UsuarioTipo.ADMINISTRADOR)){
             throw new PersistenciaException("Pessoa é um " + p.getTipo() + "!");
         }
 

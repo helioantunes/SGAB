@@ -1,8 +1,12 @@
 package sgab.model.dto.util;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import sgab.model.dto.Obra;
+import sgab.model.dto.Autor;
+import sgab.model.dto.Assunto;
 
 public class ObraHelper {
     
@@ -55,6 +59,32 @@ public class ObraHelper {
             
             if (obra.getAssunto().isEmpty()){
                 erros.add("A Obra deve ter algum Assunto");
+            }
+            
+            if(obra.getAnoPublicacao() > Calendar.getInstance().get(Calendar.YEAR)){
+                erros.add("O ano de publicação não pode ser maior que o ano atual");
+            }
+            
+            for (Autor autor : obra.getAutor()){
+                for (Autor autor2 : obra.getAutor()){
+                    if (autor == autor2) {
+                        continue;
+                    }
+                    if (autor.getNome().equals(autor2.getNome())){
+                        erros.add("O Autor " + autor.getNome() + " foi inserido duas vezes");
+                    }
+                }
+            }
+            
+            for (Assunto assunto : obra.getAssunto()){
+                for (Assunto assunto2 : obra.getAssunto()){
+                    if (assunto == assunto2) {
+                        continue;
+                    }
+                    if (assunto.getNome().equals(assunto2.getNome())){
+                        erros.add("O Assunto " + assunto.getNome() + " foi inserido duas vezes");
+                    }
+                }
             }
         }
         

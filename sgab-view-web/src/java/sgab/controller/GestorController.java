@@ -10,9 +10,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import static sgab.controller.PessoaController.listar;
 import sgab.model.dto.Pessoa;
-import sgab.model.dto.util.PessoaTipo;
+import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.exception.PersistenciaException;
 import sgab.model.service.GestaoGestor;
+import sgab.model.service.GestaoPessoasService;
 
 
 public class GestorController{
@@ -26,7 +27,7 @@ public class GestorController{
             listPessoa.add(gestaoGestor.pesquisarAtendentesPorLogin(login)); 
             if (listPessoa != null) {
                 request.setAttribute("listPessoas", listPessoa);
-                jsp = "/core/gestor/listar.jsp";
+                jsp = "/core/pessoa/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -48,7 +49,7 @@ public class GestorController{
             listPessoa.add(gestaoGestor.pesquisarBibliotecariosPorLogin(login)); 
             if (listPessoa != null) {
                 request.setAttribute("listPessoas", listPessoa);
-                jsp = "/core/gestor/listar.jsp";
+                jsp = "/core/pessoa/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -68,7 +69,7 @@ public class GestorController{
             List<Pessoa> listPessoas = gestaoGestor.pesquisarAtendentesAtivos();
             if (listPessoas != null) {
                 request.setAttribute("listPessoas", listPessoas);
-                jsp = "/core/gestor/listar.jsp";
+                jsp = "/core/pessoa/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -88,7 +89,7 @@ public class GestorController{
             List<Pessoa> listPessoas = gestaoGestor.pesquisarBibliotecariosAtivos();
             if (listPessoas != null) {
                 request.setAttribute("listPessoas", listPessoas);
-                jsp = "/core/gestor/listar.jsp";
+                jsp = "/core/pessoa/listar.jsp";
             } else {
                 String erro = "Nao existe registro!";
                 request.setAttribute("erro", erro);
@@ -109,7 +110,7 @@ public class GestorController{
             Pessoa pessoa = gestaoGestor.pesquisarBibliotecariosPorLogin(login);
             if (pessoa != null) {
                 request.setAttribute("pessoa", pessoa);
-                jsp = "/core/gestor/alterar.jsp";
+                jsp = "/core/pessoa/alterar.jsp";
             } else {
                 String erro = "Ocorreu erro ao Alterar Pessoa!";
                 request.setAttribute("erro", erro);
@@ -130,7 +131,7 @@ public class GestorController{
             Pessoa pessoa = gestaoGestor.pesquisarAtendentesPorLogin(login);
             if (pessoa != null) {
                 request.setAttribute("pessoa", pessoa);
-                jsp = "/core/gestor/alterar.jsp";
+                jsp = "/core/pessoa/alterar.jsp";
             } else {
                 String erro = "Ocorreu erro ao Alterar Pessoa!";
                 request.setAttribute("erro", erro);
@@ -159,7 +160,7 @@ public class GestorController{
             pessoa.setEmail(email);
             pessoa.setSenha(senha);
             pessoa.setHabilitado(true);
-            pessoa.setTipo(PessoaTipo.ATENDENTE);
+            pessoa.setTipo(UsuarioTipo.ATENDENTE);
             
             GestaoGestor gestaoGestor = new GestaoGestor();
             try {
@@ -195,7 +196,7 @@ public class GestorController{
             pessoa.setEmail(email);
             pessoa.setSenha(senha);
             pessoa.setHabilitado(true);
-            pessoa.setTipo(PessoaTipo.BIBLIOTECARIO);
+            pessoa.setTipo(UsuarioTipo.BIBLIOTECARIO);
             
             GestaoGestor gestaoGestor = new GestaoGestor();
             try {
@@ -218,16 +219,12 @@ public class GestorController{
         String jsp = "";
         try {
             String login = request.getParameter("login");
-            Long cpf = Long.parseLong(request.getParameter("cpf"));
-            String nomeCompleto = request.getParameter("nome");
-            String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
 
-            Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
-            pessoa.setTipo(PessoaTipo.BIBLIOTECARIO);
+            GestaoPessoasService gestaoGestor = new GestaoPessoasService();
+            Pessoa pessoa = gestaoGestor.pesquisarPorLogin(login);
+            pessoa.setTipo(UsuarioTipo.BIBLIOTECARIO);
 
-            GestaoGestor gestaoGestor = new GestaoGestor();
-            Long pessoaId = gestaoGestor.cadastrar(pessoa);
+            Long pessoaId = pessoa.getId();
 
             if (pessoaId != null) {
                 jsp = listar(request);
@@ -247,16 +244,12 @@ public class GestorController{
         String jsp = "";
         try {
             String login = request.getParameter("login");
-            Long cpf = Long.parseLong(request.getParameter("cpf"));
-            String nomeCompleto = request.getParameter("nome");
-            String email = request.getParameter("email");
-            String senha = request.getParameter("senha");
 
-            Pessoa pessoa = new Pessoa(cpf, login, nomeCompleto, email, senha);
-            pessoa.setTipo(PessoaTipo.ATENDENTE);
+            GestaoPessoasService gestaoGestor = new GestaoPessoasService();
+            Pessoa pessoa = gestaoGestor.pesquisarPorLogin(login);
+            pessoa.setTipo(UsuarioTipo.ATENDENTE);
 
-            GestaoGestor gestaoGestor = new GestaoGestor();
-            Long pessoaId = gestaoGestor.cadastrar(pessoa);
+            Long pessoaId = pessoa.getId();
 
             if (pessoaId != null) {
                 jsp = listar(request);
