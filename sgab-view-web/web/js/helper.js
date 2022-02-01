@@ -226,12 +226,14 @@ function validarFornecedor(frm) {
 function validarLogin(frm){
     var result = false;
 
-    if(frm.login == ""){
+    if(frm.login.value === ""){
         alert("Informar o login!");
         frm.login.focus();
     }
     else
         result = true;
+
+    return result;
 }
 
 function validarAquisicao(frm){
@@ -290,9 +292,20 @@ function pesquisar(frm){
  * Funções de gravação de alterações
  *---------------------------------------------------------------------*/
 
+function inserirUsuario(frm) {
+
+    if (frm.pessoaId.value === "") {
+        alert("Informar o id da pessoa!");
+        frm.pessoaId.focus();
+    }
+    else {
+        frm.action = "/sgab/main?acao=UsuarioInserir";
+        frm.submit();
+    }
+}
+
 function gravarAlteracao(frm) {
     var table = frm.table.value;
-
 
     if (table === "Administrador") {
         if (validarLogin(frm)) {
@@ -418,16 +431,25 @@ function gravarAlteracao(frm) {
             else if (frm.acao.value === "gravar")
                 caminhourl = "/sgab/main?acao=UsuarioGravarInsercao";
         }
-    }    
-
+    }
     
     frm.action = caminhourl;
-    frm.submit();
+    frm.submit();    
 }
 
 /*---------------------------------------------------------------------
  * Funções de exclusão
  *---------------------------------------------------------------------*/
+function excluirUsuario(id, tipo, frm) {
+
+    if (confirm('Deseja excluir o ' + tipo  + ' com Id = ' + id + '?')) {
+        frm.pessoaId.value = id;
+        frm.usuarioTipo.value = tipo;
+        frm.action = "/sgab/main?acao=UsuarioExcluir";            
+        frm.submit();
+    }
+} 
+
 
 function excluir(id, frm) {
     var table = frm.table.value;
@@ -436,62 +458,54 @@ function excluir(id, frm) {
         if (confirm('Deseja excluir o Administrador com Id = ' + id + '?')) {
             frm.pessoaId.value = id;
             frm.action = "/sgab/main?acao=AdministradorExcluir";            
-            frm.submit();
         }
     } 
     else if (table === "Assunto") {
         if (confirm('Deseja excluir o Assunto com Id = ' + id + '?')) {
             frm.assuntoId.value = id;
             frm.action = "/sgab/main?acao=AssuntoExcluir";            
-            frm.submit();
         }
     } 
     else if (table === "Autor") {
         if (confirm('Deseja excluir o Autor com Id = ' + frm.idAutor.value + '?')) {
             frm.action = "/sgab/main?acao=AutorExcluir";
-            frm.submit();
         }
     }
     else if (table === "Biblioteca") {
         if (confirm('Deseja excluir a Biblioteca com Id = ' + id + '?')) {
             frm.bibliotecaId.value = id;
             frm.action = "/sgab/main?acao=BibliotecaExcluir";
-            frm.submit();
         }
     }    
     else if(table === "Fornecedor") {
         if (confirm('Deseja excluir o Fornecedor com o id = ' + id + '?')) {
             frm.fornecedorCNPJ.value = id;
             frm.action = "/sgab/main?acao=FornecedorExcluir";            
-            frm.submit();
         }
     } 
     else if(table === "Obra") {
         if (confirm('Deseja excluir a Obra com Id = ' + id + '?')) {
             frm.obraId.value = id;
             frm.action = "/sgab/main?acao=ObraExcluir";            
-            frm.submit();
         }
     }    
     else if (table === "Pessoa") {
         if (confirm('Deseja excluir o Usuário com Id = ' + id + '?')) {
             frm.pessoaId.value = id;
             frm.action = "/sgab/main?acao=PessoaExcluir";            
-            frm.submit();
         }
     }
     else if(table === "UnidadeOrganizacional") {
         if (confirm('Deseja excluir a Unidade Organizacional com Id = ' + id + '?')) {
             frm.uOrgId.value = id;
             frm.action = "/sgab/main?acao=UnidadeOrganizacionalExcluir";            
-            frm.submit();
         }
     }
     else if (table === "Usuario") {
         if (confirm('Deseja excluir o Usuário com Id = ' + id + '?')) {
             frm.usuarioId.value = id;
             frm.action = "/sgab/main?acao=UsuarioExcluir";            
-            frm.submit();
         }
     }
+    frm.submit();    
 }

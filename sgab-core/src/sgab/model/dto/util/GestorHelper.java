@@ -8,7 +8,7 @@ public class GestorHelper extends PessoaHelper{
 
     public static List<String> validarGestor(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarPessoa(pessoa,pessoas);
-        if(!pessoa.getTipo().contains(PessoaTipo.GESTOR)){
+        if(!pessoa.getTipo().contains(UsuarioTipo.GESTOR)){
             mensagens.add("Pessoa não é um gestor!");
         }
         return mensagens;
@@ -16,7 +16,7 @@ public class GestorHelper extends PessoaHelper{
 
     public static List<String> validarBibliotecario(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarPessoa(pessoa,pessoas);
-        if(!pessoa.getTipo().contains(PessoaTipo.BIBLIOTECARIO)){
+        if(!pessoa.getTipo().contains(UsuarioTipo.BIBLIOTECARIO)){
             mensagens.add("Pessoa não é um bibliotecário!");
         }
         return mensagens;
@@ -24,7 +24,7 @@ public class GestorHelper extends PessoaHelper{
 
     public static List<String> validarAtendente(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarPessoa(pessoa,pessoas);
-        if(!pessoa.getTipo().contains(PessoaTipo.ATENDENTE)){
+        if(!pessoa.getTipo().contains(UsuarioTipo.ATENDENTE)){
             mensagens.add("Pessoa não é um atendente!");
         }
         return mensagens;
@@ -32,7 +32,7 @@ public class GestorHelper extends PessoaHelper{
 
     public static List<String> validarGestorAlteracao(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarAlteracao(pessoa,pessoas);
-        if(!pessoa.getTipo().contains(PessoaTipo.GESTOR)){
+        if(!pessoa.getTipo().contains(UsuarioTipo.GESTOR)){
             mensagens.add("Pessoa não é um gestor!");
         }
         return mensagens;
@@ -40,7 +40,7 @@ public class GestorHelper extends PessoaHelper{
 
     public static List<String> validarBibliotecarioAlteracao(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarAlteracao(pessoa,pessoas);
-        if(!pessoa.getTipo().contains(PessoaTipo.BIBLIOTECARIO)){
+        if(!pessoa.getTipo().contains(UsuarioTipo.BIBLIOTECARIO)){
             mensagens.add("Pessoa não é um bibliotecario!");
         }
         return mensagens;
@@ -48,7 +48,7 @@ public class GestorHelper extends PessoaHelper{
 
     public static List<String> validarAtendenteAlteracao(Pessoa pessoa, PessoasDAO pessoas) {
         List<String> mensagens = validarAlteracao(pessoa,pessoas);
-        if(!pessoa.getTipo().contains(PessoaTipo.ATENDENTE)){
+        if(!pessoa.getTipo().contains(UsuarioTipo.ATENDENTE)){
             mensagens.add("Pessoa não é um atendente!");
         }
         return mensagens;

@@ -86,9 +86,5 @@ public class UnidadeOrganizacionalDAO implements GenericDAO<UnidadeOrganizaciona
         
         return listUOrg;
     }
-    
-    @Override
-    public List<UnidadeOrganizacional> pesquisar(List<BasicPair<Long, UnidadeOrganizacional>> parameterList) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 }

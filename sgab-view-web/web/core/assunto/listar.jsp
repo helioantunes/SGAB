@@ -11,7 +11,7 @@
                 <input type="hidden" name="table" value="Assunto">
                 <input type="hidden" name="assuntoId" value="">
                 
-                <table id="assunto">
+                <table id="commontable">
                     <tr>
                         <th>
                             Código

@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.ServletException; 
 import java.util.List;
 import sgab.model.dto.Pessoa;
-import sgab.model.dto.util.PessoaTipo;
+import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.service.GestaoPessoasService;
 import sgab.model.service.GestaoAdministradoresService;
 import sgab.model.dto.util.PessoaHelper;
@@ -160,7 +160,7 @@ public class AdministradorController {
             pessoa.setEmail(email);
             pessoa.setSenha(senha);
             pessoa.setHabilitado(true);
-            pessoa.setTipo(PessoaTipo.ADMINISTRADOR);
+            pessoa.setTipo(UsuarioTipo.ADMINISTRADOR);
             
             GestaoAdministradoresService gestaoAdministradoresService = new GestaoAdministradoresService();
             try {
@@ -195,7 +195,7 @@ public class AdministradorController {
             pessoa.setEmail(email);
             pessoa.setSenha(senha);
             pessoa.setHabilitado(true);
-            pessoa.setTipo(PessoaTipo.GESTOR);
+            pessoa.setTipo(UsuarioTipo.GESTOR);
             
             GestaoAdministradoresService gestaoAdministradoresService = new GestaoAdministradoresService();
             try {
@@ -221,7 +221,7 @@ public class AdministradorController {
 
             GestaoPessoasService gestaoAdministradoresService = new GestaoPessoasService();
             Pessoa pessoa = gestaoAdministradoresService.pesquisarPorLogin(login);
-            pessoa.setTipo(PessoaTipo.ADMINISTRADOR);
+            pessoa.setTipo(UsuarioTipo.ADMINISTRADOR);
 
             Long pessoaId = pessoa.getId();            
 
@@ -246,7 +246,7 @@ public class AdministradorController {
 
             GestaoPessoasService gestaoAdministradoresService = new GestaoPessoasService();
             Pessoa pessoa = gestaoAdministradoresService.pesquisarPorLogin(login);
-            pessoa.setTipo(PessoaTipo.GESTOR);
+            pessoa.setTipo(UsuarioTipo.GESTOR);
 
             Long pessoaId = pessoa.getId();            
 
