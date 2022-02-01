@@ -58,6 +58,18 @@
                             <td>
                                 <a href="/sgab/main?acao=EmprestimoAlterar&emprestimoId=<%=emprestimo.getId()%>"><%=emprestimo.getTipo()%></a>
                             </td>
+                               <td>
+                                <a href="<%=emprestimo.getId()%>"><%=emprestimo.getPessoa()%></a>
+                            </td>
+                            <td>
+                                <a href="<%=emprestimo.getId()%>"><%=emprestimo.getNome()%></a>
+                            </td>
+                            <td>
+                                <a href="<%=emprestimo.getId()%>"><%=emprestimo.getData()%></a>
+                            </td>
+                            <td>
+                                <a href="<%=exemplar.getId()%>"><%=exemplar.getStatus()%></a>
+                            </td>
                             <td>
                                 <input type="button" value="Excluir" onclick="excluir(<%=emprestimo.getId()%>,document.listarEmprestimo)">
                             </td>
