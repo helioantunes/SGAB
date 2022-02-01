@@ -252,6 +252,18 @@ function validarAquisicao(frm){
     return result;
 }
 
+function validarDevolucao(frm){
+    let result = false;
+    if(frm.emprestimo.id.value === ""){
+        alert("Selecione um exemplar para a devolução.");
+        frm.emprestimo.id.focus();
+    } 
+    else
+        result = true;
+    
+    return result;
+}
+
 /*---------------------------------------------------------------------
  * Funções de pesquisa
  *---------------------------------------------------------------------*/
