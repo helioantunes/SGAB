@@ -231,6 +231,9 @@ public class Main extends HttpServlet {
             case "BibliotecarioGravarInsercao":
                 jsp = GestorController.gravarInsercaoBiblioteca(request);
                 break;
+            case "ListarAcervo":
+                jsp = AcervoController.escolherBiblioteca(request);
+                break;
             case "UsuarioListar":
                 jsp = UsuarioController.listar(request);
                 break;
@@ -240,6 +243,7 @@ public class Main extends HttpServlet {
             case "UsuarioInserir":
                 jsp = UsuarioController.gravarInsercao(request);
                 break;
+            
         }
                  
         //Redirecionando pagina
