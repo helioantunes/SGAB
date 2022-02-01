@@ -2,7 +2,7 @@ package sgab.model.dao;
 
 /**
  *
- * @author iulli
+ * @author iulli e letícia
  */
 
 
