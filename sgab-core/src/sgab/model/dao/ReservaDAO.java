@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import sgab.model.dto.Biblioteca;
+import sgab.model.dto.Exemplar;
 import sgab.model.dto.Obra;
 /**
  *
@@ -78,7 +79,8 @@ public class ReservaDAO implements GenericDAO<Reserva, Long> {
         List<Reserva> listReservas = new ArrayList<>();
         
         for(Reserva reserva : table.values()) {
-            if(reserva.getObra() == obra && reserva.getLocalReserva() == biblioteca)
+            Exemplar exemplarAtual = (Exemplar) reserva.getExemplares().get(0);
+            if(exemplarAtual.getObra() == obra && reserva.getLocalReserva() == biblioteca)
                 listReservas.add(reserva);
         }
         

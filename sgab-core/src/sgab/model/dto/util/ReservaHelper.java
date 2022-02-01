@@ -14,13 +14,11 @@ public class ReservaHelper {
         }
         else{
             if ((reserva.getPessoa() == null))
-                erros.add("Obrigatório informar a pessoa.");
+                erros.add("Pessoa vaiza.");
             if ((reserva.getLocalReserva() == null))
                 erros.add("Obrigatório informar o local.");
-            if ((reserva.getExemplar() == null) || reserva.getExemplar().size < 0)
+            if ((reserva.getExemplares()== null) || reserva.getExemplares().size() < 0)
                 erros.add("Obrigatorio informar o exemplar.");
-            if((reserva.getId() == null) || reserva.getId() < 0)
-                erros.add("Obrigatorio informar o id.");
         }
         return erros;
     }

@@ -16,9 +16,8 @@ public class Reserva {
     
     
     //construtor 
-    public Reserva(Pessoa pessoa, Obra obra, Biblioteca localReserva, ArrayList<Exemplar> exemplares){
+    public Reserva(Pessoa pessoa, Biblioteca localReserva, ArrayList<Exemplar> exemplares){
         this.pessoa = pessoa;
-        this.obra = obra;
         this.localReserva = localReserva;
         this.exemplares =  new ArrayList<>(exemplares);
 
@@ -65,15 +64,4 @@ public class Reserva {
     public String getHorario() {
         return horario;
     }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-    
-    
-    
 }
