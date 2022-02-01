@@ -14,7 +14,7 @@
                 <table id="emprestimo">
                     <tr>
                         <th>
-                            CÃ³digo
+                            Código
                         </th>
                         <th>
                             Login
