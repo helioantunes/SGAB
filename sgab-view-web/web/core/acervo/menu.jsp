@@ -31,20 +31,20 @@
             <button class="button-gestao" onclick="abreModal('formEnvioRestauracao')">Enviar para restauração</button>
             <button class="button-gestao" onclick="abreModal('formRetornoRestauracao')">Registrar retorno</button>
             <button class="button-gestao" onclick="abreModal('formDesativacaoInvalidez')">Desativar livro</button>
-            <button class="button-gestao" >Listar livros em restauração</button>
+            <a href="listarReparo.jsp"><button class="button-gestao">Listar livros em restauração</button></a>
           </div>
           <br>
           <div class="caixa-gestao">
             <h2>Operações de Consulta</h2>
             <button class="button-gestao" onclick="abreModal('formExemplarConsulta')">Registrar livro de consulta</button>
-            <button class="button-gestao" >Listar livros em consulta</button>
+            <a href="listarConsulta.jsp"><button class="button-gestao" >Listar livros em consulta</button></a>
           </div>
           <br>
           <div class="caixa-gestao">
             <h2>Operações de Transferência entre Bibliotecas</h2>
             <button class="button-gestao" onclick="abreModal('formTransferExemplar')">Transferir livro</button>
             <button class="button-gestao" onclick="abreModal('formRecebExemplar')">Receber livro</button>
-            <button class="button-gestao" >Listar transferências</button>
+            <a href="listarTransferencia.jsp"><button class="button-gestao" >Listar transferências</button></a>
 
           </div>
 
