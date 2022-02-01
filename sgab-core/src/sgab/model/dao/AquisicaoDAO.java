@@ -107,9 +107,4 @@ public class AquisicaoDAO implements GenericDAO<Aquisicao, Long>{
     public void excluir(Long key) {
         aquisicoes.remove(key);
     }
-    
-    @Override
-    public List pesquisar(List parameterList) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

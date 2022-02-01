@@ -1,38 +1,47 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="sgab.model.dto.util.UsuarioTipo" %>
+<%@page import="sgab.model.dto.Pessoa"%>
+<%@page import="sgab.autorizacao.ControleAutorizacao"%>
+
 <%@include file="/core/header.jsp" %>
 
 <section>
+    <% if (ControleAutorizacao.checkPermissao("usuario-administrador", usuario.getTipo())) {%>
     <div class="caixa-gestao">
         <h2>Gestão de Administradores</h2>
         <button class="button-gestao" onclick="abreModal('formCadastrarAdministrador')">Cadastrar</button>
         <a href="/sgab/main?acao=UsuarioListar&usuarioTipo=<%=UsuarioTipo.ADMINISTRADOR%>"><button class="button-gestao">Listar</button></a>
     </div>
     <br>
+    <% } if (ControleAutorizacao.checkPermissao("usuario-atendente", usuario.getTipo())) {%>
     <div class="caixa-gestao">
         <h2>Gestão de Atendentes</h2>
         <button class="button-gestao" onclick="abreModal('formCadastrarAtendente')">Cadastrar</button>
         <a href="/sgab/main?acao=UsuarioListar&usuarioTipo=<%=UsuarioTipo.ATENDENTE%>"><button class="button-gestao">Listar</button></a>
     </div>
     <br>
+    <% } if (ControleAutorizacao.checkPermissao("usuario-bibliotecario", usuario.getTipo())) {%>
     <div class="caixa-gestao">
         <h2>Gestão de Bibliotecários</h2>
         <button class="button-gestao" onclick="abreModal('formCadastrarBibliotecario')">Cadastrar</button>
         <a href="/sgab/main?acao=UsuarioListar&usuarioTipo=<%=UsuarioTipo.BIBLIOTECARIO%>"><button class="button-gestao">Listar</button></a>
     </div>
     <br>
+    <% } if (ControleAutorizacao.checkPermissao("usuario-gestor", usuario.getTipo())) {%>
     <div class="caixa-gestao">
         <h2>Gestão de Gestores</h2>
         <button class="button-gestao" onclick="abreModal('formCadastrarGestor')">Cadastrar</button>
         <a href="/sgab/main?acao=UsuarioListar&usuarioTipo=<%=UsuarioTipo.GESTOR%>"><button class="button-gestao">Listar</button></a>
     </div>
     <br>
+    <% } if (ControleAutorizacao.checkPermissao("usuario-leitor", usuario.getTipo())) {%>
     <div class="caixa-gestao">
         <h2>Gestão de Leitores</h2>
         <button class="button-gestao" onclick="abreModal('formCadastrarLeitor')">Cadastrar</button>
         <a href="/sgab/main?acao=UsuarioListar&usuarioTipo=<%=UsuarioTipo.LEITOR%>"><button class="button-gestao">Listar</button></a>
     </div>
-    <br>            
+    <br>           
+    <% }%>
 </section>
 
 <!-- Form cadastrar Administrador -->

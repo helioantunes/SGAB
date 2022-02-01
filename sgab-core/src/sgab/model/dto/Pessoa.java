@@ -2,6 +2,7 @@ package sgab.model.dto;
 
 import sgab.model.dto.util.UsuarioTipo;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Pessoa {
     
@@ -12,7 +13,7 @@ public class Pessoa {
     private String email;
     private String senha;
     private boolean habilitado;
-    private ArrayList<UsuarioTipo> perfis;
+    private List<UsuarioTipo> perfis;
 
     public Pessoa(String login, Long cpf){
         this.login = login;
@@ -28,7 +29,7 @@ public class Pessoa {
         this.senha = senha;
     }
     
-    public ArrayList getTipo(){
+    public List<UsuarioTipo> getTipo(){
         return this.perfis;
     }
 

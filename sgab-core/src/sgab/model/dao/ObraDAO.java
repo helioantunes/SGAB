@@ -68,8 +68,8 @@ public class ObraDAO implements GenericDAO<Obra, Long>{
         return obrasAtivas;
     }
     
-    public LinkedList<Obra> pesquisarNome(String titulo){
-        LinkedList<Obra> resultados = new LinkedList();
+    public List<Obra> pesquisarNome(String titulo){
+        List<Obra> resultados = new LinkedList<>();
         for (Obra obra : listarObras()){
             if(obra.getTitulo().equals(titulo)){
                 resultados.add(obra);
@@ -78,9 +78,9 @@ public class ObraDAO implements GenericDAO<Obra, Long>{
         return resultados;
     }
     
-    public List pesquisarAutor(String autor){
+    public List<Obra> pesquisarAutor(String autor){
         //throw new UnsupportedOperationException("Not supported yet.");LinkedList<Obra> resultados = new LinkedList();
-        LinkedList<Obra> resultados = new LinkedList();
+        List<Obra> resultados = new LinkedList<>();
         for (Obra obra : listarObras()){
             for (Autor autores : obra.getAutor()){
                 if(autores.getNome().equals(autor)){
@@ -90,12 +90,7 @@ public class ObraDAO implements GenericDAO<Obra, Long>{
         }
         return resultados;
     }
-    
-    @Override
-    public List pesquisar(List parameterList) {
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }
-    
+
     public List<Obra> pesquisaTituloAproximado(String titulo){
         List<Obra> resultado = new LinkedList<>();
         for (Obra obra : listarObras()){

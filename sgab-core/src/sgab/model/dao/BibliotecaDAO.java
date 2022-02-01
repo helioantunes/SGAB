@@ -79,10 +79,5 @@ public class BibliotecaDAO implements GenericDAO<Biblioteca, Long> {
         listBiblioteca.addAll(table.values());
         
         return listBiblioteca;
-    }    
-
-    @Override
-    public List<Biblioteca> pesquisar(List<BasicPair<Long, Biblioteca>> parameterList){
-        throw new UnsupportedOperationException("Not supported yet."); 
-    }    
+    }     
 }

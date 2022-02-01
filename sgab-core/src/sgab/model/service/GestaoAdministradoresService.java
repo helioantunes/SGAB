@@ -46,7 +46,7 @@ public class GestaoAdministradoresService{
         List<Pessoa> gestores = new LinkedList<>();
         for(long i = 1; i <= pessoas.size(); i++){
             Pessoa pessoa = pessoasDAO.pesquisar(i);
-            ArrayList<UsuarioTipo> tipos = pessoa.getTipo();
+            List<UsuarioTipo> tipos = pessoa.getTipo();
             for(UsuarioTipo tipo : tipos){
               if(tipo == UsuarioTipo.GESTOR){
                 gestores.add(pessoa);
@@ -61,7 +61,7 @@ public class GestaoAdministradoresService{
         List<Pessoa> administradores = new LinkedList<>();
         for(long i = 1; i <= pessoas.size(); i++){
             Pessoa pessoa = pessoasDAO.pesquisar(i);
-            ArrayList<UsuarioTipo> tipos = pessoa.getTipo();
+            List<UsuarioTipo> tipos = pessoa.getTipo();
             for(UsuarioTipo tipo : tipos){
               if(tipo == UsuarioTipo.ADMINISTRADOR){
                 administradores.add(pessoa);
@@ -73,7 +73,7 @@ public class GestaoAdministradoresService{
      
     public Pessoa pesquisarAdministradoresPorLogin(String login){
         Pessoa result = pessoasDAO.pesquisarLogin(login);
-        ArrayList<UsuarioTipo> tipos = result.getTipo();
+        List<UsuarioTipo> tipos = result.getTipo();
         for(UsuarioTipo tipo : tipos ){
           if(tipo == UsuarioTipo.ADMINISTRADOR){
             return result;            
@@ -87,7 +87,7 @@ public class GestaoAdministradoresService{
     
     public Pessoa pesquisarGestorPorLogin(String login){
         Pessoa result = pessoasDAO.pesquisarLogin(login);
-        ArrayList<UsuarioTipo> tipos = result.getTipo();
+        List<UsuarioTipo> tipos = result.getTipo();
         for(UsuarioTipo tipo : tipos ){
           if(tipo == UsuarioTipo.GESTOR){
             return result;            
