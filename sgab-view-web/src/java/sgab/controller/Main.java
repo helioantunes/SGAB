@@ -240,6 +240,12 @@ public class Main extends HttpServlet {
             case "UsuarioInserir":
                 jsp = UsuarioController.gravarInsercao(request);
                 break;
+            case "EmprestimoListar":
+                jsp = EmprestimoController.listar(request);
+                break;
+            case "EmprestimoSolicitar":
+                jsp = EmprestimoController.gravarEmprestimo(request);
+                break;
         }
                  
         //Redirecionando pagina

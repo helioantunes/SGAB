@@ -14,22 +14,19 @@
                 <table id="emprestimo">
                     <tr>
                         <th>
-                            Código
+                            Usuário
                         </th>
                         <th>
-                            Login
+                            Id do Empréstimo
                         </th>
                         <th>
-                            CPF
+                            Data
                         </th>
                         <th>
                             Nome Completo
                         </th>
                         <th>
-                            Email
-                        </th>
-                        <th>
-                            Tipo
+                            Status
                         </th>
                         <th>
                             &nbsp; &nbsp;
@@ -41,42 +38,20 @@
                     %>
                         <tr>
                             <td>
-                                <a href="/sgab/main?acao=EmprestimoAlterar&emprestimoId=<%=emprestimo.getId()%>"><%=emprestimo.getId()%></a>
+                                <%=emprestimo.getPessoa().getNome()%></a>
                             </td>
                             <td>
-                                <a href="/sgab/main?acao=EmprestimoAlterar&emprestimoId=<%=emprestimo.getId()%>"><%=emprestimo.getLogin()%></a>
+                                <%=emprestimo.getNome()%></a>
                             </td>
                             <td>
-                                <a href="/sgab/main?acao=EmprestimoAlterar&emprestimoId=<%=emprestimo.getId()%>"><%=emprestimo.getCpf()%></a>
+                                <%=emprestimo.getData()%></a>
                             </td>
                             <td>
-                                <a href="/sgab/main?acao=EmprestimoAlterar&emprestimoId=<%=emprestimo.getId()%>"><%=emprestimo.getNome()%></a>
-                            </td>
-                            <td>
-                                <a href="/sgab/main?acao=EmprestimoAlterar&emprestimoId=<%=emprestimo.getId()%>"><%=emprestimo.getEmail()%></a>
-                            </td>
-                            <td>
-                                <a href="/sgab/main?acao=EmprestimoAlterar&emprestimoId=<%=emprestimo.getId()%>"><%=emprestimo.getTipo()%></a>
-                            </td>
-                               <td>
-                                <a href="<%=emprestimo.getId()%>"><%=emprestimo.getPessoa()%></a>
-                            </td>
-                            <td>
-                                <a href="<%=emprestimo.getId()%>"><%=emprestimo.getNome()%></a>
-                            </td>
-                            <td>
-                                <a href="<%=emprestimo.getId()%>"><%=emprestimo.getData()%></a>
-                            </td>
-                            <td>
-                                <a href="<%=exemplar.getId()%>"><%=exemplar.getStatus()%></a>
-                            </td>
-                            <td>
-                                <input type="button" value="Excluir" onclick="excluir(<%=emprestimo.getId()%>,document.listarEmprestimo)">
+                                <%=exemplar.getStatus()%></a>
                             </td>
                         </tr>
                     <%  } %>
                 </table>
             </form>
         </center>
-        <script type="text/javascript" language="JavaScript" src="/sgab/js/validacao.js"></script>
         <%@include file="/core/footer.jsp" %>    

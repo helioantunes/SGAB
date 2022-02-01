@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import sgab.model.dao.*;
 import sgab.model.dto.*;
+import sgab.model.dto.util.ExemplarStatus;
 import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.service.*;
 
-public class InitDB {
 
+
+public class InitDB {
     private static boolean initAccess;
     static {
         initAccess = false;
@@ -157,7 +159,19 @@ public class InitDB {
         uOrgService.cadastrar(new UnidadeOrganizacional("Unidade Varginha", 
                 "Av. dos Imigrantes, 1000 - Varginha/MG"));
     }
-    
+    //FIXME: Remover
+    private static void cadastrarExemplar() {
+        GestaoObras manterObra = new GestaoObras();
+        GestaoAcervo manterAcervo = new GestaoAcervo();
+        GestaoBibliotecaService manterBiblioteca = new GestaoBibliotecaService();
+
+        Exemplar exemplar = new Exemplar(manterObra.pesquisarObraNome("Algoritmos - Teoria e Prática").get(0), 
+                manterBiblioteca.pesquisarProNome("Biblioteca Central"));
+        exemplar.setId((long) 1);
+        exemplar.setStatus(ExemplarStatus.DISPONIVEL);
+        manterAcervo.cadastrarExemplar(exemplar);
+    }
+
     public static void init() {
         if (initAccess)
             return;
@@ -169,8 +183,8 @@ public class InitDB {
         InitDB.cadastrarFornecedor();
         InitDB.cadastrarObra();
         InitDB.cadastrarPessoa();
+        InitDB.cadastrarExemplar();
         
         initAccess = true;
     }
-    
 }

@@ -4,11 +4,14 @@
             <div id="caixa-form" style="display:flex;flex-direction:column;">
                 <h2>Emprestimos</h2>
                 <br>
-                <a href="listar.jsp" style="width:100%;text-align:center;cursor:pointer;">
-                <button style="width:100%;padding:0.5rem 0; cursor:pointer">Listar </button></a>
+                <form name="listarEmprestimo">
+                    <input type="hidden" name="table" value="Emprestimo">
+                    <input type="hidden" name="acao" value="listar">
+                    <button style="width:100%;padding:0.5rem 0; cursor:pointer" onclick="pesquisar(document.listarEmprestimo)">Listar</button></a>
+                </form>
                 <br>
                 <a href="emprestimos.jsp"  style="width:100%;text-align:center;cursor:pointer;">
                 <button  style="width:100%;padding:0.5rem 0; cursor:pointer">Solicitar </button></a>
             </div>
-        </section
+</section>
 <%@include file="/core/footer.jsp" %>

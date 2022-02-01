@@ -4,6 +4,7 @@ import java.util.List;
 import sgab.model.dao.EmprestimosDAO;
 
 import sgab.model.dao.PessoasDAO;
+import sgab.model.dto.Emprestimo;
 import sgab.model.dto.Exemplar;
 import sgab.model.dto.Obra;
 import sgab.model.dto.Pessoa;
@@ -14,10 +15,10 @@ import sgab.model.exception.NegocioException;
 
 public class GestaoEmprestimo {
     private PessoasDAO pessoasDAO;
+    private EmprestimosDAO emprestimosDAO = new EmprestimosDAO();
     
-    public void RealizarEmprestimo(Exemplar exemplar,Pessoa leitor){
+    public void realizarEmprestimo(Exemplar exemplar, Pessoa leitor){
 
-        EmprestimosDAO emprestimosDAO = new EmprestimosDAO();
         List<String> errosLeitor = EmprestimoHelper.validarLeitor(leitor, pessoasDAO);
         List<String> erros = EmprestimoHelper.validarEmprestimo(exemplar);
         
@@ -30,5 +31,16 @@ public class GestaoEmprestimo {
         exemplar.setStatus(ExemplarStatus.EMPRESTADO);
         emprestimosDAO.inserir(exemplar,leitor);
     }
+
+
+    public List<Emprestimo> listarEmprestimo(){
+        List<Emprestimo> lista = emprestimosDAO.listar();
+        if(lista.isEmpty()){
+            throw new NegocioException("Não há empréstimos existentes!");
+        }
+        return lista;
+    }
+
+    
     
 }
