@@ -33,6 +33,7 @@
                     <div>
                         <div class="pesquisa-container">
                             <input type="text" id="nomeObra" placeholder="Insira o nome do obra." />
+                            <input type="text" id="codigoObra" placeholder="Insira o código da obra." />
                             <input class="button" type="button" onclick="ajaxObra()" value="Pesquisar" />
                         </div>
                     <div id="resultados-pesquisa-obras"></div>
