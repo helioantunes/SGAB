@@ -36,9 +36,13 @@
                 <h1>Menu</h1>
             </section>
             <div class="menu">
-                <% if (ControleAutorizacao.checkPermissao("aquisicao", usuario.getTipo())) {%>
-                <a href='/sgab/main?acao=IniciaCadastroAquisicao'>Aquisições</a>
-                <%} if (ControleAutorizacao.checkPermissao("assunto", usuario.getTipo())) {%>
+                <% if (ControleAutorizacao.checkPermissao("aquisicao", usuario.getTipo())) {
+                if(ControleAutorizacao.checkAquisicao(usuario.getTipo())) {%>
+                    <a href='/sgab/main?acao=ListarAquisicoes'>Aquisições</a>
+                <%} else { %>
+                    <a href='/sgab/main?acao=IniciaCadastroAquisicao'>Aquisições</a>
+                <%} 
+                } if (ControleAutorizacao.checkPermissao("assunto", usuario.getTipo())) {%>
                 <a href='/sgab/main?acao=AssuntoListar'>Assuntos</a>
                 <%} if (ControleAutorizacao.checkPermissao("autor", usuario.getTipo())) {%>
                 <a href='/sgab/core/autores/menu.jsp' id="autores-menu">Autores</a>

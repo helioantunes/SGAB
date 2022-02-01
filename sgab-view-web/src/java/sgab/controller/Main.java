@@ -240,6 +240,9 @@ public class Main extends HttpServlet {
             case "UsuarioInserir":
                 jsp = UsuarioController.gravarInsercao(request);
                 break;
+            case "ReservarExemplar":
+                jsp = AssuntoController.excluir(request);
+                break;
         }
                  
         //Redirecionando pagina

@@ -12,6 +12,15 @@
 -->
 
 <%@include file="/core/header.jsp" %>
+<style>
+        .hpesquisa{
+            flex: 0.5;
+        }
+        .pesquisa{
+            cursor: pointer;
+            flex: 0.5;
+        }
+    </style>  
       <center>
           <h3>Reservas - Acervo de Exemplares</h3>
           <div class="acoes">
@@ -23,6 +32,7 @@
                       <option value="titulo">Título</option>
                       <option value="autor">Autor</option>
                       <option value="estado">Estado</option>
+                      <option value="biblioteca">Biblioteca</option>
                   </select>
                   <input type="text" name="nome" placeholder="Escolha o tipo.">
                   <input type="button" class="button" onclick="validarCamposPesquisaExemplar(document.frmPesquisa)" value="Pesquisar">
@@ -39,6 +49,7 @@
                       <th>EDIÇÃO</th>
                       <th>VOLUME</th>
                       <th>ANO</th>
+                      <th>BIBLIOTECA</th>
                       <th>ESTADO</th>
                       <th></th>
                     </tr>
@@ -63,6 +74,7 @@
                       <td><!-- %= exemplar.getEdicao()%> --></td>
                       <td><!-- %= exemplar.getVolume()%> --></td>
                       <td><!-- %= exemplar.getAnoPublicacao()%> --></td>
+                      <td></td>
                       <td><input type="button" style="
                                 display: block; 
                                 margin-left: auto; 
@@ -83,16 +95,13 @@
         </form>
         
     </center>
-        
-    <style>
-        .hpesquisa{
-            flex: 0.5;
+    <script>
+        function reservar(id, frm) {
+            frm.aquisicaoId.value = id;
+            frm.action = "/sgab/main?acao=ReservarExemplar";
+            frm.submit();
         }
-        .pesquisa{
-            cursor: pointer;
-            flex: 0.5;
-        }
-    </style>        
+    </script>      
     <%@include file="/core/footer.jsp" %>
 
 

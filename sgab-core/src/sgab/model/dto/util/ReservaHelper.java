@@ -15,9 +15,7 @@ public class ReservaHelper {
         else{
             if ((reserva.getPessoa() == null))
                 erros.add("Pessoa vaiza.");
-            if ((reserva.getLocalReserva() == null))
-                erros.add("Obrigatório informar o local.");
-            if ((reserva.getExemplares()== null) || reserva.getExemplares().size() < 0)
+            if ((reserva.getExemplar() == null))
                 erros.add("Obrigatorio informar o exemplar.");
         }
         return erros;

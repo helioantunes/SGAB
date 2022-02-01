@@ -10,16 +10,14 @@ import java.util.ArrayList;
 public class Reserva {
     private Long id;
     private Pessoa pessoa;
-    private Biblioteca localReserva; 
-    private ArrayList<Exemplar> exemplares;
+    private Exemplar exemplar;
     private final String horario;
     
     
     //construtor 
-    public Reserva(Pessoa pessoa, Biblioteca localReserva, ArrayList<Exemplar> exemplares){
+    public Reserva(Pessoa pessoa, Biblioteca localReserva, Exemplar exemplar){
         this.pessoa = pessoa;
-        this.localReserva = localReserva;
-        this.exemplares =  new ArrayList<>(exemplares);
+        this.exemplar =  exemplar;
 
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
@@ -41,24 +39,13 @@ public class Reserva {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-    
-    public Biblioteca getLocalReserva() {
-        return localReserva;
-    }
-    public void setLocalReserva(Biblioteca localReserva) {
-        this.localReserva = localReserva;
-    }
 
-    public ArrayList getExemplares() {
-        return this.exemplares;
-    }
     public void setExemplar(Exemplar exemplar) {
-        if (!exemplares.contains(exemplar))
-            this.exemplares.add(exemplar);
+        this.exemplar = exemplar;
     }
 
-    public void setExemplares(ArrayList<Exemplar> exemplares) {
-        this.exemplares =  new ArrayList<>(exemplares);
+    public Exemplar getExemplar() {
+        return exemplar;
     }
 
     public String getHorario() {

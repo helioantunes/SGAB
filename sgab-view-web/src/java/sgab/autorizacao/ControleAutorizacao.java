@@ -134,4 +134,12 @@ public class ControleAutorizacao {
         
         return false;
     }
+    
+    public static boolean checkAquisicao(List<UsuarioTipo> tipoList){
+        if(tipoList.contains(UsuarioTipo.BIBLIOTECARIO)){
+            return true;
+        }
+        
+        return false;
+    }
 }

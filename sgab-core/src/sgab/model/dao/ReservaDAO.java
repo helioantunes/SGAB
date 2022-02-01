@@ -61,11 +61,6 @@ public class ReservaDAO implements GenericDAO<Reserva, Long> {
     public Reserva pesquisar(Long id) {
          return table.get(id);
     }
-
-    @Override
-    public List<Reserva> pesquisar(List<BasicPair<Long, Reserva>> parameterList) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public List<Reserva> listarTodos() {
         List<Reserva> listReservas = new ArrayList<>();
@@ -79,8 +74,7 @@ public class ReservaDAO implements GenericDAO<Reserva, Long> {
         List<Reserva> listReservas = new ArrayList<>();
         
         for(Reserva reserva : table.values()) {
-            Exemplar exemplarAtual = (Exemplar) reserva.getExemplares().get(0);
-            if(exemplarAtual.getObra() == obra && reserva.getLocalReserva() == biblioteca)
+            if(reserva.getExemplar().getObra() == obra && reserva.getExemplar().getBibliotecaPosse() == biblioteca)
                 listReservas.add(reserva);
         }
         

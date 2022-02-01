@@ -1,110 +1,133 @@
 package sgab.model.dao;
 
+/**
+ *
+ * @author iulli
+ */
+
+
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import sgab.model.dto.Aquisicao;
-import sgab.model.dto.util.AquisicaoStatus;
-import sgab.model.exception.*;
+import sgab.model.dto.Exemplar;
+import sgab.model.dto.util.ExemplarStatus;
+import sgab.model.dto.util.ExemplarTipo;
+import sgab.model.exception.PersistenciaException;
+import java.util.ArrayList;
+import sgab.model.dto.Biblioteca;
 
-public class AquisicaoDAO implements GenericDAO<Aquisicao, Long>{
-    private Map<Long, Aquisicao> aquisicoes = new HashMap<>();
+public class AcervoDAO implements GenericDAO<Exemplar, Long>{
+    private Map<Long, Exemplar> exemplares = new HashMap<>();
     
-    private static AquisicaoDAO aquisicaoDAO;
-    static {
-        AquisicaoDAO.aquisicaoDAO = null;
+    private static AcervoDAO acervoDAO;
+    static{
+        AcervoDAO.acervoDAO = null;
     }
     
     private static Long ids;
-    static {
-        AquisicaoDAO.ids = 0L;
+    static{
+        AcervoDAO.ids = 0L;
     }
     
     public static Long getNextId() {
-        return AquisicaoDAO.ids++;
+        return AcervoDAO.ids++;
     }
     
-    private AquisicaoDAO() { }
+    private AcervoDAO() {}
     
-    public static AquisicaoDAO getInstance() {
-        if(aquisicaoDAO == null) {
-            aquisicaoDAO = new AquisicaoDAO();
+    public static AcervoDAO getInstance() {
+        if (acervoDAO == null) {
+            acervoDAO = new AcervoDAO();
         }
-        return aquisicaoDAO;
+        return acervoDAO;
     }
+    
     
     @Override
-    public void inserir(Aquisicao entidade) {
-        entidade.setId(AquisicaoDAO.getNextId());
-        aquisicoes.put(entidade.getId(), entidade);
+    public void inserir(Exemplar exemplar) {
+        exemplar.setId(AcervoDAO.getNextId());
+        exemplares.put(exemplar.getId(), exemplar);
     }
+    
+     @Override
+    public void alterar(Exemplar exemplar) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }    
     
     @Override
-    public void alterar(Aquisicao entidade) {
-        Aquisicao aquisicaoAlvo = aquisicoes.remove(entidade.getId());
-        if(aquisicaoAlvo == null) {
-            throw new PersistenciaException("Nenhuma aquisição com o id '"
-                                            + entidade.getId() + "'.");
-        }
-        
-        inserir(entidade);
+    public Exemplar pesquisar(Long key) {
+        return exemplares.get(key);
     }
     
-    @Override
-    public Aquisicao pesquisar(Long key) {
-        return aquisicoes.get(key);
+    public List<Exemplar> listarRestauracao(Biblioteca biblioteca) {
+        List<Exemplar> listExemplares = new ArrayList<>();
+        
+        for (Exemplar exe: exemplares.values())
+            if (exe.getStatus() == ExemplarStatus.REPARO && exe.getBibliotecaPosse() == biblioteca)
+                listExemplares.add(exe);
+        
+        return listExemplares;
     }
     
-    //é necessário adicionar método de pesquisar por Pessoa e Obra?
-
-    public List<Aquisicao> listarAquisicoes() {
-        List<Aquisicao> aquisicoesExistentes = new LinkedList<>();
+    public List<Exemplar> listarConsulta(Biblioteca biblioteca) {
+        List<Exemplar> listExemplar = new ArrayList<>();
         
-        for(Aquisicao aquisicao : aquisicoes.values()) {
-            if(aquisicao.getStatus() != AquisicaoStatus.CANCELADO) {
-                aquisicoesExistentes.add(aquisicao);
+        for (Exemplar exe: exemplares.values())
+            if (exe.getTipo() == ExemplarTipo.CONSULTA && exe.getStatus() != ExemplarStatus.DESATIVADA && exe.getBibliotecaPosse() == biblioteca)
+                listExemplar.add(exe);
+        
+        return listExemplar;
+    }
+    
+    public List<Exemplar> listarTransferencia(Biblioteca biblioteca) {
+        List<Exemplar> listExemplar = new ArrayList<>();
+        
+        for (Exemplar exe: exemplares.values())
+            if (exe.getStatus() == ExemplarStatus.TRANSFERENCIA && exe.getBibliotecaPosse() == biblioteca)
+                listExemplar.add(exe);
+        
+        return listExemplar;
+    }
+    
+    public boolean mudaStatus(Long id, ExemplarStatus status){
+        Exemplar exemplarAlvo = pesquisar(id);
+        if(exemplarAlvo == null)
+            throw new PersistenciaException("Nenhum exemplar");
+        exemplarAlvo.setStatus(status);
+        return true;
+    }
+    
+    public boolean mudaTipo(Long id, ExemplarTipo tipo){
+        Exemplar exemplarAlvo = pesquisar(id);
+        if(exemplarAlvo == null)
+            throw new PersistenciaException("Nenhum exemplar desse id encontrado");
+        exemplarAlvo.setTipo(tipo);
+        return true;
+    }
+    
+    public List<Exemplar> listarAcervoBiblioteca(Biblioteca biblioteca){
+        List<Exemplar> resultados = new LinkedList<>();
+        for(Exemplar exemplar : exemplares.values()){
+            if(exemplar.getBibliotecaPosse() == biblioteca && exemplar.getStatus() != ExemplarStatus.DESATIVADA){
+                resultados.add(exemplar);
             }
         }
-        return aquisicoesExistentes;
+        return resultados;
     }
     
-    public List<Aquisicao> aquisicoesFinalizadas() {
-        List<Aquisicao> aquisicoesFinalizadas = new LinkedList<>();
-        
-        for(Aquisicao aquisicao : aquisicoes.values()) {
-            if(aquisicao.getStatus() == AquisicaoStatus.FINALIZADA) {
-                aquisicoesFinalizadas.add(aquisicao);
+    public List<Exemplar> listarAcervoParaReserva(){
+        List<Exemplar> resultados = new LinkedList<>();
+        for(Exemplar exemplar : exemplares.values()){
+            if( exemplar.getStatus() != ExemplarStatus.DESATIVADA && exemplar.getTipo() == ExemplarTipo.NORMAL){
+                resultados.add(exemplar);
             }
         }
-        return aquisicoesFinalizadas;
+        return resultados;
     }
     
-    public List<Aquisicao> aquisicoesAtivas() {
-        List<Aquisicao> aquisicoesAtivas = new LinkedList<>();
-        
-        for(Aquisicao aquisicao : aquisicoes.values()) {
-            if(aquisicao.getStatus() == AquisicaoStatus.ATIVO) {
-                aquisicoesAtivas.add(aquisicao);
-            }
-        }
-        
-        return aquisicoesAtivas;
-    } 
-
-    public List<Aquisicao> aquisicoesPendentes() {
-        List<Aquisicao> aquisicoesPendentes = new LinkedList<>();
-        
-        for(Aquisicao aquisicao : aquisicoes.values()) {
-            if(aquisicao.getStatus() == AquisicaoStatus.PENDENTE) {
-                aquisicoesPendentes.add(aquisicao);
-            }
-        }
-        
-        return aquisicoesPendentes;
-    }
-    
-    public void excluir(Long key) {
-        aquisicoes.remove(key);
+    public boolean disponibilizar(Long id){
+        mudaStatus(id, ExemplarStatus.DISPONIVEL);
+        return true;
     }
 }

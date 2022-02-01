@@ -9,10 +9,13 @@ public class Exemplar {
     private Long id;
     private ExemplarStatus status;
     private ExemplarTipo tipo;
+    private Biblioteca bibliotecaPosse;
 
-    public Exemplar(Obra obra, Long id) {
+    public Exemplar(Obra obra, Biblioteca biblioteca) {
         this.obra = obra;
-        this.id = id;
+        this.bibliotecaPosse = biblioteca;
+        status = ExemplarStatus.DISPONIVEL;
+        tipo = ExemplarTipo.NORMAL;
     }
 
     public Obra getObra() {
@@ -21,6 +24,10 @@ public class Exemplar {
 
     public Long getId() {
         return id;
+    }
+    
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public ExemplarStatus getStatus() {
@@ -38,4 +45,14 @@ public class Exemplar {
     public void setTipo(ExemplarTipo tipo) {
         this.tipo = tipo;
     }
+
+    public Biblioteca getBibliotecaPosse() {
+        return bibliotecaPosse;
+    }
+
+    public void setBibliotecaPosse(Biblioteca bibliotecaPosse) {
+        this.bibliotecaPosse = bibliotecaPosse;
+    }
+    
+    
 }

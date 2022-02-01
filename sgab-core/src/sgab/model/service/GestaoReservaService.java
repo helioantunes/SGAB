@@ -5,6 +5,8 @@ import java.util.List;
 import sgab.model.exception.NegocioException;
 import sgab.model.dto.Reserva;
 import sgab.model.dao.ReservaDAO;
+import sgab.model.dto.Biblioteca;
+import sgab.model.dto.Obra;
 import sgab.model.dto.util.ReservaHelper;
 
 public class GestaoReservaService {
@@ -39,5 +41,12 @@ public class GestaoReservaService {
     public Reserva pesquisarPorId(Long id){
         return reservaDAO.pesquisar(id);
     } 
-   
+    
+    public List<Reserva> listarReservas(){
+        return reservaDAO.listarTodos();
+    }
+    
+    public List<Reserva> listarReservasPorObraBiblioteca(Obra obra, Biblioteca biblioteca){
+        return reservaDAO.listarPorObraBiblioteca(obra, biblioteca);
+    }
 }
