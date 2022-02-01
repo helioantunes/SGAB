@@ -254,12 +254,13 @@ function validarAquisicao(frm){
 
 function validarEmprestimo(frm){
     let result = false;
-    if(frm.emprestimo.id.value == ""){
+
+    if(frm.idEmprestimo.value == ""){
         alert("Selecione um exemplar para o empréstimo.");
-        frm.emprestimo.id.focus();
-    }else if(frm.empprestimo.loginLeitor.value = ""){
+        frm.id.focus();
+    }else if(frm.loginLeitor.value = ""){
         alert("Digite um login do leitor.");
-        frm.emprestimo.loginLeitor.focus();
+        frm.loginLeitor.focus();
     }else{
         result = true
     }
@@ -302,6 +303,7 @@ function pesquisar(frm){
 
     else if(table === "Emprestimo"){
         frm.action = "/sgab/main?acao=EmprestimoListar";
+        frm.submit();
     }
 
 }

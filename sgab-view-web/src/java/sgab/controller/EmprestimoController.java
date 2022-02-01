@@ -41,15 +41,11 @@ public class EmprestimoController {
             GestaoEmprestimo gestaoEmprestimo = new GestaoEmprestimo();
             GestaoAcervo gestaoAcervo = new GestaoAcervo();
 
-            List<Obra> obras = new LinkedList<>();
-            String[] nomeObras = request.getParameter("obras").split("::");
-            for(String obra: nomeObras){
-                Obra alvo = (Obra) gestaoObras.pesquisarObraNome(obra);
-                obras.add(alvo);
-            }
+           
             String login = request.getParameter("loginLeitor");
+            System.out.println(login);            
             Pessoa pessoa = gestaoPessoas.pesquisarPorLogin(login);
-            Long Id = Long.parseLong(request.getParameter("id"));
+            Long Id = Long.parseLong(request.getParameter("idEmprestimo"));
             
             Exemplar exemplar = gestaoAcervo.pesquisarExemplar(Id);
         

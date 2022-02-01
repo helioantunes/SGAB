@@ -14,12 +14,11 @@ import sgab.model.exception.NegocioException;
 
 
 public class GestaoEmprestimo {
-    private PessoasDAO pessoasDAO;
     private EmprestimosDAO emprestimosDAO = new EmprestimosDAO();
     
     public void realizarEmprestimo(Exemplar exemplar, Pessoa leitor){
 
-        List<String> errosLeitor = EmprestimoHelper.validarLeitor(leitor, pessoasDAO);
+        List<String> errosLeitor = EmprestimoHelper.validarLeitor(leitor);
         List<String> erros = EmprestimoHelper.validarEmprestimo(exemplar);
         
         if(!erros.isEmpty()){

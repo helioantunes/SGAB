@@ -8,6 +8,7 @@ public enum ExemplarStatus {
     DISPONIVEL,
     REPARO,
     EMPRESTADO,
+    TRANSFERENCIA,
     RESERVADO,
     DESATIVADA;
 }

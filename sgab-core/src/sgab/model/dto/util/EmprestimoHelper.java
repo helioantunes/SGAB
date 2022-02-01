@@ -9,8 +9,8 @@ import sgab.model.dto.Exemplar;
 
 public class EmprestimoHelper extends PessoaHelper{
 
-    public static List<String> validarLeitor(Pessoa pessoa, PessoasDAO pessoas) {
-        List<String> mensagens = validarPessoa(pessoa,pessoas);
+    public static List<String> validarLeitor(Pessoa pessoa) {
+        List<String> mensagens = new LinkedList<>();
         if(!pessoa.getTipo().contains(UsuarioTipo.LEITOR)){
             mensagens.add("Pessoa não é um leitor!");
         }

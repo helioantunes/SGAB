@@ -8,9 +8,8 @@ import sgab.model.dto.util.ExemplarStatus;
 import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.service.*;
 
-
-
 public class InitDB {
+
     private static boolean initAccess;
     static {
         initAccess = false;
@@ -159,7 +158,6 @@ public class InitDB {
         uOrgService.cadastrar(new UnidadeOrganizacional("Unidade Varginha", 
                 "Av. dos Imigrantes, 1000 - Varginha/MG"));
     }
-    //FIXME: Remover
     private static void cadastrarExemplar() {
         GestaoObras manterObra = new GestaoObras();
         GestaoAcervo manterAcervo = new GestaoAcervo();
@@ -171,7 +169,7 @@ public class InitDB {
         exemplar.setStatus(ExemplarStatus.DISPONIVEL);
         manterAcervo.cadastrarExemplar(exemplar);
     }
-
+    
     public static void init() {
         if (initAccess)
             return;
@@ -183,8 +181,8 @@ public class InitDB {
         InitDB.cadastrarFornecedor();
         InitDB.cadastrarObra();
         InitDB.cadastrarPessoa();
-        InitDB.cadastrarExemplar();
         
         initAccess = true;
     }
+    
 }
