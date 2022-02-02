@@ -25,6 +25,7 @@ public class ObraDAO implements GenericDAO<Obra, Long>{
     public static Long getNextId() {
         return ObraDAO.ids++;
     }
+
     
     private ObraDAO() { };
     
@@ -48,7 +49,6 @@ public class ObraDAO implements GenericDAO<Obra, Long>{
             throw new PersistenciaException("Nenhum usuário com "
                                         + "o id '" + entidade.getId() + "'.");
         }
-        
         inserir(entidade);
     }
 

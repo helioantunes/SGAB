@@ -37,9 +37,13 @@
             </section>
             <div class="menu">
                 <a href="/sgab/core/acervo/escolher-biblioteca.jsp">Acervo</a>
-                <% if (ControleAutorizacao.checkPermissao("aquisicao", usuario.getTipo())) {%>
-                <a href='/sgab/main?acao=IniciaCadastroAquisicao'>Aquisições</a>
-                <%} if (ControleAutorizacao.checkPermissao("assunto", usuario.getTipo())) {%>
+                <% if (ControleAutorizacao.checkPermissao("aquisicao", usuario.getTipo())) {
+                if(ControleAutorizacao.checkAquisicao(usuario.getTipo())) {%>
+                    <a href='/sgab/main?acao=ListarAquisicoes'>Aquisições</a>
+                <%} else { %>
+                    <a href='/sgab/main?acao=IniciaCadastroAquisicao'>Aquisições</a>
+                <%} 
+                } if (ControleAutorizacao.checkPermissao("assunto", usuario.getTipo())) {%>
                 <a href='/sgab/main?acao=AssuntoListar'>Assuntos</a>
                 <%} if (ControleAutorizacao.checkPermissao("autor", usuario.getTipo())) {%>
                 <a href='/sgab/core/autores/menu.jsp' id="autores-menu">Autores</a>
@@ -51,7 +55,13 @@
                 <a href='/sgab/main?acao=ObraListar'>Obras</a>         
                 <%} if (ControleAutorizacao.checkPermissao("pessoa", usuario.getTipo())) {%>
                 <a href='/sgab/main?acao=PessoaListar'>Pessoas</a>
-                <%} if (ControleAutorizacao.checkPermissao("unidade", usuario.getTipo())) {%>
+                <% if (ControleAutorizacao.checkPermissao("reserva", usuario.getTipo())) {
+                if(ControleAutorizacao.checkAquisicao(usuario.getTipo())) {%>
+                    <a href='/sgab/main?acao=ListarReservar'>Reservas</a>
+                <%} else { %>
+                    <a href='/sgab/main?acao=IniciarReservar'>Reservas</a>
+                <%} 
+                } if (ControleAutorizacao.checkPermissao("unidade", usuario.getTipo())) {%>
                 <a href='/sgab/main?acao=UnidadeOrganizacionalListar'>Unid. Org.</a> 
                 <%} if (ControleAutorizacao.checkPermissao("usuario", usuario.getTipo())) {%>
                 <a href='/sgab/core/usuario/index.jsp'>Usuários</a>

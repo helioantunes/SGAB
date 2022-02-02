@@ -6,6 +6,7 @@ package sgab.model.service;
 
 import java.util.List;
 import sgab.model.dao.AcervoDAO;
+import sgab.model.dto.Autor;
 import sgab.model.dto.Biblioteca;
 import sgab.model.dto.Exemplar;
 import sgab.model.dto.util.AcervoHelper;
@@ -96,6 +97,22 @@ public class GestaoAcervo {
             throw new NegocioException("Biblioteca não encontrada.");
         }
         return acervoDAO.listarTransferencia(biblioteca);
+    }
+    
+    public List<Exemplar> listaParaReserva(){
+        return acervoDAO.listarAcervoParaReserva();
+    }
+    
+    public List<Exemplar> listaParaReserva(String titulo){
+        return acervoDAO.listarAcervoParaReserva(titulo);
+    }
+    
+    public List<Exemplar> listaParaReserva(Autor autor){
+        return acervoDAO.listarAcervoParaReserva(autor);
+    }
+    
+    public List<Exemplar> listaParaReserva(Biblioteca biblioteca){
+        return acervoDAO.listarAcervoParaReserva(biblioteca);
     }
 }
 

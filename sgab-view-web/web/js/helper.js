@@ -110,6 +110,42 @@ function validarCamposPesquisaObra(frm){
     }
 }
 
+function validarReservaPesquisaExemplar(frm){
+    let tipo = frm.tipo.value;
+    let nome = frm.nome.value;
+
+    if(tipo == "null"){
+        alert("Escolha um tipo de pesquisa!");
+        frm.tipo.focus();
+    }
+    else if (nome == ""){
+        alert("Preencha o campo de nome!");
+        frm.nome.focus();
+    }
+    else{
+        frm.action = "/sgab/main?acao=ReservarPesquisarExemplar";
+        frm.submit();
+    }
+}
+
+function validarPesquisaReservas(frm){
+    let tipo = frm.tipo.value;
+    let nome = frm.nome.value;
+
+    if(tipo == "null"){
+        alert("Escolha um tipo de pesquisa!");
+        frm.tipo.focus();
+    }
+    else if (nome == ""){
+        alert("Preencha o campo de nome!");
+        frm.nome.focus();
+    }
+    else{
+        frm.action = "/sgab/main?acao=ReservarPesquisar";
+        frm.submit();
+    }
+}
+
 function validarObra(frm){
     let result = false;
     if (frm.titulo.value === "") {
