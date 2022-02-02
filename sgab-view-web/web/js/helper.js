@@ -57,7 +57,7 @@ function validarUsuario(frm) {
 function validarLogin(frm){
     var result = false;
 
-    if(frm.login == ""){
+    if(frm.login === ""){
         alert("Informar o login!");
         frm.login.focus();
     }
@@ -70,7 +70,7 @@ function validarLogin(frm){
 function validarPessoa(frm) {
     var result = false;
     
-    if (frm.cpf.value == "") {
+    if (frm.cpf.value === "") {
         alert("Informar o cpf!");
         frm.cpf.focus();
     } else if (frm.login.value === "") {
@@ -115,9 +115,9 @@ function validarObra(frm){
     if (frm.titulo.value === "") {
         alert("Informar o título!");
         frm.titulo.focus();
-    } else if (frm.autores.value == ""){
+    } else if (frm.autores.value === ""){
         alert ("Insira ao menos algum autor!");
-    } else if (frm.assuntos.value == ""){
+    } else if (frm.assuntos.value === ""){
         alert ("Insira ao menos algum assunto!");
     } else if (frm.ano.value === "") {
         alert("Informar o ano de publicação!");
@@ -138,7 +138,7 @@ function validarObra(frm){
     else
         result = true;
 
-    return result
+    return result;
 }
 
 function validarAquisicaoLeitor(frm){
@@ -157,11 +157,11 @@ function validarBiblioteca(frm) {
     let result = false;
     
     if (frm.uOrgNome.value === "") {
-        alert("Informar a unidade organizacional.")
+        alert("Informar a unidade organizacional.");
         frm.uOrgNome.focus();
     }
     else if (frm.bibliotecaNome.value === "") {
-        alert("Informar o nome da biblioteca.")
+        alert("Informar o nome da biblioteca.");
         frm.bibliotecaNome.focus();
     }
     else
@@ -176,7 +176,7 @@ function validarUnidadeOrganizacional(frm){
         alert("Informar o nome!");
         frm.nome.focus();
     } 
-    else if (frm.endereco.value == ""){
+    else if (frm.endereco.value === ""){
         alert ("Insira o endereço!");
         frm.endereco.focus();
     }
@@ -238,11 +238,11 @@ function validarLogin(frm){
 
 function validarAquisicao(frm){
     let result = false;
-    if(frm.fornecedor.value == ""){
+    if(frm.fornecedor.value === ""){
         alert("Insira um fornecedor.");
         frm.fornecedor.focus();
     }
-    else if(frm.quantidade.value == ""){
+    else if(frm.quantidade.value === ""){
         alert("Insira uma quantidade.");
         frm.quantidade.focus();
     }
@@ -252,7 +252,7 @@ function validarAquisicao(frm){
     return result;
 }
 
-function validarDevolucao(frm){
+function validarDevolucao(frm) {
     let result = false;
     
     if(frm.id.value === ""){
@@ -261,18 +261,21 @@ function validarDevolucao(frm){
     } 
     else
         result = true;
+
+    return result;
+}
     
 function validarEmprestimo(frm){
     let result = false;
 
-    if(frm.idEmprestimo.value == ""){
+    if(frm.idEmprestimo.value === ""){
         alert("Selecione um exemplar para o empréstimo.");
         frm.id.focus();
-    }else if(frm.loginLeitor.value == ""){
+    }else if(frm.loginLeitor.value === ""){
         alert("Digite um login do leitor.");
         frm.loginLeitor.focus();
     }else{
-        result = true
+        result = true;
     }
     console.log(frm.loginLeitor.value);
 
@@ -289,7 +292,7 @@ function pesquisar(frm){
     
     if (table === "Pessoa") {
         if (frm.acao.value === "pesquisarPorLogin") {
-            if (frm.login.value == "") {
+            if (frm.login.value === "") {
                 alert("Informar o login!");
                 frm.login.focus();
             } else {
@@ -409,7 +412,7 @@ function gravarAlteracao(frm) {
         }
     }   
     else if (table === "Leitor") {
-        if (frm.login.value == "") {
+        if (frm.login.value === "") {
             alert("Informar um login valido!");
             frm.login.focus();
         }else{
@@ -450,9 +453,9 @@ function gravarAlteracao(frm) {
             caminhourl = "/sgab/main?acao=AquisicaoCriar";
         }
     }
-    else if(table == "AquisicaoObra"){
+    else if(table === "AquisicaoObra"){
         if(validarObra(frm)){
-            caminhourl = "/sgab/main?acao=GravarObraAquisicao"
+            caminhourl = "/sgab/main?acao=GravarObraAquisicao";
         }
     }
     
@@ -465,10 +468,10 @@ function gravarAlteracao(frm) {
         }
     }
 
-    else if (table === "Devolucao"){
-        if(validarDevolucao(frm)){
+    else if (table === "Devolucao")
+        if(validarDevolucao(frm))
             if (frm.acao.value === "gravar")
-                caminhourl = "/sgab/main?acao=GravaDevolucao"
+                caminhourl = "/sgab/main?acao=GravaDevolucao";
     else if (table === "Emprestimo"){
         if(validarEmprestimo(frm)){
             if(frm.acao.value === "solicita"){

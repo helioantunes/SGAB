@@ -20,11 +20,11 @@ public class GestaoDevolucoes {
         
         EmprestimosDAO emprestimosDAO = new EmprestimosDAO();
 
-        Exemplar exemplar = emprestimosDAO.pesquisarExemplar(id).getExemplar(); 
+        Exemplar exemplar = emprestimosDAO.pesquisar(id).getExemplar(); 
   
         if(exemplar!=null){
             exemplar.setStatus(ExemplarStatus.DISPONIVEL);
-            emprestimosDAO.removerExemplar(id);
+            emprestimosDAO.remover(id);
         }
 
         else{
