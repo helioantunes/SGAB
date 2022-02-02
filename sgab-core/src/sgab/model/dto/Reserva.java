@@ -12,12 +12,14 @@ public class Reserva {
     private Pessoa pessoa;
     private Exemplar exemplar;
     private final String horario;
+    private boolean eraDisponivel;
     
     
     //construtor 
     public Reserva(Pessoa pessoa, Exemplar exemplar){
         this.pessoa = pessoa;
         this.exemplar =  exemplar;
+        this.eraDisponivel = false;
 
         Date date = new Date();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy - HH:mm:ss");
@@ -33,6 +35,14 @@ public class Reserva {
         this.id = id;
     }
 
+    public void setEraDisponivel(boolean eraDisponivel) {
+        this.eraDisponivel = eraDisponivel;
+    }
+    
+    public boolean getEraDisponivel() {
+        return this.eraDisponivel;
+    }
+    
     public Pessoa getPessoa() {
         return pessoa;
     }

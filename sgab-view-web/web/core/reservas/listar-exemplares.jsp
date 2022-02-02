@@ -63,7 +63,7 @@
                       <td><%= exemplar.getObra().getEdicao()%></td>
                       <td><%= exemplar.getObra().getVolume()%></td>
                       <td><%= exemplar.getObra().getAnoPublicacao()%></td>
-                      <td><%= exemplar.getBibliotecaPosse()%></td>
+                      <td><%= exemplar.getBibliotecaPosse().getNome()%></td>
                       <td><%= exemplar.getStatus()%></td>
                       <td><input type="button" style="
                                 display: block; 
@@ -85,7 +85,7 @@
     </center>
     <script>
         function reservar(id, frm) {
-            frm.aquisicaoId.value = id;
+            frm.exemplarId.value = id;
             frm.action = "/sgab/main?acao=ReservarExemplar";
             frm.submit();
         }

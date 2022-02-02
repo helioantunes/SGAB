@@ -5,7 +5,7 @@
                 <h1>Resultado: </h1>
                 <p style="color:green">Operação feita com sucesso!</p>
                 <div class="buttons">
-                    <button type="button"><a href="">Voltar</a></button>
+                    <button type="button"><a href="/sgab/core/menu.jsp">Voltar</a></button>
                 </div>
             </div>
         </section>

@@ -15,8 +15,12 @@ public class GestaoReservaService {
     
     private ReservaDAO reservaDAO;
     
+    public GestaoReservaService (){
+        reservaDAO = reservaDAO.getInstance();
+    }
+    
     public Long cadastrar(Reserva reserva) {
-        List<String> exMsgs = ReservaHelper.validarReserva(reserva);
+        List<String> exMsgs = ReservaHelper.validarReserva(reserva, reservaDAO);
         
         if (!exMsgs.isEmpty()){
             throw new NegocioException(exMsgs);

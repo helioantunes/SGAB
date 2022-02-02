@@ -5,6 +5,7 @@
 <%@page import="sgab.model.dto.Autor" %>
 <%@page import="sgab.model.dto.Reserva" %>
 <%@page import="java.util.List" %>
+<%@page import="sgab.model.dto.Reserva" %>
 
 
 <%@include file="/core/header.jsp" %>
@@ -64,7 +65,6 @@
                     %>
                     
                     <tr>
-                      <td><%= reserva.getId()%></td>
                       <td><%= reserva.getPessoa().getNome()%></td>
                       <td><%= reserva.getExemplar().getObra().getTitulo()%></td>
                       <td><%= reserva.getHorario()%></td>
@@ -77,7 +77,7 @@
                                     color: black;
                                     border-radius: 0;
                                     
-                                    " value="Apagar" onclick="finalizar(<%=aquisicao.getId()%>,document.frmAquisicao)">
+                                    " value="Apagar" onclick="finalizar(<%=reserva.getId()%>,document.frmReserva)">
                                 <input type="button" class="button" style="
                                     display: inline; 
                                     height: 26px; 
@@ -85,7 +85,7 @@
                                     background-color: #aaaaaa;
                                     color: black;
                                     border-radius: 0;
-                                " value="Pedir" onclick="pedir(<%=aquisicao.getId()%>, <%= aquisicao.getQuantidade() %>, '<%=aquisicao.getJustificativaQuantidade()%>', document.frmAquisicao)">
+                                " value="Emprestar" onclick="emprestar(<%=reserva.getId()%>, document.frmReserva)">
                     </tr> 
                     <% } %> 
         </table>
@@ -97,6 +97,12 @@
         function finalizar(id, frm){
             frm.reservaId.value = id;
             frm.action = "/sgab/main?acao=FinalizarReserva";
+            frm.submit();
+        }
+        
+        function emprestar(id, frm){
+            frm.reservaId.value = id;
+            frm.action = "/sgab/main?acao=EmprestarReserva";
             frm.submit();
         }
     </script>    

@@ -28,9 +28,14 @@ public class ReservaController {
             GestaoPessoasService gestaoPessoas = new GestaoPessoasService();
             Pessoa pessoaAlvo = (Pessoa) request.getSession().getAttribute("usuario"); 
             
-            exemplarAlvo.setStatus(ExemplarStatus.RESERVADO);
+            
+                
+            
             Reserva reservaNova = new Reserva(pessoaAlvo, exemplarAlvo);
             
+            if(exemplarAlvo.getStatus() == ExemplarStatus.DISPONIVEL)
+                reservaNova.setEraDisponivel(true);
+            exemplarAlvo.setStatus(ExemplarStatus.RESERVADO);
             GestaoReservaService gestaoReserva = new GestaoReservaService();
             gestaoReserva.cadastrar(reservaNova);
             
@@ -66,12 +71,12 @@ public class ReservaController {
     public static String listarReservas(HttpServletRequest request){
         String jsp = "";
         try {
-            GestaoAcervo gestaoAcervo = new GestaoAcervo();
-            List<Exemplar> listExemplares = gestaoAcervo.listaParaReserva();
+            GestaoReservaService gestaoReservaService = new GestaoReservaService();
+            List<Reserva> listReservas = gestaoReservaService.listarReservas();
             
-            if(listExemplares != null && listExemplares.size() > 0){
-                request.setAttribute("listExemplares", listExemplares);
-                jsp = "/core/reservas/listar-exemplares.jsp";
+            if(listReservas != null && listReservas.size() > 0){
+                request.setAttribute("listReservas", listReservas);
+                jsp = "/core/reservas/listar-reservas.jsp";
             } else {
                 String erro = "Nao existe registro de Reservas!";
                 request.setAttribute("erro", erro);
@@ -171,16 +176,35 @@ public class ReservaController {
             try{
                 GestaoEmprestimo gestaoEmprestimo = new GestaoEmprestimo();
                 
-                if(gestaoReservaService.listarReservas(reservaAlvo.getExemplar()).size() == 1 && gestaoEmprestimo.listarEmprestimoPorExemplar(reservaAlvo.getExemplar()).size() == 0 && gestaoEmprestimo.listarEmprestimoPorExemplar(reservaAlvo.getExemplar()) == null){
+                if(gestaoReservaService.listarReservas(reservaAlvo.getExemplar()) == null && gestaoEmprestimo.listarEmprestimoPorExemplar(reservaAlvo.getExemplar()) == null){
                     reservaAlvo.getExemplar().setStatus(ExemplarStatus.DISPONIVEL);
                 }
                 
                 gestaoReservaService.excluir(reservaAlvo);
-                jsp = listarReservas(request);
+                jsp = listarReservasAoFinalizar(request);
             } catch(PersistenciaException ex){
                 String erro = "Ocorreu erro ao Finalizar Reserva!";
                 request.setAttribute("erro", erro);
                 jsp = "/core/erro.jsp";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsp = "";
+        }
+        return jsp;
+    }
+    
+    public static String listarReservasAoFinalizar(HttpServletRequest request){
+        String jsp = "";
+        try {
+            GestaoReservaService gestaoReservaService = new GestaoReservaService();
+            List<Reserva> listReservas = gestaoReservaService.listarReservas();
+            
+            if(listReservas != null && listReservas.size() > 0){
+                request.setAttribute("listReservas", listReservas);
+                jsp = "/core/reservas/listar-reservas.jsp";
+            } else {
+                jsp = "/core/menu.jsp";
             }
         } catch (Exception e) {
             e.printStackTrace();

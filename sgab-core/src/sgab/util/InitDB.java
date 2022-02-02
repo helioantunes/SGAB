@@ -159,19 +159,6 @@ public class InitDB {
                 "Av. dos Imigrantes, 1000 - Varginha/MG"));
     }
     
-    
-    private static void cadastrarExemplar() {
-        GestaoObras manterObra = new GestaoObras();
-        GestaoAcervo manterAcervo = new GestaoAcervo();
-        GestaoBibliotecaService manterBiblioteca = new GestaoBibliotecaService();
-
-        Exemplar exemplar = new Exemplar(manterObra.pesquisarObraNome("Algoritmos - Teoria e Prática").get(0), 
-                manterBiblioteca.pesquisarProNome("Biblioteca Central"));
-        exemplar.setId((long) 1);
-        exemplar.setStatus(ExemplarStatus.DISPONIVEL);
-        manterAcervo.cadastrarExemplar(exemplar);
-    }
-    
     public static void init() {
         if (initAccess)
             return;
@@ -183,7 +170,6 @@ public class InitDB {
         InitDB.cadastrarFornecedor();
         InitDB.cadastrarObra();
         InitDB.cadastrarPessoa();
-        InitDB.cadastrarExemplar();
         
         initAccess = true;
     }

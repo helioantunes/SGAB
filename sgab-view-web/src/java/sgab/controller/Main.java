@@ -258,6 +258,9 @@ public class Main extends HttpServlet {
             case "FinalizarReserva":
                 jsp = ReservaController.finalizar(request);
                 break;
+            case "EmprestarReserva":
+                jsp = ReservaController.emprestar(request);
+                break;
         }
                  
         //Redirecionando pagina

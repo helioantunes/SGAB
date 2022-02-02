@@ -2,7 +2,7 @@
 <%@include file="/core/header.jsp" %>
 
 <%
-    String exemplarId = (String) request.getSession().getAttribute("exemplarId");
+    Long exemplarId = (Long) request.getSession().getAttribute("exemplarId");
     String leitorLogin = (String) request.getSession().getAttribute("leitorLogin");
 %>
 
@@ -19,13 +19,13 @@
             <div id="obras" style="padding-top: 10px;"></div>
                     <label for="idEmprestimo">Id</label>
                     <%if(exemplarId != null) {%>
-                    <input type="text" name="idEmprestimo" placeholder="Insira o código da obra." value="<%exemplarId%>"/>
+                    <input type="text" name="idEmprestimo" placeholder="Insira o código da obra." value="<%=exemplarId%>"/>
                     <%} else {%>
                     <input type="text" name="idEmprestimo" placeholder="Insira o código da obra."/>
                     <%}%>
                     <label for="loginLeitor">Login do Leitor</label>
-                    <%if(leitorLogin != null && leitorLogin.equal("")) {%>
-                    <input type="text" id="cadastroNome" name="loginLeitor" placeholder="Login do Leitor" value="<%emprestimoId%>">
+                    <%if(leitorLogin != null && leitorLogin != "") {%>
+                    <input type="text" id="cadastroNome" name="loginLeitor" placeholder="Login do Leitor" value="<%=leitorLogin%>">
                     <%} else {%>
                     <input type="text" id="cadastroNome" name="loginLeitor" placeholder="Login do Leitor">
                     <%}%>
