@@ -17,7 +17,6 @@ public class GestaoEmprestimo {
     private EmprestimosDAO emprestimosDAO = new EmprestimosDAO();
     
     public void realizarEmprestimo(Exemplar exemplar, Pessoa leitor){
-
         List<String> errosLeitor = EmprestimoHelper.validarLeitor(leitor);
         List<String> erros = EmprestimoHelper.validarEmprestimo(exemplar);
         
@@ -39,7 +38,13 @@ public class GestaoEmprestimo {
         }
         return lista;
     }
-
     
-    
+    public List<Emprestimo> listarEmprestimoPorExemplar(Exemplar exemplar){
+        List<Emprestimo> lista = emprestimosDAO.listar(exemplar);
+        if(lista.isEmpty()){
+            throw new NegocioException("Não há empréstimos existentes!");
+        }
+        return lista;
+    }  
 }
+

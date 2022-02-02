@@ -299,7 +299,7 @@ public class AquisicaoController {
             GestaoObras gestaoObra = new GestaoObras();
             GestaoAquisicao gestaoAquisicao = new GestaoAquisicao();
             GestaoFornecedoresService gestaoFornecedor = new GestaoFornecedoresService();
-            GestaoBibliotecaService gestaoBiblioteca = new GestaoBibliotecaService();
+            GestaoBibliotecaService gestaoBibliotecaService = new GestaoBibliotecaService();
             
             String etapa = request.getParameter("etapa");
             
@@ -311,9 +311,13 @@ public class AquisicaoController {
                         jsp = "/core/aquisicoes/pedir-passo2-none.jsp";
                     }
                     else{
+                        String bibliotecaNome = request.getParameter("biblioteca");
+                        Biblioteca bibliotecaAlvo = gestaoBibliotecaService.pesquisarProNome(bibliotecaNome);
+                        
                         request.setAttribute("obras", obrasAlvo);
                         request.getSession().setAttribute("pessoaDona", null);
                         request.getSession().setAttribute("idAquisicaoAtual", null);
+                        request.getSession().setAttribute("bibliotecaAlvo", bibliotecaAlvo);
                         jsp= "/core/aquisicoes/pedir-passo2.jsp";
                     }
                     break;
@@ -344,9 +348,9 @@ public class AquisicaoController {
                         
                         Pessoa pessoaAlvo1 = (Pessoa) request.getSession().getAttribute("usuario");
                         
+                        Biblioteca biblioteca = (Biblioteca) request.getSession().getAttribute("bibliotecaAlvo");
                         //todo usar biblioteca do bibliotecário
-                        Biblioteca biblioteca = gestaoBiblioteca.pesquisarProNome("Biblioteca Campus II");
-                        //ESTAS LINHAS PODEM SER SUBSTITUIDAS PELAS DO ENZO
+
                         
                         Aquisicao novaAquisicao = new Aquisicao(biblioteca, pessoaAlvo1, quantidade, fornecedorAlvo, AquisicaoStatus.ATIVO, obraAlvo1);
                         gestaoAquisicao.cadastrarAquisicao(novaAquisicao);

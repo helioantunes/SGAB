@@ -90,6 +90,11 @@ public class ControleAutorizacao {
         permissao.addUsuarioGrupo(UsuarioTipo.ATENDENTE);
         permissoes.put(permissao.getRecurso(), permissao);
 
+        permissao = new Permissao("reserva");
+        permissao.addUsuarioGrupo(UsuarioTipo.BIBLIOTECARIO);
+        permissao.addUsuarioGrupo(UsuarioTipo.LEITOR);
+        permissoes.put(permissao.getRecurso(), permissao);
+
         permissao = new Permissao("usuario-administrador");
         permissao.addUsuarioGrupo(UsuarioTipo.ADMINISTRADOR);
         permissoes.put(permissao.getRecurso(), permissao);
@@ -131,6 +136,14 @@ public class ControleAutorizacao {
         for (UsuarioTipo usuario: tipoList)
             if (permissoes.get(recurso).check(usuario))
                 return true;
+        
+        return false;
+    }
+    
+    public static boolean checkAquisicao(List<UsuarioTipo> tipoList){
+        if(tipoList.contains(UsuarioTipo.BIBLIOTECARIO)){
+            return true;
+        }
         
         return false;
     }
