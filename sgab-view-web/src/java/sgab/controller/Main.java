@@ -240,8 +240,23 @@ public class Main extends HttpServlet {
             case "UsuarioInserir":
                 jsp = UsuarioController.gravarInsercao(request);
                 break;
+            case "IniciarReservar":
+                jsp = ReservaController.listarExemplares(request);
+                break;
+            case "ListarReservar":
+                jsp = ReservaController.listarReservas(request);
+                break;
             case "ReservarExemplar":
-                jsp = AssuntoController.excluir(request);
+                jsp = ReservaController.reservar(request);
+                break;
+            case "ReservarPesquisarExemplar":
+                jsp = ReservaController.pesquisarListaExemplares(request);
+                break;
+            case "ReservarPesquisar":
+                jsp = ReservaController.pesquisarListaReservas(request);
+                break;
+            case "FinalizarReserva":
+                jsp = ReservaController.finalizar(request);
                 break;
         }
                  

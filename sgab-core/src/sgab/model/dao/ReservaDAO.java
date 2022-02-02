@@ -12,6 +12,7 @@ import java.util.Map;
 import sgab.model.dto.Biblioteca;
 import sgab.model.dto.Exemplar;
 import sgab.model.dto.Obra;
+import sgab.model.dto.Pessoa;
 /**
  *
  * @author T-Gamer
@@ -37,14 +38,8 @@ public class ReservaDAO implements GenericDAO<Reserva, Long> {
     
     @Override
     public void inserir(Reserva entidade) {
-        if (pesquisar(entidade.getId()) != null)
-            throw new PersistenciaException("'" + entidade.getId() 
-                                                            + "' precisa ser único.");
-        
         Long reservaId = ReservaDAO.getNextId();
         entidade.setId(reservaId);
-        
-        
         table.put(reservaId, entidade);
     }
 
@@ -68,6 +63,76 @@ public class ReservaDAO implements GenericDAO<Reserva, Long> {
         listReservas.addAll(table.values());
         
         return listReservas;
+    }
+    
+    public List<Reserva> listarTodos(Pessoa leitor) {
+        List<Reserva> listReservas = new ArrayList<>();
+        
+        for(Reserva reserva : table.values()){
+            if(reserva.getPessoa().equals(leitor)){
+                listReservas.add(reserva);
+            }
+        }
+        
+        return listReservas;
+    }
+    
+    public List<Reserva> listarTodos(Exemplar exemplar) {
+        List<Reserva> listReservas = new ArrayList<>();
+        
+        for(Reserva reserva : table.values()){
+            if(reserva.getExemplar().equals(exemplar)){
+                listReservas.add(reserva);
+            }
+        }
+        
+        return listReservas;
+    }
+    
+    public List<Reserva> listarTodos(String titulo) {
+        List<Reserva> listReservas = new ArrayList<>();
+        
+        for(Reserva reserva : table.values()){
+            if(checaSemelhanca(reserva.getExemplar().getObra().getTitulo(), titulo)){
+                listReservas.add(reserva);
+            }
+        }
+        
+        return listReservas;
+    }
+     
+    private boolean checaSemelhanca(String nomeObra, String nomeInput){
+        String nomeA = nomeObra.toLowerCase();
+        String nomeB = nomeInput.toLowerCase();
+        float count = 0;
+        
+        //iguala o tamanho das Strings
+        if(nomeA.length() > nomeB.length()){
+            for(int i =0; i < (nomeObra.length() - nomeInput.length()); i++){
+                nomeB = nomeB.concat(" ");
+            }
+        }
+        if(nomeA.length() < nomeB.length()){
+            for(int i =0; i < (nomeObra.length() - nomeInput.length()); i++){
+                nomeA = nomeA.concat(" ");
+            }
+        }
+        
+        for(int i=0, j=0; i<nomeA.length(); i++, j++) { 
+            if(nomeA.charAt(i) != nomeB.charAt(j)){
+                count++;
+                if(i+1 == nomeA.length())
+                    continue;
+                if(nomeA.charAt(i+1)==nomeB.charAt(j))
+                    j--;
+            }
+        }
+        float porcentagem = count / nomeA.length();
+        
+        if(porcentagem < 0.21)
+            return true;
+        
+        return false;
     }
     
     public List<Reserva> listarPorObraBiblioteca(Obra obra, Biblioteca biblioteca) {

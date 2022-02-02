@@ -15,7 +15,7 @@ public class Reserva {
     
     
     //construtor 
-    public Reserva(Pessoa pessoa, Biblioteca localReserva, Exemplar exemplar){
+    public Reserva(Pessoa pessoa, Exemplar exemplar){
         this.pessoa = pessoa;
         this.exemplar =  exemplar;
 

@@ -6,7 +6,9 @@ import sgab.model.exception.NegocioException;
 import sgab.model.dto.Reserva;
 import sgab.model.dao.ReservaDAO;
 import sgab.model.dto.Biblioteca;
+import sgab.model.dto.Exemplar;
 import sgab.model.dto.Obra;
+import sgab.model.dto.Pessoa;
 import sgab.model.dto.util.ReservaHelper;
 
 public class GestaoReservaService {
@@ -48,5 +50,17 @@ public class GestaoReservaService {
     
     public List<Reserva> listarReservasPorObraBiblioteca(Obra obra, Biblioteca biblioteca){
         return reservaDAO.listarPorObraBiblioteca(obra, biblioteca);
+    }
+
+    public List<Reserva> listarReservas(String nome) {
+        return reservaDAO.listarTodos(nome);
+    }
+    
+    public List<Reserva> listarReservas(Pessoa leitor) {
+        return reservaDAO.listarTodos(leitor);
+    }
+
+    public List<Reserva> listarReservas(Exemplar exemplar){
+        return reservaDAO.listarTodos(exemplar);
     }
 }

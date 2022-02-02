@@ -1,8 +1,3 @@
-<%-- 
-    Document   : listar
-    Created on : 10 de jan. de 2022, 19:17:30
-    Author     : HP
---%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
  
@@ -13,6 +8,15 @@
 
 
 <%@include file="/core/header.jsp" %>
+<style>
+        .hpesquisa{
+            flex: 0.5;
+        }
+        .pesquisa{
+            cursor: pointer;
+            flex: 0.5;
+        }
+    </style> 
       <center>
           <h3>Reservas - Acervo de Exemplares</h3>
           <div class="acoes">
@@ -22,20 +26,19 @@
                   <select name="tipo">
                       <option value="null" selected>[Pesquisar por]</option>
                       <option value="titulo">Título</option>
-                      <option value="estado">Leitor</option>
+                      <option value="leitor">Login do Leitor</option>
                   </select>
                   <input type="text" name="nome" placeholder="Escolha o tipo.">
-                  <input type="button" class="button" onclick="validarCamposPesquisaExemplar(document.frmPesquisa)" value="Pesquisar">
+                  <input type="button" class="button" onclick="validarPesquisaReservas(document.frmPesquisa)" value="Pesquisar">
               </form>
           </div>
-          <form name="frmExemplar" method="post">
-                <input type="hidden" name="table" value="Exemplar">
-                <input type="hidden" name="exemplarId" value="">
-                <table id="usuario" style="width: 100%;">
+          <form name="frmReserva" method="post">
+                <input type="hidden" name="table" value="Reserva">
+                <input type="hidden" name="reservaId" value="">
+                <table style="width: 100%;">
                     <tr>
                       <th>LEITOR</th>  
-                      <th>EXEMPLARES</th>
-                      <th>BIBLIOTECA</th>
+                      <th>EXEMPLAR</th>
                       <th>DATA</th>
                     </tr>
                     <% 
@@ -46,17 +49,11 @@
                     <tr>
                       <td><%= reserva.getId()%></td>
                       <td><%= reserva.getPessoa().getNome()%></td>
-                      <td>
-                      <% for(Exemplar exemplar: reserva.getExemplares()){ %>
-                      <%= exemplar.getObra().getTitulo()%>;
-                      <% } %> 
-                      
-                      </td>
-                      <td><%= reserva.getLocalReserva().getNome%></td>
+                      <td><%= reserva.getExemplar().getObra().getTitulo()%></td>
                       <td><%= reserva.getHorario()%></td>
                       <td><input type="button" style="
                                 display: block; 
-                                margin-left: auto; 
+                                margin-left: auto;
                                 margin-right: auto; 
                                 padding: 4px 4px; 
                                 height: 26px; 
@@ -65,7 +62,7 @@
                                 color: black;
                                 width: 100%;
                                 border-radius: 0;
-                            " class="button" value="?" onclick="window.location.href='/sgab/core/reservas/reservar.jsp';"></td>
+                            " class="button" value="Finalizar" onclick="finalizar(<%= reserva.getId()%>, document.frmPesquisa)"></td>
                     </tr> 
                     <% } %> 
         </table>
@@ -73,13 +70,11 @@
         
     </center>
         
-    <style>
-        .hpesquisa{
-            flex: 0.5;
+    <script>
+        function finalizar(id, frm){
+            frm.reservaId.value = id;
+            frm.action = "/sgab/main?acao=FinalizarReserva";
+            frm.submit();
         }
-        .pesquisa{
-            cursor: pointer;
-            flex: 0.5;
-        }
-    </style>        
+    </script>    
     <%@include file="/core/footer.jsp" %>
