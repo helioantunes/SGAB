@@ -17,7 +17,6 @@ public class GestaoEmprestimo {
     private EmprestimosDAO emprestimosDAO = new EmprestimosDAO();
     
     public void realizarEmprestimo(Exemplar exemplar, Pessoa leitor){
-
         List<String> errosLeitor = EmprestimoHelper.validarLeitor(leitor);
         List<String> erros = EmprestimoHelper.validarEmprestimo(exemplar);
         

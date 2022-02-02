@@ -196,10 +196,12 @@ public class ReservaController {
             Reserva reservaAlvo = gestaoReservaService.pesquisarPorId(Long.parseLong(request.getParameter("reservaId")));
             
             try{
-                
+                GestaoEmprestimo gestaoEmprestimo = new GestaoEmprestimo();
+                request.getSession().setAttribute("exemplarId", reservaAlvo.getExemplar().getId());
+                request.getSession().setAttribute("leitorLogin", reservaAlvo.getPessoa().getLogin());
                 
                 gestaoReservaService.excluir(reservaAlvo);
-                jsp = listarReservas(request);
+                jsp = "/core/emprestimos/emprestimos.jsp";
             } catch(PersistenciaException ex){
                 String erro = "Ocorreu erro ao Finalizar Reserva!";
                 request.setAttribute("erro", erro);
