@@ -6,7 +6,7 @@
                 <br>
                 <form name="listarEmprestimo">
                     <input type="hidden" name="table" value="Emprestimo">
-                    <input type="hidden" name="acao" value="listar">
+                    <input type="hidden" name="acao" value="EmprestimoListar">
                     <button style="width:100%;padding:0.5rem 0; cursor:pointer" onclick="pesquisar(document.listarEmprestimo)">Listar</button></a>
                 </form>
                 <br>

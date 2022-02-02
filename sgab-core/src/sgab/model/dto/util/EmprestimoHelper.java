@@ -21,16 +21,16 @@ public class EmprestimoHelper extends PessoaHelper{
         List<String> erros = new LinkedList<>();
         if(exemplar == null){
             erros.add("O exemplar não é válido");
-        }else if(!(exemplar.getStatus() == ExemplarStatus.REPARO)){
+        }else if(exemplar.getStatus() == ExemplarStatus.REPARO){
             erros.add("O exemplar está em reparo");
         //FIXME: verificar se o exemplar está reservado pela mesma pessoa
-        }else if(!(exemplar.getStatus() == ExemplarStatus.RESERVADO)){
+        }else if(exemplar.getStatus() == ExemplarStatus.RESERVADO){
             erros.add("O exemplar está reservado");
         }   
-        else if(!(exemplar.getStatus() == ExemplarStatus.DESATIVADA)){
+        else if(exemplar.getStatus() == ExemplarStatus.DESATIVADA){
             erros.add("O exemplar está desativado");
         }  
-        else if(!(exemplar.getStatus() == ExemplarStatus.EMPRESTADO)){
+        else if(exemplar.getStatus() == ExemplarStatus.EMPRESTADO){
             erros.add("O exemplar está emprestado");
         }  
         return erros;

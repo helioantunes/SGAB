@@ -9,45 +9,18 @@
             <form name="emprestimo" method="POST">
                     <input type="hidden" name="table" value="Emprestimo">
                     <input type="hidden" name="acao" value="solicita">  <!-- Nome da tabela que serÃ¡ alterada -->
-                    <label>Obras</label>
-            <span
-              onclick="abreModal('pesquisaObra')"
-              style="
-                float: right;
-                font-weight: bolder;
-                font-size: 1.5em;
-                cursor: pointer;
-                user-select: none;
-              "
-              >+</span>
             <input id="obras-input" type="hidden" name="obras" value="">
             <div id="obras" style="padding-top: 10px;"></div>
-
-               
                     <label for="idEmprestimo">Id</label>
                     <input type="text" name="idEmprestimo" placeholder="Insira o código da obra." />
                     <label for="loginLeitor">Login do Leitor</label>
                     <input type="text" id="cadastroNome" name="loginLeitor" placeholder="Login do Leitor">
-                    <input type="button" class="button" onclick="gravarAlteracao(document.emprestimo)">Solicitar Empréstimo</input>
+                    <input type="button" class="button" onclick="gravarAlteracao(document.emprestimo)" value="Solicitar emprestimo">
                  </div>
                 </form>
             </div>
                         
         </section>
-         <!-- Modal Obras-->
-         <div id="mask" onclick="fechaModalAll()"></div>
-         <div class="form-popup" id="pesquisaObra">
-             <div class="close-btn" onclick="fechaModal('pesquisaObra')">&times;</div>
-             <form class="form-container">
-                 <h2>Adicionar Obra</h2>
-                 <div>
-                     <div class="pesquisa-container">
-                         <input type="text" id="nomeObra" placeholder="Insira o nome do obra." />
-                         <input class="button" type="button" onclick="ajaxObra()" value="Pesquisar" />
-                     </div>
-                 <div id="resultados-pesquisa-obras"></div>
-                 </div>
-             </form>
          </div>
         
         <script src="/sgab/js/abreModal.js"></script>

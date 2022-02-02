@@ -24,8 +24,8 @@ public class EmprestimoController {
         try {
             GestaoEmprestimo gestaoEmprestimo = new GestaoEmprestimo();
             List<Emprestimo> emprestimos = gestaoEmprestimo.listarEmprestimo();
-            request.setAttribute("listEmprestimo",emprestimos);
-            jsp = "/sgab/core/emprestimo/listar.jsp";
+            request.setAttribute("listEmprestimos",emprestimos);
+            jsp = "/core/emprestimos/listar.jsp";
         } catch (Exception e) {
             e.printStackTrace();
             jsp = "";
@@ -41,9 +41,8 @@ public class EmprestimoController {
             GestaoEmprestimo gestaoEmprestimo = new GestaoEmprestimo();
             GestaoAcervo gestaoAcervo = new GestaoAcervo();
 
-           
             String login = request.getParameter("loginLeitor");
-            System.out.println(login);            
+            System.out.println(login);
             Pessoa pessoa = gestaoPessoas.pesquisarPorLogin(login);
             Long Id = Long.parseLong(request.getParameter("idEmprestimo"));
             

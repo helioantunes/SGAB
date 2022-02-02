@@ -258,12 +258,13 @@ function validarEmprestimo(frm){
     if(frm.idEmprestimo.value == ""){
         alert("Selecione um exemplar para o empréstimo.");
         frm.id.focus();
-    }else if(frm.loginLeitor.value = ""){
+    }else if(frm.loginLeitor.value == ""){
         alert("Digite um login do leitor.");
         frm.loginLeitor.focus();
     }else{
         result = true
     }
+    console.log(frm.loginLeitor.value);
     return result;
 }
 

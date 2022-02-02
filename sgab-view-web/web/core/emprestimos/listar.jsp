@@ -1,12 +1,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@page import="sgab.model.dto.Pessoa" %>
+<%@page import="sgab.model.dto.Emprestimo" %>
+<%@page import="sgab.model.dto.Exemplar" %>
 <%@page import="java.util.List" %>
 
 <%@include file="/core/header.jsp" %>
        
         <center>
             <h3>Lista de Empréstimos</h3>
-            <a href="/sgab/core/emprestimos/inserir.jsp">Novo Empréstimo</a>
+            <a href="/sgab/core/emprestimos/emprestimos.jsp">Novo Empréstimo</a>
             <form name="listarEmprestimo" method="post">
                 <input type="hidden" name="table" value="Emprestimo">
                 <input type="hidden" name="emprestimoId" value="">
@@ -17,13 +19,10 @@
                             Usuário
                         </th>
                         <th>
-                            Id do Empréstimo
+                            Id do Exemplar
                         </th>
                         <th>
                             Data
-                        </th>
-                        <th>
-                            Nome Completo
                         </th>
                         <th>
                             Status
@@ -41,13 +40,13 @@
                                 <%=emprestimo.getPessoa().getNome()%></a>
                             </td>
                             <td>
-                                <%=emprestimo.getNome()%></a>
+                                <%=Long.toString(emprestimo.getExemplar().getId())%></a>
                             </td>
                             <td>
-                                <%=emprestimo.getData()%></a>
+                                <%=emprestimo.getDate()%></a>
                             </td>
                             <td>
-                                <%=exemplar.getStatus()%></a>
+                                <%=emprestimo.getExemplar().getStatus()%></a>
                             </td>
                         </tr>
                     <%  } %>
