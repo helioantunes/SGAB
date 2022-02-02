@@ -10,7 +10,6 @@ public class Exemplar {
     private ExemplarStatus status;
     private ExemplarTipo tipo;
     private Biblioteca bibliotecaPosse;
-    private String historico;
 
     public Exemplar(Obra obra, Biblioteca biblioteca) {
         this.obra = obra;
@@ -54,14 +53,7 @@ public class Exemplar {
     public void setBibliotecaPosse(Biblioteca bibliotecaPosse) {
         this.bibliotecaPosse = bibliotecaPosse;
     }
-
-    public String getHistorico() {
-        return historico;
-    }
-
-    public void setHistorico(String historico) {
-        this.historico = historico;
-    }
     
-    
+
 }
+

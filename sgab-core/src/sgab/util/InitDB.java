@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import sgab.model.dao.*;
 import sgab.model.dto.*;
+import sgab.model.dto.util.ExemplarStatus;
 import sgab.model.dto.util.UsuarioTipo;
 import sgab.model.service.*;
 

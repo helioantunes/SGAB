@@ -7,14 +7,19 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import sgab.model.dto.Biblioteca;
+import sgab.model.dto.Exemplar;
+import sgab.model.dto.util.ExemplarStatus;
+import sgab.model.dto.Obra;
+import sgab.model.service.GestaoAcervo;
+import sgab.model.service.GestaoBibliotecaService;
+import sgab.model.service.GestaoObras;
 
 @WebServlet(name = "Main", urlPatterns = {"/main"})
 public class Main extends HttpServlet {
     private String jsp = "";
-    
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
         request.setCharacterEncoding("UTF-8");
         String acao = request.getParameter("acao");
 
@@ -277,6 +282,12 @@ public class Main extends HttpServlet {
                 jsp = AcervoController.aceitarExemplar(request);
                 break;
             
+            case "EmprestimoListar":
+                jsp = EmprestimoController.listar(request);
+                break;
+            case "EmprestimoSolicitar":
+                jsp = EmprestimoController.gravarEmprestimo(request);
+                break;
         }
                  
         //Redirecionando pagina
