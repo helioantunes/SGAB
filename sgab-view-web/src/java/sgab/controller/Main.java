@@ -236,6 +236,24 @@ public class Main extends HttpServlet {
             case "BibliotecarioGravarInsercao":
                 jsp = GestorController.gravarInsercaoBiblioteca(request);
                 break;
+            case "ListarAcervo":
+                jsp = AcervoController.escolherBiblioteca(request);
+                break;
+            case "RestaurarExemplar":
+                jsp = AcervoController.enviarReparo(request);
+                break;
+            case "RetornoRestauracao":
+                jsp = AcervoController.receberReparo(request);
+                break;
+            case "DesativaExemplar":
+                jsp = AcervoController.desativarExemplar(request);
+                break;
+            case "TransformaExemplarConsulta":
+                jsp = AcervoController.registrarLivroConsulta(request);
+                break;
+            case "TransferirExemplar":
+                jsp = AcervoController.registrarTransferencia(request);
+                break;
             case "UsuarioListar":
                 jsp = UsuarioController.listar(request);
                 break;
@@ -244,6 +262,24 @@ public class Main extends HttpServlet {
                 break;
             case "UsuarioInserir":
                 jsp = UsuarioController.gravarInsercao(request);
+                break;
+            case "ListarRestaurar":
+                jsp = AcervoController.listarRestaurar(request);
+                break;
+            case "ListarConsulta":
+                jsp = AcervoController.listarConsulta(request);
+                break;
+            case "ListarTransferencia":
+                jsp = AcervoController.listarTransferencia(request);
+                break;
+            case "MostraExemplar":
+                jsp = AcervoController.mostraExemplar(request);
+                break;
+            case "ListarAcervoBiblioteca":
+                jsp = AcervoController.listarAcervoBiblioteca(request);
+                break;
+            case "AceitaExemplar":
+                jsp = AcervoController.aceitarExemplar(request);
                 break;
             case "EmprestimoListar":
                 jsp = EmprestimoController.listar(request);

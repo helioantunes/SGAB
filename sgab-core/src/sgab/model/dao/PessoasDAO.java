@@ -41,6 +41,7 @@ public class PessoasDAO implements GenericDeleteDAO<Pessoa, Long>{
             admin.setEmail("admin@sgab.cefetmg.br");
             admin.setSenha("admin");
             admin.setTipo(UsuarioTipo.ADMINISTRADOR);
+            admin.setTipo(UsuarioTipo.BIBLIOTECARIO);
             admin.setHabilitado(true);
         
             pessoasDAO.inserir(admin);

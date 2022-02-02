@@ -80,7 +80,8 @@ public class GestaoAcervo {
         if(biblioteca == null){
             throw new NegocioException("Biblioteca não encontrada.");
         }
-        return acervoDAO.listarConsulta(biblioteca);
+        //**# return acervoDAO.listarConsulta(biblioteca); */
+        return acervoDAO.listarAcervoBiblioteca(biblioteca);
     }
     
     public List<Exemplar> listaRestauracao(Biblioteca biblioteca){
@@ -97,3 +98,4 @@ public class GestaoAcervo {
         return acervoDAO.listarTransferencia(biblioteca);
     }
 }
+
