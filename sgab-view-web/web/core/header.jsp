@@ -36,6 +36,7 @@
                 <h1>Menu</h1>
             </section>
             <div class="menu">
+                <a href="/sgab/core/acervo/escolher-biblioteca.jsp">Acervo</a>
                 <% if (ControleAutorizacao.checkPermissao("aquisicao", usuario.getTipo())) {%>
                 <a href='/sgab/main?acao=IniciaCadastroAquisicao'>Aquisições</a>
                 <%} if (ControleAutorizacao.checkPermissao("assunto", usuario.getTipo())) {%>
