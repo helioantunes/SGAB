@@ -11,6 +11,12 @@
 
 <%@include file="/core/header.jsp" %>
         <section>
+            <div class="caixa-gestao">
+                
+                <center>
+                    <h2>Acessar acervo de <%= biblioteca.getNome() %></h2>
+                    <a href="/sgab/main?acao=ListarAcervoBiblioteca&bibliotecaOrigem=<%=biblioteca.getNome()%>"><button class="button-gestao">Acessar acervo</button></a></center>
+            </div>
           <div class="caixa-gestao">
             <h2>Operações de Restauração</h2>
             <button class="button-gestao" onclick="abreModal('formEnvioRestauracao')">Enviar para restauração</button>

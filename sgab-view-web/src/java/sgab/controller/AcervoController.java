@@ -318,5 +318,64 @@ public class AcervoController {
         return jsp;
     }
     
+    public static String mostraExemplar(HttpServletRequest request) {
+        String jsp = "";
+        try{
+            GestaoAcervo gestaoAcervo = new GestaoAcervo();
+            
+            Long id = Long.parseLong(request.getParameter("exemplarId"));
+            Exemplar exemplar = gestaoAcervo.pesquisarExemplar(id);
+            
+            request.setAttribute("exemplarAlvo", exemplar);
+            jsp = "/core/acervo/mostra-exemplar.jsp";
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+            jsp = "";
+        }
+        return jsp;
+    }
     
+    public static String listarAcervoBiblioteca(HttpServletRequest request) {
+        String jsp = "";
+        try{
+            GestaoAcervo gestaoAcervo = new GestaoAcervo();
+            GestaoBibliotecaService gestaoBiblioteca = new GestaoBibliotecaService();
+            
+            Biblioteca alvo = gestaoBiblioteca.pesquisarProNome(request.getParameter("bibliotecaOrigem"));
+            List<Exemplar> exemplares = gestaoAcervo.listaAcervo(alvo);
+            request.setAttribute("exemplaresListar", exemplares);
+            jsp = "/core/acervo/listarAcervo.jsp";
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            jsp= "";
+        }
+        return jsp;
+    }
+    
+    public static String aceitarExemplar(HttpServletRequest request){
+        String jsp = "";
+        try{
+            GestaoAcervo gestaoAcervo = new GestaoAcervo();
+            
+            Long id = Long.parseLong(request.getParameter("userId"));
+            Exemplar exemplarAlvo = gestaoAcervo.pesquisarExemplar(id);
+            if(exemplarAlvo != null){
+                gestaoAcervo.finalizarTransferencia(id);
+
+                exemplarAlvo.setHistorico(exemplarAlvo.getHistorico() + "\nExemplar aceito na nova Biblioteca.\n");
+                jsp = "/core/acervo/operacao-sucesso.jsp";
+            }
+            else{
+                String erro = "Esse exemplar não foi encontrado!";
+                request.setAttribute("erro", erro);
+                jsp = "/core/erro.jsp";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsp = "";
+        }
+        return jsp;
+    }
 }

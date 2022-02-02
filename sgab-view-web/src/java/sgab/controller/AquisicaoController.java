@@ -346,6 +346,7 @@ public class AquisicaoController {
                         
                         //todo usar biblioteca do bibliotecário
                         Biblioteca biblioteca = gestaoBiblioteca.pesquisarProNome("Biblioteca Campus II");
+                        //ESTAS LINHAS PODEM SER SUBSTITUIDAS PELAS DO ENZO
                         
                         Aquisicao novaAquisicao = new Aquisicao(biblioteca, pessoaAlvo1, quantidade, fornecedorAlvo, AquisicaoStatus.ATIVO, obraAlvo1);
                         gestaoAquisicao.cadastrarAquisicao(novaAquisicao);

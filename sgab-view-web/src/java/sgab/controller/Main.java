@@ -267,6 +267,15 @@ public class Main extends HttpServlet {
             case "ListarTransferencia":
                 jsp = AcervoController.listarTransferencia(request);
                 break;
+            case "MostraExemplar":
+                jsp = AcervoController.mostraExemplar(request);
+                break;
+            case "ListarAcervoBiblioteca":
+                jsp = AcervoController.listarAcervoBiblioteca(request);
+                break;
+            case "AceitaExemplar":
+                jsp = AcervoController.aceitarExemplar(request);
+                break;
             
         }
                  
