@@ -186,12 +186,18 @@ public class AquisicaoController {
 
                     request.getSession().setAttribute("bibliotecaAlvo", bibliotecaAlvo);
                     
-                    Long pessoaId = (Long) request.getSession().getAttribute("pessoaId");
-                    Pessoa pessoaAlvo = gestaoPessoas.pesquisarPorId(pessoaId);
+                    Pessoa pessoaAlvo = (Pessoa) request.getSession().getAttribute("usuario");
                     request.getSession().setAttribute("pessoaDona", pessoaAlvo);
                     
-                    Long quantidade = Long.parseLong(request.getParameter("quantidade"));
+                    Long quantidade = null;
+                    String quantidadeString = request.getParameter("quantidade");
+                    if(!quantidadeString.isEmpty())
+                        quantidade = Long.parseLong(quantidadeString);
+                    
                     String justificativa = request.getParameter("justificativa");
+                    if(!justificativa.isEmpty()){
+                        justificativa = "";
+                    }
                     
                     request.getSession().setAttribute("quantidadeAlvo", quantidade);
                     request.getSession().setAttribute("justificativaAlvo", justificativa);
@@ -312,6 +318,7 @@ public class AquisicaoController {
                     }
                     else{
                         String bibliotecaNome = request.getParameter("biblioteca");
+                        bibliotecaNome = bibliotecaNome.split("::")[0];
                         Biblioteca bibliotecaAlvo = gestaoBibliotecaService.pesquisarProNome(bibliotecaNome);
                         
                         request.setAttribute("obras", obrasAlvo);
