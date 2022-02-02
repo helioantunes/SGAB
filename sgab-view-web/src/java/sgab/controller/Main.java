@@ -7,14 +7,19 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import sgab.model.dto.Biblioteca;
+import sgab.model.dto.Exemplar;
+import sgab.model.dto.util.ExemplarStatus;
+import sgab.model.dto.Obra;
+import sgab.model.service.GestaoAcervo;
+import sgab.model.service.GestaoBibliotecaService;
+import sgab.model.service.GestaoObras;
 
 @WebServlet(name = "Main", urlPatterns = {"/main"})
 public class Main extends HttpServlet {
     private String jsp = "";
-    
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
         request.setCharacterEncoding("UTF-8");
         String acao = request.getParameter("acao");
 
@@ -231,6 +236,24 @@ public class Main extends HttpServlet {
             case "BibliotecarioGravarInsercao":
                 jsp = GestorController.gravarInsercaoBiblioteca(request);
                 break;
+            case "ListarAcervo":
+                jsp = AcervoController.escolherBiblioteca(request);
+                break;
+            case "RestaurarExemplar":
+                jsp = AcervoController.enviarReparo(request);
+                break;
+            case "RetornoRestauracao":
+                jsp = AcervoController.receberReparo(request);
+                break;
+            case "DesativaExemplar":
+                jsp = AcervoController.desativarExemplar(request);
+                break;
+            case "TransformaExemplarConsulta":
+                jsp = AcervoController.registrarLivroConsulta(request);
+                break;
+            case "TransferirExemplar":
+                jsp = AcervoController.registrarTransferencia(request);
+                break;
             case "UsuarioListar":
                 jsp = UsuarioController.listar(request);
                 break;
@@ -242,6 +265,29 @@ public class Main extends HttpServlet {
                 break;
             case "GravaDevolucao":
                 jsp = DevolucaoController.GravaDevolucao(request);
+            case "ListarRestaurar":
+                jsp = AcervoController.listarRestaurar(request);
+                break;
+            case "ListarConsulta":
+                jsp = AcervoController.listarConsulta(request);
+                break;
+            case "ListarTransferencia":
+                jsp = AcervoController.listarTransferencia(request);
+                break;
+            case "MostraExemplar":
+                jsp = AcervoController.mostraExemplar(request);
+                break;
+            case "ListarAcervoBiblioteca":
+                jsp = AcervoController.listarAcervoBiblioteca(request);
+                break;
+            case "AceitaExemplar":
+                jsp = AcervoController.aceitarExemplar(request);
+                break;
+            case "EmprestimoListar":
+                jsp = EmprestimoController.listar(request);
+                break;
+            case "EmprestimoSolicitar":
+                jsp = EmprestimoController.gravarEmprestimo(request);
                 break;
         }
                  

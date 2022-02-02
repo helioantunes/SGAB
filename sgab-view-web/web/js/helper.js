@@ -262,6 +262,20 @@ function validarDevolucao(frm){
     else
         result = true;
     
+function validarEmprestimo(frm){
+    let result = false;
+
+    if(frm.idEmprestimo.value == ""){
+        alert("Selecione um exemplar para o empréstimo.");
+        frm.id.focus();
+    }else if(frm.loginLeitor.value == ""){
+        alert("Digite um login do leitor.");
+        frm.loginLeitor.focus();
+    }else{
+        result = true
+    }
+    console.log(frm.loginLeitor.value);
+
     return result;
 }
 
@@ -296,6 +310,11 @@ function pesquisar(frm){
 
     else if(table === "Bibliotecario"){
         frm.action = "/sgab/main?acao=BibliotecarioListar";            
+        frm.submit();
+    }
+
+    else if(table === "Emprestimo"){
+        frm.action = "/sgab/main?acao=EmprestimoListar";
         frm.submit();
     }
 
@@ -450,6 +469,11 @@ function gravarAlteracao(frm) {
         if(validarDevolucao(frm)){
             if (frm.acao.value === "gravar")
                 caminhourl = "/sgab/main?acao=GravaDevolucao"
+    else if (table === "Emprestimo"){
+        if(validarEmprestimo(frm)){
+            if(frm.acao.value === "solicita"){
+                caminhourl = "/sgab/main?acao=EmprestimoSolicitar";
+            }
         }
     }
     
