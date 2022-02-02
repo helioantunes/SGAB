@@ -55,8 +55,9 @@
                 <a href='/sgab/main?acao=UnidadeOrganizacionalListar'>Unid. Org.</a> 
                 <%} if (ControleAutorizacao.checkPermissao("usuario", usuario.getTipo())) {%>
                 <a href='/sgab/core/usuario/index.jsp'>Usuários</a>
-                <%}%>
-                <% if (ControleAutorizacao.checkPermissao("emprestimo", usuario.getTipo())) {%>
+                <%} if (ControleAutorizacao.checkPermissao("devolucao", usuario.getTipo())) {%>
+                <a href='/sgab/core/devolucao/index.jsp'>Devolução</a>
+                <%} if (ControleAutorizacao.checkPermissao("emprestimo", usuario.getTipo())) {%>
                     <a href='/sgab/core/emprestimos/menu.jsp'>Emprestimos</a>
                 <%}%>
             </div>

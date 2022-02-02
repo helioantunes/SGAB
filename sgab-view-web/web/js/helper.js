@@ -252,6 +252,16 @@ function validarAquisicao(frm){
     return result;
 }
 
+function validarDevolucao(frm){
+    let result = false;
+    
+    if(frm.id.value === ""){
+        alert("Selecione um exemplar para a devolução.");
+        frm.id.focus();
+    } 
+    else
+        result = true;
+    
 function validarEmprestimo(frm){
     let result = false;
 
@@ -265,6 +275,7 @@ function validarEmprestimo(frm){
         result = true
     }
     console.log(frm.loginLeitor.value);
+
     return result;
 }
 
@@ -454,6 +465,10 @@ function gravarAlteracao(frm) {
         }
     }
 
+    else if (table === "Devolucao"){
+        if(validarDevolucao(frm)){
+            if (frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=GravaDevolucao"
     else if (table === "Emprestimo"){
         if(validarEmprestimo(frm)){
             if(frm.acao.value === "solicita"){

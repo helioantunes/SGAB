@@ -263,6 +263,8 @@ public class Main extends HttpServlet {
             case "UsuarioInserir":
                 jsp = UsuarioController.gravarInsercao(request);
                 break;
+            case "GravaDevolucao":
+                jsp = DevolucaoController.GravaDevolucao(request);
             case "ListarRestaurar":
                 jsp = AcervoController.listarRestaurar(request);
                 break;
