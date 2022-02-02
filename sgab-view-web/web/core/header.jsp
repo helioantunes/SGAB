@@ -55,4 +55,7 @@
                 <%} if (ControleAutorizacao.checkPermissao("usuario", usuario.getTipo())) {%>
                 <a href='/sgab/core/usuario/index.jsp'>Usuários</a>
                 <%}%>
+                <% if (ControleAutorizacao.checkPermissao("emprestimo", usuario.getTipo())) {%>
+                    <a href='/sgab/core/emprestimos/menu.jsp'>Emprestimos</a>
+                <%}%>
             </div>
