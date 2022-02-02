@@ -281,7 +281,6 @@ public class Main extends HttpServlet {
             case "AceitaExemplar":
                 jsp = AcervoController.aceitarExemplar(request);
                 break;
-            
             case "EmprestimoListar":
                 jsp = EmprestimoController.listar(request);
                 break;
