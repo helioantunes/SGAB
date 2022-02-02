@@ -1,30 +1,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+<%@page import="sgab.model.dto.Biblioteca" %>
+<%@page import="java.util.List" %>
+
+<% Biblioteca biblioteca = (Biblioteca) request.getSession().getAttribute("bibliotecaOrigem");
+   if(biblioteca == null){
+        RequestDispatcher rd = request.getRequestDispatcher("");
+        rd.forward(request, response);
+    }%>
+
 
 <%@include file="/core/header.jsp" %>
-
-    <html class="no-js" lang="">
-    <head>
-      <meta charset="utf-8">
-      <title>SGAB | Gestão de Acervo</title>
-      <meta name="description" content="">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-
-      <meta property="og:title" content="">
-      <meta property="og:type" content="">
-      <meta property="og:url" content="">
-      <meta property="og:image" content="">
-
-      <link rel="stylesheet" href="../../css/styles.css">
-
-      <meta name="theme-color" content="#fafafa">
-    </head>
-
-    <body>
-      <main>
-        <section id="nome-form">
-          <h1>Gestão de Acervo</h1>
-        </section>
-
         <section>
           <div class="caixa-gestao">
             <h2>Operações de Restauração</h2>
@@ -49,13 +34,15 @@
           </div>
 
         </section>
+        
+        <div id="mask" onclick="fechaModalAll()"></div>
 
         <!-- Formulários Pop-up -->
 
         <!-- Form de envio-->
         <div class="form-popup" id="formEnvioRestauracao">
           <div class="close-btn" onclick="fechaModal('formEnvioRestauracao')" >&times;</div>
-          <form class="form-container">
+          <form class="form-container" action="/sgab/main?acao=RestaurarExemplar">
             <h2> Cadastro de Envio para Restauração</h2>
             <div>
               <label>ID: <input type="text" placeholder="ID do Livro" name="idEnvio" required></label>
@@ -70,7 +57,7 @@
         <!-- Formulário de retorno-->
         <div class="form-popup" id="formRetornoRestauracao">
           <div class="close-btn" onclick="fechaModal('formRetornoRestauracao')">&times;</div>
-          <form class="form-container">
+          <form class="form-container" action="/sgab/main?acao=RetornoRestauracao" method="post">
             <h2>Registro de Retorno da Restauração</h2>
             <div>
               <label>ID: <input type="text" placeholder="ID do Livro" name="idRetorno" required></label>
@@ -81,7 +68,6 @@
               </label>
               <button type="submit" class="button-form">Enviar</button>
               <input type="reset" class="button-form">
-
             </div>
           </form>
         </div>
@@ -89,13 +75,13 @@
         <!-- Formulário de desativação -->
         <div class="form-popup" id="formDesativacaoInvalidez">
           <div class="close-btn" onclick="fechaModal('formDesativacaoInvalidez')">&times;</div>
-          <form class="form-container">
+          <form class="form-container" action="/sgab/main?acao=DesativaExemplar" method="post">
             <h2>Desativar livro por invalidez</h2>
             <div>
               <label>ID: <input type="text" placeholder="ID do Livro" name="idRetorno" required></label>
               <label>Data de desativação: <input type="date" name="dataDesativar" required></label>
               <label>Justificativa: <input type="text" placeholder="Razão para desativar" name="razaoDesativar" required></label>
-              <label>Confirmação: <input type="password" placeholder="Senha do Bibliotecário" required></label>
+              <label>Confirmação: <input type="password" placeholder="Senha do Bibliotecário" required name="password"></label>
 
               <button type="submit" class="button-form">Enviar</button>
               <input type="reset" class="button-form">
@@ -106,12 +92,12 @@
         <!-- Formulário de consulta -->
         <div class="form-popup" id="formExemplarConsulta">
           <div class="close-btn" onclick="fechaModal('formExemplarConsulta')">&times;</div>
-          <form class="form-container">
+          <form class="form-container" action="/sgab/main?acao=TransformaExemplarConsulta" method="post">
             <h2>Registrar como Livro de Consulta</h2>
             <div>
               <label>ID: <input type="text" placeholder="ID do Livro" name="idRetorno" required></label>
               <label>Justificativa: <input type="text" placeholder="Razão para registrar como de consulta" name="razaoConsulta" required></label>
-              <label>Confirmação: <input type="password" placeholder="Senha do Gestor" required></label>
+              <label>Confirmação: <input type="password" placeholder="Senha do Gestor" required name="password"></label>
 
               <button type="submit" class="button-form">Enviar</button>
               <input type="reset" class="button-form">
@@ -122,32 +108,14 @@
         <!-- Formulário de Transferencia -->
         <div class="form-popup" id="formTransferExemplar">
           <div class="close-btn" onclick="fechaModal('formTransferExemplar')">&times;</div>
-          <form class="form-container">
+          <form class="form-container" action="/sgab/main?acao=TransferirExemplar" method="post">
             <h2>Transferir Exemplar para outra Bilioteca</h2>
             <div>
               <label>ID: <input type="text" placeholder="ID do Livro" name="idRetorno" required></label>
 
-              <label>ID da Biblioteca: <input type="number" placeholder="Identificação da Biblioteca Receptora"></label>
+              <label>Nome da Biblioteca: <input type="text" placeholder="Identificação da Biblioteca Receptora" name="nomeBiblioteca"></label>
 
-              <label> Confirmação: <input type="password" placeholder="Senha do Gestor" required></label>
-
-              <button type="submit" class="button-form">Enviar</button>
-              <input type="reset" class="button-form">
-            </div>
-          </form>
-        </div>
-
-        <!-- Formulário de Recebimento -->
-        <div class="form-popup" id="formRecebExemplar">
-          <div class="close-btn" onclick="fechaModal('formRecebExemplar')">&times;</div>
-          <form class="form-container">
-            <h2>Confirmar Recebimento de Exemplar de outra Biblioteca</h2>
-            <div>
-              <label>ID: <input type="text" placeholder="ID do Livro" name="idRetorno" required></label>
-
-              <label>ID da Biblioteca: <input type="number" placeholder="Identificação da Biblioteca Receptora"></label>
-
-              <label> Confirmação: <input type="password" placeholder="Senha do Gestor" required></label>
+              <label> Confirmação: <input type="password" placeholder="Senha do Gestor" required name="password"></label>
 
               <button type="submit" class="button-form">Enviar</button>
               <input type="reset" class="button-form">
@@ -155,9 +123,8 @@
           </form>
         </div>
 
-      </main>
       <!-- JS -->
-      <script src="../../js/abreModal.js"></script>
+      <script src="/sgab/js/cssControl.js"></script>
     </body>
 
 <%@include file="/core/footer.jsp" %>

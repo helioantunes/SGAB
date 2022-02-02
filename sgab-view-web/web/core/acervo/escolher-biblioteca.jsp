@@ -4,29 +4,28 @@
 
 <%@include file="/core/header.jsp" %>
 
-<center><h3>Fazer Aquisição</h3></center>
+<center><h3>Acessar Acervo</h3></center>
 <section id="form">
   <div id="caixa-form">
-    <form name="frmPesquisaObra" method="post">
-      <p>Escreva o nome da Obra que deseja fazer uma aquisição.</p>
+    <form name="frmPesquisaBiblioteca" method="post">
+      <p>Escreva o nome da Biblioteca que deseja acessar.</p>
       <div class="pesquisa-container">
-        <input type="hidden" value="primeiro" name="etapa" />
-        <input type="text" name="nomeObra" placeholder="Insira o nome da obra." />
-        <input class="button" type="button" onclick="validarCamposPesquisaObra(document.frmPesquisaObra)" value="Pesquisar" />
+        <input type="text" name="nomeBiblioteca" placeholder="Insira o nome da Biblioteca." />
+        <input class="button" type="button" onclick="validarCamposPesquisaBiblioteca(document.frmPesquisaBiblioteca)" value="Pesquisar" />
       </div>
     </form>
   </div>
 </section>
 <script>
     
-function validarCamposPesquisaObra(frm){
-    let nome = frm.nomeObra.value;
+function validarCamposPesquisaBiblioteca(frm){
+    let nome = frm.nomeBiblioteca.value;
     if (nome == ""){
         alert("Preencha o campo de nome!");
-        frm.nomeObra.focus();
+        frm.nomeBiblioteca.focus();
     }
     else{
-        frm.action = "/sgab/main?acao=AquisicaoCriar";
+        frm.action = "/sgab/main?acao=ListarAcervo";
         frm.submit();
     }
 }

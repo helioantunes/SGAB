@@ -234,6 +234,21 @@ public class Main extends HttpServlet {
             case "ListarAcervo":
                 jsp = AcervoController.escolherBiblioteca(request);
                 break;
+            case "RestaurarExemplar":
+                jsp = AcervoController.enviarReparo(request);
+                break;
+            case "RetornoRestauracao":
+                jsp = AcervoController.receberReparo(request);
+                break;
+            case "DesativaExemplar":
+                jsp = AcervoController.desativarExemplar(request);
+                break;
+            case "TransformaExemplarConsulta":
+                jsp = AcervoController.registrarLivroConsulta(request);
+                break;
+            case "TransferirExemplar":
+                jsp = AcervoController.registrarTransferencia(request);
+                break;
             case "UsuarioListar":
                 jsp = UsuarioController.listar(request);
                 break;
