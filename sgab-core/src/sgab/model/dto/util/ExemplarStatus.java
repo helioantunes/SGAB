@@ -9,5 +9,6 @@ public enum ExemplarStatus {
     REPARO,
     TRANSFERENCIA,
     DESATIVADA,
+    EMPRESTADO,
     RESERVADO;
 }
