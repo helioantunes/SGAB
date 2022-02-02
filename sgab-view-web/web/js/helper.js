@@ -288,6 +288,22 @@ function validarAquisicao(frm){
     return result;
 }
 
+function validarEmprestimo(frm){
+    let result = false;
+
+    if(frm.idEmprestimo.value == ""){
+        alert("Selecione um exemplar para o empréstimo.");
+        frm.id.focus();
+    }else if(frm.loginLeitor.value == ""){
+        alert("Digite um login do leitor.");
+        frm.loginLeitor.focus();
+    }else{
+        result = true
+    }
+    console.log(frm.loginLeitor.value);
+    return result;
+}
+
 /*---------------------------------------------------------------------
  * Funções de pesquisa
  *---------------------------------------------------------------------*/
@@ -319,6 +335,11 @@ function pesquisar(frm){
 
     else if(table === "Bibliotecario"){
         frm.action = "/sgab/main?acao=BibliotecarioListar";            
+        frm.submit();
+    }
+
+    else if(table === "Emprestimo"){
+        frm.action = "/sgab/main?acao=EmprestimoListar";
         frm.submit();
     }
 
@@ -466,6 +487,14 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=UsuarioGravarAlteracao";
             else if (frm.acao.value === "gravar")
                 caminhourl = "/sgab/main?acao=UsuarioGravarInsercao";
+        }
+    }
+
+    else if (table === "Emprestimo"){
+        if(validarEmprestimo(frm)){
+            if(frm.acao.value === "solicita"){
+                caminhourl = "/sgab/main?acao=EmprestimoSolicitar";
+            }
         }
     }
     

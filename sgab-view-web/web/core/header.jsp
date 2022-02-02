@@ -36,6 +36,7 @@
                 <h1>Menu</h1>
             </section>
             <div class="menu">
+                <a href="/sgab/core/acervo/escolher-biblioteca.jsp">Acervo</a>
                 <% if (ControleAutorizacao.checkPermissao("aquisicao", usuario.getTipo())) {
                 if(ControleAutorizacao.checkAquisicao(usuario.getTipo())) {%>
                     <a href='/sgab/main?acao=ListarAquisicoes'>Aquisições</a>
@@ -64,5 +65,8 @@
                 <a href='/sgab/main?acao=UnidadeOrganizacionalListar'>Unid. Org.</a> 
                 <%} if (ControleAutorizacao.checkPermissao("usuario", usuario.getTipo())) {%>
                 <a href='/sgab/core/usuario/index.jsp'>Usuários</a>
+                <%}%>
+                <% if (ControleAutorizacao.checkPermissao("emprestimo", usuario.getTipo())) {%>
+                    <a href='/sgab/core/emprestimos/menu.jsp'>Emprestimos</a>
                 <%}%>
             </div>

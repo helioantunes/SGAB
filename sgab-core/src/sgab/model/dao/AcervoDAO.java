@@ -2,7 +2,7 @@ package sgab.model.dao;
 
 /**
  *
- * @author iulli
+ * @author iulli e letícia
  */
 
 
@@ -101,7 +101,7 @@ public class AcervoDAO implements GenericDAO<Exemplar, Long>{
     
     public boolean mudaTipo(Long id, ExemplarTipo tipo){
         Exemplar exemplarAlvo = pesquisar(id);
-        if(exemplarAlvo == null)
+        if(exemplarAlvo == null || exemplarAlvo.getStatus() == ExemplarStatus.DESATIVADA)
             throw new PersistenciaException("Nenhum exemplar desse id encontrado");
         exemplarAlvo.setTipo(tipo);
         return true;
@@ -115,6 +115,11 @@ public class AcervoDAO implements GenericDAO<Exemplar, Long>{
             }
         }
         return resultados;
+    }
+
+    public boolean disponibilizar(Long id){
+        mudaStatus(id, ExemplarStatus.DISPONIVEL);
+        return true;
     }
     
     public List<Exemplar> listarAcervoParaReserva(){
@@ -156,11 +161,6 @@ public class AcervoDAO implements GenericDAO<Exemplar, Long>{
         }
         return resultados;
     }
-    
-    public boolean disponibilizar(Long id){
-        mudaStatus(id, ExemplarStatus.DISPONIVEL);
-        return true;
-    }
      
     private boolean checaSemelhanca(String nomeObra, String nomeInput){
         String nomeA = nomeObra.toLowerCase();
@@ -195,5 +195,4 @@ public class AcervoDAO implements GenericDAO<Exemplar, Long>{
         
         return false;
     }
-    
 }

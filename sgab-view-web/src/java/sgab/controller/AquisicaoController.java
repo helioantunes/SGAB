@@ -17,8 +17,10 @@ import sgab.model.service.GestaoAssuntoService;
 import java.util.List;
 import java.util.LinkedList;
 import sgab.model.dto.Biblioteca;
+import sgab.model.dto.Exemplar;
 import sgab.model.exception.NegocioException;
 import sgab.model.exception.PersistenciaException;
+import sgab.model.service.GestaoAcervo;
 import sgab.model.service.GestaoBibliotecaService;
 
 public class AquisicaoController {
@@ -344,10 +346,11 @@ public class AquisicaoController {
                         
                         Fornecedor fornecedorAlvo = gestaoFornecedor.pesquisarPorNome(nomeFornecedor);
                         
-                        Long pessoaId = (Long) request.getSession().getAttribute("pessoaId");
-                        Pessoa pessoaAlvo1 = gestaoPessoa.pesquisarPorId(pessoaId);
+                        Pessoa pessoaAlvo1 = (Pessoa) request.getSession().getAttribute("usuario");
                         
                         Biblioteca biblioteca = (Biblioteca) request.getSession().getAttribute("bibliotecaAlvo");
+                        //todo usar biblioteca do bibliotecário
+
                         
                         Aquisicao novaAquisicao = new Aquisicao(biblioteca, pessoaAlvo1, quantidade, fornecedorAlvo, AquisicaoStatus.ATIVO, obraAlvo1);
                         gestaoAquisicao.cadastrarAquisicao(novaAquisicao);
@@ -397,11 +400,22 @@ public class AquisicaoController {
     public static String gravarFinalizado(HttpServletRequest request) {
         String jsp = "";
         try {
+            GestaoAcervo gestaoAcervo = new GestaoAcervo();
+            
             Long aquisicaoId = Long.parseLong(request.getParameter("aquisicaoId"));
             GestaoAquisicao gestaoAquisicao = new GestaoAquisicao();
             Aquisicao aquisicao = gestaoAquisicao.pesquisarAquisicao(aquisicaoId);
             aquisicao.setStatus(AquisicaoStatus.FINALIZADA);
-
+            
+            Long quantidade = aquisicao.getQuantidade();
+            Biblioteca bibliotecaAlvo = aquisicao.getBiblioteca();
+            Obra obraAlvo = aquisicao.getObra();
+            
+            for(int i = 0; i < quantidade; i++){
+                Exemplar exemplarTemp = new Exemplar(obraAlvo, bibliotecaAlvo);
+                gestaoAcervo.cadastrarExemplar(exemplarTemp);
+            }
+            
             try{
                 gestaoAquisicao.alterarAquisicao(aquisicao);
                 jsp = listarAtivos(request);
