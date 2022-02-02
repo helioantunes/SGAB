@@ -60,9 +60,27 @@ public class EmprestimosDAO{
     }
   }
 
+   public void removerExemplar(Long id) {
+    for (Emprestimo emprestimo : emprestimos) {
+      if (emprestimo.getExemplar().getId() == (id)) {
+        emprestimos.remove(emprestimo);
+        break;
+      }
+    }
+  } 
+
   public Emprestimo pesquisar(long id){
     for (Emprestimo emprestimo : emprestimos) {
       if (emprestimo.getId() == (id)) {
+        return emprestimo;
+      }
+    }
+    return null;
+  }
+
+  public Emprestimo pesquisarExemplar(long id){
+    for (Emprestimo emprestimo : emprestimos) {
+      if (emprestimo.getExemplar().getId() == (id)) {
         return emprestimo;
       }
     }

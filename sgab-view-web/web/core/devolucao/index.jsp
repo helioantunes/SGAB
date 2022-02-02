@@ -23,9 +23,9 @@
           <input type="hidden" name="acao" value="gravar">
             
           <div>
-                <label for="login">Informe o Login do Leitor<span class="input-obrigatorio">*</span></label>
-                <input type="text" id="login" name="login" placeholder="Login" required>
-                <small>Digite um Login válido.</small>
+                <label for="id">Informe o Id do Exemplar<span class="input-obrigatorio">*</span></label>
+                <input type="text" id="id" name="id" placeholder="Id" required>
+                <small>Digite um Id válido.</small>
            </div>
           
           <button type="button" class="button-form" onclick="gravarAlteracao(document.GravarGestor)">Enviar</button>

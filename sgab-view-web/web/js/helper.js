@@ -254,9 +254,10 @@ function validarAquisicao(frm){
 
 function validarDevolucao(frm){
     let result = false;
-    if(frm.emprestimo.id.value === ""){
+    
+    if(frm.id.value === ""){
         alert("Selecione um exemplar para a devolução.");
-        frm.emprestimo.id.focus();
+        frm.id.focus();
     } 
     else
         result = true;
@@ -442,6 +443,13 @@ function gravarAlteracao(frm) {
                 caminhourl = "/sgab/main?acao=UsuarioGravarAlteracao";
             else if (frm.acao.value === "gravar")
                 caminhourl = "/sgab/main?acao=UsuarioGravarInsercao";
+        }
+    }
+
+    else if (table === "Devolucao"){
+        if(validarDevolucao(frm)){
+            if (frm.acao.value === "gravar")
+                caminhourl = "/sgab/main?acao=GravaDevolucao"
         }
     }
     
