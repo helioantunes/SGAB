@@ -1,35 +1,32 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@page import="sgab.model.dto.Acervo" %>
+<%@page import="sgab.model.dto.Exemplar" %>
 <%@page import="java.util.List" %>
 
 <%@include file="/core/header.jsp" %>
     <center>
             <h3>Exemplares de Consulta</h3>
-            <form name="listarReparo" method="post">
-                <input type="hidden" name="table" value="Pessoa">
-                <input type="hidden" name="pessoaId" value="">
-
-                <table id="exemplar">
+            <form name="frmObra" method="post">
+                <input type="hidden" name="table" value="Obra">
+                <input type="hidden" name="obraId" value="">
+                <table id="usuario" style="width: 100%;">
                     <tr>
-                        <th>
-                            Código
-                        </th>
-                        <th>
-                            Nome
-                        </th>
-                        <th>
-                            Autor
-                        </th>
-                        <th>
-                            &nbsp; &nbsp;
-                        </th>
+                      <th class="hpesquisa"></th>
+                      <th>ID</th>
+                      <th>NOME</th>
+                      <th>ID</th>
                     </tr>
-                <%
-                List<Exemplar> listExemplares = (List<Exemplar>) request.getAttribute("listarConsulta");
-                for (Exemplar exemplar: listExemplar) {
-                %>
-
-                <%  } %>
+                    <% 
+                    List<Exemplar> lista = (List<Exemplar>) request.getAttribute("exemplaresListar");
+                    for(Exemplar exemplar : lista){
+                    %>
+                    <tr>
+                      <td class="pesquisa"><a href="">&#128270</a></td>
+                      <td><%= exemplar.getId()%></td>
+                      <td><%= exemplar.getObra().getTitulo()%></td>
+                    </tr>
+                    <% } %>
+        </table>
+        </form>
             </center>
 
 

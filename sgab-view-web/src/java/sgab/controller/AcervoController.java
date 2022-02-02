@@ -61,7 +61,7 @@ public class AcervoController {
                 exemplarAlvo.setHistorico(exemplarAlvo.getHistorico() + "\n" + data + " - Exemplar enviado para restauração.\n"
                         + "Motivo: " + justificativa);
                 
-                jsp = "/core/acervo/menu.jsp";
+                jsp = "/core/acervo/operacao-sucesso.jsp";
             }
             else{
                 String erro = "Esse exemplar não foi encontrado!";

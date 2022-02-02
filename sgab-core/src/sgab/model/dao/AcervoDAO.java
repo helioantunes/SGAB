@@ -100,7 +100,7 @@ public class AcervoDAO implements GenericDAO<Exemplar, Long>{
     
     public boolean mudaTipo(Long id, ExemplarTipo tipo){
         Exemplar exemplarAlvo = pesquisar(id);
-        if(exemplarAlvo == null)
+        if(exemplarAlvo == null || exemplarAlvo.getStatus() == ExemplarStatus.DESATIVADA)
             throw new PersistenciaException("Nenhum exemplar desse id encontrado");
         exemplarAlvo.setTipo(tipo);
         return true;

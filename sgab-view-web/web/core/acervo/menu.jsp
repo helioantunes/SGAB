@@ -16,20 +16,20 @@
             <button class="button-gestao" onclick="abreModal('formEnvioRestauracao')">Enviar para restauração</button>
             <button class="button-gestao" onclick="abreModal('formRetornoRestauracao')">Registrar retorno</button>
             <button class="button-gestao" onclick="abreModal('formDesativacaoInvalidez')">Desativar livro</button>
-            <a href="listarReparo.jsp"><button class="button-gestao">Listar livros em restauração</button></a>
+            <a href="/sgab/main?acao=ListarRestaurar&bibliotecaOrigem=<%=biblioteca.getNome()%>"><button class="button-gestao">Listar livros em restauração</button></a>
           </div>
           <br>
           <div class="caixa-gestao">
             <h2>Operações de Consulta</h2>
             <button class="button-gestao" onclick="abreModal('formExemplarConsulta')">Registrar livro de consulta</button>
-            <a href="listarConsulta.jsp"><button class="button-gestao" >Listar livros em consulta</button></a>
+            <a href="/sgab/main?acao=ListarConsulta&bibliotecaOrigem=<%=biblioteca.getNome()%>"><button class="button-gestao" >Listar livros em consulta</button></a>
           </div>
           <br>
           <div class="caixa-gestao">
             <h2>Operações de Transferência entre Bibliotecas</h2>
             <button class="button-gestao" onclick="abreModal('formTransferExemplar')">Transferir livro</button>
             <button class="button-gestao" onclick="abreModal('formRecebExemplar')">Receber livro</button>
-            <a href="listarTransferencia.jsp"><button class="button-gestao" >Listar transferências</button></a>
+            <a href="/sgab/main?acao=ListarTransferencia&bibliotecaOrigem=<%=biblioteca.getNome()%>"><button class="button-gestao" >Listar transferências</button></a>
 
           </div>
 
@@ -42,7 +42,7 @@
         <!-- Form de envio-->
         <div class="form-popup" id="formEnvioRestauracao">
           <div class="close-btn" onclick="fechaModal('formEnvioRestauracao')" >&times;</div>
-          <form class="form-container" action="/sgab/main?acao=RestaurarExemplar">
+          <form class="form-container" method="POST" action="/sgab/main?acao=RestaurarExemplar">
             <h2> Cadastro de Envio para Restauração</h2>
             <div>
               <label>ID: <input type="text" placeholder="ID do Livro" name="idEnvio" required></label>
@@ -57,7 +57,7 @@
         <!-- Formulário de retorno-->
         <div class="form-popup" id="formRetornoRestauracao">
           <div class="close-btn" onclick="fechaModal('formRetornoRestauracao')">&times;</div>
-          <form class="form-container" action="/sgab/main?acao=RetornoRestauracao" method="post">
+          <form class="form-container" action="/sgab/main?acao=RetornoRestauracao" method="POST">
             <h2>Registro de Retorno da Restauração</h2>
             <div>
               <label>ID: <input type="text" placeholder="ID do Livro" name="idRetorno" required></label>
@@ -75,7 +75,7 @@
         <!-- Formulário de desativação -->
         <div class="form-popup" id="formDesativacaoInvalidez">
           <div class="close-btn" onclick="fechaModal('formDesativacaoInvalidez')">&times;</div>
-          <form class="form-container" action="/sgab/main?acao=DesativaExemplar" method="post">
+          <form class="form-container" action="/sgab/main?acao=DesativaExemplar" method="POST">
             <h2>Desativar livro por invalidez</h2>
             <div>
               <label>ID: <input type="text" placeholder="ID do Livro" name="idRetorno" required></label>
@@ -92,7 +92,7 @@
         <!-- Formulário de consulta -->
         <div class="form-popup" id="formExemplarConsulta">
           <div class="close-btn" onclick="fechaModal('formExemplarConsulta')">&times;</div>
-          <form class="form-container" action="/sgab/main?acao=TransformaExemplarConsulta" method="post">
+          <form class="form-container" action="/sgab/main?acao=TransformaExemplarConsulta" method="POST">
             <h2>Registrar como Livro de Consulta</h2>
             <div>
               <label>ID: <input type="text" placeholder="ID do Livro" name="idRetorno" required></label>
@@ -108,7 +108,7 @@
         <!-- Formulário de Transferencia -->
         <div class="form-popup" id="formTransferExemplar">
           <div class="close-btn" onclick="fechaModal('formTransferExemplar')">&times;</div>
-          <form class="form-container" action="/sgab/main?acao=TransferirExemplar" method="post">
+          <form class="form-container" action="/sgab/main?acao=TransferirExemplar" method="POST">
             <h2>Transferir Exemplar para outra Bilioteca</h2>
             <div>
               <label>ID: <input type="text" placeholder="ID do Livro" name="idRetorno" required></label>
