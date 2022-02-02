@@ -72,4 +72,16 @@ public class EmprestimosDAO{
   public List<Emprestimo> listar() {
     return emprestimos;
   }
+  
+  public List<Emprestimo> listar(Exemplar exemplar) {
+    List<Emprestimo> result = new ArrayList<>();
+        
+    for(Emprestimo emprestimo : emprestimos){
+        if(emprestimo.getExemplar().equals(exemplar)){
+            result.add(emprestimo);
+        }
+    }
+
+    return result;
+  }
 }

@@ -38,5 +38,13 @@ public class GestaoEmprestimo {
             throw new NegocioException("Não há empréstimos existentes!");
         }
         return lista;
-    }   
+    }
+    
+    public List<Emprestimo> listarEmprestimoPorExemplar(Exemplar exemplar){
+        List<Emprestimo> lista = emprestimosDAO.listar(exemplar);
+        if(lista.isEmpty()){
+            throw new NegocioException("Não há empréstimos existentes!");
+        }
+        return lista;
+    }  
 }
