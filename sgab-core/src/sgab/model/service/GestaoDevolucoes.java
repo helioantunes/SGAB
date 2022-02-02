@@ -15,7 +15,7 @@ import sgab.model.exception.NegocioException;
 public class GestaoDevolucoes {
     private PessoasDAO pessoasDAO;
     
-    public void RegistrarDevolucoes(Exemplar exemplar, Pessoa leitor){
+    public void RegistrarDevolucoes(Id id){
         
         EmprestimosDAO emprestimosDAO = new EmprestimosDAO();
         List<String> errosLeitor = EmprestimoHelper.validarLeitor(leitor, pessoasDAO);
@@ -28,6 +28,6 @@ public class GestaoDevolucoes {
         }
         
         exemplar.setStatus(ExemplarStatus.DISPONIVEL);
-        emprestimosDAO.remover(exemplar,leitor);
+        emprestimosDAO.remover(id);
     }
 }
