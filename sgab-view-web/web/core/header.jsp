@@ -54,7 +54,13 @@
                 <a href='/sgab/main?acao=ObraListar'>Obras</a>         
                 <%} if (ControleAutorizacao.checkPermissao("pessoa", usuario.getTipo())) {%>
                 <a href='/sgab/main?acao=PessoaListar'>Pessoas</a>
-                <%} if (ControleAutorizacao.checkPermissao("unidade", usuario.getTipo())) {%>
+                <% if (ControleAutorizacao.checkPermissao("reserva", usuario.getTipo())) {
+                if(ControleAutorizacao.checkAquisicao(usuario.getTipo())) {%>
+                    <a href='/sgab/main?acao=ListarReservar'>Reservas</a>
+                <%} else { %>
+                    <a href='/sgab/main?acao=IniciarReservar'>Reservas</a>
+                <%} 
+                } if (ControleAutorizacao.checkPermissao("unidade", usuario.getTipo())) {%>
                 <a href='/sgab/main?acao=UnidadeOrganizacionalListar'>Unid. Org.</a> 
                 <%} if (ControleAutorizacao.checkPermissao("usuario", usuario.getTipo())) {%>
                 <a href='/sgab/core/usuario/index.jsp'>Usuários</a>

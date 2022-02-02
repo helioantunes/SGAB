@@ -90,6 +90,11 @@ public class ControleAutorizacao {
         permissao.addUsuarioGrupo(UsuarioTipo.ATENDENTE);
         permissoes.put(permissao.getRecurso(), permissao);
 
+        permissao = new Permissao("reserva");
+        permissao.addUsuarioGrupo(UsuarioTipo.BIBLIOTECARIO);
+        permissao.addUsuarioGrupo(UsuarioTipo.LEITOR);
+        permissoes.put(permissao.getRecurso(), permissao);
+
         permissao = new Permissao("usuario-administrador");
         permissao.addUsuarioGrupo(UsuarioTipo.ADMINISTRADOR);
         permissoes.put(permissao.getRecurso(), permissao);
