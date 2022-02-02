@@ -13,6 +13,7 @@ import sgab.model.exception.PersistenciaException;
 import sgab.model.service.GestaoAcervo;
 import sgab.model.service.GestaoAutor;
 import sgab.model.service.GestaoBibliotecaService;
+import sgab.model.service.GestaoEmprestimo;
 import sgab.model.service.GestaoPessoasService;
 import sgab.model.service.GestaoReservaService;
 
@@ -25,7 +26,7 @@ public class ReservaController {
             Exemplar exemplarAlvo = gestaoAcervo.pesquisarExemplar(Long.parseLong(request.getParameter("exemplarId")));
             
             GestaoPessoasService gestaoPessoas = new GestaoPessoasService();
-            Pessoa pessoaAlvo = gestaoPessoas.pesquisarPorId((Long) request.getSession().getAttribute("pessoaId"));
+            Pessoa pessoaAlvo = (Pessoa) request.getSession().getAttribute("usuario"); 
             
             exemplarAlvo.setStatus(ExemplarStatus.RESERVADO);
             Reserva reservaNova = new Reserva(pessoaAlvo, exemplarAlvo);
@@ -168,11 +169,34 @@ public class ReservaController {
             Reserva reservaAlvo = gestaoReservaService.pesquisarPorId(Long.parseLong(request.getParameter("reservaId")));
             
             try{
-                // gestao emprestimo
+                GestaoEmprestimo gestaoEmprestimo = new GestaoEmprestimo();
                 
-                if(gestaoReservaService.listarReservas(reservaAlvo.getExemplar()).size() == 1 /* listar emprestimo por exemplar vazio*/ ){
+                if(gestaoReservaService.listarReservas(reservaAlvo.getExemplar()).size() == 1 && gestaoEmprestimo.listarEmprestimoPorExemplar(reservaAlvo.getExemplar()).size() == 0 && gestaoEmprestimo.listarEmprestimoPorExemplar(reservaAlvo.getExemplar()) == null){
                     reservaAlvo.getExemplar().setStatus(ExemplarStatus.DISPONIVEL);
                 }
+                
+                gestaoReservaService.excluir(reservaAlvo);
+                jsp = listarReservas(request);
+            } catch(PersistenciaException ex){
+                String erro = "Ocorreu erro ao Finalizar Reserva!";
+                request.setAttribute("erro", erro);
+                jsp = "/core/erro.jsp";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsp = "";
+        }
+        return jsp;
+    }
+
+    public static String emprestar(HttpServletRequest request){
+        String jsp = "";
+        try {
+            GestaoReservaService gestaoReservaService = new GestaoReservaService();
+            Reserva reservaAlvo = gestaoReservaService.pesquisarPorId(Long.parseLong(request.getParameter("reservaId")));
+            
+            try{
+                
                 
                 gestaoReservaService.excluir(reservaAlvo);
                 jsp = listarReservas(request);

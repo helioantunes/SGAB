@@ -297,6 +297,7 @@ public class AquisicaoController {
             GestaoObras gestaoObra = new GestaoObras();
             GestaoAquisicao gestaoAquisicao = new GestaoAquisicao();
             GestaoFornecedoresService gestaoFornecedor = new GestaoFornecedoresService();
+            GestaoBibliotecaService gestaoBibliotecaService = new GestaoBibliotecaService();
             
             String etapa = request.getParameter("etapa");
             
@@ -308,9 +309,13 @@ public class AquisicaoController {
                         jsp = "/core/aquisicoes/pedir-passo2-none.jsp";
                     }
                     else{
+                        String bibliotecaNome = request.getParameter("biblioteca");
+                        Biblioteca bibliotecaAlvo = gestaoBibliotecaService.pesquisarProNome(bibliotecaNome);
+                        
                         request.setAttribute("obras", obrasAlvo);
                         request.getSession().setAttribute("pessoaDona", null);
                         request.getSession().setAttribute("idAquisicaoAtual", null);
+                        request.getSession().setAttribute("bibliotecaAlvo", bibliotecaAlvo);
                         jsp= "/core/aquisicoes/pedir-passo2.jsp";
                     }
                     break;
@@ -342,8 +347,7 @@ public class AquisicaoController {
                         Long pessoaId = (Long) request.getSession().getAttribute("pessoaId");
                         Pessoa pessoaAlvo1 = gestaoPessoa.pesquisarPorId(pessoaId);
                         
-                        //todo usar biblioteca do bibliotecário
-                        Biblioteca biblioteca = null;
+                        Biblioteca biblioteca = (Biblioteca) request.getSession().getAttribute("bibliotecaAlvo");
                         
                         Aquisicao novaAquisicao = new Aquisicao(biblioteca, pessoaAlvo1, quantidade, fornecedorAlvo, AquisicaoStatus.ATIVO, obraAlvo1);
                         gestaoAquisicao.cadastrarAquisicao(novaAquisicao);

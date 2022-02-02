@@ -9,6 +9,23 @@
 
 <%@include file="/core/header.jsp" %>
 <style>
+        #escolha{
+            display: flex;
+            position: relative;
+            justify-content: space-around;
+
+        }
+
+        #escolha::after{
+            content: "";
+            background: black;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            height: 100%;
+            width: 1px;
+        }
+
         .hpesquisa{
             flex: 0.5;
         }
@@ -51,18 +68,24 @@
                       <td><%= reserva.getPessoa().getNome()%></td>
                       <td><%= reserva.getExemplar().getObra().getTitulo()%></td>
                       <td><%= reserva.getHorario()%></td>
-                      <td><input type="button" style="
-                                display: block; 
-                                margin-left: auto;
-                                margin-right: auto; 
-                                padding: 4px 4px; 
-                                height: 26px; 
-                                border-color: #aaaaaa; 
-                                background-color: #aaaaaa;
-                                color: black;
-                                width: 100%;
-                                border-radius: 0;
-                            " class="button" value="Finalizar" onclick="finalizar(<%= reserva.getId()%>, document.frmPesquisa)"></td>
+                      <td id="escolha" style="background-color: #aaaaaa; ">   
+                                <input type="button" class="button" style="
+                                    display: inline;  
+                                    height: 26px; 
+                                    border-color: #aaaaaa; 
+                                    background-color: #aaaaaa;
+                                    color: black;
+                                    border-radius: 0;
+                                    
+                                    " value="Apagar" onclick="finalizar(<%=aquisicao.getId()%>,document.frmAquisicao)">
+                                <input type="button" class="button" style="
+                                    display: inline; 
+                                    height: 26px; 
+                                    border-color: #aaaaaa; 
+                                    background-color: #aaaaaa;
+                                    color: black;
+                                    border-radius: 0;
+                                " value="Pedir" onclick="pedir(<%=aquisicao.getId()%>, <%= aquisicao.getQuantidade() %>, '<%=aquisicao.getJustificativaQuantidade()%>', document.frmAquisicao)">
                     </tr> 
                     <% } %> 
         </table>
