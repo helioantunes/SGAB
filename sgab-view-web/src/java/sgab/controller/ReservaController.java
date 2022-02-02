@@ -217,12 +217,23 @@ public class ReservaController {
         String jsp = "";
         try {
             GestaoReservaService gestaoReservaService = new GestaoReservaService();
-            Reserva reservaAlvo = gestaoReservaService.pesquisarPorId(Long.parseLong(request.getParameter("reservaId")));
+            String i = request.getParameter("reservaId");
+            Long id = Long.parseLong(i);
+            Reserva reservaAlvo = gestaoReservaService.pesquisarPorId(id);
             
             try{
                 GestaoEmprestimo gestaoEmprestimo = new GestaoEmprestimo();
-                request.getSession().setAttribute("exemplarId", reservaAlvo.getExemplar().getId());
-                request.getSession().setAttribute("leitorLogin", reservaAlvo.getPessoa().getLogin());
+                if(reservaAlvo != null){
+                    request.getSession().setAttribute("exemplarId", reservaAlvo.getExemplar().getId());
+                    request.getSession().setAttribute("leitorLogin", reservaAlvo.getPessoa().getLogin());
+                    
+                    if(gestaoReservaService.listarReservas(reservaAlvo.getExemplar()) == null && gestaoEmprestimo.listarEmprestimoPorExemplar(reservaAlvo.getExemplar()) == null){
+                        reservaAlvo.getExemplar().setStatus(ExemplarStatus.DISPONIVEL);
+                    }
+                    
+                }
+                
+                
                 
                 gestaoReservaService.excluir(reservaAlvo);
                 jsp = "/core/emprestimos/emprestimos.jsp";

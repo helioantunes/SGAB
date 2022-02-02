@@ -36,7 +36,7 @@
         }
     </style> 
       <center>
-          <h3>Reservas - Acervo de Exemplares</h3>
+          <h3>Reservas - Acervo de Reservas</h3>
           <div class="acoes">
               <span></span>
               <form class="pesquisa-container" name="frmPesquisa" method="post">
