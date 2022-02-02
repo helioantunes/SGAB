@@ -283,6 +283,10 @@ public class Main extends HttpServlet {
                 break;
             case "EmprestarReserva":
                 jsp = ReservaController.emprestar(request);
+                break;
+            case "GravaDevolucao":
+                jsp = DevolucaoController.GravaDevolucao(request);
+                break;
             case "ListarRestaurar":
                 jsp = AcervoController.listarRestaurar(request);
                 break;
@@ -300,7 +304,7 @@ public class Main extends HttpServlet {
                 break;
             case "AceitaExemplar":
                 jsp = AcervoController.aceitarExemplar(request);
-                break;        
+                break;
             case "EmprestimoListar":
                 jsp = EmprestimoController.listar(request);
                 break;

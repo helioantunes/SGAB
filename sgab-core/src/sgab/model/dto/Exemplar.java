@@ -54,7 +54,7 @@ public class Exemplar {
     public void setBibliotecaPosse(Biblioteca bibliotecaPosse) {
         this.bibliotecaPosse = bibliotecaPosse;
     }
-    
+
     public String getHistorico() {
         return historico;
     }
