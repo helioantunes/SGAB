@@ -16,7 +16,7 @@ import sgab.model.service.GestaoBibliotecaService;
 import sgab.model.service.GestaoObras;
 
 @WebServlet(name = "Main", urlPatterns = {"/main"})
-public class Main extends HttpServlet {
+public class Main extends HttpServlet {   
     private String jsp = "";
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
